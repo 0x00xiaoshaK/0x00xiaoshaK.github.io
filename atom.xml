@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>晓莎K&#39;s blog</title>
+  
+  <subtitle>学无止境</subtitle>
+  <link href="http://0x00xiaoshak.github.io/atom.xml" rel="self"/>
+  
+  <link href="http://0x00xiaoshak.github.io/"/>
+  <updated>2021-04-30T11:58:56.000Z</updated>
+  <id>http://0x00xiaoshak.github.io/</id>
+  
+  <author>
+    <name>晓莎K</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>sqli-labs21-30</title>
+    <link href="http://0x00xiaoshak.github.io/2021/11/11/sqli-labs21-30/"/>
+    <id>http://0x00xiaoshak.github.io/2021/11/11/sqli-labs21-30/</id>
+    <published>2021-11-11T10:09:38.909Z</published>
+    <updated>2021-04-30T11:58:56.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;sqli-lab通关-21-30&quot;&gt;&lt;a href=&quot;#sqli-lab通关-21-30&quot; class=&quot;headerlink&quot; title=&quot;sqli-lab通关(21-30)&quot;&gt;&lt;/a&gt;sqli-lab通关(21-30)&lt;/h1&gt;</summary>
+    
+    
+    
+    <category term="靶场" scheme="http://0x00xiaoshak.github.io/categories/%E9%9D%B6%E5%9C%BA/"/>
+    
+    
+    <category term="sql-page2" scheme="http://0x00xiaoshak.github.io/tags/sql-page2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>day33</title>
+    <link href="http://0x00xiaoshak.github.io/2021/11/09/day33/"/>
+    <id>http://0x00xiaoshak.github.io/2021/11/09/day33/</id>
+    <published>2021-11-09T07:21:49.000Z</published>
+    <updated>2021-11-10T14:10:04.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;sqlmap实战使用&quot;&gt;&lt;a href=&quot;#sqlmap实战使用&quot; class=&quot;headerlink&quot; title=&quot;sqlmap实战使用&quot;&gt;&lt;/a&gt;sqlmap实战使用&lt;/h1&gt;&lt;p&gt;由浅入深的写下使用&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="sqlmap" scheme="http://0x00xiaoshak.github.io/categories/sqlmap/"/>
+    
+    
+    <category term="sqlmap实战" scheme="http://0x00xiaoshak.github.io/tags/sqlmap%E5%AE%9E%E6%88%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>day32</title>
+    <link href="http://0x00xiaoshak.github.io/2021/10/28/day32/"/>
+    <id>http://0x00xiaoshak.github.io/2021/10/28/day32/</id>
+    <published>2021-10-28T11:36:48.000Z</published>
+    <updated>2021-11-09T07:11:50.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;sqlmap使用手册&quot;&gt;&lt;a href=&quot;#sqlmap使用手册&quot; class=&quot;headerlink&quot; title=&quot;sqlmap使用手册&quot;&gt;&lt;/a&gt;sqlmap使用手册&lt;/h1&gt;&lt;p&gt;收集sqlmap的文章集合规划，方便自己使用&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="sqlmap" scheme="http://0x00xiaoshak.github.io/categories/sqlmap/"/>
+    
+    
+    <category term="sqlmap使用手册" scheme="http://0x00xiaoshak.github.io/tags/sqlmap%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>day31</title>
+    <link href="http://0x00xiaoshak.github.io/2021/10/27/day31/"/>
+    <id>http://0x00xiaoshak.github.io/2021/10/27/day31/</id>
+    <published>2021-10-27T11:24:36.000Z</published>
+    <updated>2021-10-28T11:29:34.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;命令执行漏洞&quot;&gt;&lt;a href=&quot;#命令执行漏洞&quot; class=&quot;headerlink&quot; title=&quot;命令执行漏洞&quot;&gt;&lt;/a&gt;命令执行漏洞&lt;/h1&gt;</summary>
+    
+    
+    
+    <category term="命令执行" scheme="http://0x00xiaoshak.github.io/categories/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/"/>
+    
+    
+    <category term="命令执行漏洞" scheme="http://0x00xiaoshak.github.io/tags/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>day30</title>
+    <link href="http://0x00xiaoshak.github.io/2021/10/20/day30/"/>
+    <id>http://0x00xiaoshak.github.io/2021/10/20/day30/</id>
+    <published>2021-10-20T07:24:43.000Z</published>
+    <updated>2021-10-27T07:13:40.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;文件包含漏洞&quot;&gt;&lt;a href=&quot;#文件包含漏洞&quot; class=&quot;headerlink&quot; title=&quot;文件包含漏洞&quot;&gt;&lt;/a&gt;文件包含漏洞&lt;/h1&gt;</summary>
+    
+    
+    
+    <category term="文件包含漏洞" scheme="http://0x00xiaoshak.github.io/categories/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E/"/>
+    
+    
+    <category term="文件包含漏洞" scheme="http://0x00xiaoshak.github.io/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>day29</title>
+    <link href="http://0x00xiaoshak.github.io/2021/09/22/day29/"/>
+    <id>http://0x00xiaoshak.github.io/2021/09/22/day29/</id>
+    <published>2021-09-22T05:43:24.000Z</published>
+    <updated>2021-10-20T07:16:40.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;xss漏洞&quot;&gt;&lt;a href=&quot;#xss漏洞&quot; class=&quot;headerlink&quot; title=&quot;xss漏洞&quot;&gt;&lt;/a&gt;xss漏洞&lt;/h1&gt;</summary>
+    
+    
+    
+    <category term="xss漏洞" scheme="http://0x00xiaoshak.github.io/categories/xss%E6%BC%8F%E6%B4%9E/"/>
+    
+    
+    <category term="xss" scheme="http://0x00xiaoshak.github.io/tags/xss/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>day28</title>
+    <link href="http://0x00xiaoshak.github.io/2021/09/19/day28/"/>
+    <id>http://0x00xiaoshak.github.io/2021/09/19/day28/</id>
+    <published>2021-09-19T07:01:58.000Z</published>
+    <updated>2021-09-21T10:55:20.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;文件上传漏洞&quot;&gt;&lt;a href=&quot;#文件上传漏洞&quot; class=&quot;headerlink&quot; title=&quot;文件上传漏洞&quot;&gt;&lt;/a&gt;文件上传漏洞&lt;/h1&gt;</summary>
+    
+    
+    
+    <category term="文件上传" scheme="http://0x00xiaoshak.github.io/categories/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/"/>
+    
+    
+    <category term="文件上传" scheme="http://0x00xiaoshak.github.io/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>day27</title>
+    <link href="http://0x00xiaoshak.github.io/2021/09/17/day27/"/>
+    <id>http://0x00xiaoshak.github.io/2021/09/17/day27/</id>
+    <published>2021-09-17T08:19:25.000Z</published>
+    <updated>2021-09-18T11:17:08.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;iis某狗绕过注入&quot;&gt;&lt;a href=&quot;#iis某狗绕过注入&quot; class=&quot;headerlink&quot; title=&quot;iis某狗绕过注入&quot;&gt;&lt;/a&gt;iis某狗绕过注入&lt;/h1&gt;&lt;p&gt;对在安全狗4.0.30256版本(2021-09-17 16:19:25下最新版本)防护下的sql绕过，防护等级高级，中间件是iis8.5 php mysql。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="sql绕过" scheme="http://0x00xiaoshak.github.io/categories/sql%E7%BB%95%E8%BF%87/"/>
+    
+    
+    <category term="iis某狗绕过注入" scheme="http://0x00xiaoshak.github.io/tags/iis%E6%9F%90%E7%8B%97%E7%BB%95%E8%BF%87%E6%B3%A8%E5%85%A5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>day26</title>
+    <link href="http://0x00xiaoshak.github.io/2021/09/12/day26/"/>
+    <id>http://0x00xiaoshak.github.io/2021/09/12/day26/</id>
+    <published>2021-09-12T08:28:16.000Z</published>
+    <updated>2021-09-17T08:21:56.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;sql注入绕过技术&quot;&gt;&lt;a href=&quot;#sql注入绕过技术&quot; class=&quot;headerlink&quot; title=&quot;sql注入绕过技术&quot;&gt;&lt;/a&gt;sql注入绕过技术&lt;/h1&gt;&lt;p&gt;继续进行学习，希望自己坚持把学习放在第一！&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="sql绕过" scheme="http://0x00xiaoshak.github.io/categories/sql%E7%BB%95%E8%BF%87/"/>
+    
+    
+    <category term="sql绕过" scheme="http://0x00xiaoshak.github.io/tags/sql%E7%BB%95%E8%BF%87/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>60之day25</title>
+    <link href="http://0x00xiaoshak.github.io/2021/08/14/60-zhi-day25/"/>
+    <id>http://0x00xiaoshak.github.io/2021/08/14/60-zhi-day25/</id>
+    <published>2021-08-14T02:21:36.000Z</published>
+    <updated>2021-09-17T08:22:04.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;sql注入绕过技术&quot;&gt;&lt;a href=&quot;#sql注入绕过技术&quot; class=&quot;headerlink&quot; title=&quot;sql注入绕过技术&quot;&gt;&lt;/a&gt;sql注入绕过技术&lt;/h1&gt;&lt;p&gt;详细介绍针对 waf 的拦截注入的绕过方法。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="sql绕过" scheme="http://0x00xiaoshak.github.io/categories/sql%E7%BB%95%E8%BF%87/"/>
+    
+    
+    <category term="sql绕过" scheme="http://0x00xiaoshak.github.io/tags/sql%E7%BB%95%E8%BF%87/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>60之day24</title>
+    <link href="http://0x00xiaoshak.github.io/2021/08/06/60-zhi-day24/"/>
+    <id>http://0x00xiaoshak.github.io/2021/08/06/60-zhi-day24/</id>
+    <published>2021-08-06T01:28:51.000Z</published>
+    <updated>2021-08-14T03:58:56.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;web安全漏洞与利用&quot;&gt;&lt;a href=&quot;#web安全漏洞与利用&quot; class=&quot;headerlink&quot; title=&quot;web安全漏洞与利用&quot;&gt;&lt;/a&gt;web安全漏洞与利用&lt;/h1&gt;</summary>
+    
+    
+    
+    <category term="web安全漏洞与利用" scheme="http://0x00xiaoshak.github.io/categories/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E4%B8%8E%E5%88%A9%E7%94%A8/"/>
+    
+    
+    <category term="sql注入" scheme="http://0x00xiaoshak.github.io/tags/sql%E6%B3%A8%E5%85%A5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>60之day23</title>
+    <link href="http://0x00xiaoshak.github.io/2021/08/05/60-zhi-day23/"/>
+    <id>http://0x00xiaoshak.github.io/2021/08/05/60-zhi-day23/</id>
+    <published>2021-08-05T03:15:38.000Z</published>
+    <updated>2021-08-06T01:36:08.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;web安全漏洞与利用&quot;&gt;&lt;a href=&quot;#web安全漏洞与利用&quot; class=&quot;headerlink&quot; title=&quot;web安全漏洞与利用&quot;&gt;&lt;/a&gt;web安全漏洞与利用&lt;/h1&gt;&lt;p&gt;由于之前已经通关sqli-labs，所以这次写sql注入重点写思路、原理、概念，或者说是靶场所覆盖不了的细节方面。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="web安全漏洞与利用" scheme="http://0x00xiaoshak.github.io/categories/web%E5%AE%89%E5%85%A8%E6%BC%8F%E6%B4%9E%E4%B8%8E%E5%88%A9%E7%94%A8/"/>
+    
+    
+    <category term="sql注入" scheme="http://0x00xiaoshak.github.io/tags/sql%E6%B3%A8%E5%85%A5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>60之day22</title>
+    <link href="http://0x00xiaoshak.github.io/2021/08/03/60-zhi-day22/"/>
+    <id>http://0x00xiaoshak.github.io/2021/08/03/60-zhi-day22/</id>
+    <published>2021-08-03T05:05:04.000Z</published>
+    <updated>2021-08-04T12:34:36.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;穷举篇&quot;&gt;&lt;a href=&quot;#穷举篇&quot; class=&quot;headerlink&quot; title=&quot;穷举篇&quot;&gt;&lt;/a&gt;穷举篇&lt;/h1&gt;</summary>
+    
+    
+    
+    <category term="穷举篇" scheme="http://0x00xiaoshak.github.io/categories/%E7%A9%B7%E4%B8%BE%E7%AF%87/"/>
+    
+    
+    <category term="穷举篇" scheme="http://0x00xiaoshak.github.io/tags/%E7%A9%B7%E4%B8%BE%E7%AF%87/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>60之day21</title>
+    <link href="http://0x00xiaoshak.github.io/2021/08/02/60-zhi-day21/"/>
+    <id>http://0x00xiaoshak.github.io/2021/08/02/60-zhi-day21/</id>
+    <published>2021-08-02T04:50:59.000Z</published>
+    <updated>2021-08-02T12:03:30.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;穷举篇&quot;&gt;&lt;a href=&quot;#穷举篇&quot; class=&quot;headerlink&quot; title=&quot;穷举篇&quot;&gt;&lt;/a&gt;穷举篇&lt;/h1&gt;</summary>
+    
+    
+    
+    <category term="穷举篇" scheme="http://0x00xiaoshak.github.io/categories/%E7%A9%B7%E4%B8%BE%E7%AF%87/"/>
+    
+    
+    <category term="穷举篇" scheme="http://0x00xiaoshak.github.io/tags/%E7%A9%B7%E4%B8%BE%E7%AF%87/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>60之day20</title>
+    <link href="http://0x00xiaoshak.github.io/2021/07/27/60-zhi-day20/"/>
+    <id>http://0x00xiaoshak.github.io/2021/07/27/60-zhi-day20/</id>
+    <published>2021-07-27T10:49:38.000Z</published>
+    <updated>2021-08-01T13:36:26.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;穷举篇&quot;&gt;&lt;a href=&quot;#穷举篇&quot; class=&quot;headerlink&quot; title=&quot;穷举篇&quot;&gt;&lt;/a&gt;穷举篇&lt;/h1&gt;</summary>
+    
+    
+    
+    <category term="穷举篇" scheme="http://0x00xiaoshak.github.io/categories/%E7%A9%B7%E4%B8%BE%E7%AF%87/"/>
+    
+    
+    <category term="穷举" scheme="http://0x00xiaoshak.github.io/tags/%E7%A9%B7%E4%B8%BE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>60之day19</title>
+    <link href="http://0x00xiaoshak.github.io/2021/07/27/60-zhi-day19/"/>
+    <id>http://0x00xiaoshak.github.io/2021/07/27/60-zhi-day19/</id>
+    <published>2021-07-27T02:20:46.000Z</published>
+    <updated>2021-07-27T06:23:32.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;信息搜集&quot;&gt;&lt;a href=&quot;#信息搜集&quot; class=&quot;headerlink&quot; title=&quot;信息搜集&quot;&gt;&lt;/a&gt;信息搜集&lt;/h1&gt;</summary>
+    
+    
+    
+    <category term="信息搜集" scheme="http://0x00xiaoshak.github.io/categories/%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/"/>
+    
+    
+    <category term="goby" scheme="http://0x00xiaoshak.github.io/tags/goby/"/>
+    
+    <category term="docker" scheme="http://0x00xiaoshak.github.io/tags/docker/"/>
+    
+    <category term="灯塔" scheme="http://0x00xiaoshak.github.io/tags/%E7%81%AF%E5%A1%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>60之day18</title>
+    <link href="http://0x00xiaoshak.github.io/2021/07/22/60-zhi-day18/"/>
+    <id>http://0x00xiaoshak.github.io/2021/07/22/60-zhi-day18/</id>
+    <published>2021-07-22T05:43:06.000Z</published>
+    <updated>2021-07-23T05:59:18.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;部署CDN的网站找真实ip&quot;&gt;&lt;a href=&quot;#部署CDN的网站找真实ip&quot; class=&quot;headerlink&quot; title=&quot;部署CDN的网站找真实ip&quot;&gt;&lt;/a&gt;部署CDN的网站找真实ip&lt;/h1&gt;</summary>
+    
+    
+    
+    <category term="信息搜集" scheme="http://0x00xiaoshak.github.io/categories/%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/"/>
+    
+    
+    <category term="部署CDN网站找真实ip" scheme="http://0x00xiaoshak.github.io/tags/%E9%83%A8%E7%BD%B2CDN%E7%BD%91%E7%AB%99%E6%89%BE%E7%9C%9F%E5%AE%9Eip/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>60之day17</title>
+    <link href="http://0x00xiaoshak.github.io/2021/07/21/60-zhi-day17/"/>
+    <id>http://0x00xiaoshak.github.io/2021/07/21/60-zhi-day17/</id>
+    <published>2021-07-21T07:25:02.000Z</published>
+    <updated>2021-07-22T05:38:12.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;信息搜集&quot;&gt;&lt;a href=&quot;#信息搜集&quot; class=&quot;headerlink&quot; title=&quot;信息搜集&quot;&gt;&lt;/a&gt;信息搜集&lt;/h1&gt;</summary>
+    
+    
+    
+    <category term="信息搜集" scheme="http://0x00xiaoshak.github.io/categories/%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/"/>
+    
+    
+    <category term="信息搜集" scheme="http://0x00xiaoshak.github.io/tags/%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>60之day16</title>
+    <link href="http://0x00xiaoshak.github.io/2021/07/20/60-zhi-day16/"/>
+    <id>http://0x00xiaoshak.github.io/2021/07/20/60-zhi-day16/</id>
+    <published>2021-07-20T03:48:05.000Z</published>
+    <updated>2021-07-27T05:18:48.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;信息搜集篇&quot;&gt;&lt;a href=&quot;#信息搜集篇&quot; class=&quot;headerlink&quot; title=&quot;信息搜集篇&quot;&gt;&lt;/a&gt;信息搜集篇&lt;/h1&gt;</summary>
+    
+    
+    
+    <category term="信息搜集" scheme="http://0x00xiaoshak.github.io/categories/%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/"/>
+    
+    
+    <category term="信息搜集" scheme="http://0x00xiaoshak.github.io/tags/%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>60之day15-1</title>
+    <link href="http://0x00xiaoshak.github.io/2021/07/20/60-zhi-day15-1/"/>
+    <id>http://0x00xiaoshak.github.io/2021/07/20/60-zhi-day15-1/</id>
+    <published>2021-07-20T03:07:41.000Z</published>
+    <updated>2021-07-20T03:43:32.000Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;渗透测试基础知识&quot;&gt;&lt;a href=&quot;#渗透测试基础知识&quot; class=&quot;headerlink&quot; title=&quot;渗透测试基础知识&quot;&gt;&lt;/a&gt;渗透测试基础知识&lt;/h1&gt;</summary>
+    
+    
+    
+    <category term="渗透测试基础知识" scheme="http://0x00xiaoshak.github.io/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+    
+    
+    <category term="搭建域环境" scheme="http://0x00xiaoshak.github.io/tags/%E6%90%AD%E5%BB%BA%E5%9F%9F%E7%8E%AF%E5%A2%83/"/>
+    
+    <category term="渗透中常用的Windows指令" scheme="http://0x00xiaoshak.github.io/tags/%E6%B8%97%E9%80%8F%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84Windows%E6%8C%87%E4%BB%A4/"/>
+    
+  </entry>
+  
+</feed>
