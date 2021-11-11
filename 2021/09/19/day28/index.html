@@ -555,7 +555,7 @@
 <p>另外一个方面就是权限认证没处理，没有对文件上传页面进行权限认证，匿名者就能访问上传文件，上传网页后门到网站目录，控制整个网站。</p>
 <p>还有一些上传逻辑有问题，导致文件上传可以被绕过，上传后门到网站上。</p>
 <p>有的文件上传漏洞则是通过中间件或者系统特性上传可以被服务器解析脚本文件，从而导致网站可被控制。</p>
-<p><img src="./day28/image-20210920102112727.png" alt="image-20210920102112727"></p>
+<p><img src="/2021/09/19/day28/image-20210920102112727.png" alt="image-20210920102112727"></p>
 <h3 id="修复方案"><a href="#修复方案" class="headerlink" title="修复方案"></a>修复方案</h3><ul>
 <li>在网站中需要存在上传模块，需要做好权限认证，不能让匿名用户可访问。 </li>
 <li>文件上传目录设置为禁止脚本文件执行。这样设置即使被上传后门的动态脚本也不能解析，导致攻击者放弃这个攻击途径。</li>
@@ -586,49 +586,49 @@
 </ul>
 <h2 id="任意文件上传"><a href="#任意文件上传" class="headerlink" title="任意文件上传"></a>任意文件上传</h2><p>危害极大，如果攻击者能直接上传恶意脚本到网站存放的目录，且这个目录可解析动态脚本语言，那么攻击者就能够直接获取网站权限，甚至进一步权限提升，控制服务器。</p>
 <p><strong>代码分析</strong></p>
-<p><img src="./day28/image-20210920104931946.png" alt="image-20210920104931946"></p>
+<p><img src="/2021/09/19/day28/image-20210920104931946.png" alt="image-20210920104931946"></p>
 <p>获取文件名，把上传的临时文件移动到hackable/uploads/目录下</p>
 <p><strong>利用</strong></p>
 <p>直接上传文件，网页返回路径信息</p>
-<p><img src="./day28/image-20210920105143742.png" alt="image-20210920105143742"></p>
+<p><img src="/2021/09/19/day28/image-20210920105143742.png" alt="image-20210920105143742"></p>
 <p>访问路径</p>
 <p>上传的php文件被执行了</p>
-<p><img src="./day28/image-20210920105218696.png" alt="image-20210920105218696"></p>
+<p><img src="/2021/09/19/day28/image-20210920105218696.png" alt="image-20210920105218696"></p>
 <h2 id="绕过前端JS检测上传"><a href="#绕过前端JS检测上传" class="headerlink" title="绕过前端JS检测上传"></a>绕过前端JS检测上传</h2><p>在文件上传时，用户选择文件时或者提交时，有些网站会对前端文件名进行验证，一般检测后缀名是否为上传的格式。如果上传的格式不对，则弹出提示文字。</p>
 <p>此时数据包并没有提交到服务器，只是在客户端通过 js 文件进行校验，验证不通过则不会提交到服务器进行处理。</p>
-<p><img src="./day28/image-20210920110356919.png" alt="image-20210920110356919"></p>
+<p><img src="/2021/09/19/day28/image-20210920110356919.png" alt="image-20210920110356919"></p>
 <p><strong>俩种绕过js检测方法</strong></p>
 <ul>
 <li>按 F12 使用网页审计元素，把校验的上传文件后缀名文件删除，即可上传。 </li>
 <li>把恶意文件改成 js 允许上传的文件后缀，如 jpg、gif、png 等，再通过抓包工具抓取 post 的数据包，把后缀名改成可执行的脚本后缀如 php 、asp、jsp、net 等。即可绕过上传。</li>
 </ul>
 <p><strong>第一种：</strong></p>
-<p><img src="./day28/image-20210920110901937.png" alt="image-20210920110901937"></p>
-<p><img src="./day28/image-20210920111019980.png" alt="image-20210920111019980"></p>
+<p><img src="/2021/09/19/day28/image-20210920110901937.png" alt="image-20210920110901937"></p>
+<p><img src="/2021/09/19/day28/image-20210920111019980.png" alt="image-20210920111019980"></p>
 <p><strong>第二种：</strong></p>
-<p><img src="./day28/image-20210920120628367.png" alt="image-20210920120628367"></p>
-<p><img src="./day28/image-20210920120734423.png" alt="image-20210920120734423"></p>
+<p><img src="/2021/09/19/day28/image-20210920120628367.png" alt="image-20210920120628367"></p>
+<p><img src="/2021/09/19/day28/image-20210920120734423.png" alt="image-20210920120734423"></p>
 <p>即可绕过</p>
 <p><strong>前端JS检测代码分析</strong>：</p>
-<p><img src="./day28/image-20210920121905998.png" alt="image-20210920121905998"></p>
+<p><img src="/2021/09/19/day28/image-20210920121905998.png" alt="image-20210920121905998"></p>
 <h2 id="绕过content-type检测上传"><a href="#绕过content-type检测上传" class="headerlink" title="绕过content-type检测上传"></a>绕过content-type检测上传</h2><p>有些上传模块，会对 http 的类型头进行检测，如果是图片类型，允许上传文件到服务器，否则返回上传失败。</p>
 <p>服务端是通过 content-type 判断类型，content-type 在客户端可被修改。则此文件上传也有可能被绕过的风险。</p>
 <p><strong>分析content-type代码</strong></p>
-<p><img src="./day28/image-20210920123007542.png" alt="image-20210920123007542"></p>
+<p><img src="/2021/09/19/day28/image-20210920123007542.png" alt="image-20210920123007542"></p>
 <p>首先进行submit提交判断，然后允许规定的格式上传</p>
 <p><strong>利用：</strong></p>
 <p><a target="_blank" rel="noopener" href="https://www.runoob.com/http/http-content-type.html">https://www.runoob.com/http/http-content-type.html</a></p>
-<p><img src="./day28/image-20210920123902360.png" alt="image-20210920123902360"></p>
-<p><img src="./day28/image-20210920123937896.png" alt="image-20210920123937896"></p>
-<p><img src="./day28/image-20210920124130044.png" alt="image-20210920124130044"></p>
+<p><img src="/2021/09/19/day28/image-20210920123902360.png" alt="image-20210920123902360"></p>
+<p><img src="/2021/09/19/day28/image-20210920123937896.png" alt="image-20210920123937896"></p>
+<p><img src="/2021/09/19/day28/image-20210920124130044.png" alt="image-20210920124130044"></p>
 <h2 id="绕过黑名单上传"><a href="#绕过黑名单上传" class="headerlink" title="绕过黑名单上传"></a>绕过黑名单上传</h2><p>上传模块，有时候会写成黑名单限制，在上传文件的时获取后缀名，再把后缀名与程序中黑名单进行检测，如果后缀名在黑名单的列表内，文件将禁止文件上传。</p>
 <p><strong>黑名单代码分析：</strong></p>
-<p><img src="./day28/image-20210920124945553.png" alt="image-20210920124945553"></p>
+<p><img src="/2021/09/19/day28/image-20210920124945553.png" alt="image-20210920124945553"></p>
 <p>上传图片时，如果提示不允许 php、asp 这种信息提示，可判断为黑名单限制，上传黑名单以外的后缀名即可。</p>
 <p>在 iis 里 asp 禁止上传了，可以上传 asa cer cdx 这些后缀，如在网站里允许.net执行，可以上传 ashx 代替 aspx。如果网站可以执行这些脚本，通过上传后门即可获取 webshell。</p>
 <p>在不同的中间件中有特殊的情况，如果在 apache 可以开启 application/x-httpd-php，在 AddType application/x-httpd-php .php .phtml .php3后缀名为 phtml 、php3 均被解析成 php 有的 apache 版本默认就会开启。上传目标中间件可支持的环境的语言脚本即可，如.phtml、php3。</p>
-<p><img src="./day28/image-20210920125450769.png" alt="image-20210920125450769"></p>
-<p><img src="./day28/image-20210920125539198.png" alt="image-20210920125539198"></p>
+<p><img src="/2021/09/19/day28/image-20210920125450769.png" alt="image-20210920125450769"></p>
+<p><img src="/2021/09/19/day28/image-20210920125539198.png" alt="image-20210920125539198"></p>
 <h2 id="htaccess重写解析绕过上传"><a href="#htaccess重写解析绕过上传" class="headerlink" title=".htaccess重写解析绕过上传"></a>.htaccess重写解析绕过上传</h2><p>上传模块，黑名单过滤了所有的能执行的后缀名,如果允许上传.htaccess,也可进行绕过</p>
 <blockquote>
 <p>.htaccess</p>
@@ -637,7 +637,7 @@
 </blockquote>
 <p>要 htaccess 的规则生效 则需要在 apache 开启 rewrite 重写模块，因为 apache是多数都开启这个模块，所以规则一般都生效。</p>
 <p><strong>源码分析：</strong></p>
-<p><img src="./day28/image-20210920130027903.png" alt="image-20210920130027903"></p>
+<p><img src="/2021/09/19/day28/image-20210920130027903.png" alt="image-20210920130027903"></p>
 <pre class="line-numbers language-php" data-language="php"><code class="language-php">黑名单
 <span class="token string double-quoted-string">".php"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".php5"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".php4"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".php3"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".php2"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">"php1"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".html"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".htm"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".phtml"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".pht"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".pHp"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".pHp5"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".pHp4"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".pHp3"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".pHp2"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">"pHp1"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".Html"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".Htm"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".pHtml"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".jsp"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".jspa"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".jspx"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".jsw"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".jsv"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".jspf"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".jtml"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".jSp"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".jSpx"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".jSpa"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".jSw"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".jSv"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".jSpf"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".jHtml"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".asp"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".aspx"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".asa"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".asax"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".ascx"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".ashx"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".asmx"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".cer"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".aSp"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".aSpx"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".aSa"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".aSax"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".aScx"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".aShx"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".aSmx"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".cEr"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".sWf"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">".swf"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
@@ -647,33 +647,33 @@
 SetHandler application/x-httpd-php
 &lt;/FilesMatch&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="./day28/image-20210920131134054.png" alt="image-20210920131134054"></p>
+<p><img src="/2021/09/19/day28/image-20210920131134054.png" alt="image-20210920131134054"></p>
 <p>上传.htaccess后成功解析为php</p>
-<p><img src="./day28/image-20210920131146170.png" alt="image-20210920131146170"></p>
+<p><img src="/2021/09/19/day28/image-20210920131146170.png" alt="image-20210920131146170"></p>
 <p>fck编辑器通过此方法</p>
 <h2 id="大小写绕过上传"><a href="#大小写绕过上传" class="headerlink" title="大小写绕过上传"></a>大小写绕过上传</h2><p>有的上传模块 后缀名采用黑名单判断，但是没有对后缀名的大小写进行严格判断，导致可以更改后缀大小写可以被绕过。如 PHP、 Php、 phP、pHp</p>
 <p><strong>分析源码：</strong></p>
-<p><img src="./day28/image-20210920131445342.png" alt="image-20210920131445342"></p>
+<p><img src="/2021/09/19/day28/image-20210920131445342.png" alt="image-20210920131445342"></p>
 <p>这个黑名单里还加了.htaccess</p>
 <p>既然少了这个函数，那我们显然是可以进行大小写绕过</p>
-<p><img src="./day28/image-20210920131811493.png" alt="image-20210920131811493"></p>
-<p><img src="./day28/image-20210920131841935.png" alt="image-20210920131841935"></p>
+<p><img src="/2021/09/19/day28/image-20210920131811493.png" alt="image-20210920131811493"></p>
+<p><img src="/2021/09/19/day28/image-20210920131841935.png" alt="image-20210920131841935"></p>
 <h2 id="空格绕过上传"><a href="#空格绕过上传" class="headerlink" title="空格绕过上传"></a>空格绕过上传</h2><p>在上传模块里采用黑名单过滤，如果没有对空格进行过滤有可能被绕过</p>
 <p><strong>源码分析：</strong></p>
-<p><img src="./day28/image-20210920132120986.png" alt="image-20210920132120986"></p>
+<p><img src="/2021/09/19/day28/image-20210920132120986.png" alt="image-20210920132120986"></p>
 <p>既然少了trim这个函数，我们可以通过给文件名前后加上空格进行绕过</p>
-<p><img src="./day28/image-20210920132725136.png" alt="image-20210920132725136"></p>
-<p><img src="./day28/image-20210920132752988.png" alt="image-20210920132752988"></p>
+<p><img src="/2021/09/19/day28/image-20210920132725136.png" alt="image-20210920132725136"></p>
+<p><img src="/2021/09/19/day28/image-20210920132752988.png" alt="image-20210920132752988"></p>
 <p>可以看到上传成功并且作为php解析</p>
 <h2 id="利用windows系统特征绕过上传"><a href="#利用windows系统特征绕过上传" class="headerlink" title="利用windows系统特征绕过上传"></a>利用windows系统特征绕过上传</h2><p>在 windows 中，文件后缀名. 系统会自动忽略.，所以 shell.php. 和 shell.php 的效果一样。所以可以在文件名后缀加上.绕过。</p>
 <p><strong>源码分析：</strong></p>
-<p><img src="./day28/image-20210920133124158.png" alt="image-20210920133124158"></p>
+<p><img src="/2021/09/19/day28/image-20210920133124158.png" alt="image-20210920133124158"></p>
 <p>既然少了这个函数我们显然可以通过给末尾增加.的方式绕过</p>
-<p><img src="./day28/image-20210920133240894.png" alt="image-20210920133240894"></p>
-<p><img src="./day28/image-20210920133313854.png" alt="image-20210920133313854"></p>
+<p><img src="/2021/09/19/day28/image-20210920133240894.png" alt="image-20210920133240894"></p>
+<p><img src="/2021/09/19/day28/image-20210920133313854.png" alt="image-20210920133313854"></p>
 <h2 id="NTFS交换数据流-DATA绕过上传"><a href="#NTFS交换数据流-DATA绕过上传" class="headerlink" title="NTFS交换数据流::$DATA绕过上传"></a>NTFS交换数据流::$DATA绕过上传</h2><p>如果后缀名没有对：：$DATA 进行判断，利用 windows 系统 NTFS 特征可以绕过上传。</p>
 <p><strong>源码分析：</strong></p>
-<p><img src="./day28/image-20210920141121292.png" alt="image-20210920141121292"></p>
+<p><img src="/2021/09/19/day28/image-20210920141121292.png" alt="image-20210920141121292"></p>
 <p>我们在文件后缀后加上::$DATA即可绕过</p>
 <p>这里俩个冒号的含义是创建并写入内容，如果只是一个冒号只会创建文件，并不会写入内容</p>
 <blockquote>
@@ -683,9 +683,9 @@ SetHandler application/x-httpd-php
 <blockquote>
 <p>经过研究发现是php版本的问题，原来是php5.2版本，换为php5.4之后可以正常操作</p>
 </blockquote>
-<p><img src="./day28/image-20210920150038023.png" alt="image-20210920150038023"></p>
-<p><img src="./day28/image-20210920152544768.png" alt="image-20210920152544768"></p>
-<p><img src="./day28/image-20210920153009380.png" alt="image-20210920153009380"></p>
+<p><img src="/2021/09/19/day28/image-20210920150038023.png" alt="image-20210920150038023"></p>
+<p><img src="/2021/09/19/day28/image-20210920152544768.png" alt="image-20210920152544768"></p>
+<p><img src="/2021/09/19/day28/image-20210920153009380.png" alt="image-20210920153009380"></p>
 <h2 id="利用Windows环境的叠加特征绕过上传"><a href="#利用Windows环境的叠加特征绕过上传" class="headerlink" title="利用Windows环境的叠加特征绕过上传"></a>利用Windows环境的叠加特征绕过上传</h2><p>在 windwos 中如果上传文件名 moonsec.php:.jpg 的时候，会在目录下生产空白的文件名 moonsec.php，再利用 php 和 windows 环境的叠加属性，</p>
 <p>以下符号在正则匹配时相等</p>
 <p>双引号” 等于 点号. </p>
@@ -693,41 +693,41 @@ SetHandler application/x-httpd-php
 <p>小于符号&lt; 等于 星号*</p>
 <p>文件名.&lt;或文件名.&lt;&lt;&lt;或文件名.&gt;&gt;&gt;或文件名.&gt;&gt;&lt;空文件名</p>
 <p><strong>源码分析：</strong></p>
-<p><img src="./day28/image-20210920151003491.png" alt="image-20210920151003491"></p>
+<p><img src="/2021/09/19/day28/image-20210920151003491.png" alt="image-20210920151003491"></p>
 <p><strong>利用：</strong></p>
-<p><img src="./day28/image-20210920153131378.png" alt="image-20210920153131378"></p>
+<p><img src="/2021/09/19/day28/image-20210920153131378.png" alt="image-20210920153131378"></p>
 <p>查看上传处发现创建了一个空的1.php</p>
-<p><img src="./day28/image-20210920153207388.png" alt="image-20210920153207388"></p>
-<p><img src="./day28/image-20210920153245278.png" alt="image-20210920153245278"></p>
+<p><img src="/2021/09/19/day28/image-20210920153207388.png" alt="image-20210920153207388"></p>
+<p><img src="/2021/09/19/day28/image-20210920153245278.png" alt="image-20210920153245278"></p>
 <p>查看上传地方，发现1.php内容被写入了</p>
-<p><img src="./day28/image-20210920153306045.png" alt="image-20210920153306045"></p>
+<p><img src="/2021/09/19/day28/image-20210920153306045.png" alt="image-20210920153306045"></p>
 <h2 id="双写后缀名绕过上传"><a href="#双写后缀名绕过上传" class="headerlink" title="双写后缀名绕过上传"></a>双写后缀名绕过上传</h2><p>在上传模块，有的代码会把黑名单的后缀名替换成空，例如 a.php 会把 php 替换成空，但是可以使用双写绕过例如 asaspp，pphphp，即可绕过上传。</p>
 <p><strong>源码分析：</strong></p>
-<p><img src="./day28/image-20210920153656711.png" alt="image-20210920153656711"></p>
-<p><img src="./day28/image-20210920153830281.png" alt="image-20210920153830281"></p>
-<p><img src="./day28/image-20210920153915807.png" alt="image-20210920153915807"></p>
+<p><img src="/2021/09/19/day28/image-20210920153656711.png" alt="image-20210920153656711"></p>
+<p><img src="/2021/09/19/day28/image-20210920153830281.png" alt="image-20210920153830281"></p>
+<p><img src="/2021/09/19/day28/image-20210920153915807.png" alt="image-20210920153915807"></p>
 <h2 id="目录可控-00截断绕过上传"><a href="#目录可控-00截断绕过上传" class="headerlink" title="目录可控%00截断绕过上传"></a>目录可控%00截断绕过上传</h2><p>以上都是一些黑名单被绕过的，如果黑名单上传检测后，没有限定后缀名，绕过的方法很多</p>
 <p>与黑名单相对的就是白名单，使用白名单验证会相对比较安全，因为只允许指定的文件后缀名。</p>
 <p>但是如果有可控的参数目录，也存在被绕过的风险。</p>
 <h3 id="GET"><a href="#GET" class="headerlink" title="GET"></a>GET</h3><p><strong>源码分析：</strong></p>
-<p><img src="./day28/image-20210920154517269.png" alt="image-20210920154517269"></p>
+<p><img src="/2021/09/19/day28/image-20210920154517269.png" alt="image-20210920154517269"></p>
 <p>上传参数可控</p>
 <ul>
 <li>当 gpc 关闭的情况下，可以用%00 对目录或者文件名进行截断。</li>
 <li>php 版本小于 5.3.4</li>
 </ul>
 <p>首先上传一个jpg文件抓包修改</p>
-<p><img src="./day28/image-20210920160327417.png" alt="image-20210920160327417"></p>
-<p><img src="./day28/image-20210920160406227.png" alt="image-20210920160406227"></p>
-<p><img src="./day28/image-20210920160415340.png" alt="image-20210920160415340"></p>
+<p><img src="/2021/09/19/day28/image-20210920160327417.png" alt="image-20210920160327417"></p>
+<p><img src="/2021/09/19/day28/image-20210920160406227.png" alt="image-20210920160406227"></p>
+<p><img src="/2021/09/19/day28/image-20210920160415340.png" alt="image-20210920160415340"></p>
 <p>可以看到上传了一个1.php</p>
-<h3 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h3><p><img src="./day28/image-20210920160623133.png" alt="image-20210920160623133"></p>
+<h3 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h3><p><img src="/2021/09/19/day28/image-20210920160623133.png" alt="image-20210920160623133"></p>
 <p>上传jpg文件抓包修改</p>
-<p><img src="./day28/image-20210920161128240.png" alt="image-20210920161128240"></p>
+<p><img src="/2021/09/19/day28/image-20210920161128240.png" alt="image-20210920161128240"></p>
 <p>因为post上传提交的话需要进行url编码再给服务器，所以我们把%00进行url decode在提交</p>
-<p><img src="./day28/image-20210920161307068.png" alt="image-20210920161307068"></p>
+<p><img src="/2021/09/19/day28/image-20210920161307068.png" alt="image-20210920161307068"></p>
 <p>查看上传点上传成功了</p>
-<p><img src="./day28/image-20210920161356998.png" alt="image-20210920161356998"></p>
+<p><img src="/2021/09/19/day28/image-20210920161356998.png" alt="image-20210920161356998"></p>
 <h2 id="文件头检测绕过"><a href="#文件头检测绕过" class="headerlink" title="文件头检测绕过"></a>文件头检测绕过</h2><p>有的文件上传，上传时候会检测头文件，不同的文件，头文件也不尽相同。常见的文件上传图片头检测它检测图片是两个字节的长度，如果不是图片的格式，会禁止上传。</p>
 <p>常见的文件头：</p>
 <ul>
@@ -738,8 +738,8 @@ SetHandler application/x-httpd-php
 <li>WindowsBitmap(bmp)，文件头：424D</li>
 </ul>
 <p><strong>源码分析：</strong></p>
-<p><img src="./day28/image-20210921154007167.png" alt="image-20210921154007167"></p>
-<p><img src="./day28/image-20210921154704781.png" alt="image-20210921154704781"></p>
+<p><img src="/2021/09/19/day28/image-20210921154007167.png" alt="image-20210921154007167"></p>
+<p><img src="/2021/09/19/day28/image-20210921154704781.png" alt="image-20210921154704781"></p>
 <p>如果上传的文件符合数字即可通过</p>
 <p><strong>利用：</strong></p>
 <ul>
@@ -749,52 +749,52 @@ SetHandler application/x-httpd-php
 <p><strong>第一种：</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">copy 1.gif/b+1.php test1.php<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./day28/image-20210921155118113.png" alt="image-20210921155118113"></p>
+<p><img src="/2021/09/19/day28/image-20210921155118113.png" alt="image-20210921155118113"></p>
 <p>我们直接上传</p>
-<p><img src="./day28/image-20210921155745571.png" alt="image-20210921155745571"></p>
+<p><img src="/2021/09/19/day28/image-20210921155745571.png" alt="image-20210921155745571"></p>
 <p>直接上传后此方法限制了文件后缀为gif，我们需要使用其中给的文件包含漏洞，让一句话来执行</p>
-<p><img src="./day28/image-20210921155927341.png" alt="image-20210921155927341"></p>
+<p><img src="/2021/09/19/day28/image-20210921155927341.png" alt="image-20210921155927341"></p>
 <p>用它来访问我们的图片看看一句话执行了没有</p>
-<p><img src="./day28/image-20210921160017867.png" alt="image-20210921160017867"></p>
+<p><img src="/2021/09/19/day28/image-20210921160017867.png" alt="image-20210921160017867"></p>
 <p>可以看到执行成功了</p>
 <p><strong>第二种：</strong></p>
 <p>我们上传一个gif抓包看下</p>
-<p><img src="./day28/image-20210921160131850.png" alt="image-20210921160131850"></p>
+<p><img src="/2021/09/19/day28/image-20210921160131850.png" alt="image-20210921160131850"></p>
 <p>存在一个GIF8a，用来识别他的身份，让服务器知道它是一个gif，我们上传一个php，在前面加上GIF8a，猜测可以做到绕过</p>
-<p><img src="./day28/image-20210921160306587.png" alt="image-20210921160306587"></p>
+<p><img src="/2021/09/19/day28/image-20210921160306587.png" alt="image-20210921160306587"></p>
 <p>可以看到上传成功了</p>
 <p>同样他的后缀也是GIF，不能直接作为php解析，我们用文件包含来检测</p>
-<p><img src="./day28/image-20210921160456050.png" alt="image-20210921160456050"></p>
+<p><img src="/2021/09/19/day28/image-20210921160456050.png" alt="image-20210921160456050"></p>
 <h2 id="图片检测函数绕过上传"><a href="#图片检测函数绕过上传" class="headerlink" title="图片检测函数绕过上传"></a>图片检测函数绕过上传</h2><p><strong>源码分析：</strong></p>
-<p><img src="./day28/image-20210921162617199.png" alt="image-20210921162617199"></p>
+<p><img src="/2021/09/19/day28/image-20210921162617199.png" alt="image-20210921162617199"></p>
 <p><strong>利用：</strong>这样的话我们可以直接上传图片马</p>
-<p><img src="./day28/image-20210921162742424.png" alt="image-20210921162742424"></p>
+<p><img src="/2021/09/19/day28/image-20210921162742424.png" alt="image-20210921162742424"></p>
 <p>同样上传后是gif，不能作为php解析，我们使用文件包含漏洞</p>
-<p><img src="./day28/image-20210921162852106.png" alt="image-20210921162852106"></p>
+<p><img src="/2021/09/19/day28/image-20210921162852106.png" alt="image-20210921162852106"></p>
 <h2 id="绕过图片二次渲染绕过"><a href="#绕过图片二次渲染绕过" class="headerlink" title="绕过图片二次渲染绕过"></a>绕过图片二次渲染绕过</h2><p>有些图片上传，会对上传的图片进行二次渲染后在保存，体积可能会更小，图片会模糊一些，但是符合网站的需求。</p>
 <p>例如新闻图片封面等可能需要二次渲染，因为原图片占用的体积更大。访问的人数太多时候会占用，很大带宽。</p>
 <p>二次渲染后的图片内容会减少，如果里面包含后门代码，可能会被省略。导致上传的图片马，恶意代码被清除。</p>
 <p><strong>源码分析：</strong></p>
-<p><img src="./day28/image-20210921163820274.png" alt="image-20210921163820274"></p>
-<p><img src="./day28/image-20210921163943861.png" alt="image-20210921163943861"></p>
+<p><img src="/2021/09/19/day28/image-20210921163820274.png" alt="image-20210921163820274"></p>
+<p><img src="/2021/09/19/day28/image-20210921163943861.png" alt="image-20210921163943861"></p>
 <p>png、gif大同小异</p>
-<p><img src="./day28/image-20210921164020241.png" alt="image-20210921164020241"></p>
+<p><img src="/2021/09/19/day28/image-20210921164020241.png" alt="image-20210921164020241"></p>
 <p>可以看到使用了imagecreatefromxxx来进行二次渲染</p>
 <p><strong>利用：</strong></p>
 <p>首先我们看是否允许上传gif，因为gif图片在二次渲染后与原图差别不大，我们最好使用gif马。</p>
 <p>我们将gif原图上传，将二此渲染后的土图片下载下来找到相同处，用一句话覆盖相同处上传即可绕过</p>
-<p><img src="./day28/image-20210921164614386.png" alt="image-20210921164614386"></p>
-<p><img src="./day28/image-20210921165336570.png" alt="image-20210921165336570"></p>
+<p><img src="/2021/09/19/day28/image-20210921164614386.png" alt="image-20210921164614386"></p>
+<p><img src="/2021/09/19/day28/image-20210921165336570.png" alt="image-20210921165336570"></p>
 <p>同样用文件包含查看一句话是否能执行</p>
-<p><img src="./day28/image-20210921165404940.png" alt="image-20210921165404940"></p>
+<p><img src="/2021/09/19/day28/image-20210921165404940.png" alt="image-20210921165404940"></p>
 <h2 id="文件上传条件竞争绕过"><a href="#文件上传条件竞争绕过" class="headerlink" title="文件上传条件竞争绕过"></a>文件上传条件竞争绕过</h2><p>在文件上传时，如果逻辑不对，会造成很大危害。</p>
 <p>例如文件上传时，用move_uploaded_file 把上传的临时文件移动到指定目录，接着再用 rename 把文件设置为图片格式，如果在 rename 之前 进行move_uploaded_file 这个步骤，如果这个文件可被客户端访问，这样我们也可以获取一个 webshell。</p>
 <p><strong>源码分析：</strong></p>
-<p><img src="./day28/image-20210921170459159.png" alt="image-20210921170459159"></p>
+<p><img src="/2021/09/19/day28/image-20210921170459159.png" alt="image-20210921170459159"></p>
 <p>在rename之前没有进行后缀限制，如果这时我们可以访问文件就会让我们得到一个webshell</p>
 <h2 id="文件名可控绕过上传"><a href="#文件名可控绕过上传" class="headerlink" title="文件名可控绕过上传"></a>文件名可控绕过上传</h2><p>文件上传时,文件名的可被客户端修改控制,会导致漏洞产生。</p>
 <p><strong>源码分析：</strong></p>
-<p><img src="./day28/image-20210921173529944.png" alt="image-20210921173529944"></p>
+<p><img src="/2021/09/19/day28/image-20210921173529944.png" alt="image-20210921173529944"></p>
 <p><strong>利用:</strong></p>
 <ul>
 <li><p>上传文件,文件码采用%00 截断,抓包解码例如 moon.php%00.php 截断后moon.php 或者使用/.</p>
@@ -806,26 +806,26 @@ SetHandler application/x-httpd-php
 </ul>
 <p><strong>第一种：</strong></p>
 <p>上传php码 通过1.php%00.jpg绕过</p>
-<p><img src="./day28/image-20210921173955594.png" alt="image-20210921173955594"></p>
-<p><img src="./day28/image-20210921174053192.png" alt="image-20210921174053192"></p>
+<p><img src="/2021/09/19/day28/image-20210921173955594.png" alt="image-20210921173955594"></p>
+<p><img src="/2021/09/19/day28/image-20210921174053192.png" alt="image-20210921174053192"></p>
 <p><strong>第二种：</strong></p>
 <p>利用apache解析漏洞，apache默认从右往左进行解析</p>
-<p><img src="./day28/image-20210921174423890.png" alt="image-20210921174423890"></p>
-<p><img src="./day28/image-20210921174442922.png" alt="image-20210921174442922"></p>
+<p><img src="/2021/09/19/day28/image-20210921174423890.png" alt="image-20210921174423890"></p>
+<p><img src="/2021/09/19/day28/image-20210921174442922.png" alt="image-20210921174442922"></p>
 <p>也可用1.php;1.jpg</p>
-<p><img src="./day28/image-20210921174529109.png" alt="image-20210921174529109"></p>
+<p><img src="/2021/09/19/day28/image-20210921174529109.png" alt="image-20210921174529109"></p>
 <p>改成iis6.0可解析文件</p>
 <p>也可用/.</p>
-<p><img src="./day28/image-20210921174834788.png" alt="image-20210921174834788"></p>
-<p><img src="./day28/image-20210921174848397.png" alt="image-20210921174848397"></p>
+<p><img src="/2021/09/19/day28/image-20210921174834788.png" alt="image-20210921174834788"></p>
+<p><img src="/2021/09/19/day28/image-20210921174848397.png" alt="image-20210921174848397"></p>
 <h2 id="数组绕过上传"><a href="#数组绕过上传" class="headerlink" title="数组绕过上传"></a>数组绕过上传</h2><p>此方法一般通过代码审计发现</p>
 <p><strong>分析源码：</strong></p>
-<p><img src="./day28/image-20210921175851920.png" alt="image-20210921175851920"></p>
+<p><img src="/2021/09/19/day28/image-20210921175851920.png" alt="image-20210921175851920"></p>
 <p>所以我们需要让第二个数组大于1，这样他的值就获取不了，再用/这样就能上传了</p>
 <p><strong>利用：</strong></p>
 <p>首先我们过MIME检测，然后将变量设为数组，第二个数组大于1，用来过白名单</p>
-<p><img src="./day28/image-20210921184752082.png" alt="image-20210921184752082"></p>
-<p><img src="./day28/image-20210921185102144.png" alt="image-20210921185102144"></p>
+<p><img src="/2021/09/19/day28/image-20210921184752082.png" alt="image-20210921184752082"></p>
+<p><img src="/2021/09/19/day28/image-20210921185102144.png" alt="image-20210921185102144"></p>
 <h2 id="文件上传其他漏洞"><a href="#文件上传其他漏洞" class="headerlink" title="文件上传其他漏洞"></a>文件上传其他漏洞</h2><p>nginx 0.83 /1.jpg%00php</p>
 <p>apahce 1x 或者 2x</p>
 <p>当 apache 遇见不认识的后缀名，会从后向前解析例如 1.php.rar 不认识 rar 就向前解析，直到知道它认识的后缀名。</p>

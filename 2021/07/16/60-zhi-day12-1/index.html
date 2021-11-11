@@ -523,7 +523,7 @@ VM">
 <p>同NAT一样，VMware Network Adepter VMnet1虚拟网卡的IP地址也是VMware系统指定的，同时生成的虚拟DHCP服务器和虚拟网卡的IP地址位于同一网段，但和物理网卡的IP地址不在同一网段。</p>
 <p>Host-Only的宗旨就是建立一个与外界隔绝的内部网络，来提高内网的安全性。这个功能或许对普通用户来说没有多大意义，但大型服务商会常 常利用这个功能。如果你想为VMnet1网段提供路由功能，那就需要使用RRAS，而不能使用XP或2000的ICS，因为ICS会把内网的IP地址改为 192.168.0.1，但虚拟机是不会给VMnet1虚拟网卡分配这个地址的，那么主机和虚拟机之间就不能通信了。</p>
 <h3 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h3><p>在VMware的3中网络模式中，NAT模式是最简单的，基本不需要手动配置IP地址等相关参数。至于桥接模式则需要额外的IP地址，如果是在内网环境中还很容易，如果是ADSL宽带就比较麻烦了，ISP一般是不会大方的多提供一个公网IP的。 </p>
-<p><img src="./60%E4%B9%8Bday12-1/image-20210716175659319.png" alt="image-20210716175659319"></p>
+<p><img src="/2021/07/16/60-zhi-day12-1/image-20210716175659319.png" alt="image-20210716175659319"></p>
 <h2 id="02kali的安装和配置"><a href="#02kali的安装和配置" class="headerlink" title="02kali的安装和配置"></a>02kali的安装和配置</h2><h3 id="安装虚拟机open-vm-tools-desktop模块"><a href="#安装虚拟机open-vm-tools-desktop模块" class="headerlink" title="安装虚拟机open-vm-tools-desktop模块"></a>安装虚拟机open-vm-tools-desktop模块</h3><pre class="line-numbers language-none"><code class="language-none">sudo apt-get install open-vm-tools-desktop<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>设置中文</p>

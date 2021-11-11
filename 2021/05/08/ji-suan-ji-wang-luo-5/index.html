@@ -505,7 +505,7 @@
             <div id="articleContent">
                 <h1 id="计算机网络-5"><a href="#计算机网络-5" class="headerlink" title="计算机网络-5"></a>计算机网络-5</h1><span id="more"></span>
 
-<h2 id="3-1-数据链路层功能概述"><a href="#3-1-数据链路层功能概述" class="headerlink" title="3.1 数据链路层功能概述"></a>3.1 数据链路层功能概述</h2><h3 id="数据链路层的研究思想"><a href="#数据链路层的研究思想" class="headerlink" title="数据链路层的研究思想"></a>数据链路层的研究思想</h3><p><img src="./%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-5/image-20210508151141240.png" alt="image-20210508151141240"></p>
+<h2 id="3-1-数据链路层功能概述"><a href="#3-1-数据链路层功能概述" class="headerlink" title="3.1 数据链路层功能概述"></a>3.1 数据链路层功能概述</h2><h3 id="数据链路层的研究思想"><a href="#数据链路层的研究思想" class="headerlink" title="数据链路层的研究思想"></a>数据链路层的研究思想</h3><p><img src="/2021/05/08/ji-suan-ji-wang-luo-5/image-20210508151141240.png" alt="image-20210508151141240"></p>
 <h3 id="数据链路层基本概念"><a href="#数据链路层基本概念" class="headerlink" title="数据链路层基本概念"></a>数据链路层基本概念</h3><ul>
 <li><p>结点：</p>
 <p>主机、路由器。</p>
@@ -521,7 +521,7 @@
 </li>
 </ul>
 <p>数据链路层负责通过一条链路从一个结点向另一个物理链路直接相连的相邻结点传送数据报。</p>
-<p><img src="./%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-5/image-20210508152050831.png" alt="image-20210508152050831"></p>
+<p><img src="/2021/05/08/ji-suan-ji-wang-luo-5/image-20210508152050831.png" alt="image-20210508152050831"></p>
 <h3 id="数据链路层功能概述"><a href="#数据链路层功能概述" class="headerlink" title="数据链路层功能概述"></a>数据链路层功能概述</h3><p>数据链路层在物理层提供服务的基础上<strong>向网络层提供服务</strong>，其最基本的服务是将源自网络层来的数据可靠地传输到相邻节点的目标机网络层。其主要作用是<strong>加强物理层传输原始比特流的功能</strong>，将物理层提供的可能岀错的物理连接改造成为<strong>逻辑上无差错的数据链路</strong>，使之对网络层表现为一条无差错的链路。</p>
 <ul>
 <li><p>功能一：为网络层提供服务</p>
@@ -549,28 +549,28 @@
 <li>零比特填充法</li>
 <li>违规编码法</li>
 </ol>
-<p><img src="./%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-5/image-20210508154056140.png" alt="image-20210508154056140"></p>
+<p><img src="/2021/05/08/ji-suan-ji-wang-luo-5/image-20210508154056140.png" alt="image-20210508154056140"></p>
 <p>数据部分的极限值叫做：最大传送单元MTU。不同的协议MTU长度也不同</p>
 <h3 id="透明传输"><a href="#透明传输" class="headerlink" title="透明传输"></a>透明传输</h3><p><strong>透明传输</strong>是指不管所传数据是什么样的比特组合，都应当能够在链路上传送。因此，链路层就“看不见”有什么妨碍数据传输的东西。</p>
 <p>当所传数据中的比特组合恰巧与某一个控制信息完全一样时，就必须采取适当的措施，使收方不会将这样的数据误认为是某种控制信息。这样才能保证数据链路层的传输是透明的。</p>
 <h3 id="透明传输在组帧上的应用"><a href="#透明传输在组帧上的应用" class="headerlink" title="透明传输在组帧上的应用"></a>透明传输在组帧上的应用</h3><h4 id="1-字符计数法"><a href="#1-字符计数法" class="headerlink" title="1.字符计数法"></a>1.字符计数法</h4><p>帧首部使用一个计数字段（第一个字节，八位）来标明帧内字符数。</p>
-<p><img src="./%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-5/image-20210508155004741.png" alt="image-20210508155004741"></p>
+<p><img src="/2021/05/08/ji-suan-ji-wang-luo-5/image-20210508155004741.png" alt="image-20210508155004741"></p>
 <p>痛点：鸡蛋放在一个篮子里了，当前一个计数字段发生错误，后面的所有帧都会发生错误。</p>
-<h4 id="2-字符填充法"><a href="#2-字符填充法" class="headerlink" title="2.字符填充法"></a>2.字符填充法</h4><p><img src="./%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-5/image-20210508155441916.png" alt="image-20210508155441916"></p>
+<h4 id="2-字符填充法"><a href="#2-字符填充法" class="headerlink" title="2.字符填充法"></a>2.字符填充法</h4><p><img src="/2021/05/08/ji-suan-ji-wang-luo-5/image-20210508155441916.png" alt="image-20210508155441916"></p>
 <p>字符填充法的过程：</p>
-<p><img src="./%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-5/image-20210508155913026.png" alt="image-20210508155913026"></p>
-<h4 id="3-零比特填充法"><a href="#3-零比特填充法" class="headerlink" title="3.零比特填充法"></a>3.零比特填充法</h4><p><img src="./%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-5/image-20210508160423377.png" alt="image-20210508160423377"></p>
+<p><img src="/2021/05/08/ji-suan-ji-wang-luo-5/image-20210508155913026.png" alt="image-20210508155913026"></p>
+<h4 id="3-零比特填充法"><a href="#3-零比特填充法" class="headerlink" title="3.零比特填充法"></a>3.零比特填充法</h4><p><img src="/2021/05/08/ji-suan-ji-wang-luo-5/image-20210508160423377.png" alt="image-20210508160423377"></p>
 <p>5110：遇到5个1 填充一个0(即使后面是0也要填充)；发现5个1  删除一个0</p>
-<h4 id="4-违规编码法"><a href="#4-违规编码法" class="headerlink" title="4.违规编码法"></a>4.违规编码法</h4><p><img src="./%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-5/image-20210508160914544.png" alt="image-20210508160914544"></p>
+<h4 id="4-违规编码法"><a href="#4-违规编码法" class="headerlink" title="4.违规编码法"></a>4.违规编码法</h4><p><img src="/2021/05/08/ji-suan-ji-wang-luo-5/image-20210508160914544.png" alt="image-20210508160914544"></p>
 <p>由于字节计数法中 Count字段的脆弱性（其值若有差错将导致灾难性后果）及字符填充实现上的复杂性和不兼容性，目前较普遍使用的帧同步法是<strong>比特填充</strong>和<strong>违规编码法</strong>。</p>
 <h2 id="3-3-1-差错控制-检错编码"><a href="#3-3-1-差错控制-检错编码" class="headerlink" title="3.3.1 差错控制(检错编码)"></a>3.3.1 差错控制(检错编码)</h2><h3 id="差错从何来？"><a href="#差错从何来？" class="headerlink" title="差错从何来？"></a>差错从何来？</h3><p>概括来说，传输中的差错都是由于噪声引起的。</p>
 <p><strong>全局性</strong>：1.由于线路本身电气特性所产生的<strong>随机噪声</strong>（热噪声），是信道固有的，随机存在的。</p>
 <p>解决办法：提高信噪比来减少或避免干扰。（对传感器下手）</p>
 <p><strong>局部性</strong>：2.外界特定的短暂原因所造成的<strong>冲击噪声</strong>，是产生差错的主要原因。</p>
 <p>解决办法：通常利用编码技术来解决。</p>
-<p><img src="./%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-5/image-20210508192433639.png" alt="image-20210508192433639"></p>
+<p><img src="/2021/05/08/ji-suan-ji-wang-luo-5/image-20210508192433639.png" alt="image-20210508192433639"></p>
 <h3 id="数据链路层的差错控制"><a href="#数据链路层的差错控制" class="headerlink" title="数据链路层的差错控制"></a>数据链路层的差错控制</h3><p>在数据链路层进行差错控制可以提早的发现差错，避免错误的数据一直传输下去</p>
-<p><img src="./%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-5/image-20210508193504169.png" alt="image-20210508193504169"></p>
+<p><img src="/2021/05/08/ji-suan-ji-wang-luo-5/image-20210508193504169.png" alt="image-20210508193504169"></p>
 <pre class="line-numbers language-none"><code class="language-none">冗余编码
 
 在数据发送之前，先按某种关系附加上一定的冗余位，构成一个符合某一规则的码字后再发送。当要发送的有效数据变化时，相应的冗余位也随之变化，使码字遵从不变的规则。接收端根据收到码字是否仍符合原规则，从而判断是否出错。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
@@ -581,13 +581,13 @@
 
 数据链路层编码和物理层的数据编码与调制不同。物理层编码针对的是单个比特，解决传输过程中比特的同步等问题，如曼彻斯特编码。而数据链路层的编码针对的是一组比特，它通过冗余码的技术实现一组二进制比特串在传输过程是否出现了差错。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="检错编码–奇偶校验码"><a href="#检错编码–奇偶校验码" class="headerlink" title="检错编码–奇偶校验码"></a>检错编码–奇偶校验码</h3><p><img src="./%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-5/image-20210508194756119.png" alt="image-20210508194756119"></p>
-<h4 id="一个奇偶校验码例题"><a href="#一个奇偶校验码例题" class="headerlink" title="一个奇偶校验码例题"></a>一个奇偶校验码例题</h4><p><img src="./%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-5/image-20210508194847427.png" alt="image-20210508194847427"></p>
+<h3 id="检错编码–奇偶校验码"><a href="#检错编码–奇偶校验码" class="headerlink" title="检错编码–奇偶校验码"></a>检错编码–奇偶校验码</h3><p><img src="/2021/05/08/ji-suan-ji-wang-luo-5/image-20210508194756119.png" alt="image-20210508194756119"></p>
+<h4 id="一个奇偶校验码例题"><a href="#一个奇偶校验码例题" class="headerlink" title="一个奇偶校验码例题"></a>一个奇偶校验码例题</h4><p><img src="/2021/05/08/ji-suan-ji-wang-luo-5/image-20210508194847427.png" alt="image-20210508194847427"></p>
 <p>因为采用奇校验所以在原信息元前+1，1个数为5，选项中ABC 1个数为4，1个数发生了变化，D 1个数为5.1个数未发生变化，说明ABC发生了错误，而D不确定是否发生错误。因为发生偶数个出错无法检查出来。</p>
 <p>奇偶校验码特点：只能检査出<strong>奇数个比特</strong>错误，检错能力为50%。</p>
-<h3 id="检错编码–CRC循环冗余码"><a href="#检错编码–CRC循环冗余码" class="headerlink" title="检错编码–CRC循环冗余码"></a>检错编码–CRC循环冗余码</h3><h4 id="简单方法看CRC循环冗余码"><a href="#简单方法看CRC循环冗余码" class="headerlink" title="简单方法看CRC循环冗余码"></a>简单方法看CRC循环冗余码</h4><p><img src="./%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-5/image-20210508200745075.png" alt="image-20210508200745075"></p>
-<h4 id="一个CRC循环冗余码例题"><a href="#一个CRC循环冗余码例题" class="headerlink" title="一个CRC循环冗余码例题"></a>一个CRC循环冗余码例题</h4><p><img src="./%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-5/image-20210508200952613.png" alt="image-20210508200952613"></p>
-<p><img src="./%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-5/image-20210508201300915.png" alt="image-20210508201300915"></p>
+<h3 id="检错编码–CRC循环冗余码"><a href="#检错编码–CRC循环冗余码" class="headerlink" title="检错编码–CRC循环冗余码"></a>检错编码–CRC循环冗余码</h3><h4 id="简单方法看CRC循环冗余码"><a href="#简单方法看CRC循环冗余码" class="headerlink" title="简单方法看CRC循环冗余码"></a>简单方法看CRC循环冗余码</h4><p><img src="/2021/05/08/ji-suan-ji-wang-luo-5/image-20210508200745075.png" alt="image-20210508200745075"></p>
+<h4 id="一个CRC循环冗余码例题"><a href="#一个CRC循环冗余码例题" class="headerlink" title="一个CRC循环冗余码例题"></a>一个CRC循环冗余码例题</h4><p><img src="/2021/05/08/ji-suan-ji-wang-luo-5/image-20210508200952613.png" alt="image-20210508200952613"></p>
+<p><img src="/2021/05/08/ji-suan-ji-wang-luo-5/image-20210508201300915.png" alt="image-20210508201300915"></p>
 <p>在数据链路层仅仅使用循环冗余检验CRC差错检测技术，只能做到对帧的无差错接收，即“凡是接收端数据链路层接受的帧，我们都能以非常接近于1的概率认为这些帧在传输过程中没有产生差错”。接收端丢弃的帧虽然曾收到了，但是最终还是因为有差错被丢弃。“凡是接收端数据链路层接收的帧均无差错”。</p>
 <p>“可靠传输”：数据链路层发送端发送什么，接收端就收到什么</p>
 <p>链路层使用CRC检验，能够实现无比特差错的传输，但这还不是可靠传输。</p>
@@ -595,17 +595,17 @@
 <p>工作原理：牵一发而动全身</p>
 <p>动了一个数据，会使很多个校验码察觉出来，他们之间互相交流，最终会确定哪一位发生了错误。</p>
 <p>工作流程：</p>
-<p><img src="./%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-5/image-20210508202532438.png" alt="image-20210508202532438"></p>
-<h3 id="1-确定校验码的位数r"><a href="#1-确定校验码的位数r" class="headerlink" title="1.确定校验码的位数r"></a>1.确定校验码的位数r</h3><p><img src="./%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-5/image-20210508202918659.png" alt="image-20210508202918659"></p>
-<h3 id="2-确定校验码和数据的位置"><a href="#2-确定校验码和数据的位置" class="headerlink" title="2.确定校验码和数据的位置"></a>2.确定校验码和数据的位置</h3><p><img src="./%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-5/image-20210508203059482.png" alt="image-20210508203059482"></p>
+<p><img src="/2021/05/08/ji-suan-ji-wang-luo-5/image-20210508202532438.png" alt="image-20210508202532438"></p>
+<h3 id="1-确定校验码的位数r"><a href="#1-确定校验码的位数r" class="headerlink" title="1.确定校验码的位数r"></a>1.确定校验码的位数r</h3><p><img src="/2021/05/08/ji-suan-ji-wang-luo-5/image-20210508202918659.png" alt="image-20210508202918659"></p>
+<h3 id="2-确定校验码和数据的位置"><a href="#2-确定校验码和数据的位置" class="headerlink" title="2.确定校验码和数据的位置"></a>2.确定校验码和数据的位置</h3><p><img src="/2021/05/08/ji-suan-ji-wang-luo-5/image-20210508203059482.png" alt="image-20210508203059482"></p>
 <h3 id="3-求出校验码的值"><a href="#3-求出校验码的值" class="headerlink" title="3.求出校验码的值"></a>3.求出校验码的值</h3><p>二进制位数看最后一位到几位，比如10二进制为1010，所以二进制用4位</p>
-<p><img src="./%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-5/image-20210508203636981.png" alt="image-20210508203636981"></p>
+<p><img src="/2021/05/08/ji-suan-ji-wang-luo-5/image-20210508203636981.png" alt="image-20210508203636981"></p>
 <p>校验码的值：</p>
 <p>P1二进制第四位为1，同样第四位为1的还有D1 D2 D4 D5，我们将他们异或为0即可得到P1。P2 P3 P4同理。</p>
-<h3 id="4-检错并纠错"><a href="#4-检错并纠错" class="headerlink" title="4.检错并纠错"></a>4.检错并纠错</h3><p><img src="./%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-5/image-20210508204358573.png" alt="image-20210508204358573"></p>
+<h3 id="4-检错并纠错"><a href="#4-检错并纠错" class="headerlink" title="4.检错并纠错"></a>4.检错并纠错</h3><p><img src="/2021/05/08/ji-suan-ji-wang-luo-5/image-20210508204358573.png" alt="image-20210508204358573"></p>
 <p>首先我们将所有要校验的位进行异或运算(具体哪几位进行异或见上步)</p>
 <p>我们计算后按照 P4 P3 P2 P1排序，本题得到0101，对应十进制5，说明第5位出错，将第5位改为他的反码即可修正</p>
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p><img src="./%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-5/image-20210508204957056.png" alt="image-20210508204957056"></p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p><img src="/2021/05/08/ji-suan-ji-wang-luo-5/image-20210508204957056.png" alt="image-20210508204957056"></p>
 
                 
             </div>

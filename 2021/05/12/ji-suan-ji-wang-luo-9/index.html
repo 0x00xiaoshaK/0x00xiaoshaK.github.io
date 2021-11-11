@@ -509,13 +509,13 @@
 <li>特点5：多采用分布式控制和广播式通信，能进行广播和组播。</li>
 </ul>
 <p>决定局域网的主要要素为：<strong>网络拓扑，传输介质</strong>与<strong>介质访问控制方法</strong>。</p>
-<h3 id="局域网网络拓扑"><a href="#局域网网络拓扑" class="headerlink" title="局域网网络拓扑"></a>局域网网络拓扑</h3><h4 id="星型拓扑"><a href="#星型拓扑" class="headerlink" title="星型拓扑"></a>星型拓扑</h4><p><img src="./%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-9/image-20210513174205790.png" alt="image-20210513174205790"></p>
+<h3 id="局域网网络拓扑"><a href="#局域网网络拓扑" class="headerlink" title="局域网网络拓扑"></a>局域网网络拓扑</h3><h4 id="星型拓扑"><a href="#星型拓扑" class="headerlink" title="星型拓扑"></a>星型拓扑</h4><p><img src="/2021/05/12/ji-suan-ji-wang-luo-9/image-20210513174205790.png" alt="image-20210513174205790"></p>
 <p>中心节点是控制中心，任意两个节点间的通信最多只需<strong>两步</strong>，传输速度快，并且网络构形简单、建网容易、便于控制和管理。但这种网络系统，网络可靠性低，网络共享能力差，有单点故障问题。</p>
-<h4 id="总线型拓扑-比较好"><a href="#总线型拓扑-比较好" class="headerlink" title="总线型拓扑(比较好)"></a>总线型拓扑(比较好)</h4><p><img src="./%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-9/image-20210513174429074.png" alt="image-20210513174429074"></p>
+<h4 id="总线型拓扑-比较好"><a href="#总线型拓扑-比较好" class="headerlink" title="总线型拓扑(比较好)"></a>总线型拓扑(比较好)</h4><p><img src="/2021/05/12/ji-suan-ji-wang-luo-9/image-20210513174429074.png" alt="image-20210513174429074"></p>
 <p>网络可靠性高、网络节点间响应速度快、共享资源能力强、设备投入量少成本低、安装使用方便，当某个工作站节点出现故障时，对整个网络系统影响小。</p>
-<h4 id="环形拓扑"><a href="#环形拓扑" class="headerlink" title="环形拓扑"></a>环形拓扑</h4><p><img src="./%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-9/image-20210513174437983.png" alt="image-20210513174437983"></p>
+<h4 id="环形拓扑"><a href="#环形拓扑" class="headerlink" title="环形拓扑"></a>环形拓扑</h4><p><img src="/2021/05/12/ji-suan-ji-wang-luo-9/image-20210513174437983.png" alt="image-20210513174437983"></p>
 <p>系统中通信设备和线路比较节省。有<strong>单点故障</strong>问题；由于环路是封闭的，所以不便于扩充，系统响应延时长，且信息传输效率相对较低。</p>
-<h4 id="树形拓扑"><a href="#树形拓扑" class="headerlink" title="树形拓扑"></a>树形拓扑</h4><p><img src="./%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-9/image-20210513174445279.png" alt="image-20210513174445279"></p>
+<h4 id="树形拓扑"><a href="#树形拓扑" class="headerlink" title="树形拓扑"></a>树形拓扑</h4><p><img src="/2021/05/12/ji-suan-ji-wang-luo-9/image-20210513174445279.png" alt="image-20210513174445279"></p>
 <p>易于拓展，易于隔离故障也容易有<strong>单点故障</strong>。</p>
 <h3 id="局域网传输介质"><a href="#局域网传输介质" class="headerlink" title="局域网传输介质"></a>局域网传输介质</h3><p>局域网分为：</p>
 <ul>
@@ -566,12 +566,12 @@
 <li>lEEE802.11：无线局域网（WLAN）的介质访问控制协议及物理层技术规范。</li>
 </ul>
 <h3 id="MAC子层和LLC子层"><a href="#MAC子层和LLC子层" class="headerlink" title="MAC子层和LLC子层"></a>MAC子层和LLC子层</h3><p>IEEE 802标准所描述的局域网参考模型只对应OSI参考模型的<strong>数据链路层和物理层</strong>，它将数据链路层划分为逻辑链路层LLC子层和介质访问控制MAC子层。</p>
-<p><img src="./%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-9/image-20210513191704053.png" alt="image-20210513191704053"></p>
+<p><img src="/2021/05/12/ji-suan-ji-wang-luo-9/image-20210513191704053.png" alt="image-20210513191704053"></p>
 <p>LLC子层：</p>
 <p>LLC负责识别网络层协议，然后对它们进行封装。LLC报头告诉数据链路层一旦帧被接收到时，应当对数据包做何处理。为网络层提供服务：无确认无连接、面向连接、有确认无连接、高速传送。</p>
 <p>MAC子层：</p>
 <p>MAC子层的主要功能包括数据帧的封装/卸装，帧的寻址和识别，帧的接收与发送，链路的管理，帧的差错控制等。MAC子层的存在屏蔽了不同物理链路种类的差异性。</p>
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p><img src="./%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-9/image-20210513192408873.png" alt="image-20210513192408873"></p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p><img src="/2021/05/12/ji-suan-ji-wang-luo-9/image-20210513192408873.png" alt="image-20210513192408873"></p>
 <h2 id="3-6-2-以太网"><a href="#3-6-2-以太网" class="headerlink" title="3.6.2 以太网"></a>3.6.2 以太网</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>以太网（<strong>Ethernet</strong>）指的是由 Xerox公司创建并由 Xerox、Intel|和DEC公司联合开发的<strong>基带总线局域网规范</strong>，是当今现有局域网采用的最通用的通信协议标准。以太网络使用 <strong>CSMA/CD</strong>（载波监听多路访问及冲突检测）技术。</p>
 <p>以太网在局域网各种技术中占统治性地位：</p>
 <ul>
@@ -588,12 +588,12 @@
 <h3 id="以太网提供无连接、不可靠的服务"><a href="#以太网提供无连接、不可靠的服务" class="headerlink" title="以太网提供无连接、不可靠的服务"></a>以太网提供无连接、不可靠的服务</h3><p>无连接：发送方和接收方之间无“握手过程</p>
 <p>不可靠：不对发送方的数据帧<strong>编号</strong>，接收方不向发送方进行<strong>确认</strong>，差错帧直接丢弃，差错纠正由高层负责。</p>
 <p><strong>以太网只实现无差错接收，不实现可靠传输。</strong>以太网主要负责数据链路层和物理层。</p>
-<h3 id="以太网传输介质与拓扑结构发展"><a href="#以太网传输介质与拓扑结构发展" class="headerlink" title="以太网传输介质与拓扑结构发展"></a>以太网传输介质与拓扑结构发展</h3><p><img src="./%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-9/image-20210513193940857.png" alt="image-20210513193940857"></p>
+<h3 id="以太网传输介质与拓扑结构发展"><a href="#以太网传输介质与拓扑结构发展" class="headerlink" title="以太网传输介质与拓扑结构发展"></a>以太网传输介质与拓扑结构发展</h3><p><img src="/2021/05/12/ji-suan-ji-wang-luo-9/image-20210513193940857.png" alt="image-20210513193940857"></p>
 <p>使用集线器的以太网在逻辑上仍是一个总线网，各站共享逻辑上的总线，使用的还是 CSMA/CD协议。</p>
 <p>以太网拓扑：<strong>逻辑</strong>上<strong>总</strong>线型，<strong>物理</strong>上<strong>星</strong>型。</p>
 <h3 id="10BASE-T以太网"><a href="#10BASE-T以太网" class="headerlink" title="10BASE-T以太网"></a>10BASE-T以太网</h3><p>BASE对应基带信号，T对应双绞线，10对应传输速率</p>
 <p>10BASE-T是传送<strong>基带信号</strong>的双绞线以太网，T表示采用双绞线，现10 BASE-T采用的是<strong>无屏蔽双绞线</strong>（UTP），传输速率是<strong>10Mb/s</strong>。</p>
-<p><img src="./%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-9/image-20210513194330116.png" alt="image-20210513194330116"></p>
+<p><img src="/2021/05/12/ji-suan-ji-wang-luo-9/image-20210513194330116.png" alt="image-20210513194330116"></p>
 <p><strong>物理上采用星型拓扑，逻辑上总线型</strong>，每段双绞线最长<strong>100m</strong>。</p>
 <p>采用<strong>曼彻斯特编码</strong>。</p>
 <p>采用<strong>CSMA/CD</strong>介质访问控制。</p>
@@ -601,11 +601,11 @@
 <p>“集线器是指将多条以太网双绞线或光纤集合连接在同一段物理介质下的设备，其作用是：对接收到的信号进行再生整形放大，以扩大网络的传输距离，同时把所有节点集中在以它为中心的节点上。”</p>
 </blockquote>
 <h3 id="适配器和MAC地址"><a href="#适配器和MAC地址" class="headerlink" title="适配器和MAC地址"></a>适配器和MAC地址</h3><p>计算机与外界有线局域网的连接是通过<strong>通信适配器</strong>的。</p>
-<p><img src="./%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-9/image-20210514155204831.png" alt="image-20210514155204831"></p>
+<p><img src="/2021/05/12/ji-suan-ji-wang-luo-9/image-20210514155204831.png" alt="image-20210514155204831"></p>
 <p>在局域网中，硬件地址又称为物理地址，或MAC地址。【实际上是标识符】</p>
 <p>MAC地址：每个适配器有一个全球唯一的48位二进制地址，前24位代表厂家(由IEEE规定)，后24位厂家自己指定。常用6个十六进制数表示，如02-60-8c-e4-b1-21。</p>
 <h3 id="以太网MAC帧"><a href="#以太网MAC帧" class="headerlink" title="以太网MAC帧"></a>以太网MAC帧</h3><p>最常用的MAC帧是以太网V2的格式</p>
-<p><img src="./%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-9/image-20210514160630276.png" alt="image-20210514160630276"></p>
+<p><img src="/2021/05/12/ji-suan-ji-wang-luo-9/image-20210514160630276.png" alt="image-20210514160630276"></p>
 <p>与IEEE 802.3的区别：</p>
 <ol>
 <li>第三个字段是长度/类型</li>
@@ -615,7 +615,7 @@
 <li><p>100BASE-T以太网</p>
 <p>在<strong>双绞线</strong>上传送<strong>100Mb/s基带信号</strong>的<strong>星型</strong>拓扑以太网，仍使用IEE802.3的 CSMA/CD协议。</p>
 <p>支持<strong>全双工</strong>和<strong>半双工</strong>，可在全双工方式下工作而无冲突。</p>
-<p><img src="./%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-9/image-20210514161036056.png" alt="image-20210514161036056"></p>
+<p><img src="/2021/05/12/ji-suan-ji-wang-luo-9/image-20210514161036056.png" alt="image-20210514161036056"></p>
 </li>
 <li><p>吉比特以太网</p>
 <p>在<strong>光纤或双绞线</strong>上传送<strong>1Gb/s信号</strong>。</p>
@@ -629,7 +629,7 @@
 <blockquote>
 <p>交换机（Switch）意为“开关”是一种用于电（光）信号转发的网络设备。它可以<strong>为接入交换机的任意两个网络节点提供独享的电信号通路</strong>。最常见的交换机是以太网交换机。其他常见的还有电话语音交换机、光纤交换机等</p>
 </blockquote>
-<h3 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h3><p><img src="./%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-9/image-20210514161446888.png" alt="image-20210514161446888"></p>
+<h3 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h3><p><img src="/2021/05/12/ji-suan-ji-wang-luo-9/image-20210514161446888.png" alt="image-20210514161446888"></p>
 
                 
             </div>

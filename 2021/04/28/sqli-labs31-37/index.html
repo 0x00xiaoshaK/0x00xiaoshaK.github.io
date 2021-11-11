@@ -502,7 +502,7 @@ Less-31 Protection with WAFWAF防护
 <p><strong>双引号） 闭合，–+注释，基于错误的联合注入</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">?id=1&amp;id=.1") union select 1,2,database() --+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./sqli-labs31-37/image-20210428133234146.png" alt="image-20210428133234146"></p>
+<p><img src="/2021/04/28/sqli-labs31-37/image-20210428133234146.png" alt="image-20210428133234146"></p>
 <h2 id="Less-32-Bypass-addslashes"><a href="#Less-32-Bypass-addslashes" class="headerlink" title="Less-32 Bypass addslashes()"></a><strong>Less-32</strong> Bypass addslashes()</h2><p>addslashes()绕过</p>
 <p>查看源码</p>
 <pre class="line-numbers language-none"><code class="language-none">function check_addslashes($string)
@@ -518,16 +518,16 @@ Less-31 Protection with WAFWAF防护
 <p>preg_replace 函数执行一个正则表达式的搜索和替换。</p>
 <p>此题将单引号，双引号转换为双反斜杠（\）和\i表示不区分大小写</p>
 <p>并且将字符集设置为gbk，导致可以进行宽字节注入来绕过单引号转义</p>
-<p><img src="./sqli-labs31-37/image-20210428134157625.png" alt="image-20210428134157625"></p>
+<p><img src="/2021/04/28/sqli-labs31-37/image-20210428134157625.png" alt="image-20210428134157625"></p>
 <p>输入单引号发现是经过转义的</p>
-<p><img src="./sqli-labs31-37/image-20210428134706776.png" alt="image-20210428134706776"></p>
+<p><img src="/2021/04/28/sqli-labs31-37/image-20210428134706776.png" alt="image-20210428134706776"></p>
 <p>因为gbk编码的，我们尝试%df’，然后将浏览器编码改为gbk，我们可以看到，他变成了汉字</p>
 <p>这是因为加上反斜杠也就是%5c之后传入参数整体为%df%5c%27，而前面说过，在mysql里认为前两个字符是一个汉字，也就是‘運’，而后面的单引号就逃逸出来了</p>
 <p><strong>–+注释，单引号闭合，%df绕过单引号转义，基于错误的联合注入</strong></p>
 <p>爆库：</p>
 <pre class="line-numbers language-none"><code class="language-none">?id=-1%df'  union select 1,2,database()--+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./sqli-labs31-37/image-20210428135401383.png" alt="image-20210428135401383"></p>
+<p><img src="/2021/04/28/sqli-labs31-37/image-20210428135401383.png" alt="image-20210428135401383"></p>
 <p>正常步骤，不在赘述</p>
 <h2 id="Less-33-Bypass-addslashes"><a href="#Less-33-Bypass-addslashes" class="headerlink" title="Less-33 Bypass addslashes()"></a>Less-33 Bypass addslashes()</h2><p>和上一关一致，只不过换成了addslashes函数转义</p>
 <ul>
@@ -535,24 +535,24 @@ Less-31 Protection with WAFWAF防护
 </ul>
 <p>payload同</p>
 <h2 id="Less-34-Bypass-Add-SLASHES"><a href="#Less-34-Bypass-Add-SLASHES" class="headerlink" title="Less-34 Bypass Add SLASHES"></a>Less-34 Bypass Add SLASHES</h2><p>post方式，同32关</p>
-<p><img src="./sqli-labs31-37/image-20210428140100420.png" alt="image-20210428140100420"></p>
+<p><img src="/2021/04/28/sqli-labs31-37/image-20210428140100420.png" alt="image-20210428140100420"></p>
 <p>要注意字段数变成2了，不是3</p>
 <h2 id="Less-35-why-care-for-addslashes"><a href="#Less-35-why-care-for-addslashes" class="headerlink" title="Less-35 why care for addslashes()"></a>Less-35 why care for addslashes()</h2><p>为什么要担心addslashes()</p>
-<p>查看源码<img src="./sqli-labs31-37/image-20210428140354520.png" alt="image-20210428140354520"></p>
+<p>查看源码<img src="/2021/04/28/sqli-labs31-37/image-20210428140354520.png" alt="image-20210428140354520"></p>
 <p>数字型的，他的防护都没用，直接数字型注就可，</p>
 <p><strong>数字型、基于错误的联合注入、直接注入</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">?id=-1 union select 1,2,database()<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./sqli-labs31-37/image-20210428140613542.png" alt="image-20210428140613542"></p>
+<p><img src="/2021/04/28/sqli-labs31-37/image-20210428140613542.png" alt="image-20210428140613542"></p>
 <p>正常步骤，不在赘述</p>
 <h2 id="Less-36-Bypass-MySQL-Real-Escape-String"><a href="#Less-36-Bypass-MySQL-Real-Escape-String" class="headerlink" title="Less-36 Bypass MySQL Real Escape String"></a>Less-36 Bypass MySQL Real Escape String</h2><p>MySQL Real Escape String绕过</p>
 <p>MySQL Real Escape String()函数：转义在 SQL 语句中使用的字符串中的特殊字符。</p>
-<p><img src="./sqli-labs31-37/image-20210428140932098.png" alt="image-20210428140932098"></p>
+<p><img src="/2021/04/28/sqli-labs31-37/image-20210428140932098.png" alt="image-20210428140932098"></p>
 <p>查看源码发现还是使用gbk编码</p>
 <p>爆库：</p>
 <pre class="line-numbers language-none"><code class="language-none">?id=-1%df' union select 1,2,database() --+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./sqli-labs31-37/image-20210428141249842.png" alt="image-20210428141249842"></p>
+<p><img src="/2021/04/28/sqli-labs31-37/image-20210428141249842.png" alt="image-20210428141249842"></p>
 <p>正常步骤，不再赘述</p>
 <h2 id="Less-37-MySQL-real-escape-string"><a href="#Less-37-MySQL-real-escape-string" class="headerlink" title="Less-37- MySQL_real_escape_string"></a>Less-37- MySQL_real_escape_string</h2><p>同上关，变成了post传参</p>
 <p>不赘述了，抓包改就可</p>

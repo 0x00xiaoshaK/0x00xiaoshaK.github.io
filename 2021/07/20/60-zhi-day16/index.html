@@ -618,29 +618,29 @@
 <h3 id="NS-Name-Server-记录"><a href="#NS-Name-Server-记录" class="headerlink" title="NS(Name Server)记录"></a>NS(Name Server)记录</h3><p>是一种域名服务器记录。</p>
 <p>用来明确当前你的域名是由哪个DNS服务器来进行解析的。</p>
 <h2 id="子域名在线查询"><a href="#子域名在线查询" class="headerlink" title="子域名在线查询"></a>子域名在线查询</h2><p><a target="_blank" rel="noopener" href="https://phpinfo.me/domain/">https://phpinfo.me/domain/</a></p>
-<p><img src="./60%E4%B9%8Bday16/image-20210720205320307.png" alt="image-20210720205320307"></p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210720205320307.png" alt="image-20210720205320307"></p>
 <p><a target="_blank" rel="noopener" href="https://www.t1h2ua.cn/tools/">https://www.t1h2ua.cn/tools/</a></p>
-<p><img src="./60%E4%B9%8Bday16/image-20210720205421324.png" alt="image-20210720205421324"></p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210720205421324.png" alt="image-20210720205421324"></p>
 <p><a target="_blank" rel="noopener" href="https://site.ip138.com/moonsec.com/domain.htm">https://site.ip138.com/moonsec.com/domain.htm</a></p>
-<p><img src="./60%E4%B9%8Bday16/image-20210720205627604.png" alt="image-20210720205627604"></p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210720205627604.png" alt="image-20210720205627604"></p>
 <p><a target="_blank" rel="noopener" href="https://dnsdumpster.com/">https://dnsdumpster.com/</a></p>
 <p>挂梯子</p>
-<p><img src="./60%E4%B9%8Bday16/image-20210720205835428.png" alt="image-20210720205835428"></p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210720205835428.png" alt="image-20210720205835428"></p>
 <p><a target="_blank" rel="noopener" href="https://fofa.so/">https://fofa.so/</a></p>
-<p><img src="./60%E4%B9%8Bday16/image-20210720205947152.png" alt="image-20210720205947152"></p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210720205947152.png" alt="image-20210720205947152"></p>
 <p><a target="_blank" rel="noopener" href="https://hackertarget.com/find-dns-host-records/">https://hackertarget.com/find-dns-host-records/</a></p>
 <p>通过该方法查询子域名可以得到一个目标大概的ip段，接下来可以通过ip来收集信息。</p>
-<p><img src="./60%E4%B9%8Bday16/image-20210720210059558.png" alt="image-20210720210059558"></p>
-<h2 id="子域名挖掘工具"><a href="#子域名挖掘工具" class="headerlink" title="子域名挖掘工具"></a>子域名挖掘工具</h2><h3 id="layer子域名挖掘"><a href="#layer子域名挖掘" class="headerlink" title="layer子域名挖掘"></a>layer子域名挖掘</h3><p><img src="./60%E4%B9%8Bday16/image-20210721093529601.png" alt="image-20210721093529601"></p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210720210059558.png" alt="image-20210720210059558"></p>
+<h2 id="子域名挖掘工具"><a href="#子域名挖掘工具" class="headerlink" title="子域名挖掘工具"></a>子域名挖掘工具</h2><h3 id="layer子域名挖掘"><a href="#layer子域名挖掘" class="headerlink" title="layer子域名挖掘"></a>layer子域名挖掘</h3><p><img src="/2021/07/20/60-zhi-day16/image-20210721093529601.png" alt="image-20210721093529601"></p>
 <h3 id="SubDomainBute"><a href="#SubDomainBute" class="headerlink" title="SubDomainBute"></a>SubDomainBute</h3><p>12server中安装python环境</p>
 <pre class="line-numbers language-none"><code class="language-none">pip install aiodns<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./60%E4%B9%8Bday16/image-20210721104820853.png" alt="image-20210721104820853"></p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721104820853.png" alt="image-20210721104820853"></p>
 <p>运行命令</p>
 <p>进入工具文件夹 cd</p>
 <p>subDomainsBrute.py freebuf.com  </p>
 <p>subDomainsBrute.py  freebuf.com –full -o freebuf2.txt</p>
-<p><img src="./60%E4%B9%8Bday16/image-20210721104929931.png" alt="image-20210721104929931"></p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721104929931.png" alt="image-20210721104929931"></p>
 <h2 id="隐藏域名hosts碰撞"><a href="#隐藏域名hosts碰撞" class="headerlink" title="隐藏域名hosts碰撞"></a>隐藏域名hosts碰撞</h2><blockquote>
 <p>很多时候访问目标资产IP响应多为：401、403、404、500，但是用域名请求却能返回正常的业务系统（禁止IP直接访问），因为这大多数都是需要绑定host才能正常请求访问的 （目前互联网公司基本的做法）（域名删除了A记录，但是反代的配置未更新），那么我们就可以通过收集到的目标的 域名 和 目标资产 的IP段组合起来，以 IP段+域名 的形式进行捆绑碰撞，就能发现很多有意思的东西。</p>
 </blockquote>
@@ -648,25 +648,25 @@
 <p>进行hosts碰撞需要目标的域名和目标的相关IP作为字典</p>
 <p>目标域名历史解析IP：</p>
 <p><a target="_blank" rel="noopener" href="https://site.ip138.com/">https://site.ip138.com/</a></p>
-<p><img src="./60%E4%B9%8Bday16/image-20210721110314191.png" alt="image-20210721110314191"></p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721110314191.png" alt="image-20210721110314191"></p>
 <p><a target="_blank" rel="noopener" href="https://ipchaxun.com/">https://ipchaxun.com/</a></p>
-<p><img src="./60%E4%B9%8Bday16/image-20210721110306959.png" alt="image-20210721110306959"></p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721110306959.png" alt="image-20210721110306959"></p>
 <p>ip正则：</p>
 <p><a target="_blank" rel="noopener" href="https://www.aicesu.cn/reg/">https://www.aicesu.cn/reg/</a></p>
-<p><img src="./60%E4%B9%8Bday16/image-20210721110322145.png" alt="image-20210721110322145"></p>
-<h3 id="工具host-scan-master"><a href="#工具host-scan-master" class="headerlink" title="工具host-scan-master"></a>工具host-scan-master</h3><p><img src="./60%E4%B9%8Bday16/image-20210727125808505.png" alt="image-20210727125808505"></p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721110322145.png" alt="image-20210721110322145"></p>
+<h3 id="工具host-scan-master"><a href="#工具host-scan-master" class="headerlink" title="工具host-scan-master"></a>工具host-scan-master</h3><p><img src="/2021/07/20/60-zhi-day16/image-20210727125808505.png" alt="image-20210727125808505"></p>
 <p>host填写域名</p>
 <p>ip填写ip</p>
 <p>host_ok返回正确匹配的值</p>
-<p><img src="./60%E4%B9%8Bday16/image-20210727125917590.png" alt="image-20210727125917590"></p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210727125917590.png" alt="image-20210727125917590"></p>
 <p>我们之后再host_ok查看即可</p>
 <h2 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h2><p>当确定了目标大概的ip段后，可以先对ip的开放端口进行探测，一些特定服务可能开起在默认端口上，探测开放端口有利于快速收集目标资产，找到目标网站的其他功能站点。</p>
 <h3 id="渗透端口"><a href="#渗透端口" class="headerlink" title="渗透端口"></a>渗透端口</h3><blockquote>
 <p>21,22,23,1433,152,3306,3389,5432,5900,50070,50030,50000,27017,27018,11211,9200,9300,7001,7002,6379,5984,873,443,8000-9090,80-89,80,10000,8888,8649,8083,8080,8089,9090,7778,7001,7002,6082,5984,4440,3312,3311,3128,2601,2604,2222,2082,2083,389,88,512,513,514,1025,111,1521,445,135,139,53</p>
 </blockquote>
 <h3 id="masscan端口扫描"><a href="#masscan端口扫描" class="headerlink" title="masscan端口扫描"></a>masscan端口扫描</h3><p>masscan -p 1-65535 ip –rate=1000</p>
-<p><img src="./60%E4%B9%8Bday16/image-20210721110721941.png" alt="image-20210721110721941"></p>
-<h3 id="御剑端口扫描工具"><a href="#御剑端口扫描工具" class="headerlink" title="御剑端口扫描工具"></a>御剑端口扫描工具</h3><p><img src="./60%E4%B9%8Bday16/image-20210721110918876.png" alt="image-20210721110918876"></p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721110721941.png" alt="image-20210721110721941"></p>
+<h3 id="御剑端口扫描工具"><a href="#御剑端口扫描工具" class="headerlink" title="御剑端口扫描工具"></a>御剑端口扫描工具</h3><p><img src="/2021/07/20/60-zhi-day16/image-20210721110918876.png" alt="image-20210721110918876"></p>
 <h3 id="nmap端口扫描和探测端口信息"><a href="#nmap端口扫描和探测端口信息" class="headerlink" title="nmap端口扫描和探测端口信息"></a>nmap端口扫描和探测端口信息</h3><p>常用参数，如：</p>
 <ul>
 <li>nmap -sV 192.168.0.2</li>
@@ -678,15 +678,15 @@
 <p>如果需要扫描多个ip或ip段，可以将他们保存到一个txt文件中</p>
 <p>nmap -iL ip.txt</p>
 <p>来扫描列表中所有的ip。</p>
-<p><img src="./60%E4%B9%8Bday16/image-20210721111153716.png" alt="image-20210721111153716"></p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721111153716.png" alt="image-20210721111153716"></p>
 <h3 id="在线端口检测"><a href="#在线端口检测" class="headerlink" title="在线端口检测"></a>在线端口检测</h3><p><a target="_blank" rel="noopener" href="http://coolaf.com/tool/port">http://coolaf.com/tool/port</a></p>
-<p><img src="./60%E4%B9%8Bday16/image-20210721111250384.png" alt="image-20210721111250384"></p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721111250384.png" alt="image-20210721111250384"></p>
 <h2 id="旁站和c段"><a href="#旁站和c段" class="headerlink" title="旁站和c段"></a>旁站和c段</h2><p>旁站往往存在业务功能站点，建议先收集已有IP的旁站，再探测C段，确认C段目标后，再在C段的基础上再收集一次旁站。</p>
 <p>旁站是和已知目标站点在同一服务器但不同端口的站点，通过以下方法搜索到旁站后，先访问一下确定是不是自己需要的站点信息。</p>
 <h3 id="站长之家"><a href="#站长之家" class="headerlink" title="站长之家"></a>站长之家</h3><p>同ip网站查询<a target="_blank" rel="noopener" href="http://stool.chinaz.com/same">http://stool.chinaz.com/same</a></p>
-<p><img src="./60%E4%B9%8Bday16/image-20210721111718764.png" alt="image-20210721111718764"></p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721111718764.png" alt="image-20210721111718764"></p>
 <p><a target="_blank" rel="noopener" href="https://chapangzhan.com/">https://chapangzhan.com/</a></p>
-<p><img src="./60%E4%B9%8Bday16/image-20210721111725776.png" alt="image-20210721111725776"></p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721111725776.png" alt="image-20210721111725776"></p>
 <h3 id="google-hacking"><a href="#google-hacking" class="headerlink" title="google hacking"></a>google hacking</h3><p>Google Hacking 是利用谷歌搜索的强大，来在浩瀚的互联网中搜索到我们需要的信息。</p>
 <p><strong>轻量级</strong>的搜索可以搜素出一些遗留后门，不想被发现的后台入口，<strong>中量级</strong>的搜索出一些用户信息泄露，源代码泄露，未授权访问等等，<strong>重量级</strong>的则可能是mdb文件下载，CMS 未被锁定install页面，网站配置密码，php远程文件包含漏洞等重要信息。</p>
 <h4 id="基本搜索"><a href="#基本搜索" class="headerlink" title="基本搜索"></a>基本搜索</h4><ul>
@@ -699,38 +699,38 @@
 <h4 id="高级搜索"><a href="#高级搜索" class="headerlink" title="高级搜索"></a>高级搜索</h4><p><strong>intext:</strong></p>
 <p>寻找正文中含有关键字的网页</p>
 <p>例如： intext:后台登录  将只返回正文中包含 后台登录 的网页</p>
-<p><img src="./60%E4%B9%8Bday16/image-20210721112102543.png" alt="image-20210721112102543"></p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721112102543.png" alt="image-20210721112102543"></p>
 <p><strong>intitle:</strong></p>
 <p>寻找标题中含有关键字的网页</p>
 <p>例如： <strong>intitle:后台登录</strong>  将只返回标题中包含 后台登录 的网页，<strong>intitle:后台登录 密码</strong> 将返回标题中包含后台登陆而正文中包含密码的网页</p>
-<p><img src="./60%E4%B9%8Bday16/image-20210721112718565.png" alt="image-20210721112718565"></p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721112718565.png" alt="image-20210721112718565"></p>
 <p><strong>allintitle:</strong></p>
 <p>用法和intitle类似，只不过可以指定多个词</p>
 <p>例如： <strong>alltitle:后台登录 管理员</strong>  将返回标题中包含后台登录 和管理员的网页</p>
-<p><img src="./60%E4%B9%8Bday16/image-20210721112748777.png" alt="image-20210721112748777"></p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721112748777.png" alt="image-20210721112748777"></p>
 <p><strong>inurl：</strong></p>
 <p>将返回url中含有关键词的网页</p>
 <p>例如：<strong>inurl:Login</strong>  将返回url中含有 Login 的网页</p>
-<p><img src="./60%E4%B9%8Bday16/image-20210721112706339.png" alt="image-20210721112706339"></p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721112706339.png" alt="image-20210721112706339"></p>
 <p><strong>allinurl:</strong></p>
 <p>用法和inurl类似，只不过可以指定多个词</p>
 <p>例如：<strong>allinurl:Login admin</strong> 将返回url中含有 Login 和 admin 的网页</p>
-<p><img src="./60%E4%B9%8Bday16/image-20210721112952968.png" alt="image-20210721112952968"></p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721112952968.png" alt="image-20210721112952968"></p>
 <p><strong>site:</strong></p>
 <p>指定访问的站点</p>
 <p>例如： <strong>site:baidu.com inurl:Login</strong>  将只在baidu.com 中查找url中含有 Login的网页</p>
-<p><img src="./60%E4%B9%8Bday16/image-20210721113025162.png" alt="image-20210721113025162"></p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721113025162.png" alt="image-20210721113025162"></p>
 <p><strong>filetype:</strong></p>
 <p>指定访问的文件类型</p>
 <p>例如：<strong>site:baidu.com filetype:pdf</strong>   将只返回baidu.com站点上文件类型为pdf的网页</p>
-<p><img src="./60%E4%B9%8Bday16/image-20210721113109611.png" alt="image-20210721113109611"></p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721113109611.png" alt="image-20210721113109611"></p>
 <p><strong>link:</strong></p>
 <p>指定链接的网页，例如：<strong>link:<a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a></strong>  将返回所有包含指向 <a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a> 的网页</p>
-<p><img src="./60%E4%B9%8Bday16/image-20210721113151312.png" alt="image-20210721113151312"></p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721113151312.png" alt="image-20210721113151312"></p>
 <p><strong>related:</strong></p>
 <p>相似类型的网页</p>
 <p>例如：<strong>related:<a target="_blank" rel="noopener" href="http://www.xjtu.edu.cn/">www.xjtu.edu.cn</a></strong> 将返回与 <a target="_blank" rel="noopener" href="http://www.xjtu.edu.cn/">www.xjtu.edu.cn</a> 相似的页面，相似指的是网页的布局相似</p>
-<p><img src="./60%E4%B9%8Bday16/image-20210721113230486.png" alt="image-20210721113230486"></p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721113230486.png" alt="image-20210721113230486"></p>
 <p>cache:</p>
 <p>网页快照，谷歌将返回给你他存储下来的历史页面，如果你同时制定了其他查询词，将在搜索结果里以高亮显示，例如：cache:<a target="_blank" rel="noopener" href="http://www.hackingspirits.com/">www.hackingspirits.com</a>  guest  ，将返回指定网站的缓存，并且正文中含有guest</p>
 <p>info:</p>
@@ -771,13 +771,13 @@
 </li>
 </ul>
 <p>该方法效率较高，并能够直观地看到站点标题，但也有不常见端口未收录的情况，虽然这种情况很少，但之后补充资产的时候可以用下面的方法nmap扫描再收集一遍。</p>
-<p><img src="./60%E4%B9%8Bday16/image-20210721113829476.png" alt="image-20210721113829476"></p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721113829476.png" alt="image-20210721113829476"></p>
 <p><a target="_blank" rel="noopener" href="https://www.shodan.io/dashboard?language=en">https://www.shodan.io/dashboard?language=en</a></p>
-<p><img src="./60%E4%B9%8Bday16/image-20210721113917500.png" alt="image-20210721113917500"></p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721113917500.png" alt="image-20210721113917500"></p>
 <h3 id="在线c段查询"><a href="#在线c段查询" class="headerlink" title="在线c段查询"></a>在线c段查询</h3><p>webscan.cc</p>
-<p><img src="./60%E4%B9%8Bday16/image-20210721114446949.png" alt="image-20210721114446949"></p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721114446949.png" alt="image-20210721114446949"></p>
 <p><a target="_blank" rel="noopener" href="https://c.webscan.cc/">https://c.webscan.cc/</a></p>
-<p><img src="./60%E4%B9%8Bday16/image-20210721114508555.png" alt="image-20210721114508555"></p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721114508555.png" alt="image-20210721114508555"></p>
 
                 
             </div>

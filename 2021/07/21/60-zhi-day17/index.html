@@ -499,19 +499,19 @@
 
 <h2 id="扫描敏感目录-文件"><a href="#扫描敏感目录-文件" class="headerlink" title="扫描敏感目录/文件"></a>扫描敏感目录/文件</h2><p>扫描敏感目录需要强大的字典，需要平时积累，拥有强大的字典能够更高效地找出网站的管理后台。</p>
 <p>敏感文件常见的如.git文件泄露，.svn文件泄露，phpinfo泄露等，这一步一般交给各类扫描器就可以了，将目标站点输入到域名中，选择对应字典类型，就可以开始扫描了，十分方便。</p>
-<h3 id="御剑"><a href="#御剑" class="headerlink" title="御剑"></a>御剑</h3><p><img src="./60%E4%B9%8Bday17/image-20210722103118289.png" alt="image-20210722103118289"></p>
-<h3 id="7kbscan"><a href="#7kbscan" class="headerlink" title="7kbscan"></a>7kbscan</h3><p><img src="./60%E4%B9%8Bday17/image-20210722103240335.png" alt="image-20210722103240335"></p>
+<h3 id="御剑"><a href="#御剑" class="headerlink" title="御剑"></a>御剑</h3><p><img src="/2021/07/21/60-zhi-day17/image-20210722103118289.png" alt="image-20210722103118289"></p>
+<h3 id="7kbscan"><a href="#7kbscan" class="headerlink" title="7kbscan"></a>7kbscan</h3><p><img src="/2021/07/21/60-zhi-day17/image-20210722103240335.png" alt="image-20210722103240335"></p>
 <h3 id="dirsearch"><a href="#dirsearch" class="headerlink" title="dirsearch"></a>dirsearch</h3><p>在dirsearch目录下运行命令</p>
 <pre class="line-numbers language-none"><code class="language-none">python3 dirsearch.py -u http://m.scabjd.com/ -e * <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./60%E4%B9%8Bday17/image-20210722115922427.png" alt="image-20210722115922427"></p>
+<p><img src="/2021/07/21/60-zhi-day17/image-20210722115922427.png" alt="image-20210722115922427"></p>
 <h3 id="gobuster"><a href="#gobuster" class="headerlink" title="gobuster"></a>gobuster</h3><pre class="line-numbers language-none"><code class="language-none">sudo apt-get install gobuster 
 gobuster dir -u https://www.servyou.com.cn/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php -t 50
 
 dir -u 网址 w字典 -x 指定后缀 -t 线程数量
 dir -u https://www.servyou.com.cn/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x "php,html,rar,zip" -d --wildcard -o servyou.log | grep ^"3402"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="./60%E4%B9%8Bday17/image-20210722120131108.png" alt="image-20210722120131108"></p>
+<p><img src="/2021/07/21/60-zhi-day17/image-20210722120131108.png" alt="image-20210722120131108"></p>
 <h3 id="网站文件"><a href="#网站文件" class="headerlink" title="网站文件"></a>网站文件</h3><p><a target="_blank" rel="noopener" href="https://www.secpulse.com/archives/55286.html">常见Web源码泄露总结 - SecPulse.COM | 安全脉搏</a></p>
 <p>以下是我们的目标：</p>
 <ul>
@@ -544,8 +544,8 @@ dir -u https://www.servyou.com.cn/ -w /usr/share/wordlists/dirbuster/directory-l
 <h2 id="网站头信息搜集"><a href="#网站头信息搜集" class="headerlink" title="网站头信息搜集"></a>网站头信息搜集</h2><p>中间件：web服务【Web Servers】 apache iis7 iis7.5 iis8 nginx WebLogic tomcat</p>
 <p>网站组件：js组件jquery、vue  页面的布局bootstrap</p>
 <h3 id="在线网站"><a href="#在线网站" class="headerlink" title="在线网站"></a>在线网站</h3><p><a target="_blank" rel="noopener" href="http://whatweb.bugscaner.com/look/">http://whatweb.bugscaner.com/look/</a></p>
-<p><img src="./60%E4%B9%8Bday17/image-20210722121022888.png" alt="image-20210722121022888"></p>
-<h3 id="火狐插件Wappalyzer"><a href="#火狐插件Wappalyzer" class="headerlink" title="火狐插件Wappalyzer"></a>火狐插件Wappalyzer</h3><p><img src="./60%E4%B9%8Bday17/image-20210722121802631.png" alt="image-20210722121802631"></p>
+<p><img src="/2021/07/21/60-zhi-day17/image-20210722121022888.png" alt="image-20210722121022888"></p>
+<h3 id="火狐插件Wappalyzer"><a href="#火狐插件Wappalyzer" class="headerlink" title="火狐插件Wappalyzer"></a>火狐插件Wappalyzer</h3><p><img src="/2021/07/21/60-zhi-day17/image-20210722121802631.png" alt="image-20210722121802631"></p>
 <h2 id="敏感文件搜索"><a href="#敏感文件搜索" class="headerlink" title="敏感文件搜索"></a>敏感文件搜索</h2><h3 id="GitHub搜索"><a href="#GitHub搜索" class="headerlink" title="GitHub搜索"></a>GitHub搜索</h3><p>in:name test #仓库标题搜索含有关键字test</p>
 <p>in:descripton test #仓库描述搜索含有关键字</p>
 <p>in:readme test #Readme文件搜素含有关键字</p>
@@ -575,23 +575,23 @@ dir -u https://www.servyou.com.cn/ -w /usr/share/wordlists/dirbuster/directory-l
 <p><a target="_blank" rel="noopener" href="https://github.com/search?q=smtp+bilibili.com&amp;type=code">https://github.com/search?q=smtp+bilibili.com&amp;type=code</a></p>
 <h3 id="Googlehacking"><a href="#Googlehacking" class="headerlink" title="Googlehacking"></a>Googlehacking</h3><p>见day16</p>
 <h3 id="wooyun漏洞库"><a href="#wooyun漏洞库" class="headerlink" title="wooyun漏洞库"></a>wooyun漏洞库</h3><p><a target="_blank" rel="noopener" href="https://wooyun.website/">https://wooyun.website/</a></p>
-<p><img src="./60%E4%B9%8Bday17/image-20210722122633303.png" alt="image-20210722122633303"></p>
+<p><img src="/2021/07/21/60-zhi-day17/image-20210722122633303.png" alt="image-20210722122633303"></p>
 <h3 id="网盘搜索"><a href="#网盘搜索" class="headerlink" title="网盘搜索"></a>网盘搜索</h3><p>凌云搜索 </p>
 <p> <a target="_blank" rel="noopener" href="https://www.lingfengyun.com/">https://www.lingfengyun.com/</a></p>
-<p><img src="./60%E4%B9%8Bday17/image-20210722122735429.png" alt="image-20210722122735429"></p>
+<p><img src="/2021/07/21/60-zhi-day17/image-20210722122735429.png" alt="image-20210722122735429"></p>
 <p>盘多多：</p>
 <p><a target="_blank" rel="noopener" href="https://www.panduoduo.org/">https://www.panduoduo.org/</a></p>
-<p><img src="./60%E4%B9%8Bday17/image-20210722123114947.png" alt="image-20210722123114947"></p>
+<p><img src="/2021/07/21/60-zhi-day17/image-20210722123114947.png" alt="image-20210722123114947"></p>
 <p>盘搜搜：</p>
 <p><a target="_blank" rel="noopener" href="http://www.pansoso.com/">http://www.pansoso.com/</a></p>
-<p><img src="./60%E4%B9%8Bday17/image-20210722122907126.png" alt="image-20210722122907126"></p>
+<p><img src="/2021/07/21/60-zhi-day17/image-20210722122907126.png" alt="image-20210722122907126"></p>
 <p>盘搜：</p>
 <p><a target="_blank" rel="noopener" href="http://www.pansou.com/">http://www.pansou.com/</a></p>
-<p><img src="./60%E4%B9%8Bday17/image-20210722122912939.png" alt="image-20210722122912939"></p>
+<p><img src="/2021/07/21/60-zhi-day17/image-20210722122912939.png" alt="image-20210722122912939"></p>
 <h3 id="社工库"><a href="#社工库" class="headerlink" title="社工库"></a>社工库</h3><p>名字/常用id/邮箱/密码/电话 登录 网盘 网站 邮箱 找敏感信息</p>
 <h3 id="网站注册信息"><a href="#网站注册信息" class="headerlink" title="网站注册信息"></a>网站注册信息</h3><p>查询网站注册信息</p>
 <p><a target="_blank" rel="noopener" href="http://www.reg007.com/">http://www.reg007.com</a></p>
-<p><img src="./60%E4%B9%8Bday17/image-20210722123414499.png" alt="image-20210722123414499"></p>
+<p><img src="/2021/07/21/60-zhi-day17/image-20210722123414499.png" alt="image-20210722123414499"></p>
 <h3 id="js敏感信息"><a href="#js敏感信息" class="headerlink" title="js敏感信息"></a>js敏感信息</h3><p>网站的url连接写到js里面</p>
 <p>js的api接口 里面包含用户信息 比如 账号和密码</p>
 <h4 id="jsfinder"><a href="#jsfinder" class="headerlink" title="jsfinder"></a>jsfinder</h4><p>python3 JSFinder.py -u <a target="_blank" rel="noopener" href="http://www.mi.com/">http://www.mi.com</a></p>
@@ -603,18 +603,18 @@ dir -u https://www.servyou.com.cn/ -w /usr/share/wordlists/dirbuster/directory-l
 <p>python JSFinder.py -f text.txt </p>
 <p>指定JS：</p>
 <p>python JSFinder.py -f text.txt -j</p>
-<p><img src="./60%E4%B9%8Bday17/image-20210722125020070.png" alt="image-20210722125020070"></p>
+<p><img src="/2021/07/21/60-zhi-day17/image-20210722125020070.png" alt="image-20210722125020070"></p>
 <h2 id="cms识别"><a href="#cms识别" class="headerlink" title="cms识别"></a>cms识别</h2><p>收集好网站信息之后，应该对网站进行指纹识别，通过识别指纹，确定目标的cms及版本，方便制定下一步的测试计划，可以用公开的poc或自己累积的对应手法等进行正式的渗透测试。</p>
 <h3 id="云悉"><a href="#云悉" class="headerlink" title="云悉"></a>云悉</h3><p><a target="_blank" rel="noopener" href="http://www.yunsee.cn/info.html">http://www.yunsee.cn/info.html</a></p>
-<p><img src="./60%E4%B9%8Bday17/image-20210722125608346.png" alt="image-20210722125608346"></p>
+<p><img src="/2021/07/21/60-zhi-day17/image-20210722125608346.png" alt="image-20210722125608346"></p>
 <h3 id="潮汐识别"><a href="#潮汐识别" class="headerlink" title="潮汐识别"></a>潮汐识别</h3><p><a target="_blank" rel="noopener" href="http://finger.tidesec.net/">http://finger.tidesec.net/</a></p>
-<p><img src="./60%E4%B9%8Bday17/image-20210722125638771.png" alt="image-20210722125638771"></p>
+<p><img src="/2021/07/21/60-zhi-day17/image-20210722125638771.png" alt="image-20210722125638771"></p>
 <h3 id="CMS指纹识别"><a href="#CMS指纹识别" class="headerlink" title="CMS指纹识别"></a>CMS指纹识别</h3><p><a target="_blank" rel="noopener" href="http://whatweb.bugscaner.com/look/">http://whatweb.bugscaner.com/look/</a></p>
-<p><img src="./60%E4%B9%8Bday17/image-20210722125757867.png" alt="image-20210722125757867"></p>
+<p><img src="/2021/07/21/60-zhi-day17/image-20210722125757867.png" alt="image-20210722125757867"></p>
 <p><a target="_blank" rel="noopener" href="https://github.com/search?q=cms%E8%AF%86%E5%88%AB">https://github.com/search?q=cms识别</a></p>
-<p><img src="./60%E4%B9%8Bday17/image-20210722125847365.png" alt="image-20210722125847365"></p>
-<h3 id="whatweb-cms"><a href="#whatweb-cms" class="headerlink" title="whatweb cms"></a>whatweb cms</h3><p><img src="./60%E4%B9%8Bday17/image-20210722130440561.png" alt="image-20210722130440561"></p>
-<h3 id="御剑cms"><a href="#御剑cms" class="headerlink" title="御剑cms"></a>御剑cms</h3><p><img src="./60%E4%B9%8Bday17/image-20210722130509348.png" alt="image-20210722130509348"></p>
+<p><img src="/2021/07/21/60-zhi-day17/image-20210722125847365.png" alt="image-20210722125847365"></p>
+<h3 id="whatweb-cms"><a href="#whatweb-cms" class="headerlink" title="whatweb cms"></a>whatweb cms</h3><p><img src="/2021/07/21/60-zhi-day17/image-20210722130440561.png" alt="image-20210722130440561"></p>
+<h3 id="御剑cms"><a href="#御剑cms" class="headerlink" title="御剑cms"></a>御剑cms</h3><p><img src="/2021/07/21/60-zhi-day17/image-20210722130509348.png" alt="image-20210722130509348"></p>
 <h2 id="非常规操作"><a href="#非常规操作" class="headerlink" title="非常规操作"></a>非常规操作</h2><p>1、如果找到了目标的一处资产，但是对目标其他资产的收集无处下手时，可以查看一下该站点的body里是否有目标的特征，然后利用网络空间搜索引擎（如fofa等）对该特征进行搜索，如：body=”XX公司”或body=”baidu”等。</p>
 <p>该方式一般适用于特征明显，资产数量较多的目标，并且很多时候效果拔群。</p>
 <p>2、当通过上述方式的找到test.com的特征后，再进行body的搜索，然后再搜索到test.com的时候，此时fofa上显示的ip大概率为test.com的真实IP。</p>
@@ -622,26 +622,26 @@ dir -u https://www.servyou.com.cn/ -w /usr/share/wordlists/dirbuster/directory-l
 <p><a target="_blank" rel="noopener" href="http://114.55.181.28/databaseInfo/index%E4%B9%8B%E5%90%8E%E5%8F%AF%E4%BB%A5%E7%BB%93%E5%90%88%E4%B8%8A%E4%B8%80%E6%AD%A5%E7%9A%84%E6%96%B9%E6%B3%95%E8%BF%9B%E8%A1%8C%E8%BF%9B%E4%B8%80%E6%AD%A5%E7%9A%84%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E3%80%82">http://114.55.181.28/databaseInfo/index之后可以结合上一步的方法进行进一步的信息收集。</a></p>
 <h2 id="SSL-TLS证书查询"><a href="#SSL-TLS证书查询" class="headerlink" title="SSL/TLS证书查询"></a>SSL/TLS证书查询</h2><p>SSL/TLS证书通常包含域名、子域名和邮件地址等信息，结合证书中的信息，可以更快速地定位到目标资产，获取到更多目标资产的相关信息。</p>
 <h3 id="在线网站-1"><a href="#在线网站-1" class="headerlink" title="在线网站"></a>在线网站</h3><p><a target="_blank" rel="noopener" href="https://myssl.com/">https://myssl.com/</a></p>
-<p><img src="./60%E4%B9%8Bday17/image-20210722130930339.png" alt="image-20210722130930339"></p>
+<p><img src="/2021/07/21/60-zhi-day17/image-20210722130930339.png" alt="image-20210722130930339"></p>
 <p><a target="_blank" rel="noopener" href="https://crt.sh/">https://crt.sh</a> 挂梯子</p>
-<p><img src="./60%E4%B9%8Bday17/image-20210722131140578.png" alt="image-20210722131140578"></p>
+<p><img src="/2021/07/21/60-zhi-day17/image-20210722131140578.png" alt="image-20210722131140578"></p>
 <p><a target="_blank" rel="noopener" href="https://censys.io/">https://censys.io</a></p>
-<p><img src="./60%E4%B9%8Bday17/image-20210722131015908.png" alt="image-20210722131015908"></p>
+<p><img src="/2021/07/21/60-zhi-day17/image-20210722131015908.png" alt="image-20210722131015908"></p>
 <p><a target="_blank" rel="noopener" href="https://developers.facebook.com/tools/ct/">https://developers.facebook.com/tools/ct/</a></p>
-<p><img src="./60%E4%B9%8Bday17/image-20210722131105035.png" alt="image-20210722131105035"></p>
+<p><img src="/2021/07/21/60-zhi-day17/image-20210722131105035.png" alt="image-20210722131105035"></p>
 <p><a target="_blank" rel="noopener" href="https://google.com/transparencyreport/https/ct/">https://google.com/transparencyreport/https/ct/</a></p>
-<p><img src="./60%E4%B9%8Bday17/image-20210722131122353.png" alt="image-20210722131122353"></p>
+<p><img src="/2021/07/21/60-zhi-day17/image-20210722131122353.png" alt="image-20210722131122353"></p>
 <p>SSL证书搜索引擎：</p>
 <p><a target="_blank" rel="noopener" href="https://certdb.com/domain/github.com">https://certdb.com/domain/github.com</a></p>
-<p><img src="./60%E4%B9%8Bday17/image-20210722131212212.png" alt="image-20210722131212212"></p>
+<p><img src="/2021/07/21/60-zhi-day17/image-20210722131212212.png" alt="image-20210722131212212"></p>
 <p><a target="_blank" rel="noopener" href="https://crt.sh/?Identity=%25.moonsec.com">https://crt.sh/?Identity=%.moonsec.com</a></p>
-<p><img src="./60%E4%B9%8Bday17/image-20210722131228095.png" alt="image-20210722131228095"></p>
-<h2 id="查找厂商ip段"><a href="#查找厂商ip段" class="headerlink" title="查找厂商ip段"></a>查找厂商ip段</h2><p><img src="./60%E4%B9%8Bday17/image-20210722131325462.png" alt="image-20210722131325462"></p>
+<p><img src="/2021/07/21/60-zhi-day17/image-20210722131228095.png" alt="image-20210722131228095"></p>
+<h2 id="查找厂商ip段"><a href="#查找厂商ip段" class="headerlink" title="查找厂商ip段"></a>查找厂商ip段</h2><p><img src="/2021/07/21/60-zhi-day17/image-20210722131325462.png" alt="image-20210722131325462"></p>
 <h2 id="移动资产搜集"><a href="#移动资产搜集" class="headerlink" title="移动资产搜集"></a>移动资产搜集</h2><h3 id="微信小程序-支付宝小程序"><a href="#微信小程序-支付宝小程序" class="headerlink" title="微信小程序/支付宝小程序"></a>微信小程序/支付宝小程序</h3><p>现在很多企业都有小程序，可以关注企业的微信公众号或者支付宝小程序，或关注运营相关人员，查看朋友圈，获取小程序。</p>
 <p><a target="_blank" rel="noopener" href="https://weixin.sogou.com/weixin?type=1&amp;ie=utf8&amp;query=%E6%8B%BC%E5%A4%9A%E5%A4%9A">https://weixin.sogou.com/weixin?type=1&amp;ie=utf8&amp;query=拼多多</a></p>
-<p><img src="./60%E4%B9%8Bday17/image-20210722131412634.png" alt="image-20210722131412634"></p>
+<p><img src="/2021/07/21/60-zhi-day17/image-20210722131412634.png" alt="image-20210722131412634"></p>
 <h3 id="app软件搜索"><a href="#app软件搜索" class="headerlink" title="app软件搜索"></a>app软件搜索</h3><p><a target="_blank" rel="noopener" href="https://www.qimai.cn/">https://www.qimai.cn/</a></p>
-<p><img src="./60%E4%B9%8Bday17/image-20210722131522047.png" alt="image-20210722131522047"></p>
+<p><img src="/2021/07/21/60-zhi-day17/image-20210722131522047.png" alt="image-20210722131522047"></p>
 <h2 id="社交信息搜索"><a href="#社交信息搜索" class="headerlink" title="社交信息搜索"></a>社交信息搜索</h2><p>QQ群 QQ手机号</p>
 <p>微信群 </p>
 <p>领英</p>

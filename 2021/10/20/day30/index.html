@@ -506,19 +506,19 @@
 <h2 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h2><pre class="line-numbers language-none"><code class="language-none">cd /var/www/html/06/vul/fileinclude
 cat fileinclude.php<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<p><img src="./day30/image-20211024175323997.png" alt="image-20211024175323997"></p>
+<p><img src="/2021/10/20/day30/image-20211024175323997.png" alt="image-20211024175323997"></p>
 <p>我们把源码拿出来看 清晰一点</p>
-<p><img src="./day30/image-20211024175349393.png" alt="image-20211024175349393"></p>
+<p><img src="/2021/10/20/day30/image-20211024175349393.png" alt="image-20211024175349393"></p>
 <p>$_GET[‘filename’] 接收客户端传的参数，没有任何过滤，然后带入到 include 函数中，include 包含这个文件，引入到当前文件中，因此会造成文件包含漏洞。</p>
 <h2 id="利用"><a href="#利用" class="headerlink" title="利用"></a>利用</h2><p>文件包含漏洞，需要引入上传的文件到网站目录，或是服务器内部的文件，而且权限是可读，才能引入进来，或远程包含进来，但是需要条件。</p>
 <h2 id="文件包含-etc-passwd"><a href="#文件包含-etc-passwd" class="headerlink" title="文件包含 /etc/passwd"></a>文件包含 /etc/passwd</h2><p>这是Linux中一个比较敏感的文件</p>
-<p><img src="./day30/image-20211024175805618.png" alt="image-20211024175805618"></p>
+<p><img src="/2021/10/20/day30/image-20211024175805618.png" alt="image-20211024175805618"></p>
 <h2 id="文件包含图片"><a href="#文件包含图片" class="headerlink" title="文件包含图片"></a>文件包含图片</h2><p>寻找网站上传点，把 php 恶意代码文件改成 jpg 上传到网站上，本地包含引入恶意代码，当文件被引入后代码就被执行。</p>
-<p><img src="./day30/image-20211024180029604.png" alt="image-20211024180029604"></p>
+<p><img src="/2021/10/20/day30/image-20211024180029604.png" alt="image-20211024180029604"></p>
 <p>1.jpg</p>
 <pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span> <span class="token function">phpinfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token delimiter important">?&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./day30/image-20211024180138015.png" alt="image-20211024180138015"></p>
+<p><img src="/2021/10/20/day30/image-20211024180138015.png" alt="image-20211024180138015"></p>
 <h2 id="包含日志文件getshell"><a href="#包含日志文件getshell" class="headerlink" title="包含日志文件getshell"></a>包含日志文件getshell</h2><p>中间件例如 iis 、apache、nginx 这些 web 中间件，都会记录访问日志，如果访问日志中或错误日志中，存在有 php 代码，也可以引入到文件包含中。如果日志有 php 恶意代码，也可导致 getshell。</p>
 <p>linux 默认的 apache 日志文件路径是</p>
 <p>访问日志</p>
@@ -526,28 +526,28 @@ cat fileinclude.php<span aria-hidden="true" class="line-numbers-rows"><span></sp
 <p>错误日志</p>
 <p>/var/log/apache2/error.log</p>
 <p>把文件日志包含进来即可</p>
-<p><img src="./day30/image-20211024181734567.png" alt="image-20211024181734567"></p>
+<p><img src="/2021/10/20/day30/image-20211024181734567.png" alt="image-20211024181734567"></p>
 <p>抓包写入php代码 send</p>
-<p><img src="./day30/image-20211024181831205.png" alt="image-20211024181831205"></p>
-<p><img src="./day30/image-20211024181857838.png" alt="image-20211024181857838"></p>
+<p><img src="/2021/10/20/day30/image-20211024181831205.png" alt="image-20211024181831205"></p>
+<p><img src="/2021/10/20/day30/image-20211024181857838.png" alt="image-20211024181857838"></p>
 <p>但是在linux下我们没有权限包含日志文件，需要root权限，但是php权限是www-data，我们在windows下可以做到此操作</p>
 <p>所以我们在phpstudy上新建一个网站，在根目录中写</p>
-<p><img src="./day30/image-20211024180755718.png" alt="image-20211024180755718"></p>
-<p><img src="./day30/image-20211024180805215.png" alt="image-20211024180805215"></p>
+<p><img src="/2021/10/20/day30/image-20211024180755718.png" alt="image-20211024180755718"></p>
+<p><img src="/2021/10/20/day30/image-20211024180805215.png" alt="image-20211024180805215"></p>
 <p>还是同样的操作</p>
-<p><img src="./day30/image-20211024182425327.png" alt="image-20211024182425327"></p>
+<p><img src="/2021/10/20/day30/image-20211024182425327.png" alt="image-20211024182425327"></p>
 <p>我们在apache中找到日志</p>
-<p><img src="./day30/image-20211024182454722.png" alt="image-20211024182454722"></p>
-<p><img src="./day30/image-20211024182504581.png" alt="image-20211024182504581"></p>
+<p><img src="/2021/10/20/day30/image-20211024182454722.png" alt="image-20211024182454722"></p>
+<p><img src="/2021/10/20/day30/image-20211024182504581.png" alt="image-20211024182504581"></p>
 <p>可以看到php代码被记录了下来</p>
 <p>包含日志文件 找到此日志路径</p>
-<p><img src="./day30/image-20211024183105183.png" alt="image-20211024183105183"></p>
+<p><img src="/2021/10/20/day30/image-20211024183105183.png" alt="image-20211024183105183"></p>
 <p>包含日志文件发现php代码被执行了</p>
-<p><img src="./day30/image-20211024183031702.png" alt="image-20211024183031702"></p>
+<p><img src="/2021/10/20/day30/image-20211024183031702.png" alt="image-20211024183031702"></p>
 <h2 id="包含环境变量getshell"><a href="#包含环境变量getshell" class="headerlink" title="包含环境变量getshell"></a>包含环境变量getshell</h2><p>/proc/self/environ 这个文件保存了一些系统的变量</p>
-<p><img src="./day30/image-20211024184219595.png" alt="image-20211024184219595"></p>
+<p><img src="/2021/10/20/day30/image-20211024184219595.png" alt="image-20211024184219595"></p>
 <p>我们抓包修改user-agent，写入php代码</p>
-<p><img src="./day30/image-20211024184107609.png" alt="image-20211024184107609"></p>
+<p><img src="/2021/10/20/day30/image-20211024184107609.png" alt="image-20211024184107609"></p>
 <p>如果权限足够就会把代码写入到上面那个文件，包含此文件即可执行php代码</p>
 <h2 id="phpinfo文件包含临时文件"><a href="#phpinfo文件包含临时文件" class="headerlink" title="phpinfo文件包含临时文件"></a>phpinfo文件包含临时文件</h2><p>原理: 利用 php post 上传文件产生临时文件，phpinfo()读临时文件的路径和名字，</p>
 <p>本地包含漏洞生成 一句话后门</p>
@@ -564,21 +564,21 @@ cat fileinclude.php<span aria-hidden="true" class="line-numbers-rows"><span></sp
 <p>4、删除临时文件。</p>
 <p>PHP 引擎会首先将文件内容保存到临时文件，然后进行相应的操作。临时文件的名称是 php+随机字符 。$_FILES 信息，包括临时文件路径、名称在 PHP 中，有超全局变量$_FILES,保存上传文件的信息，包括文件名、类型、临时文件名、错误代号、大小把文件上传到 phpinfo 获取临时文件路径</p>
 <h3 id="利用-1"><a href="#利用-1" class="headerlink" title="利用"></a>利用</h3><p>写个上传表单，让文件上传到我们写的phpinfo.php</p>
-<p><img src="./day30/image-20211024185328114.png" alt="image-20211024185328114"></p>
+<p><img src="/2021/10/20/day30/image-20211024185328114.png" alt="image-20211024185328114"></p>
 <p>上传文件后，phpinfo创建了一个临时文件</p>
-<p><img src="./day30/image-20211024185239634.png" alt="image-20211024185239634"></p>
+<p><img src="/2021/10/20/day30/image-20211024185239634.png" alt="image-20211024185239634"></p>
 <p>这个临时文件在上传过后就会被删除，所以我们在目录下找不到此文件</p>
 <p>我们利用脚本修改利用的文件和路径</p>
 <pre class="line-numbers language-none"><code class="language-none">脚本就不放了<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>执行成功后回在/tmp下建立一个g的文件，</p>
-<p><img src="./day30/image-20211024193928068.png" alt="image-20211024193928068"></p>
+<p><img src="/2021/10/20/day30/image-20211024193928068.png" alt="image-20211024193928068"></p>
 <p>g文件已经创建了</p>
-<p><img src="./day30/image-20211024194041896.png" alt="image-20211024194041896"></p>
+<p><img src="/2021/10/20/day30/image-20211024194041896.png" alt="image-20211024194041896"></p>
 <p>包含此文件</p>
-<p><img src="./day30/image-20211024194635206.png" alt="image-20211024194635206"></p>
+<p><img src="/2021/10/20/day30/image-20211024194635206.png" alt="image-20211024194635206"></p>
 <p>这里1也可以执行命令</p>
-<p><img src="./day30/image-20211024194725911.png" alt="image-20211024194725911"></p>
+<p><img src="/2021/10/20/day30/image-20211024194725911.png" alt="image-20211024194725911"></p>
 <h2 id="伪协议"><a href="#伪协议" class="headerlink" title="伪协议"></a>伪协议</h2><p>file:// — 访问本地文件系统</p>
 <p>http:// — 访问 HTTP(s) 网址</p>
 <p>ftp:// — 访问 FTP(s) URLs</p>
@@ -595,20 +595,20 @@ cat fileinclude.php<span aria-hidden="true" class="line-numbers-rows"><span></sp
 <p>allow_url_fopen:默认值是 ON。允许 url 里的封装协议访问文件；</p>
 <p>allow_url_include:默认值是 OFF。不允许包含 url 里的封装协议包含文件；</p>
 <p>各协议的利用条件和方法：</p>
-<p><img src="./day30/image-20211026170242776.png" alt="image-20211026170242776"></p>
+<p><img src="/2021/10/20/day30/image-20211026170242776.png" alt="image-20211026170242776"></p>
 <h3 id="php-input"><a href="#php-input" class="headerlink" title="php://input"></a>php://input</h3><p>php://input 可以访问请求的原始数据的只读流，将 post 请求的数据当作 php 代码执行。当传入的参数作为文件名打开时，可以将参数设为 php://input,同时 post想设置的文件内容，php 执行时会将 post 内容当作文件内容。</p>
 <p>注：当 enctype=”multipart/form-data”，php://input 是无效的。php.ini 条件是 allow_url_fopen =ON allow_url_include=ON</p>
-<p><img src="./day30/image-20211026171121497.png" alt="image-20211026171121497"></p>
+<p><img src="/2021/10/20/day30/image-20211026171121497.png" alt="image-20211026171121497"></p>
 <p>设置请求为 post 请求，在正文输入 php 代码&lt;?php phpinfo();?&gt;提交即可允许</p>
-<p><img src="./day30/image-20211026171144602.png" alt="image-20211026171144602"></p>
+<p><img src="/2021/10/20/day30/image-20211026171144602.png" alt="image-20211026171144602"></p>
 <p>看到php代码被执行了</p>
 <h3 id="file"><a href="#file" class="headerlink" title="file://"></a>file://</h3><p>访问本地文件，在本地包含漏洞里可以使用 file 协议，使用 file 协议可以读取本地文件</p>
 <pre class="line-numbers language-none"><code class="language-none">file:///etc/passwd<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./day30/image-20211026171448143.png" alt="image-20211026171448143"></p>
+<p><img src="/2021/10/20/day30/image-20211026171448143.png" alt="image-20211026171448143"></p>
 <p>读取相对路径的文件</p>
-<p><img src="./day30/image-20211026171810708.png" alt="image-20211026171810708"></p>
-<p><img src="./day30/image-20211026171819347.png" alt="image-20211026171819347"></p>
+<p><img src="/2021/10/20/day30/image-20211026171810708.png" alt="image-20211026171810708"></p>
+<p><img src="/2021/10/20/day30/image-20211026171819347.png" alt="image-20211026171819347"></p>
 <h3 id="php"><a href="#php" class="headerlink" title="php://"></a>php://</h3><p>php:// 用于访问各个输入/输出流（I/O streams），经常使用的是 php://filter 和php://input</p>
 <p>php://filter 用于读取源码；php://input 用于执行 php 代码。</p>
 <table>
@@ -726,14 +726,14 @@ cat fileinclude.php<span aria-hidden="true" class="line-numbers-rows"><span></sp
 </tr>
 </tbody></table>
 <p>使用伪协议以base64编码过滤方式读取文件源码</p>
-<p><img src="./day30/image-20211026173918910.png" alt="image-20211026173918910"></p>
+<p><img src="/2021/10/20/day30/image-20211026173918910.png" alt="image-20211026173918910"></p>
 <h3 id="phar-、zip-、bzip2-、zlib"><a href="#phar-、zip-、bzip2-、zlib" class="headerlink" title="phar://、zip://、bzip2://、zlib://"></a>phar://、zip://、bzip2://、zlib://</h3><p>用于读取压缩文件，zip:// 、 bzip2:// 、 zlib:// 均属于压缩流，可以访问压缩文件中的子文件，更重要的是不需要指定后缀名，可修改为任意后缀：jpg png gif xxx 等等。</p>
 <p>1.zip://[压缩文件绝对路径]%23[压缩文件内的子文件名]（ #\编码为%23）</p>
-<p><img src="./day30/image-20211027131327365.png" alt="image-20211027131327365"></p>
+<p><img src="/2021/10/20/day30/image-20211027131327365.png" alt="image-20211027131327365"></p>
 <p>这里不知道为啥没读出来</p>
-<p><img src="./day30/image-20211027131244680.png" alt="image-20211027131244680"></p>
+<p><img src="/2021/10/20/day30/image-20211027131244680.png" alt="image-20211027131244680"></p>
 <p>但是直接?file=1.zip可以解析</p>
-<p><img src="./day30/image-20211027131336372.png" alt="image-20211027131336372"></p>
+<p><img src="/2021/10/20/day30/image-20211027131336372.png" alt="image-20211027131336372"></p>
 <p>2、compress.bzip2://file.bz2</p>
 <p><a target="_blank" rel="noopener" href="http://127.0.0.1/include.php?file=compress.bzip2://D:/soft/phpStudy/WWW/file.jpg">http://127.0.0.1/include.php?file=compress.bzip2://D:/soft/phpStudy/WWW/file.jpg</a></p>
 <p><a target="_blank" rel="noopener" href="http://127.0.0.1/include.php?file=compress.bzip2://./file.jpg">http://127.0.0.1/include.php?file=compress.bzip2://./file.jpg</a></p>
@@ -745,11 +745,11 @@ cat fileinclude.php<span aria-hidden="true" class="line-numbers-rows"><span></sp
 <h3 id="data"><a href="#data" class="headerlink" title="data://"></a>data://</h3><p>1.data://text/plain</p>
 <pre class="line-numbers language-none"><code class="language-none">http://10.163.193.76/lfi.php?file=data://text/plain,%3C?php%20phpinfo();?%3E<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./day30/image-20211027132944458.png" alt="image-20211027132944458"></p>
+<p><img src="/2021/10/20/day30/image-20211027132944458.png" alt="image-20211027132944458"></p>
 <p>2.data://text/plain;base64</p>
 <pre class="line-numbers language-none"><code class="language-none">http://10.163.193.76/lfi.php?file=data://text/plain;base64,PD9waHAgcGhwaW5mbygpOz8%2b<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./day30/image-20211027133831321.png" alt="image-20211027133831321"></p>
+<p><img src="/2021/10/20/day30/image-20211027133831321.png" alt="image-20211027133831321"></p>
 <h2 id="文件包含常用路径"><a href="#文件包含常用路径" class="headerlink" title="文件包含常用路径"></a>文件包含常用路径</h2><p>包含日志文件 getshell</p>
 <p>/usr/local/apache2/logs/access_log</p>
 <p>/logs/access_log</p>
@@ -786,26 +786,26 @@ cat fileinclude.php<span aria-hidden="true" class="line-numbers-rows"><span></sp
 <h2 id="远程文件包含"><a href="#远程文件包含" class="headerlink" title="远程文件包含"></a>远程文件包含</h2><p>当远程文件开启时，可以包含远程文件到本地执行。当 allow_url_fopen=On，allow_url_include=ON 两个条件同时为 On 允许远程包含文件。</p>
 <pre class="line-numbers language-none"><code class="language-none">http://10.163.193.76/lfi.php?file=http://10.163.193.76/shell.txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./day30/image-20211027134144483.png" alt="image-20211027134144483"></p>
-<p><img src="./day30/image-20211027134224739.png" alt="image-20211027134224739"></p>
+<p><img src="/2021/10/20/day30/image-20211027134144483.png" alt="image-20211027134144483"></p>
+<p><img src="/2021/10/20/day30/image-20211027134224739.png" alt="image-20211027134224739"></p>
 <h2 id="文件包含-00截断"><a href="#文件包含-00截断" class="headerlink" title="文件包含%00截断"></a>文件包含%00截断</h2><p>文件包含截断攻击，在 php 版本小于 5.3.4 允许使用%00 截断，在使用 include等文件包含函数，可以截断文件名，截断会受 gpc 影响，如果 gpc 为 On 时，%00会被转以成\0 截断会失败。</p>
 <p>当前我们是5.2.17 gpc=off</p>
-<p><img src="./day30/image-20211027143303680.png" alt="image-20211027143303680"></p>
+<p><img src="/2021/10/20/day30/image-20211027143303680.png" alt="image-20211027143303680"></p>
 <p>可以看到是文件名拼接.php，但是文件名可控导致可以截断</p>
 <p>%00截断</p>
-<p><img src="./day30/image-20211027143522798.png" alt="image-20211027143522798"></p>
+<p><img src="/2021/10/20/day30/image-20211027143522798.png" alt="image-20211027143522798"></p>
 <h2 id="超长截断"><a href="#超长截断" class="headerlink" title="超长截断"></a>超长截断</h2><p>这个适用于于 win32 可以使用\.进行截断 和 . 进行截断</p>
 <p>(php 版本小于 5.2.8 可以成功，linux 需要文件名长于 4096，windows 需要长于256)</p>
 <p>利用操作系统对目录最大长度限制，在 window 下 256 字节，linux 下 4096 字节</p>
 <p>点截断</p>
-<p><img src="./day30/image-20211027144439694.png" alt="image-20211027144439694"></p>
+<p><img src="/2021/10/20/day30/image-20211027144439694.png" alt="image-20211027144439694"></p>
 <pre class="line-numbers language-none"><code class="language-none">http://include.moonteam.com/file02.php?file=x.jpg................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./day30/image-20211027144449845.png" alt="image-20211027144449845"></p>
+<p><img src="/2021/10/20/day30/image-20211027144449845.png" alt="image-20211027144449845"></p>
 <p>\.截断</p>
 <pre class="line-numbers language-none"><code class="language-none">http://include.moonteam.com/file02.php?file=x.jpg\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./day30/image-20211027144532619.png" alt="image-20211027144532619"></p>
+<p><img src="/2021/10/20/day30/image-20211027144532619.png" alt="image-20211027144532619"></p>
 <p>这里我试了下/.也能截断</p>
 <h2 id="远程文件包含截断"><a href="#远程文件包含截断" class="headerlink" title="远程文件包含截断"></a>远程文件包含截断</h2><p>适用于远程截断的字符</p>
 <table>
@@ -836,9 +836,9 @@ cat fileinclude.php<span aria-hidden="true" class="line-numbers-rows"><span></sp
 <p>allow_url_fopen =On</p>
 <p>allow_url_include=On</p>
 <p>这里远程用%00截断，没解析出来</p>
-<p><img src="./day30/image-20211027145120175.png" alt="image-20211027145120175"></p>
+<p><img src="/2021/10/20/day30/image-20211027145120175.png" alt="image-20211027145120175"></p>
 <p>剩余俩个可以</p>
-<p><img src="./day30/image-20211027145148513.png" alt="image-20211027145148513"></p>
+<p><img src="/2021/10/20/day30/image-20211027145148513.png" alt="image-20211027145148513"></p>
 <h2 id="防御"><a href="#防御" class="headerlink" title="防御"></a>防御</h2><ol>
 <li>严格判断包含中的参数是否外部可控，因为文件包含漏洞利用成功与否的关键点就在于<strong>被包含的文件是否可被外部控制</strong>；</li>
 <li>路径限制：限制被包含的文件只能在某一文件内，一定要禁止目录跳转字符，如：”../“；</li>

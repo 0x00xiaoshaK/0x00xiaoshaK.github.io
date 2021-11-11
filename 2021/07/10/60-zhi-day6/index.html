@@ -546,7 +546,7 @@ php基础接口和抽象类接口：
 <span class="token variable">$a</span><span class="token operator">-&gt;</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token delimiter important">?&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="./60%E4%B9%8Bday6/image-20210710130537683.png" alt="image-20210710130537683"></p>
+<p><img src="/2021/07/10/60-zhi-day6/image-20210710130537683.png" alt="image-20210710130537683"></p>
 <h4 id="抽象类："><a href="#抽象类：" class="headerlink" title="抽象类："></a>抽象类：</h4><ul>
 <li>对抽象类的使用是通过关键字extends</li>
 <li>不能被实例化，可以定义子类必须实现的方法</li>
@@ -601,7 +601,7 @@ php基础接口和抽象类接口：
 
 <span class="token delimiter important">?&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="./60%E4%B9%8Bday6/image-20210710130717322.png" alt="image-20210710130717322"></p>
+<p><img src="/2021/07/10/60-zhi-day6/image-20210710130717322.png" alt="image-20210710130717322"></p>
 <h3 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h3><h4 id="static关键字"><a href="#static关键字" class="headerlink" title="static关键字"></a>static关键字</h4><ul>
 <li>声明类属性或方法为 static(静态)，就可以不实例化类而直接访问。</li>
 <li>静态属性不能通过一个类已实例化的对象来访问（但静态方法可以）。</li>
@@ -623,7 +623,7 @@ php基础接口和抽象类接口：
 <span class="token keyword">echo</span> <span class="token class-name static-context">Person</span><span class="token operator">::</span><span class="token variable">$name</span><span class="token punctuation">;</span>
 <span class="token keyword">echo</span> <span class="token class-name static-context">Person</span><span class="token operator">::</span><span class="token function">getString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="./60%E4%B9%8Bday6/image-20210710130854771.png" alt="image-20210710130854771"></p>
+<p><img src="/2021/07/10/60-zhi-day6/image-20210710130854771.png" alt="image-20210710130854771"></p>
 <h4 id="final关键字"><a href="#final关键字" class="headerlink" title="final关键字"></a>final关键字</h4><p>如果父类中的方法被声明为 final，则子类无法覆盖该方法。</p>
 <p>如果一个类被声明为 final，则不能被继承。</p>
 <pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
@@ -647,7 +647,7 @@ php基础接口和抽象类接口：
 <span class="token variable">$a</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">echo</span> <span class="token variable">$a</span><span class="token operator">-&gt;</span><span class="token function">getString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="./60%E4%B9%8Bday6/image-20210710131010967.png" alt="image-20210710131010967"></p>
+<p><img src="/2021/07/10/60-zhi-day6/image-20210710131010967.png" alt="image-20210710131010967"></p>
 <h4 id="parent关键字"><a href="#parent关键字" class="headerlink" title="parent关键字"></a>parent关键字</h4><pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
 <span class="token function">header</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"Content-Type:text/html;charset=UTF-8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
@@ -678,7 +678,7 @@ php基础接口和抽象类接口：
 
 <span class="token delimiter important">?&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="./60%E4%B9%8Bday6/image-20210710131400359.png" alt="image-20210710131400359"></p>
+<p><img src="/2021/07/10/60-zhi-day6/image-20210710131400359.png" alt="image-20210710131400359"></p>
 <h3 id="php超级全局变量"><a href="#php超级全局变量" class="headerlink" title="php超级全局变量"></a>php超级全局变量</h3><ul>
 <li>$GLOBALS　　一个包含了全部变量的全局组合数组。变量的名字就是数组的键。</li>
 <li>$_SERVER　　一个包含了诸如头信息(header)、路径(path)、以及脚本位置(script locations)等等信息的数组</li>
@@ -698,7 +698,7 @@ echo "\n", $_SERVER['SERVER_NAME'];
 echo "\n", $_SERVER['HTTP_HOST'];
 ?&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="./60%E4%B9%8Bday6/image-20210711122846467.png" alt="image-20210711122846467"></p>
+<p><img src="/2021/07/10/60-zhi-day6/image-20210711122846467.png" alt="image-20210711122846467"></p>
 <pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>post<span class="token punctuation">"</span></span> <span class="token attr-name">enctype</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>multipart/form-data<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>file<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>file<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>sub<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>提交<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
@@ -708,7 +708,7 @@ echo "\n", $_SERVER['HTTP_HOST'];
 <span class="token function">print_r</span><span class="token punctuation">(</span><span class="token variable">$_FILES</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'file'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'name'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token delimiter important">?&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="./60%E4%B9%8Bday6/image-20210711123337412.png" alt="image-20210711123337412"></p>
+<p><img src="/2021/07/10/60-zhi-day6/image-20210711123337412.png" alt="image-20210711123337412"></p>
 <h3 id="php文件"><a href="#php文件" class="headerlink" title="php文件"></a>php文件</h3><h4 id="include文件操作"><a href="#include文件操作" class="headerlink" title="include文件操作"></a>include文件操作</h4><p>服务器端包含 (SSI) 用于创建可在多个页面重复使用的函数、页眉、页脚或元素。</p>
 <p>include （或 require）语句会获取指定文件中存在的所有文本/代码/标记，并复制到使用 include 语句的文件中。</p>
 <blockquote>
@@ -736,14 +736,14 @@ echo "\n", $_SERVER['HTTP_HOST'];
 <span class="token keyword">echo</span> <span class="token function">fun1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>访问index，调用了function</p>
-<p><img src="./60%E4%B9%8Bday6/image-20210711123208709.png" alt="image-20210711123208709"></p>
+<p><img src="/2021/07/10/60-zhi-day6/image-20210711123208709.png" alt="image-20210711123208709"></p>
 <p>include header和footer同，不演示例子了</p>
 <h4 id="php操作文件"><a href="#php操作文件" class="headerlink" title="php操作文件"></a>php操作文件</h4><p>PHP 拥有的多种函数可供创建、读取、上传以及编辑文件。</p>
 <h5 id="PHP-readfile-函数"><a href="#PHP-readfile-函数" class="headerlink" title="PHP readfile() 函数"></a>PHP readfile() 函数</h5><p>readfile() 函数读取文件，并把它写入输出缓冲。</p>
 <h5 id="PHP-Open-File-fopen"><a href="#PHP-Open-File-fopen" class="headerlink" title="PHP Open File - fopen()"></a>PHP Open File - fopen()</h5><p>打开文件的更好的方法是通过 fopen() 函数。此函数为您提供比 readfile() 函数更多的选项。</p>
 <p>fopen() 的第一个参数包含被打开的文件名，第二个参数规定打开文件的模式。</p>
 <p>模式：</p>
-<p><img src="./60%E4%B9%8Bday6/image-20210711123721533.png" alt="image-20210711123721533"></p>
+<p><img src="/2021/07/10/60-zhi-day6/image-20210711123721533.png" alt="image-20210711123721533"></p>
 <h5 id="PHP-读取文件-fread"><a href="#PHP-读取文件-fread" class="headerlink" title="PHP 读取文件 - fread()"></a>PHP 读取文件 - fread()</h5><p>fread() 函数读取打开的文件。</p>
 <p>fread() 的第一个参数包含待读取文件的文件名，第二个参数规定待读取的最大字节数。</p>
 <h5 id="PHP-关闭文件-fclose"><a href="#PHP-关闭文件-fclose" class="headerlink" title="PHP 关闭文件 - fclose()"></a>PHP 关闭文件 - fclose()</h5><p>fclose() 函数用于关闭打开的文件。</p>

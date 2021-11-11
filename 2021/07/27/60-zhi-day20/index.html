@@ -606,64 +606,64 @@
 </tr>
 </tbody></table>
 <h2 id="burp-suite穷举后台密码"><a href="#burp-suite穷举后台密码" class="headerlink" title="burp suite穷举后台密码"></a>burp suite穷举<strong>后台</strong>密码</h2><p>我们使用burp+火狐对后台进行穷举</p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801135926683.png" alt="image-20210801135926683"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801135926683.png" alt="image-20210801135926683"></p>
 <p>我们对登录的信息进行拦截</p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801140050644.png" alt="image-20210801140050644"></p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801140131294.png" alt="image-20210801140131294"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801140050644.png" alt="image-20210801140050644"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801140131294.png" alt="image-20210801140131294"></p>
 <p>发送到intruder跑字典进行穷举</p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801140235538.png" alt="image-20210801140235538"></p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801140320060.png" alt="image-20210801140320060"></p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801140358743.png" alt="image-20210801140358743"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801140235538.png" alt="image-20210801140235538"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801140320060.png" alt="image-20210801140320060"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801140358743.png" alt="image-20210801140358743"></p>
 <p>start后我们观察结果</p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801140430365.png" alt="image-20210801140430365"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801140430365.png" alt="image-20210801140430365"></p>
 <p>这个状态和长度与众不同的很可能就是我们需要的正确密码</p>
 <p>admin 123456 成功登录</p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801140513826.png" alt="image-20210801140513826"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801140513826.png" alt="image-20210801140513826"></p>
 <h2 id="burp-suite穷举webshell密码"><a href="#burp-suite穷举webshell密码" class="headerlink" title="burp suite穷举webshell密码"></a>burp suite穷举webshell密码</h2><p>灰帽子对网站攻破后，一般会留后门方便对其网站进行非法管理。后门的程序语音包括 asp php .net 这些脚本文件放在网站目录， 一般都采用单密码进行登录。通过扫描获取 webshell 的后门的网址。得到网址后可以对其进行密码穷举。</p>
 <p>我们这里准备了asp和aspx俩个webhell</p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801140719449.png" alt="image-20210801140719449"></p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801140741436.png" alt="image-20210801140741436"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801140719449.png" alt="image-20210801140719449"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801140741436.png" alt="image-20210801140741436"></p>
 <p>跟上面没啥不同不演示了</p>
 <p>登陆后是几个大马</p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801140921976.png" alt="image-20210801140921976"></p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801140948781.png" alt="image-20210801140948781"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801140921976.png" alt="image-20210801140921976"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801140948781.png" alt="image-20210801140948781"></p>
 <h2 id="token防御的网站后台穷举密码"><a href="#token防御的网站后台穷举密码" class="headerlink" title="token防御的网站后台穷举密码"></a>token防御的网站后台穷举密码</h2><p>有的网站后台存在 token 值，这个 token 通俗的名字叫令牌，每次刷新页面都会随机变化。提交请求时必须携带这个 token 值，可以利用这点避免后台进行直接穷举和防止 csrf 攻击。</p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801141130099.png" alt="image-20210801141130099"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801141130099.png" alt="image-20210801141130099"></p>
 <p>这个值随机变化，如果我们直接抓包跑字典会报错</p>
 <h3 id="burp-suite-设置宏获取-token-对网站后台密码破解"><a href="#burp-suite-设置宏获取-token-对网站后台密码破解" class="headerlink" title="burp suite 设置宏获取 token 对网站后台密码破解"></a>burp suite <strong>设置宏获取</strong> <strong>token</strong> <strong>对网站后台密码破解</strong></h3><p>我们通过设置一个宏操作来动态的获取更改token</p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801141619363.png" alt="image-20210801141619363"></p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801141759145.png" alt="image-20210801141759145"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801141619363.png" alt="image-20210801141619363"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801141759145.png" alt="image-20210801141759145"></p>
 <p>选择后跳转到设置宏的界面</p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801141928736.png" alt="image-20210801141928736"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801141928736.png" alt="image-20210801141928736"></p>
 <p>我们增加宏操作</p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801142028072.png" alt="image-20210801142028072"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801142028072.png" alt="image-20210801142028072"></p>
 <p>选择好界面后我们来设置configure，从而得到并更改我们intruder里面的token值</p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801142252761.png" alt="image-20210801142252761"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801142252761.png" alt="image-20210801142252761"></p>
 <p>之后ok </p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801142324195.png" alt="image-20210801142324195"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801142324195.png" alt="image-20210801142324195"></p>
 <p>再ok到</p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801142413972.png" alt="image-20210801142413972"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801142413972.png" alt="image-20210801142413972"></p>
 <p>再箭头位置我们可以test我们的宏操作是否能获取到token值，再response里看token值是否变化</p>
 <p>就不演示了</p>
 <p>ok ok即可</p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801142722429.png" alt="image-20210801142722429"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801142722429.png" alt="image-20210801142722429"></p>
 <p>再这里我们可以设置宏覆盖的范围</p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801144341016.png" alt="image-20210801144341016"></p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801181050714.png" alt="image-20210801181050714"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801144341016.png" alt="image-20210801144341016"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801181050714.png" alt="image-20210801181050714"></p>
 <p>设置完毕之后我们开始跑字典</p>
 <p>刚开始跑发现所有都是302，无法判断</p>
 <p>我们设置这 </p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801144556852.png" alt="image-20210801144556852"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801144556852.png" alt="image-20210801144556852"></p>
 <p>然后再跑</p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801144626428.png" alt="image-20210801144626428"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801144626428.png" alt="image-20210801144626428"></p>
 <p>显然这个就是密码了</p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801144640755.png" alt="image-20210801144640755"></p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801144645935.png" alt="image-20210801144645935"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801144640755.png" alt="image-20210801144640755"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801144645935.png" alt="image-20210801144645935"></p>
 <p>每一个token也不一样，再次验证了我们的宏执行了</p>
-<h2 id="编写脚本获取-token-对网站后台密码破解"><a href="#编写脚本获取-token-对网站后台密码破解" class="headerlink" title="编写脚本获取 token 对网站后台密码破解"></a>编写脚本获取 <strong>token</strong> 对网站后台密码破解</h2><p><img src="./60%E4%B9%8Bday20/image-20210801202218549.png" alt="image-20210801202218549"></p>
+<h2 id="编写脚本获取-token-对网站后台密码破解"><a href="#编写脚本获取-token-对网站后台密码破解" class="headerlink" title="编写脚本获取 token 对网站后台密码破解"></a>编写脚本获取 <strong>token</strong> 对网站后台密码破解</h2><p><img src="/2021/07/27/60-zhi-day20/image-20210801202218549.png" alt="image-20210801202218549"></p>
 <p>我们每次访问这个页面user_token都会变化，导致不能重复提交</p>
 <p>我们分析它的原理，发现页面每次生成的user_token都存在session里面，每次登录从 session 里取出来，然后验证。如果验证成功 就进行密码匹配。如果验证不成功就输出 csrf 错误。</p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801202411286.png" alt="image-20210801202411286"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801202411286.png" alt="image-20210801202411286"></p>
 <p>脚本:</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">#coding:utf-8</span>
 <span class="token keyword">import</span> requests
@@ -688,69 +688,69 @@ line <span class="token operator">=</span> line<span class="token punctuation">.
 <span class="token keyword">print</span><span class="token punctuation">(</span> <span class="token string">"[* 密码 is %s *]"</span> <span class="token operator">%</span> line <span class="token punctuation">)</span>
 <span class="token keyword">break</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="./60%E4%B9%8Bday20/image-20210801202828750.png" alt="image-20210801202828750"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801202828750.png" alt="image-20210801202828750"></p>
 <p>密码是password</p>
 <h2 id="针对有验证码的后台的穷举方法"><a href="#针对有验证码的后台的穷举方法" class="headerlink" title="针对有验证码的后台的穷举方法"></a>针对有验证码的后台的穷举方法</h2><p>网站后台或者有登录的地方都可能存在验证码验证</p>
 <p>验证码的作用：不少网站为了防止用户利用机器人自动注册、登录、灌水，都会采用验证码技术</p>
 <p>所谓的验证码，就是将一串随机产生的数字和符号，生成一幅图片，在图像上加上干扰像素（防止 orc），要用户用肉眼识别其中的验证码信息，输入表单提交网站验证。验证后使用网站某个功能.但是如果验证码逻辑编写不好会存在被绕过的风险。</p>
 <p>这里举出俩个简单例子</p>
 <h3 id="cookie不存在不验证绕过"><a href="#cookie不存在不验证绕过" class="headerlink" title="cookie不存在不验证绕过"></a>cookie不存在不验证绕过</h3><p>有些网站如果不存在cookie就不会检验验证码</p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801203247288.png" alt="image-20210801203247288"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801203247288.png" alt="image-20210801203247288"></p>
 <p>发送到repeater 第一次send</p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801203324557.png" alt="image-20210801203324557"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801203324557.png" alt="image-20210801203324557"></p>
 <p>再次send</p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801203347404.png" alt="image-20210801203347404"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801203347404.png" alt="image-20210801203347404"></p>
 <p>显然对验证码进行了检验</p>
 <p>我们这时把phpsessionid删除</p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801203434067.png" alt="image-20210801203434067"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801203434067.png" alt="image-20210801203434067"></p>
 <p>再次send</p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801203505553.png" alt="image-20210801203505553"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801203505553.png" alt="image-20210801203505553"></p>
 <p>发现不对验证码进行校验了</p>
 <p>成功绕过</p>
 <p>这时我们再发送到intruder来跑密码即可</p>
 <h3 id="后台登录验证码没销毁进行穷举"><a href="#后台登录验证码没销毁进行穷举" class="headerlink" title="后台登录验证码没销毁进行穷举"></a>后台登录验证码没销毁进行穷举</h3><p>在登录提交的时候进行验证码验证 不管密码是否正确，都要销毁验证码。</p>
 <p>不然验证码可复用</p>
 <p>我们对此界面抓包，输入正确的验证码</p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801203843379.png" alt="image-20210801203843379"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801203843379.png" alt="image-20210801203843379"></p>
 <p>第一次send</p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801203928124.png" alt="image-20210801203928124"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801203928124.png" alt="image-20210801203928124"></p>
 <p>第二次send还是此界面，说明他的验证码没有销毁，复用了</p>
 <p>接下来跑字典就可</p>
 <h2 id="网站后台验证码识别穷举密码"><a href="#网站后台验证码识别穷举密码" class="headerlink" title="网站后台验证码识别穷举密码"></a>网站后台验证码识别穷举密码</h2><p>验证码干扰像素太少很容易就会被一些工具识别出来。如图片提取文字工具。</p>
 <p>这里我们使用codex工具</p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801204156711.png" alt="image-20210801204156711"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801204156711.png" alt="image-20210801204156711"></p>
 <p>我们可以先测试一下验证码是否能被识别</p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801204305080.png" alt="image-20210801204305080"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801204305080.png" alt="image-20210801204305080"></p>
 <p>正确识别了，说明此网站验证码干扰像素太少了</p>
 <p>接下来我们使用此工具</p>
 <p><strong>操作请求栏</strong></p>
 <p>首先将burp抓的包放入此工具</p>
 <p>加好标记，写入验证码地址，导入密码字典</p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801204858414.png" alt="image-20210801204858414"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801204858414.png" alt="image-20210801204858414"></p>
 <p>这里导入密码发现出问题了，只有一行</p>
 <p>这是因为此工具是windows版，字典是作为Unix格式</p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801205829426.png" alt="image-20210801205829426"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801205829426.png" alt="image-20210801205829426"></p>
 <p>我们使用sublime text将字典修改为windows即可</p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801213322921.png" alt="image-20210801213322921"></p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801213304616.png" alt="image-20210801213304616"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801213322921.png" alt="image-20210801213322921"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801213304616.png" alt="image-20210801213304616"></p>
 <p><strong>操作爆破栏</strong></p>
 <p>输入验证码错误的特征</p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801210107421.png" alt="image-20210801210107421"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801210107421.png" alt="image-20210801210107421"></p>
 <p>我们输入验证错误即可</p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801210130125.png" alt="image-20210801210130125"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801210130125.png" alt="image-20210801210130125"></p>
 <p>之后我们就单独对密码爆破，对失败的也可再次把爆破</p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801213405872.png" alt="image-20210801213405872"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801213405872.png" alt="image-20210801213405872"></p>
 <h2 id="phpmyadmin-密码穷举"><a href="#phpmyadmin-密码穷举" class="headerlink" title="phpmyadmin 密码穷举"></a>phpmyadmin 密码穷举</h2><p>phpmyadmin 是 mysql 的一个 web 管理工具，可以通过这个工具穷举 mysql 用户的账号和密码。</p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801210529183.png" alt="image-20210801210529183"></p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801210552594.png" alt="image-20210801210552594"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801210529183.png" alt="image-20210801210529183"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801210552594.png" alt="image-20210801210552594"></p>
 <p>这里入口就是上面这个网站即可，用户名密码自己写即可</p>
 <p>简单演示：</p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801210703006.png" alt="image-20210801210703006"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801210703006.png" alt="image-20210801210703006"></p>
 <p>结果会生成result文件</p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801210959022.png" alt="image-20210801210959022"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801210959022.png" alt="image-20210801210959022"></p>
 <h2 id="一句话木马后门破解"><a href="#一句话木马后门破解" class="headerlink" title="一句话木马后门破解"></a>一句话木马后门破解</h2><p>一句话后门可以使用 burpsuite 通用穷举方法穷举密码。</p>
 <p>这里准备了asp、php、aspx三个后门</p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801210832288.png" alt="image-20210801210832288"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801210832288.png" alt="image-20210801210832288"></p>
 <p>我们对此界面抓包设置cmd，并把它的方法改成post</p>
 <pre class="line-numbers language-none"><code class="language-none">关键字
 asp
@@ -761,12 +761,12 @@ aspx
 cmd=qweasd123=Response.Write("moonsec");
 密码是 qweasd123<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p><img src="./60%E4%B9%8Bday20/image-20210801212307118.png" alt="image-20210801212307118"></p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801211237007.png" alt="image-20210801211237007"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801212307118.png" alt="image-20210801212307118"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801211237007.png" alt="image-20210801211237007"></p>
 <p>发送到intruder设置cmd变量跑字典即可</p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801211308397.png" alt="image-20210801211308397"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801211308397.png" alt="image-20210801211308397"></p>
 <p>正确的密码长度会不同，而且会回显预定的值</p>
-<p><img src="./60%E4%B9%8Bday20/image-20210801212507783.png" alt="image-20210801212507783"></p>
+<p><img src="/2021/07/27/60-zhi-day20/image-20210801212507783.png" alt="image-20210801212507783"></p>
 
                 
             </div>

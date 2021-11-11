@@ -500,46 +500,46 @@
 <h2 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h2><blockquote>
 <p>目前很多网站使用了cdn服务，用了此服务 可以隐藏服务器的真实IP，加速网站静态文件的访问，而且你请求网站服务时，cdn服务会根据你所在的地区，选择合适的线路给予你访问，由此达网站加速的效果，cdn不仅可以加速网站访问，还可以提供waf服务，如防止cc攻击，SQL注入拦截等多种功能，再说使用cdn的成本不太高，很多云服务器也免费提供此服务。在进行黑盒测试的时候，往往成了拦路石，所以掌握cdn找真实ip成了不得不掌握的一项技术。</p>
 </blockquote>
-<h2 id="判断是否是CDN"><a href="#判断是否是CDN" class="headerlink" title="判断是否是CDN"></a>判断是否是CDN</h2><h3 id="ping-域名"><a href="#ping-域名" class="headerlink" title="ping 域名"></a>ping 域名</h3><p><img src="./60%E4%B9%8Bday18/image-20210722203135912.png" alt="image-20210722203135912"></p>
+<h2 id="判断是否是CDN"><a href="#判断是否是CDN" class="headerlink" title="判断是否是CDN"></a>判断是否是CDN</h2><h3 id="ping-域名"><a href="#ping-域名" class="headerlink" title="ping 域名"></a>ping 域名</h3><p><img src="/2021/07/22/60-zhi-day18/image-20210722203135912.png" alt="image-20210722203135912"></p>
 <p>显然下面这个网站部署了CDN</p>
 <h3 id="超级ping"><a href="#超级ping" class="headerlink" title="超级ping"></a>超级ping</h3><p><a target="_blank" rel="noopener" href="http://ping.chinaz.com/">http://ping.chinaz.com/</a></p>
-<p><img src="./60%E4%B9%8Bday18/image-20210722203434436.png" alt="image-20210722203434436"></p>
+<p><img src="/2021/07/22/60-zhi-day18/image-20210722203434436.png" alt="image-20210722203434436"></p>
 <p><a target="_blank" rel="noopener" href="http://ping.aizhan.com/">http://ping.aizhan.com/</a></p>
-<p><img src="./60%E4%B9%8Bday18/image-20210722203445605.png" alt="image-20210722203445605"></p>
+<p><img src="/2021/07/22/60-zhi-day18/image-20210722203445605.png" alt="image-20210722203445605"></p>
 <p><a target="_blank" rel="noopener" href="https://www.17ce.com/">https://www.17ce.com/</a></p>
-<p><img src="./60%E4%B9%8Bday18/image-20210722203455328.png" alt="image-20210722203455328"></p>
+<p><img src="/2021/07/22/60-zhi-day18/image-20210722203455328.png" alt="image-20210722203455328"></p>
 <p><a target="_blank" rel="noopener" href="http://ping.chinaz.com/www.t00ls.net">http://ping.chinaz.com/www.t00ls.net</a></p>
-<p><img src="./60%E4%B9%8Bday18/image-20210722203510537.png" alt="image-20210722203510537"></p>
+<p><img src="/2021/07/22/60-zhi-day18/image-20210722203510537.png" alt="image-20210722203510537"></p>
 <p>我们看看这个例子：</p>
-<p><img src="./60%E4%B9%8Bday18/image-20210722203214701.png" alt="image-20210722203214701"></p>
+<p><img src="/2021/07/22/60-zhi-day18/image-20210722203214701.png" alt="image-20210722203214701"></p>
 <p>不止一个ip显然部署了CDN</p>
-<p><img src="./60%E4%B9%8Bday18/image-20210722203248551.png" alt="image-20210722203248551"></p>
+<p><img src="/2021/07/22/60-zhi-day18/image-20210722203248551.png" alt="image-20210722203248551"></p>
 <p>不同地点访问ip不同  显然部署了CDN</p>
 <h2 id="找IP的方法"><a href="#找IP的方法" class="headerlink" title="找IP的方法"></a>找IP的方法</h2><blockquote>
 <p>找到真实IP可以继续旁站检测，找其他站点进行突破，也可以绕过cdn进行访问，从而绕过waf针对攻击语句的拦截 发现有攻击语句就会对攻击的IP封堵。</p>
 </blockquote>
 <h3 id="DNS历史绑定记录"><a href="#DNS历史绑定记录" class="headerlink" title="DNS历史绑定记录"></a>DNS历史绑定记录</h3><p>通过以下这些网站可以访问dns的解析，有可能存在未有绑cdn之前的记录。</p>
 <p><a target="_blank" rel="noopener" href="https://dnsdb.io/zh-cn/">https://dnsdb.io/zh-cn/</a> ###DNS查询 挂梯子</p>
-<p><img src="./60%E4%B9%8Bday18/image-20210722203659992.png" alt="image-20210722203659992"></p>
+<p><img src="/2021/07/22/60-zhi-day18/image-20210722203659992.png" alt="image-20210722203659992"></p>
 <p><a target="_blank" rel="noopener" href="https://x.threatbook.cn/">https://x.threatbook.cn/</a> ###微步在线</p>
-<p><img src="./60%E4%B9%8Bday18/image-20210722203736714.png" alt="image-20210722203736714"></p>
+<p><img src="/2021/07/22/60-zhi-day18/image-20210722203736714.png" alt="image-20210722203736714"></p>
 <p><a target="_blank" rel="noopener" href="http://viewdns.info/">http://viewdns.info/</a> ###DNS、IP等查询 挂梯子</p>
-<p><img src="./60%E4%B9%8Bday18/image-20210722203804776.png" alt="image-20210722203804776"></p>
+<p><img src="/2021/07/22/60-zhi-day18/image-20210722203804776.png" alt="image-20210722203804776"></p>
 <p><a target="_blank" rel="noopener" href="https://tools.ipip.net/cdn.php">https://tools.ipip.net/cdn.php</a> ###CDN查询IP</p>
-<p><img src="./60%E4%B9%8Bday18/image-20210722203831129.png" alt="image-20210722203831129"></p>
+<p><img src="/2021/07/22/60-zhi-day18/image-20210722203831129.png" alt="image-20210722203831129"></p>
 <p><a target="_blank" rel="noopener" href="https://sitereport.netcraft.com/?url=%E5%9F%9F%E5%90%8D">https://sitereport.netcraft.com/?url=域名</a></p>
-<p><img src="./60%E4%B9%8Bday18/image-20210722203919457.png" alt="image-20210722203919457"></p>
+<p><img src="/2021/07/22/60-zhi-day18/image-20210722203919457.png" alt="image-20210722203919457"></p>
 <p>以上都可以查询历史解析记录</p>
 <h3 id="子域名解析"><a href="#子域名解析" class="headerlink" title="子域名解析"></a>子域名解析</h3><p>通过子域名的解析指向 也有可能指向目标的同一个IP上。</p>
 <h4 id="在线子域名查询"><a href="#在线子域名查询" class="headerlink" title="在线子域名查询"></a>在线子域名查询</h4><p><a target="_blank" rel="noopener" href="https://securitytrails.com/list/apex_domain/t00ls.net">https://securitytrails.com/list/apex_domain/t00ls.net</a>  挂梯子</p>
-<p><img src="./60%E4%B9%8Bday18/image-20210722204515150.png" alt="image-20210722204515150"></p>
+<p><img src="/2021/07/22/60-zhi-day18/image-20210722204515150.png" alt="image-20210722204515150"></p>
 <p><a target="_blank" rel="noopener" href="http://tool.chinaz.com/subdomain/t00ls.net">http://tool.chinaz.com/subdomain/t00ls.net</a></p>
-<p><img src="./60%E4%B9%8Bday18/image-20210722204543241.png" alt="image-20210722204543241"></p>
+<p><img src="/2021/07/22/60-zhi-day18/image-20210722204543241.png" alt="image-20210722204543241"></p>
 <p><a target="_blank" rel="noopener" href="https://phpinfo.me/domain/">https://phpinfo.me/domain/</a></p>
-<p><img src="./60%E4%B9%8Bday18/image-20210722204631658.png" alt="image-20210722204631658"></p>
+<p><img src="/2021/07/22/60-zhi-day18/image-20210722204631658.png" alt="image-20210722204631658"></p>
 <p>找到子域名继续，确认子域名没有cdn的情况下，批量进行域名解析查询，有cdn的情况继续查询历史。</p>
 <p><a target="_blank" rel="noopener" href="http://tools.bugscaner.com/domain2ip.html">http://tools.bugscaner.com/domain2ip.html</a></p>
-<p><img src="./60%E4%B9%8Bday18/image-20210722204917845.png" alt="image-20210722204917845"></p>
+<p><img src="/2021/07/22/60-zhi-day18/image-20210722204917845.png" alt="image-20210722204917845"></p>
 <h3 id="国外DNS获取真实IP"><a href="#国外DNS获取真实IP" class="headerlink" title="国外DNS获取真实IP"></a>国外DNS获取真实IP</h3><p>部分cdn只针对国内的ip访问，如果国外ip访问域名 即可获取真实IP</p>
 <p>全世界DNS地址：(太对就不截图演示了)</p>
 <p><a target="_blank" rel="noopener" href="http://www.ab173.com/dns/dns_world.php">http://www.ab173.com/dns/dns_world.php</a></p>
@@ -560,24 +560,24 @@
 <p><a target="_blank" rel="noopener" href="https://tools.ipip.net/cdn.php">https://tools.ipip.net/cdn.php</a></p>
 <h3 id="ico图标通过空间搜索找真实IP"><a href="#ico图标通过空间搜索找真实IP" class="headerlink" title="ico图标通过空间搜索找真实IP"></a>ico图标通过空间搜索找真实IP</h3><p>我们再网页找到favicon.ico下载图标放到空间搜索引擎识别</p>
 <p>fofa：</p>
-<p><img src="./60%E4%B9%8Bday18/image-20210722205503201.png" alt="image-20210722205503201"></p>
-<p><img src="./60%E4%B9%8Bday18/image-20210722210017347.png" alt="image-20210722210017347"></p>
-<p><img src="./60%E4%B9%8Bday18/image-20210722210031008.png" alt="image-20210722210031008"></p>
+<p><img src="/2021/07/22/60-zhi-day18/image-20210722205503201.png" alt="image-20210722205503201"></p>
+<p><img src="/2021/07/22/60-zhi-day18/image-20210722210017347.png" alt="image-20210722210017347"></p>
+<p><img src="/2021/07/22/60-zhi-day18/image-20210722210031008.png" alt="image-20210722210031008"></p>
 <p>通过这样查询 快速定位资源 查看端口是否开放 这里没有开放</p>
-<p><img src="./60%E4%B9%8Bday18/image-20210722210312805.png" alt="image-20210722210312805"></p>
+<p><img src="/2021/07/22/60-zhi-day18/image-20210722210312805.png" alt="image-20210722210312805"></p>
 <p>zoomeye：</p>
-<p><img src="./60%E4%B9%8Bday18/image-20210722210555098.png" alt="image-20210722210555098"></p>
-<p><img src="./60%E4%B9%8Bday18/image-20210722210621804.png" alt="image-20210722210621804"></p>
+<p><img src="/2021/07/22/60-zhi-day18/image-20210722210555098.png" alt="image-20210722210555098"></p>
+<p><img src="/2021/07/22/60-zhi-day18/image-20210722210621804.png" alt="image-20210722210621804"></p>
 <p>查看80和443端口开放情况：</p>
-<p><img src="./60%E4%B9%8Bday18/image-20210722210734287.png" alt="image-20210722210734287"></p>
+<p><img src="/2021/07/22/60-zhi-day18/image-20210722210734287.png" alt="image-20210722210734287"></p>
 <p>绑定hosts测试下</p>
-<p><img src="./60%E4%B9%8Bday18/image-20210723123129368.png" alt="image-20210723123129368"></p>
+<p><img src="/2021/07/22/60-zhi-day18/image-20210723123129368.png" alt="image-20210723123129368"></p>
 <p>ping 域名正常</p>
-<p><img src="./60%E4%B9%8Bday18/image-20210723123157326.png" alt="image-20210723123157326"></p>
+<p><img src="/2021/07/22/60-zhi-day18/image-20210723123157326.png" alt="image-20210723123157326"></p>
 <p>curl 域名 正常回显curl <a target="_blank" rel="noopener" href="http://www.t00ls.net/">www.t00ls.net</a></p>
-<p><img src="./60%E4%B9%8Bday18/image-20210723123218144.png" alt="image-20210723123218144"></p>
+<p><img src="/2021/07/22/60-zhi-day18/image-20210723123218144.png" alt="image-20210723123218144"></p>
 <h3 id="fofa搜索真实IP"><a href="#fofa搜索真实IP" class="headerlink" title="fofa搜索真实IP"></a>fofa搜索真实IP</h3><p>domain=”t00ls.net”</p>
-<p><img src="./60%E4%B9%8Bday18/image-20210723123429709.png" alt="image-20210723123429709"></p>
+<p><img src="/2021/07/22/60-zhi-day18/image-20210723123429709.png" alt="image-20210723123429709"></p>
 <h3 id="censys找真实IP"><a href="#censys找真实IP" class="headerlink" title="censys找真实IP"></a>censys找真实IP</h3><p><a target="_blank" rel="noopener" href="https://search.censys.io/search?resource=hosts&amp;q=">https://search.censys.io/search?resource=hosts&amp;q=</a></p>
 <blockquote>
 <p>Censys工具就能实现对整个互联网的扫描，Censys是一款用以搜索联网设备信息的新型搜索引擎，能够扫描整个互联网，Censys会将互联网所有的ip进行扫面和连接，以及证书探测。</p>
@@ -585,29 +585,29 @@
 </blockquote>
 <p>通过协议查询：</p>
 <p><a target="_blank" rel="noopener" href="https://censys.io/ipv4?q=((www.t00ls.net)">https://censys.io/ipv4?q=((www.t00ls.net)</a> AND protocols: “443/https”) AND tags.raw:”https”&amp;443.https.tls.certificate.parsed.extensions.subject_alt_name.dns_names:moonsec.com</p>
-<p><img src="./60%E4%B9%8Bday18/image-20210723123952370.png" alt="image-20210723123952370"></p>
+<p><img src="/2021/07/22/60-zhi-day18/image-20210723123952370.png" alt="image-20210723123952370"></p>
 <h3 id="360测绘中心"><a href="#360测绘中心" class="headerlink" title="360测绘中心"></a>360测绘中心</h3><p><a target="_blank" rel="noopener" href="https://quake.360.cn/">https://quake.360.cn</a></p>
-<p><img src="./60%E4%B9%8Bday18/image-20210723125018420.png" alt="image-20210723125018420"></p>
+<p><img src="/2021/07/22/60-zhi-day18/image-20210723125018420.png" alt="image-20210723125018420"></p>
 <h3 id="利用SSL证书找真实IP"><a href="#利用SSL证书找真实IP" class="headerlink" title="利用SSL证书找真实IP"></a>利用SSL证书找真实IP</h3><p>证书颁发机构(CA)必须将他们发布的每个SSL/TLS证书发布到公共日志中，SSL/TLS证书通常包含域名、子域名和电子邮件地址。因此SSL/TLS证书成为了攻击者的切入点。</p>
 <p>获取网站SSL证书的HASH再结合Censys：</p>
 <p>利用Censys搜索网站的SSL证书及HASH，在<a target="_blank" rel="noopener" href="https://crt.sh上查找目标网站ssl证书的hash/">https://crt.sh上查找目标网站SSL证书的HASH</a></p>
 <p>再用Censys搜索该HASH即可得到真实IP地址</p>
 <p><a target="_blank" rel="noopener" href="https://crt.sh/">https://crt.sh</a>  找hash</p>
-<p><img src="./60%E4%B9%8Bday18/image-20210723125739275.png" alt="image-20210723125739275"></p>
-<p><img src="./60%E4%B9%8Bday18/image-20210723125853589.png" alt="image-20210723125853589"></p>
-<p><img src="./60%E4%B9%8Bday18/image-20210723130005346.png" alt="image-20210723130005346"></p>
+<p><img src="/2021/07/22/60-zhi-day18/image-20210723125739275.png" alt="image-20210723125739275"></p>
+<p><img src="/2021/07/22/60-zhi-day18/image-20210723125853589.png" alt="image-20210723125853589"></p>
+<p><img src="/2021/07/22/60-zhi-day18/image-20210723130005346.png" alt="image-20210723130005346"></p>
 <p>至此找到hash</p>
 <p>censys找hash</p>
 <p><a target="_blank" rel="noopener" href="https://censys.io/certificates?q=parsed.names:+t00ls.net+and+tags.raw:+trusted">https://censys.io/certificates?q=parsed.names%3A+t00ls.net+and+tags.raw%3A+trusted</a></p>
-<p><img src="./60%E4%B9%8Bday18/image-20210723130528369.png" alt="image-20210723130528369"></p>
+<p><img src="/2021/07/22/60-zhi-day18/image-20210723130528369.png" alt="image-20210723130528369"></p>
 <p>找到hash</p>
-<p><img src="./60%E4%B9%8Bday18/image-20210723131923193.png" alt="image-20210723131923193"></p>
+<p><img src="/2021/07/22/60-zhi-day18/image-20210723131923193.png" alt="image-20210723131923193"></p>
 <p>转成ipv4搜索 找到俩个ip</p>
-<p><img src="./60%E4%B9%8Bday18/image-20210723131954422.png" alt="image-20210723131954422"></p>
+<p><img src="/2021/07/22/60-zhi-day18/image-20210723131954422.png" alt="image-20210723131954422"></p>
 <p>接下来就是判断ip是否是这个域名了</p>
 <h3 id="邮箱获取真实IP"><a href="#邮箱获取真实IP" class="headerlink" title="邮箱获取真实IP"></a>邮箱获取真实IP</h3><p>网站在发信的时候，会附带真实的IP地址 进入邮箱 查看源文件头部信息 选择from</p>
-<p><img src="./60%E4%B9%8Bday18/image-20210723132155347.png" alt="image-20210723132155347"></p>
-<p><img src="./60%E4%B9%8Bday18/image-20210723132207167.png" alt="image-20210723132207167"></p>
+<p><img src="/2021/07/22/60-zhi-day18/image-20210723132155347.png" alt="image-20210723132155347"></p>
+<p><img src="/2021/07/22/60-zhi-day18/image-20210723132207167.png" alt="image-20210723132207167"></p>
 <p>至于是否真实  就得看发送邮箱是否与网站同一个IP</p>
 <h3 id="网站敏感文件获取真实IP"><a href="#网站敏感文件获取真实IP" class="headerlink" title="网站敏感文件获取真实IP"></a>网站敏感文件获取真实IP</h3><ul>
 <li>文件探针</li>
@@ -617,7 +617,7 @@
 <li>GitHub信息泄露</li>
 <li>s文件</li>
 </ul>
-<p><img src="./60%E4%B9%8Bday18/image-20210723132320315.png" alt="image-20210723132320315"></p>
+<p><img src="/2021/07/22/60-zhi-day18/image-20210723132320315.png" alt="image-20210723132320315"></p>
 <h3 id="F5-LTM-解码"><a href="#F5-LTM-解码" class="headerlink" title="F5 LTM 解码"></a>F5 LTM 解码</h3><p>当服务器使用F5 LTM做负载均衡时，通过对set-cookie关键字的解码真实ip也可被获取。</p>
 <p>例如：Set-Cookie: BIGipServerpool_8.29_8030=487098378.24095.0000，先把第一小节的十进制数即487098378取出来，然后将其转为十六进制数1d08880a，接着从后至前，以此取四位数出来，也就是0a.88.08.1d，最后依次把他们转为十进制数10.136.8.29，也就是最后的真实ip。</p>
 <p>rverpool-cas01=3255675072.20480.0000; path=/</p>

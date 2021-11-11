@@ -514,8 +514,8 @@ l是软连接  //类似于windows下的快捷方式
                 <h1 id="渗透测试基础知识"><a href="#渗透测试基础知识" class="headerlink" title="渗透测试基础知识"></a>渗透测试基础知识</h1><span id="more"></span>
 
 <h2 id="kali基础知识"><a href="#kali基础知识" class="headerlink" title="kali基础知识"></a>kali基础知识</h2><h3 id="linux文件属性和权限设置"><a href="#linux文件属性和权限设置" class="headerlink" title="linux文件属性和权限设置"></a>linux文件属性和权限设置</h3><h4 id="文件解释"><a href="#文件解释" class="headerlink" title="文件解释"></a>文件解释</h4><p>使用 ls -al 命令列出当前目录文件(包括.)详细信息：</p>
-<p><img src="./60%E4%B9%8Bday14/image-20210718112041098.png" alt="image-20210718112041098"></p>
-<p><img src="./60%E4%B9%8Bday14/image-20210718112101277.png" alt="image-20210718112101277"></p>
+<p><img src="/2021/07/18/60-zhi-day14/image-20210718112041098.png" alt="image-20210718112041098"></p>
+<p><img src="/2021/07/18/60-zhi-day14/image-20210718112101277.png" alt="image-20210718112101277"></p>
 <blockquote>
 <p>d是目录</p>
 <p>-是文件</p>
@@ -536,7 +536,7 @@ l是软连接  //类似于windows下的快捷方式
 <li>x是具有ls -l权限(列出当前目录文件不包括.)</li>
 </ul>
 </blockquote>
-<p><img src="./60%E4%B9%8Bday14/image-20210718112400217.png" alt="image-20210718112400217"></p>
+<p><img src="/2021/07/18/60-zhi-day14/image-20210718112400217.png" alt="image-20210718112400217"></p>
 <h4 id="权限设置"><a href="#权限设置" class="headerlink" title="权限设置"></a>权限设置</h4><p>chmod 777 +文件名 （给单独文件赋所有权限）</p>
 <p>chmod -R 777 /home/user 注：表示将整个/home/user目录与其中的文件和子目录的权限都设置为rwxrwxrwx</p>
 <blockquote>
@@ -554,42 +554,42 @@ l是软连接  //类似于windows下的快捷方式
 </blockquote>
 <p>字母模式：</p>
 <p>chmod (u)+rwx 文件名</p>
-<p><img src="./60%E4%B9%8Bday14/image-20210718112805966.png" alt="image-20210718112805966"></p>
+<p><img src="/2021/07/18/60-zhi-day14/image-20210718112805966.png" alt="image-20210718112805966"></p>
 <p>eg：</p>
 <p>touch xiaoshaKa</p>
-<p><img src="./60%E4%B9%8Bday14/image-20210718112952216.png" alt="image-20210718112952216"></p>
+<p><img src="/2021/07/18/60-zhi-day14/image-20210718112952216.png" alt="image-20210718112952216"></p>
 <p>chmod u+rwx xiaoshaKa</p>
 <p>chmod g-r xiaoshaKa</p>
 <p>chmod o-r xiaoshaKa</p>
-<p><img src="./60%E4%B9%8Bday14/image-20210718113154192.png" alt="image-20210718113154192"></p>
+<p><img src="/2021/07/18/60-zhi-day14/image-20210718113154192.png" alt="image-20210718113154192"></p>
 <h2 id="04虚拟机创建2012系统并配置"><a href="#04虚拟机创建2012系统并配置" class="headerlink" title="04虚拟机创建2012系统并配置"></a>04虚拟机创建2012系统并配置</h2><p>我们在虚拟机上创建Windows2012虚拟机</p>
-<p><img src="./60%E4%B9%8Bday14/image-20210718122907340.png" alt="image-20210718122907340"></p>
+<p><img src="/2021/07/18/60-zhi-day14/image-20210718122907340.png" alt="image-20210718122907340"></p>
 <p>我们更改密码设置</p>
-<p><img src="./60%E4%B9%8Bday14/image-20210718123147650.png" alt="image-20210718123147650"></p>
-<p><img src="./60%E4%B9%8Bday14/image-20210718123216823.png" alt="image-20210718123216823"></p>
-<p><img src="./60%E4%B9%8Bday14/image-20210718123240586.png" alt="image-20210718123240586"></p>
+<p><img src="/2021/07/18/60-zhi-day14/image-20210718123147650.png" alt="image-20210718123147650"></p>
+<p><img src="/2021/07/18/60-zhi-day14/image-20210718123216823.png" alt="image-20210718123216823"></p>
+<p><img src="/2021/07/18/60-zhi-day14/image-20210718123240586.png" alt="image-20210718123240586"></p>
 <p>然后我们安装好vmtools后拍摄快照</p>
 <h2 id="05在12server上安装bp2021"><a href="#05在12server上安装bp2021" class="headerlink" title="05在12server上安装bp2021"></a>05在12server上安装bp2021</h2><p>首先把这俩个放进来</p>
-<p><img src="./60%E4%B9%8Bday14/image-20210718124333848.png" alt="image-20210718124333848"></p>
+<p><img src="/2021/07/18/60-zhi-day14/image-20210718124333848.png" alt="image-20210718124333848"></p>
 <p>首先双击运行jdk，下一步就可</p>
 <p>接下来把bp解压出来</p>
-<p><img src="./60%E4%B9%8Bday14/image-20210718124542378.png" alt="image-20210718124542378"></p>
+<p><img src="/2021/07/18/60-zhi-day14/image-20210718124542378.png" alt="image-20210718124542378"></p>
 <p>运行它到</p>
-<p><img src="./60%E4%B9%8Bday14/image-20210718124804222.png" alt="image-20210718124804222"></p>
-<p><img src="./60%E4%B9%8Bday14/image-20210718124832518.png" alt="image-20210718124832518"></p>
+<p><img src="/2021/07/18/60-zhi-day14/image-20210718124804222.png" alt="image-20210718124804222"></p>
+<p><img src="/2021/07/18/60-zhi-day14/image-20210718124832518.png" alt="image-20210718124832518"></p>
 <p>将license复制进去next到</p>
-<p><img src="./60%E4%B9%8Bday14/image-20210718124930226.png" alt="image-20210718124930226"></p>
+<p><img src="/2021/07/18/60-zhi-day14/image-20210718124930226.png" alt="image-20210718124930226"></p>
 <p>copy到bploader即可生成最后的</p>
 <p>将生成后的放进去next</p>
 <p>最后在桌面创个快捷方式</p>
-<p><img src="./60%E4%B9%8Bday14/image-20210718125205296.png" alt="image-20210718125205296"></p>
+<p><img src="/2021/07/18/60-zhi-day14/image-20210718125205296.png" alt="image-20210718125205296"></p>
 <p>完成，双击快捷方式就可以运行</p>
 <h2 id="06http协议详解"><a href="#06http协议详解" class="headerlink" title="06http协议详解"></a>06http协议详解</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>协议是指计算机通信网络中两台计算机之间进行通信所必须共同遵守的规定或规则，超文本传输协议(HTTP)是一种通信 协议，它允许将超文本标记语言(HTML)文档从W eb服务器传送到客户端的浏览器。 </p>
 <p>HTTP协议，即超文本传输协议(Hypertext transfer protocol)。是一种详细规定了浏览器和万维网(W W W = World Wide Web)服务器之间互相通信的规则，通过因特网传送万维网文档的数据传送协议。 </p>
 <p>HTTP协议是用于从W W W服务器传输超文本到本地浏览器的传送协议。它可以使浏览器更加高效，使网络传输减少。它 不仅保证计算机正确快速地传输超文本文档，还确定传输文档中的哪一部分，以及哪部分内容首先显示(如文本先于图 形)等。 </p>
 <p>HTTP是一个<strong>应用层协议，由请求和响应构成</strong>，是一个标准的客户端服务器模型。HTTP是一个<strong>无状态的协议</strong>。 </p>
 <p>在Internet中所有的传输都是通过TCP/IP进行的。HTTP协议作为TCP/IP模型中应用层的协议也不例外。<strong>HTTP协议通 常承载于TCP协议之上，有时也承载于TLS或SSL协议层之上，这个时候，就成了我们常说的HTTPS。</strong>如下图所示：</p>
-<p><img src="./60%E4%B9%8Bday14/image-20210718175222811.png" alt="image-20210718175222811"></p>
+<p><img src="/2021/07/18/60-zhi-day14/image-20210718175222811.png" alt="image-20210718175222811"></p>
 <p><strong>HTTP默认的端口号为80，HTTPS的端口号为443。</strong> </p>
 <p>浏览网页是HTTP的主要应用，但是这并不代表HTTP就只能应用于网页的浏览。HTTP是一种协议，只要通信的双方都 遵守这个协议，HTTP就能有用武之地。比如咱们常用的QQ，迅雷这些软件，都会使用HTTP协议(还包括其他的协议)。</p>
 <h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><p><strong>HTTP协议永远都是客户端发起请求，服务器回送响应。</strong>这样就限制了使用HTTP协议，无法实现在客户端没有发起请求 的时候，服务器将消息推送给客户端。 </p>
@@ -617,9 +617,9 @@ l是软连接  //类似于windows下的快捷方式
 <li>客户端接收服务器所返回的信息通过浏览器显示在用户的显示屏上，然后客户机与服务器断开连接。 </li>
 </ol>
 <p>如果在以上过程中的某一步出现错误，那么产生错误的信息将返回到客户端，有显示屏输出。对于用户来说，这些过程 是由HTTP自己完成的，用户只要用鼠标点击，等待信息显示就可以了。 </p>
-<p><img src="./60%E4%B9%8Bday14/image-20210718180211552.png" alt="image-20210718180211552"></p>
+<p><img src="/2021/07/18/60-zhi-day14/image-20210718180211552.png" alt="image-20210718180211552"></p>
 <p>HTTP是基于传输层的TCP协议，而TCP是一个端到端的面向连接的协议。所谓的端到端可以理解为进程到进程之间的通 信。所以HTTP在开始传输之前，首先需要建立TCP连接，而TCP连接的过程需要所谓的“三次握手”。下图所示TCP连接 的三次握手。 </p>
-<p><img src="./60%E4%B9%8Bday14/image-20210718180322667.png" alt="image-20210718180322667"></p>
+<p><img src="/2021/07/18/60-zhi-day14/image-20210718180322667.png" alt="image-20210718180322667"></p>
 <p>在TCP三次握手之后，建立了TCP连接，此时HTTP就可以进行传输了。一个重要的概念是面向连接，既HTTP在传输完成之间并不断开TCP连接。在HTTP1.1中(通过Connection头设置)这是默认行为。</p>
 <h3 id="头域"><a href="#头域" class="headerlink" title="头域"></a>头域</h3><p>每个头域由一个域名，冒号（:）和域值三部分组成。<strong>域名是大小写无关的</strong>，域值前可以添加任何数量的空格符，头域可以被扩展为多行，在每行开始处，使用至少一个空格或制表符。 </p>
 <h4 id="请求信息"><a href="#请求信息" class="headerlink" title="请求信息"></a>请求信息</h4><p>请求信息格式如下：</p>
@@ -630,7 +630,7 @@ l是软连接  //类似于windows下的快捷方式
 <li>可选的消息体。</li>
 </ul>
 <p>请求行和标题必须以&lt;CR&gt;&lt;LF&gt;作为结尾（也就是，回车然后换行）。空行内必须只有&lt;CR&gt;&lt;LF&gt; 而无其他空格。在HTTP/1.1协议中，所有的请求头，除post外，都是可选的。 </p>
-<p><img src="./60%E4%B9%8Bday14/image-20210718182631052.png" alt="image-20210718182631052"></p>
+<p><img src="/2021/07/18/60-zhi-day14/image-20210718182631052.png" alt="image-20210718182631052"></p>
 <p>三个部分分别是：请求行、消息报头、请求正文。</p>
 <h4 id="请求方法"><a href="#请求方法" class="headerlink" title="请求方法"></a>请求方法</h4><p>HTTP/1.1协议中共定义了八种方法（有时也叫“动作”）来表明Request-URI指定的资源的不同操作方式： </p>
 <ol>
@@ -662,8 +662,8 @@ l是软连接  //类似于windows下的快捷方式
 <h4 id="响应信息"><a href="#响应信息" class="headerlink" title="响应信息"></a>响应信息</h4><p>客户端向服务器发送一个请求，服务器以一个状态行作为响应。</p>
 <p>响应的内容包括：消息协议的版本、成功或者错误编 码、服务器信息、实体元信息以及必要的实体内容。</p>
 <p>根据响应类别的类别，服务器响应里可以含实体内容，但不是所有 的响应都有实体内容。 </p>
-<p><img src="./60%E4%B9%8Bday14/image-20210718183155255.png" alt="image-20210718183155255"></p>
-<p><img src="./60%E4%B9%8Bday14/image-20210718183208602.png" alt="image-20210718183208602"></p>
+<p><img src="/2021/07/18/60-zhi-day14/image-20210718183155255.png" alt="image-20210718183155255"></p>
+<p><img src="/2021/07/18/60-zhi-day14/image-20210718183208602.png" alt="image-20210718183208602"></p>
 <p>三个部分分别是：状态行、消息报头、响应正文</p>
 <h4 id="http状态响应码"><a href="#http状态响应码" class="headerlink" title="http状态响应码"></a>http状态响应码</h4><blockquote>
 <p><strong>1</strong>(信息类)：表示接收到请求并且继续处理** </p>
@@ -739,7 +739,7 @@ l是软连接  //类似于windows下的快捷方式
 <p>HTTP 503：由于超载或停机维护，服务器目前无法使用，一段时间后可能恢复正常</p>
 </blockquote>
 <h3 id="解决http无状态问题"><a href="#解决http无状态问题" class="headerlink" title="解决http无状态问题"></a>解决http无状态问题</h3><h4 id="通过cookies保存状态信息"><a href="#通过cookies保存状态信息" class="headerlink" title="通过cookies保存状态信息"></a>通过cookies保存状态信息</h4><p>通过Cookies，服务器就可以清楚的知道请求2和请求1来自同一个客户端。</p>
-<p><img src="./60%E4%B9%8Bday14/image-20210718183841727.png" alt="image-20210718183841727"></p>
+<p><img src="/2021/07/18/60-zhi-day14/image-20210718183841727.png" alt="image-20210718183841727"></p>
 <h4 id="通过session保存状态信息"><a href="#通过session保存状态信息" class="headerlink" title="通过session保存状态信息"></a>通过session保存状态信息</h4><p>Session机制是一种服务器端的机制，服务器使用一种类似于散列表的结构（也可能就是使用散列表）来保存信息。 </p>
 <p>当程序需要为某个客户端的请求创建一个session的时候，服务器首先检查这个客户端的请求里是否已包含了一个 session标识 - 称为 session id。</p>
 <p>如果已包含一个session id则说明以前已经为此客户端创建过session，服务器就按 照session id把这个 session检索出来使用（如果检索不到，可能会新建一个）</p>
@@ -748,7 +748,7 @@ l是软连接  //类似于windows下的快捷方式
 <h5 id="session的实现方式："><a href="#session的实现方式：" class="headerlink" title="session的实现方式："></a><strong>session的实现方式：</strong></h5><ol>
 <li><p>使用cookie来实现：</p>
 <p>服务器给每个Session分配一个唯一的JSESSIONID，并通过Cookie发送给客户端。 当客户端发起新的请求的时候，将在Cookie头中携带这个JSESSIONID。这样服务器能够找到这个客户端对应的 Session。</p>
-<p><img src="./60%E4%B9%8Bday14/image-20210718184359974.png" alt="image-20210718184359974"></p>
+<p><img src="/2021/07/18/60-zhi-day14/image-20210718184359974.png" alt="image-20210718184359974"></p>
 </li>
 <li><p>使用url回写的方式实现：</p>
 <p>URL回写是指服务器在发送给浏览器页面的所有链接中都携JSESSIONID的参数，这样客户端点击任何一个链接都会 把JSESSIONID带会服务器。</p>
@@ -804,7 +804,7 @@ l是软连接  //类似于windows下的快捷方式
 <li>对称加密：密钥只有一个，加密解密为同一个密码，且加解密速度快，典型的对称加密算法有DES、AES等。 </li>
 <li>非对称加密：密钥成对出现（且根据公钥无法推知私钥，根据私钥也无法推知公钥），加密解密使用不同密钥（公钥加 密需要私钥解密，私钥加密需要公钥解密），相对对称加密速度较慢，典型的非对称加密算法有RSA、DSA等。 </li>
 </ul>
-<p><img src="./60%E4%B9%8Bday14/image-20210718190646461.png" alt="image-20210718190646461"></p>
+<p><img src="/2021/07/18/60-zhi-day14/image-20210718190646461.png" alt="image-20210718190646461"></p>
 <h4 id="https通信的优点："><a href="#https通信的优点：" class="headerlink" title="https通信的优点："></a>https通信的优点：</h4><ul>
 <li>客户端产生的密钥只有客户端和服务器端能得到； </li>
 <li>加密的数据只有客户端和服务器端才能得到明文； </li>
