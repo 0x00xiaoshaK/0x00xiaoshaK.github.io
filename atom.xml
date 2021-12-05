@@ -6,7 +6,7 @@
   <link href="http://0x00xiaoshak.github.io/atom.xml" rel="self"/>
   
   <link href="http://0x00xiaoshak.github.io/"/>
-  <updated>2021-12-03T06:54:36.386Z</updated>
+  <updated>2021-12-04T04:17:39.172Z</updated>
   <id>http://0x00xiaoshak.github.io/</id>
   
   <author>
@@ -17,11 +17,30 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>day35</title>
+    <link href="http://0x00xiaoshak.github.io/2021/12/04/day35/"/>
+    <id>http://0x00xiaoshak.github.io/2021/12/04/day35/</id>
+    <published>2021-12-04T02:17:25.000Z</published>
+    <updated>2021-12-04T04:17:39.172Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;网站后台getshell&quot;&gt;&lt;a href=&quot;#网站后台getshell&quot; class=&quot;headerlink&quot; title=&quot;网站后台getshell&quot;&gt;&lt;/a&gt;网站后台getshell&lt;/h1&gt;</summary>
+    
+    
+    
+    <category term="网站后台getshell" scheme="http://0x00xiaoshak.github.io/categories/%E7%BD%91%E7%AB%99%E5%90%8E%E5%8F%B0getshell/"/>
+    
+    
+    <category term="网站后台getshell" scheme="http://0x00xiaoshak.github.io/tags/%E7%BD%91%E7%AB%99%E5%90%8E%E5%8F%B0getshell/"/>
+    
+  </entry>
+  
+  <entry>
     <title>day34</title>
     <link href="http://0x00xiaoshak.github.io/2021/11/15/day34/"/>
     <id>http://0x00xiaoshak.github.io/2021/11/15/day34/</id>
     <published>2021-11-15T05:28:24.000Z</published>
-    <updated>2021-12-03T06:54:36.386Z</updated>
+    <updated>2021-12-03T06:57:02.579Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;burpsuite的使用&quot;&gt;&lt;a href=&quot;#burpsuite的使用&quot; class=&quot;headerlink&quot; title=&quot;burpsuite的使用&quot;&gt;&lt;/a&gt;burpsuite的使用&lt;/h1&gt;&lt;p&gt;系统的放点东西，借鉴为主，供参考。&lt;/p&gt;</summary>
@@ -378,27 +397,6 @@
     
     
     <category term="信息搜集" scheme="http://0x00xiaoshak.github.io/tags/%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>60之day15-1</title>
-    <link href="http://0x00xiaoshak.github.io/2021/07/20/60-zhi-day15-1/"/>
-    <id>http://0x00xiaoshak.github.io/2021/07/20/60-zhi-day15-1/</id>
-    <published>2021-07-20T03:07:41.000Z</published>
-    <updated>2021-07-20T03:43:32.000Z</updated>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;渗透测试基础知识&quot;&gt;&lt;a href=&quot;#渗透测试基础知识&quot; class=&quot;headerlink&quot; title=&quot;渗透测试基础知识&quot;&gt;&lt;/a&gt;渗透测试基础知识&lt;/h1&gt;</summary>
-    
-    
-    
-    <category term="渗透测试基础知识" scheme="http://0x00xiaoshak.github.io/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
-    
-    
-    <category term="搭建域环境" scheme="http://0x00xiaoshak.github.io/tags/%E6%90%AD%E5%BB%BA%E5%9F%9F%E7%8E%AF%E5%A2%83/"/>
-    
-    <category term="渗透中常用的Windows指令" scheme="http://0x00xiaoshak.github.io/tags/%E6%B8%97%E9%80%8F%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84Windows%E6%8C%87%E4%BB%A4/"/>
     
   </entry>
   
