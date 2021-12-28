@@ -370,7 +370,7 @@
       
         <tags>
             
-            <tag> 穷举篇 </tag>
+            <tag> 穷举 </tag>
             
         </tags>
       
@@ -395,7 +395,7 @@
       
         <tags>
             
-            <tag> 穷举篇 </tag>
+            <tag> 穷举 </tag>
             
         </tags>
       
@@ -1000,9 +1000,7 @@
             
             <tag> html </tag>
             
-            <tag> div </tag>
-            
-            <tag> css </tag>
+            <tag> divcss </tag>
             
         </tags>
       
@@ -1286,31 +1284,6 @@
     
     
     <entry>
-      <title>ctfshow_web通关</title>
-      <link href="/2021/05/02/ctfshow-web-1/"/>
-      <url>/2021/05/02/ctfshow-web-1/</url>
-      
-        <content type="html"><![CDATA[<h1 id="ctfshow之web通关"><a href="#ctfshow之web通关" class="headerlink" title="ctfshow之web通关"></a>ctfshow之web通关</h1><span id="more"></span><h2 id="web签到题"><a href="#web签到题" class="headerlink" title="web签到题"></a>web签到题</h2><p>f12查看源码发现了flag，观察后发现MD5加密的</p><p>解密得到flag</p><h2 id="web2"><a href="#web2" class="headerlink" title="web2"></a>web2</h2>]]></content>
-      
-      
-      <categories>
-          
-          <category> ctfshow </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> web </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>python学习</title>
       <link href="/2021/05/01/python-xue-xi-3/"/>
       <url>/2021/05/01/python-xue-xi-3/</url>
@@ -1455,31 +1428,6 @@
         <tags>
             
             <tag> sql-page2 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>CTFbugku之web</title>
-      <link href="/2021/04/26/ctfbugku-zhi-web/"/>
-      <url>/2021/04/26/ctfbugku-zhi-web/</url>
-      
-        <content type="html"><![CDATA[<h1 id="CTF-bugku之web-writeup"><a href="#CTF-bugku之web-writeup" class="headerlink" title="CTF_bugku之web writeup"></a>CTF_bugku之web writeup</h1><span id="more"></span>]]></content>
-      
-      
-      <categories>
-          
-          <category> CTF_bugku </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> ctf_web </tag>
             
         </tags>
       
