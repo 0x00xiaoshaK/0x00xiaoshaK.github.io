@@ -514,8 +514,7 @@ sql注入漏洞描述
 </blockquote>
 <p><img src="/2021/08/05/60-zhi-day23/image-20210805134630643.png" alt="image-20210805134630643"></p>
 <p><img src="/2021/08/05/60-zhi-day23/image-20210805134710102.png" alt="image-20210805134710102"></p>
-<p><strong>修复建议</strong></p>
-<blockquote>
+<h3 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h3><blockquote>
 <p>代码层最佳防御 sql 漏洞方案：<strong>采用 sql 语句预编译和绑定变量</strong>，是防御sql 注入的最佳方法。</p>
 <ol>
 <li><p>所有的查询语句都使<strong>用数据库提供的参数化查询接口</strong>，参数化的语句使用参数而不是将用户输入变量嵌入到 SQL 语句中。</p>
@@ -546,6 +545,7 @@ sql注入漏洞描述
 <p>columns 存储该用户创建的所有数据库的库名、标名和字段名。</p>
 </blockquote>
 <p>至于查询方法就不写了，之前的写的很详细</p>
+<h3 id="什么是sql注入？"><a href="#什么是sql注入？" class="headerlink" title="什么是sql注入？"></a>什么是sql注入？</h3><p>SQL注入就是把SQL命令插入到web表单、输入域名、页面请求，最终达到欺骗 服务器执行恶意SQL命令的目的。</p>
 <h3 id="sql注入原理"><a href="#sql注入原理" class="headerlink" title="sql注入原理"></a>sql注入原理</h3><blockquote>
 <p>用户可控参数中注入SQL语法，破坏原有SQL结构，在后台SQL服务器上进行解析执行攻击。</p>
 </blockquote>
@@ -1542,7 +1542,7 @@ X-Forwarded-for: 127.0.0.1'and 1=2#<span aria-hidden="true" class="line-numbers-
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">173.5k</span>
+                        class="white-color">174.9k</span>
             
             
             

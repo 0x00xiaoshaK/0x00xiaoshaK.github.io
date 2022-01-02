@@ -7,8 +7,9 @@
     <meta name="keywords" content="xss, 晓莎K&#39;s blog">
     <meta name="description" content="xss漏洞
 
-简单认识描述XSS 攻击全称跨站脚本攻击，是为不和层叠样式表(Cascading Style Sheets, CSS)的缩写混淆，故将跨站脚本攻击缩写为 XSS。
-XSS 是一种在 web 应用中的计算机安全漏洞，它允许恶意 ">
+简单认识XSS就是通过 HTML注入篡改网页，插入恶意脚本，从而在用户浏览网页时控制用户浏览器
+如果是MVC框架，主要发生在view层中
+描述XSS 攻击全称跨站脚本攻击，是为不和层叠样式表(Cascading Style S">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -474,7 +475,7 @@ XSS 是一种在 web 应用中的计算机安全漏洞，它允许恶意 ">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.3k
+                    4.4k
                 </div>
                 
 
@@ -501,8 +502,11 @@ XSS 是一种在 web 应用中的计算机安全漏洞，它允许恶意 ">
             <div id="articleContent">
                 <h1 id="xss漏洞"><a href="#xss漏洞" class="headerlink" title="xss漏洞"></a>xss漏洞</h1><span id="more"></span>
 
-<h2 id="简单认识"><a href="#简单认识" class="headerlink" title="简单认识"></a>简单认识</h2><h3 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h3><p>XSS 攻击全称<strong>跨站脚本攻击</strong>，是为不和层叠样式表(Cascading Style Sheets, CSS)的缩写混淆，故将跨站脚本攻击缩写为 XSS。</p>
+<h2 id="简单认识"><a href="#简单认识" class="headerlink" title="简单认识"></a>简单认识</h2><p>XSS就是通过 HTML注入篡改网页，插入恶意脚本，从而在用户浏览网页时控制用户浏览器</p>
+<p>如果是MVC框架，主要发生在view层中</p>
+<h3 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h3><p>XSS 攻击全称<strong>跨站脚本攻击</strong>，是为不和层叠样式表(Cascading Style Sheets, CSS)的缩写混淆，故将跨站脚本攻击缩写为 XSS。</p>
 <p>XSS 是一种在 web 应用中的计算机安全漏洞，它允许恶意 web 用户将代码植入到 web 网站里面，供给其它用户访问，当用户访问到有恶意代码的网页就会产生 xss 攻击。</p>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>通过特殊字符让浏览器误以为插入了HTML标签，从而引入恶意脚本在用户浏览器执行。</p>
 <h3 id="危害"><a href="#危害" class="headerlink" title="危害"></a>危害</h3><ol>
 <li>盗取各类用户帐号，如机器登录帐号、用户网银帐号、各类管理员帐号</li>
 <li>控制企业数据，包括读取、篡改、添加、删除企业敏感数据的能力</li>
@@ -512,8 +516,17 @@ XSS 是一种在 web 应用中的计算机安全漏洞，它允许恶意 ">
 <li>网站挂马</li>
 <li>控制受害者机器向其它网站发起攻击</li>
 </ol>
-<h3 id="防御"><a href="#防御" class="headerlink" title="防御"></a>防御</h3><p>XSS 防御的总体思路是：<strong>对输入(和 URL 参数)进行过滤，对输出进行编码</strong>。</p>
-<p>也就是对提交的所有内容进行过滤，对 url 中的参数进行过滤，过滤掉会导致脚本无法执行相关内容；然后对动态输出到页面的内容进行 html 编码，使脚本无法在浏览器中执行。</p>
+<h3 id="防御"><a href="#防御" class="headerlink" title="防御"></a>防御</h3><ol>
+<li><p>Http Only</p>
+<p>解决XSS后的cookie劫持</p>
+</li>
+<li><p>输入检查</p>
+<p>过滤特殊字符</p>
+</li>
+<li><p>输出检查</p>
+<p>在变量输出到HTML，可以进行编码或者转义</p>
+</li>
+</ol>
 <h2 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h2><h3 id="反射型XSS"><a href="#反射型XSS" class="headerlink" title="反射型XSS"></a>反射型XSS</h3><p>反射型 XSS，非持久化，需要欺骗用户自己去点击链接才能触发 XSS 代码。</p>
 <p>反射型 xss 攻击的方法，攻击者通过发送邮件或诱导等方法，将包含有 xss 恶意链接发送给目标用户，当目标用户访问该链接时，服务器将接收该用户的请求并进行处理，然后服务器把带有 xss 恶意脚本发送给目标用户的浏览器，浏览器解析这段带有 xss 代码的恶意脚本后，就会触发 xss 攻击。</p>
 <p><strong>分析源码</strong></p>
@@ -532,10 +545,13 @@ XSS 是一种在 web 应用中的计算机安全漏洞，它允许恶意 ">
 <p><img src="/2021/09/22/day29/image-20210927143816959.png" alt="image-20210927143816959"></p>
 <p>浏览器访问页面发生弹窗</p>
 <p><img src="/2021/09/22/day29/image-20210927143831750.png" alt="image-20210927143831750"></p>
-<h3 id="dom型XSS"><a href="#dom型XSS" class="headerlink" title="dom型XSS"></a>dom型XSS</h3><p>DOM，全称 Document Object Model，是一个平台和语言都中立的接口，可以使程序和脚本能够动态访问和更新文档的内容、结构以及样式。</p>
+<h3 id="dom型XSS"><a href="#dom型XSS" class="headerlink" title="dom型XSS"></a>dom型XSS</h3><p>客户端的JavaScript脚本可以访问浏览器的DOM树并修改页面内容，不依赖服务器数据，直接从浏览器获取数据并执行</p>
+<blockquote>
+<p>DOM，全称 Document Object Model，是一个平台和语言都中立的接口，可以使程序和脚本能够动态访问和更新文档的内容、结构以及样式。</p>
 <p>DOM 型 XSS 其实是一种特殊类型的反射型 XSS，它是基于 DOM 文档对象模型的一种漏洞。</p>
 <p>在网站页面中有许多页面的元素，当页面到达浏览器时浏览器会为页面创建一个顶级的 Document object 文档对象，接着生成各个子文档对象，每个页面元素对应一个文档对象，每个文档对象包含属性、方法和事件。可以通过 JS 脚本对文档对象进行编辑从而修改页面的元素。</p>
 <p>也就是说，客户端的脚本程序可以通过DOM 来动态修改页面内容，从客户端获取 DOM 中的数据并在本地执行。基于这个特性，就可以利用 JS 脚本来实现 XSS 漏洞的利用。</p>
+</blockquote>
 <p>以下是一些经常出现 dom xss 的关键语句：</p>
 <ul>
 <li>document.referer 属性</li>
@@ -1521,7 +1537,7 @@ document.body.appendChild(img);<span aria-hidden="true" class="line-numbers-rows
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">173.5k</span>
+                        class="white-color">174.9k</span>
             
             
             

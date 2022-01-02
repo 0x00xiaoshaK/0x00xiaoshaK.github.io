@@ -6,7 +6,7 @@
   <link href="http://0x00xiaoshak.github.io/atom.xml" rel="self"/>
   
   <link href="http://0x00xiaoshak.github.io/"/>
-  <updated>2022-01-02T02:35:23.725Z</updated>
+  <updated>2022-01-02T13:08:58.204Z</updated>
   <id>http://0x00xiaoshak.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>csrfssrf</title>
+    <link href="http://0x00xiaoshak.github.io/2022/01/02/csrfssrf/"/>
+    <id>http://0x00xiaoshak.github.io/2022/01/02/csrfssrf/</id>
+    <published>2022-01-02T10:15:12.000Z</published>
+    <updated>2022-01-02T13:08:58.204Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;csrf-amp-ssrf&quot;&gt;&lt;a href=&quot;#csrf-amp-ssrf&quot; class=&quot;headerlink&quot; title=&quot;csrf&amp;amp;ssrf&quot;&gt;&lt;/a&gt;csrf&amp;amp;ssrf&lt;/h1&gt;</summary>
+    
+    
+    
+    <category term="漏洞" scheme="http://0x00xiaoshak.github.io/categories/%E6%BC%8F%E6%B4%9E/"/>
+    
+    <category term="绕过" scheme="http://0x00xiaoshak.github.io/categories/%E6%BC%8F%E6%B4%9E/%E7%BB%95%E8%BF%87/"/>
+    
+    
+    <category term="csrf" scheme="http://0x00xiaoshak.github.io/tags/csrf/"/>
+    
+    <category term="ssrf" scheme="http://0x00xiaoshak.github.io/tags/ssrf/"/>
+    
+  </entry>
   
   <entry>
     <title>windows提权</title>
@@ -175,7 +198,7 @@
     <link href="http://0x00xiaoshak.github.io/2021/09/22/day29/"/>
     <id>http://0x00xiaoshak.github.io/2021/09/22/day29/</id>
     <published>2021-09-22T05:43:24.000Z</published>
-    <updated>2022-01-02T02:31:31.117Z</updated>
+    <updated>2022-01-02T10:06:17.288Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;xss漏洞&quot;&gt;&lt;a href=&quot;#xss漏洞&quot; class=&quot;headerlink&quot; title=&quot;xss漏洞&quot;&gt;&lt;/a&gt;xss漏洞&lt;/h1&gt;</summary>
@@ -196,7 +219,7 @@
     <link href="http://0x00xiaoshak.github.io/2021/09/19/day28/"/>
     <id>http://0x00xiaoshak.github.io/2021/09/19/day28/</id>
     <published>2021-09-19T07:01:58.000Z</published>
-    <updated>2022-01-02T02:30:54.522Z</updated>
+    <updated>2022-01-02T10:01:15.404Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;文件上传漏洞&quot;&gt;&lt;a href=&quot;#文件上传漏洞&quot; class=&quot;headerlink&quot; title=&quot;文件上传漏洞&quot;&gt;&lt;/a&gt;文件上传漏洞&lt;/h1&gt;</summary>
@@ -255,7 +278,7 @@
     <link href="http://0x00xiaoshak.github.io/2021/08/05/60-zhi-day23/"/>
     <id>http://0x00xiaoshak.github.io/2021/08/05/60-zhi-day23/</id>
     <published>2021-08-05T03:15:38.000Z</published>
-    <updated>2022-01-02T02:25:51.457Z</updated>
+    <updated>2022-01-02T09:56:04.474Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;web安全漏洞与利用&quot;&gt;&lt;a href=&quot;#web安全漏洞与利用&quot; class=&quot;headerlink&quot; title=&quot;web安全漏洞与利用&quot;&gt;&lt;/a&gt;web安全漏洞与利用&lt;/h1&gt;&lt;p&gt;由于之前已经通关sqli-labs，所以这次写sql注入重点写思路、原理、概念，或者说是靶场所覆盖不了的细节方面。&lt;/p&gt;</summary>
@@ -379,25 +402,6 @@
     
     
     <summary type="html">&lt;h1 id=&quot;信息搜集&quot;&gt;&lt;a href=&quot;#信息搜集&quot; class=&quot;headerlink&quot; title=&quot;信息搜集&quot;&gt;&lt;/a&gt;信息搜集&lt;/h1&gt;</summary>
-    
-    
-    
-    <category term="信息搜集" scheme="http://0x00xiaoshak.github.io/categories/%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/"/>
-    
-    
-    <category term="信息搜集" scheme="http://0x00xiaoshak.github.io/tags/%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>信息搜集</title>
-    <link href="http://0x00xiaoshak.github.io/2021/07/20/60-zhi-day16/"/>
-    <id>http://0x00xiaoshak.github.io/2021/07/20/60-zhi-day16/</id>
-    <published>2021-07-20T03:48:05.000Z</published>
-    <updated>2022-01-02T02:20:33.653Z</updated>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;信息搜集篇&quot;&gt;&lt;a href=&quot;#信息搜集篇&quot; class=&quot;headerlink&quot; title=&quot;信息搜集篇&quot;&gt;&lt;/a&gt;信息搜集篇&lt;/h1&gt;</summary>
     
     
     
