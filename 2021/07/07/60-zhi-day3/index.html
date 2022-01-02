@@ -5,9 +5,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="60之day3, 晓莎K&#39;s blog">
-    <meta name="description" content="JavaScript基础+htmldivcss博客编写
+    <meta name="description" content="htmldivcss博客编写
 
-JavaScript基础js操作DOMDOM(document object model)文档对象模型，是针对HTML和XML的一个API(应用程序接口)。DOM给我们描述了一个具有">
+博客网站设计和导航栏编写在之前已经学习了html、div、css的基础知识，我们现在来做一个博客，找一个例子来模仿出来，如下这个例子
+
+博客网站布局设计和导航栏的编写我们观察此博客，发现它分为3大部分，第一部">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -435,10 +437,6 @@ JavaScript基础js操作DOMDOM(document object model)文档对象模型，是针
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/javascript/">
-                                <span class="chip bg-color">javascript</span>
-                            </a>
-                        
                             <a href="/tags/htmldivcss/">
                                 <span class="chip bg-color">htmldivcss</span>
                             </a>
@@ -451,12 +449,8 @@ JavaScript基础js操作DOMDOM(document object model)文档对象模型，是针
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/javascript/" class="post-category">
-                                javascript
-                            </a>
-                        
-                            <a href="/categories/javascript/htmldivcss%E5%8D%9A%E5%AE%A2%E7%BC%96%E5%86%99/" class="post-category">
-                                htmldivcss博客编写
+                            <a href="/categories/%E5%8D%9A%E5%AE%A2%E7%BC%96%E5%86%99/" class="post-category">
+                                博客编写
                             </a>
                         
                     </div>
@@ -477,14 +471,14 @@ JavaScript基础js操作DOMDOM(document object model)文档对象模型，是针
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1k
+                    707
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    2 分
                 </div>
                 
 
@@ -502,98 +496,11 @@ JavaScript基础js操作DOMDOM(document object model)文档对象模型，是针
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="JavaScript基础-htmldivcss博客编写"><a href="#JavaScript基础-htmldivcss博客编写" class="headerlink" title="JavaScript基础+htmldivcss博客编写"></a>JavaScript基础+htmldivcss博客编写</h1><span id="more"></span>
+                <h1 id="htmldivcss博客编写"><a href="#htmldivcss博客编写" class="headerlink" title="htmldivcss博客编写"></a>htmldivcss博客编写</h1><span id="more"></span>
 
-<h2 id="JavaScript基础"><a href="#JavaScript基础" class="headerlink" title="JavaScript基础"></a>JavaScript基础</h2><h3 id="js操作DOM"><a href="#js操作DOM" class="headerlink" title="js操作DOM"></a>js操作DOM</h3><p>DOM(document object model)文档对象模型，是针对HTML和XML的一个API(应用程序接口)。DOM给我们描述了一个具有层次化特点的节点树，允许开发人员增删改查页面的某些部分。</p>
-<p><img src="/2021/07/07/60-zhi-day3/image-20210707130345256.png" alt="image-20210707130345256"></p>
-<ul>
-<li>JavaScript 能够改变页面中的所有 HTML 元素</li>
-<li>JavaScript 能够改变页面中的所有 HTML 属性</li>
-<li>JavaScript 能够改变页面中的所有 CSS 样式</li>
-<li>JavaScript 能够对页面中的所有事件做出反应</li>
-</ul>
-<h3 id="DOM查找元素"><a href="#DOM查找元素" class="headerlink" title="DOM查找元素"></a>DOM查找元素</h3><p>document获取节点的基本方法</p>
-<ul>
-<li>document.getElementById(‘id’);  //通过id来获取元素,返回指定的唯一元素。</li>
-<li>document.getElementsByName(“name”); //通过name来获取元素，返回name=’name’的集合。</li>
-<li>.document.getElementsByClassName(“classname”)  //用classname来获取元素，返回的是一个class=”classname”的集合(不兼容IE8及以下)。</li>
-<li>document.getElementsByTagName(‘div’); //用元素的标签获取元素，返回所有标签=“div”的集合。</li>
-</ul>
-<h4 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h4><p><strong>直接查找：</strong></p>
-<p>var obj = document.getElementById(‘id’);</p>
-<p><strong>间接查找：</strong></p>
-<p>文件内容操作：</p>
-<p>innerText 仅文本</p>
-<p>innerHTML 全内容</p>
-<p>value：</p>
-<p>input value 获取当前的值</p>
-<p>select 获取选中的value的值 document.getElementById(‘s1’).selectedIndex=1</p>
-<p>Textarea 获取value的值</p>
-<h4 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h4><p><strong>样式操作：</strong></p>
-<p>className 列出样式 字符串</p>
-<p>classList 列出样式 返回数组</p>
-<p>​    classList.add 增加样式</p>
-<p>​    classList.remove 删除样式</p>
-<p>div class=’c1 c2’ styple=’font-size:16px’&gt;/div&gt;</p>
-<p>obj.style.fontSize=’16px’;</p>
-<p><strong>属性操作：</strong></p>
-<p>获取属性：getAttribute() </p>
-<p>添加属性：setAttribute(‘xxx’,’alexe’)</p>
-<p>删除属性：removeAttribute(value)</p>
-<h3 id="创建标签并添加到html中"><a href="#创建标签并添加到html中" class="headerlink" title="创建标签并添加到html中"></a>创建标签并添加到html中</h3><h4 id="第一种方式-字符串方式"><a href="#第一种方式-字符串方式" class="headerlink" title="第一种方式 字符串方式"></a>第一种方式 字符串方式</h4><p>insertAdjacentHTML()</p>
-<p>四种值可用：</p>
-<ul>
-<li>beforeBegin: 插入到标签开始前</li>
-<li>afterBegin:插入到标签开始标记之后</li>
-<li>beforeEnd:插入到标签结束标记前</li>
-<li>afterEnd:插入到标签结束标记后</li>
-</ul>
-<p><img src="/2021/07/07/60-zhi-day3/image-20210707131708654.png" alt="image-20210707131708654"></p>
-<p><img src="/2021/07/07/60-zhi-day3/image-20210707131603620.png" alt="image-20210707131603620"></p>
-<h4 id="第二种方式-对象的方式"><a href="#第二种方式-对象的方式" class="headerlink" title="第二种方式 对象的方式"></a>第二种方式 对象的方式</h4><p>document.createElement</p>
-<p><img src="/2021/07/07/60-zhi-day3/image-20210707131456693.png" alt="image-20210707131456693"></p>
-<p><img src="/2021/07/07/60-zhi-day3/image-20210707131503878.png" alt="image-20210707131503878"></p>
-<h3 id="提交表单"><a href="#提交表单" class="headerlink" title="提交表单"></a>提交表单</h3><p>任何标签都能通过DOM提交</p>
-<p>getElementById(‘id’).submit()</p>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>console.log 终端输出</p>
-<p>alert 弹出框</p>
-<p>confirm 确认框 标题 true false</p>
-<p>url和刷新</p>
-<p>location.href  获取url</p>
-<p>location.href =’url’ 重定向</p>
-<p>location.reload() 重新加载</p>
-<h3 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h3><p>setInterval()</p>
-<p>clearInterval()</p>
-<p><img src="/2021/07/07/60-zhi-day3/image-20210707131922787.png" alt="image-20210707131922787"></p>
-<p><img src="/2021/07/07/60-zhi-day3/image-20210707131934995.png" alt="image-20210707131934995"></p>
-<p>时间一直变化 点击停止后停止</p>
-<p>只执行一次</p>
-<p>setTimeout()</p>
-<p>clearTimeout()</p>
-<p><img src="/2021/07/07/60-zhi-day3/image-20210707132155723.png" alt="image-20210707132155723"></p>
-<p><img src="/2021/07/07/60-zhi-day3/image-20210707132204884.png" alt="image-20210707132204884"></p>
-<p>点击删除后显示已删除，5s后还原</p>
-<p><img src="/2021/07/07/60-zhi-day3/image-20210707132231316.png" alt="image-20210707132231316"></p>
-<h3 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h3><p>绑定事件两种方式：</p>
-<ol>
-<li><p> 直接标签绑定 onclick=’’，将事件写在标签里</p>
-</li>
-<li><p>先获取dom对象，然后进行绑定</p>
-<p>document.getElementById(‘xxx’).onclick()</p>
-</li>
-</ol>
-<h3 id="js应用之走马灯"><a href="#js应用之走马灯" class="headerlink" title="js应用之走马灯"></a>js应用之走马灯</h3><p><img src="/2021/07/07/60-zhi-day3/image-20210707132520494.png" alt="image-20210707132520494"></p>
-<p><img src="/2021/07/07/60-zhi-day3/image-20210707132544678.png" alt="image-20210707132544678"></p>
-<p>做到了字体跑起来的效果</p>
-<h3 id="js应用之搜索框"><a href="#js应用之搜索框" class="headerlink" title="js应用之搜索框"></a>js应用之搜索框</h3><p><img src="/2021/07/07/60-zhi-day3/image-20210707132640467.png" alt="image-20210707132640467"></p>
-<p><img src="/2021/07/07/60-zhi-day3/image-20210707132651534.png" alt="image-20210707132651534"></p>
-<p>鼠标点击输入区域后，提示输入消失</p>
-<p><img src="/2021/07/07/60-zhi-day3/image-20210707132706911.png" alt="image-20210707132706911"></p>
-<p>鼠标失去焦点后，提示输入再次出现</p>
-<p><img src="/2021/07/07/60-zhi-day3/image-20210707132804956.png" alt="image-20210707132804956"></p>
-<h2 id="HTMLDIV-CSS基础项目-博客网站设计和导航栏编写"><a href="#HTMLDIV-CSS基础项目-博客网站设计和导航栏编写" class="headerlink" title="HTMLDIV CSS基础项目-博客网站设计和导航栏编写"></a>HTMLDIV CSS基础项目-博客网站设计和导航栏编写</h2><p>在之前已经学习了html、div、css的基础知识，我们现在来做一个博客，找一个例子来模仿出来，如下这个例子</p>
+<h2 id="博客网站设计和导航栏编写"><a href="#博客网站设计和导航栏编写" class="headerlink" title="博客网站设计和导航栏编写"></a>博客网站设计和导航栏编写</h2><p>在之前已经学习了html、div、css的基础知识，我们现在来做一个博客，找一个例子来模仿出来，如下这个例子</p>
 <p><img src="/2021/07/07/60-zhi-day3/image-20210708140457325.png" alt="image-20210708140457325"></p>
-<h3 id="博客网站布局设计和导航栏的编写"><a href="#博客网站布局设计和导航栏的编写" class="headerlink" title="博客网站布局设计和导航栏的编写"></a>博客网站布局设计和导航栏的编写</h3><p>我们观察此博客，发现它分为3大部分，第一部分为导航栏headr；第二部分为中间主体main，main中又分为左(main-left)右(main-right)俩个部分；最后是底部footer部分。</p>
+<h2 id="博客网站布局设计和导航栏的编写"><a href="#博客网站布局设计和导航栏的编写" class="headerlink" title="博客网站布局设计和导航栏的编写"></a>博客网站布局设计和导航栏的编写</h2><p>我们观察此博客，发现它分为3大部分，第一部分为导航栏headr；第二部分为中间主体main，main中又分为左(main-left)右(main-right)俩个部分；最后是底部footer部分。</p>
 <p>这样我们首先需要5个div</p>
 <p><img src="/2021/07/07/60-zhi-day3/image-20210708140928651.png" alt="image-20210708140928651"></p>
 <p>我们进行导航栏的编写，即header的编写：</p>
@@ -607,7 +514,7 @@ JavaScript基础js操作DOMDOM(document object model)文档对象模型，是针
 <p><img src="/2021/07/07/60-zhi-day3/image-20210708141427409.png" alt="image-20210708141427409"></p>
 <p><img src="/2021/07/07/60-zhi-day3/image-20210708141432371.png" alt="image-20210708141432371"></p>
 <p>我们让他们左浮动即可横向排列，在加亿点细节即可。</p>
-<h3 id="博客网站主体左边的制作"><a href="#博客网站主体左边的制作" class="headerlink" title="博客网站主体左边的制作"></a>博客网站主体左边的制作</h3><p><img src="/2021/07/07/60-zhi-day3/image-20210708141856473.png" alt="image-20210708141856473"></p>
+<h2 id="博客网站主体左边的制作"><a href="#博客网站主体左边的制作" class="headerlink" title="博客网站主体左边的制作"></a>博客网站主体左边的制作</h2><p><img src="/2021/07/07/60-zhi-day3/image-20210708141856473.png" alt="image-20210708141856473"></p>
 <p>最底部还存在一个 <strong>点击查看更多</strong></p>
 <p><img src="/2021/07/07/60-zhi-day3/image-20210708142029386.png" alt="image-20210708142029386"></p>
 <p>我们观察网站主体的左边，将之分为若干个div即可，分别为一个main-lfet，一个最新文章a1，若干个article，一个更多文章a3。如下：</p>
@@ -618,6 +525,29 @@ JavaScript基础js操作DOMDOM(document object model)文档对象模型，是针
 <p>最后我们再进行样式表的设计即可，需亿点细节</p>
 <p><img src="/2021/07/07/60-zhi-day3/image-20210708142711111.png" alt="image-20210708142711111"></p>
 <p><img src="/2021/07/07/60-zhi-day3/image-20210708142732562.png" alt="image-20210708142732562"></p>
+<h2 id="博客网站主体右边main-right制作"><a href="#博客网站主体右边main-right制作" class="headerlink" title="博客网站主体右边main-right制作"></a>博客网站主体右边main-right制作</h2><p>我们观察主体右边部分，先是四个div，近期文章、文档归档、俩个imgdiv，其中近期文章与归档类似，俩个img在div里挂上src即可</p>
+<p><img src="/2021/07/07/60-zhi-day3/image-20210708174340558.png" alt="image-20210708174340558"></p>
+<p><img src="/2021/07/07/60-zhi-day3/image-20210708174434806.png" alt="image-20210708174434806"></p>
+<p>接下来设计代码如下</p>
+<p><img src="/2021/07/07/60-zhi-day3/image-20210708174749717.png" alt="image-20210708174749717"></p>
+<p>近期文章div里是，一个近期文章，下是无序列表</p>
+<p>关于他们的样式表如下</p>
+<p><img src="/2021/07/07/60-zhi-day3/image-20210708174942890.png" alt="image-20210708174942890"></p>
+<p><img src="/2021/07/07/60-zhi-day3/image-20210708174954976.png" alt="image-20210708174954976"></p>
+<h2 id="博客网站主体底部footer的制作"><a href="#博客网站主体底部footer的制作" class="headerlink" title="博客网站主体底部footer的制作"></a>博客网站主体底部footer的制作</h2><p>我们观察博客</p>
+<p><img src="/2021/07/07/60-zhi-day3/image-20210708175135144.png" alt="image-20210708175135144"></p>
+<p>上有四个4标签，鼠标滑过高亮；下一段文字，某些为a标签，滑过高亮</p>
+<p>所以我们设计上面四个div a标签，下面一个p&gt;中间包含a标签即可，如下</p>
+<p><img src="/2021/07/07/60-zhi-day3/image-20210708175408201.png" alt="image-20210708175408201"></p>
+<p>样式表如下</p>
+<p><img src="/2021/07/07/60-zhi-day3/image-20210708175431595.png" alt="image-20210708175431595"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>至此设计出一个简单的博客，这个过程中，发现设计博客真的是一个很耗费耐心的一件事，需要注意很多细节，不断地调试。</p>
+<p>通过这次博客的设计，自己对html、div、css也是有了一个基本的应用，巩固所学吧</p>
+<p>开发成果如下</p>
+<p>红队技术、文章题目、近期文章中的文章题目、归档日期做了高亮</p>
+<p><img src="/2021/07/07/60-zhi-day3/image-20210708175659287.png" alt="image-20210708175659287"></p>
+<p>底部某些做了高亮</p>
+<p><img src="/2021/07/07/60-zhi-day3/image-20210708175744095.png" alt="image-20210708175744095"></p>
 
                 
             </div>
@@ -681,10 +611,6 @@ JavaScript基础js操作DOMDOM(document object model)文档对象模型，是针
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/javascript/">
-                                    <span class="chip bg-color">javascript</span>
-                                </a>
                             
                                 <a href="/tags/htmldivcss/">
                                     <span class="chip bg-color">htmldivcss</span>
@@ -1007,15 +933,15 @@ JavaScript基础js操作DOMDOM(document object model)文档对象模型，是针
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="60之day4">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="php基础">
                         
-                        <span class="card-title">60之day4</span>
+                        <span class="card-title">php基础</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            htmldivcss博客编写、php基础
+                            php基础
                         
                     </div>
                     <div class="publish-info">
@@ -1026,12 +952,8 @@ JavaScript基础js操作DOMDOM(document object model)文档对象模型，是针
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/htmldivcss/" class="post-category">
-                                    htmldivcss
-                                </a>
-                            
-                            <a href="/categories/htmldivcss/php/" class="post-category">
-                                    php
+                            <a href="/categories/%E8%AF%AD%E8%A8%80/" class="post-category">
+                                    语言
                                 </a>
                             
                             
@@ -1040,10 +962,6 @@ JavaScript基础js操作DOMDOM(document object model)文档对象模型，是针
                 </div>
                 
                 <div class="card-action article-tags">
-                    
-                    <a href="/tags/htmldivcss/">
-                        <span class="chip bg-color">htmldivcss</span>
-                    </a>
                     
                     <a href="/tags/php/">
                         <span class="chip bg-color">php</span>
@@ -1064,15 +982,15 @@ JavaScript基础js操作DOMDOM(document object model)文档对象模型，是针
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="60之day2">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="JavaScript">
                         
-                        <span class="card-title">60之day2</span>
+                        <span class="card-title">JavaScript</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            divcss基础、JavaScript基础
+                            JavaScript基础
                         
                     </div>
                     <div class="publish-info">
@@ -1083,12 +1001,8 @@ JavaScript基础js操作DOMDOM(document object model)文档对象模型，是针
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/divcss/" class="post-category">
-                                    divcss
-                                </a>
-                            
-                            <a href="/categories/divcss/javascript/" class="post-category">
-                                    javascript
+                            <a href="/categories/%E8%AF%AD%E8%A8%80/" class="post-category">
+                                    语言
                                 </a>
                             
                             
@@ -1097,10 +1011,6 @@ JavaScript基础js操作DOMDOM(document object model)文档对象模型，是针
                 </div>
                 
                 <div class="card-action article-tags">
-                    
-                    <a href="/tags/divcss/">
-                        <span class="chip bg-color">divcss</span>
-                    </a>
                     
                     <a href="/tags/javascript/">
                         <span class="chip bg-color">javascript</span>
@@ -1299,7 +1209,7 @@ JavaScript基础js操作DOMDOM(document object model)文档对象模型，是针
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2021</span>
+                <span id="year">2021-2022</span>
             
             <a href="/about" target="_blank">晓莎K</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
@@ -1307,7 +1217,7 @@ JavaScript基础js操作DOMDOM(document object model)文档对象模型，是针
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">172.5k</span>
+                        class="white-color">173.5k</span>
             
             
             
