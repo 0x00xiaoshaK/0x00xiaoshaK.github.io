@@ -6,7 +6,7 @@
   <link href="http://0x00xiaoshak.github.io/atom.xml" rel="self"/>
   
   <link href="http://0x00xiaoshak.github.io/"/>
-  <updated>2022-01-02T13:08:58.204Z</updated>
+  <updated>2022-03-06T07:45:02.857Z</updated>
   <id>http://0x00xiaoshak.github.io/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>day38</title>
+    <link href="http://0x00xiaoshak.github.io/2022/03/04/day38/"/>
+    <id>http://0x00xiaoshak.github.io/2022/03/04/day38/</id>
+    <published>2022-03-04T03:31:41.000Z</published>
+    <updated>2022-03-06T07:45:02.857Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;linux提权&quot;&gt;&lt;a href=&quot;#linux提权&quot; class=&quot;headerlink&quot; title=&quot;linux提权&quot;&gt;&lt;/a&gt;linux提权&lt;/h1&gt;&lt;p&gt;kali命令参考60之day13&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="提权" scheme="http://0x00xiaoshak.github.io/categories/%E6%8F%90%E6%9D%83/"/>
+    
+    
+    <category term="linux提权" scheme="http://0x00xiaoshak.github.io/tags/linux%E6%8F%90%E6%9D%83/"/>
+    
+  </entry>
   
   <entry>
     <title>csrfssrf</title>
@@ -390,25 +409,6 @@
     
     
     <category term="部署CDN网站找真实ip" scheme="http://0x00xiaoshak.github.io/tags/%E9%83%A8%E7%BD%B2CDN%E7%BD%91%E7%AB%99%E6%89%BE%E7%9C%9F%E5%AE%9Eip/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>信息搜集</title>
-    <link href="http://0x00xiaoshak.github.io/2021/07/21/60-zhi-day17/"/>
-    <id>http://0x00xiaoshak.github.io/2021/07/21/60-zhi-day17/</id>
-    <published>2021-07-21T07:25:02.000Z</published>
-    <updated>2022-01-02T02:20:45.141Z</updated>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;信息搜集&quot;&gt;&lt;a href=&quot;#信息搜集&quot; class=&quot;headerlink&quot; title=&quot;信息搜集&quot;&gt;&lt;/a&gt;信息搜集&lt;/h1&gt;</summary>
-    
-    
-    
-    <category term="信息搜集" scheme="http://0x00xiaoshak.github.io/categories/%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/"/>
-    
-    
-    <category term="信息搜集" scheme="http://0x00xiaoshak.github.io/tags/%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/"/>
     
   </entry>
   
