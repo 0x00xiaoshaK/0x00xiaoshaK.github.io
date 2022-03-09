@@ -723,8 +723,8 @@ searchsploit -s Linux Kernel 3.13.0<span aria-hidden="true" class="line-numbers-
 <p><strong>chmod +x 赋予执行权限</strong></p>
 <p><strong>./exp执行提权</strong></p>
 <p>大概思路如上</p>
-<h2 id="suid提权"><a href="#suid提权" class="headerlink" title="suid提权"></a>suid提权</h2><p>SUID是赋予文件的一种权限，它出现在文件拥有者权限的执行位上，具有这种权限的文件会在其执行时让调用者暂时获得该文件拥有者的权限。</p>
-<p>也就是如果ROOT用户给某个可执行文件加了S权限，那么该执行程序运行的时候将拥有ROOT权限。</p>
+<h2 id="suid提权"><a href="#suid提权" class="headerlink" title="suid提权"></a>suid提权</h2><p>SUID是赋予文件的一种权限，它出现在文件拥有者权限的执行位上，此权限下执行时让调用者暂时获得该文件拥有者的权限。</p>
+<p>简而言之，如果ROOT用户给某个可执行文件加了S权限，那么该执行程序运行的时候将拥有ROOT权限。</p>
 <p>查找所有suid可执行文件的命令</p>
 <pre class="line-numbers language-none"><code class="language-none">find / -perm -u=s -type f 2&gt;/dev/null 
 
@@ -1360,48 +1360,46 @@ execve("/bin/sh",NULL,NULL);
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/03/04/day38/">
+                <a href="/2022/03/07/day39/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="day38">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="day39">
                         
-                        <span class="card-title">day38</span>
+                        <span class="card-title">day39</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            linux提权kali命令参考60之day13
+                            windows权限维持
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-04
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-07
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%8F%90%E6%9D%83/" class="post-category">
-                                    提权
+                            <a href="/categories/%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81/" class="post-category">
+                                    权限维持
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/linux%E6%8F%90%E6%9D%83/">
-                        <span class="chip bg-color">linux提权</span>
+                    <a href="/tags/%E6%9D%83%E9%99%90%E7%BB%B4%E6%8C%81/">
+                        <span class="chip bg-color">权限维持</span>
                     </a>
                     
                 </div>
@@ -1662,7 +1660,7 @@ execve("/bin/sh",NULL,NULL);
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">186.4k</span>
+                        class="white-color">191.2k</span>
             
             
             
