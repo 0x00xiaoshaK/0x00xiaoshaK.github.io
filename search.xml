@@ -4,7 +4,26 @@
   
     
     <entry>
-      <title>day39</title>
+      <title>day40</title>
+      <link href="/2022/03/09/day40/"/>
+      <url>/2022/03/09/day40/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 内网 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>windows权限维持</title>
       <link href="/2022/03/07/day39/"/>
       <url>/2022/03/07/day39/</url>
       
@@ -29,7 +48,7 @@
     
     
     <entry>
-      <title>day38</title>
+      <title>linux提权</title>
       <link href="/2022/03/04/day38/"/>
       <url>/2022/03/04/day38/</url>
       

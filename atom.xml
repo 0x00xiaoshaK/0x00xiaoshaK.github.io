@@ -6,7 +6,7 @@
   <link href="http://0x00xiaoshak.github.io/atom.xml" rel="self"/>
   
   <link href="http://0x00xiaoshak.github.io/"/>
-  <updated>2022-03-09T07:07:48.832Z</updated>
+  <updated>2022-03-09T07:10:45.055Z</updated>
   <id>http://0x00xiaoshak.github.io/</id>
   
   <author>
@@ -17,11 +17,26 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>day39</title>
+    <title>day40</title>
+    <link href="http://0x00xiaoshak.github.io/2022/03/09/day40/"/>
+    <id>http://0x00xiaoshak.github.io/2022/03/09/day40/</id>
+    <published>2022-03-09T07:10:31.000Z</published>
+    <updated>2022-03-09T07:10:45.055Z</updated>
+    
+    
+    
+    
+    <category term="内网" scheme="http://0x00xiaoshak.github.io/categories/%E5%86%85%E7%BD%91/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>windows权限维持</title>
     <link href="http://0x00xiaoshak.github.io/2022/03/07/day39/"/>
     <id>http://0x00xiaoshak.github.io/2022/03/07/day39/</id>
     <published>2022-03-07T04:17:54.000Z</published>
-    <updated>2022-03-09T07:07:48.832Z</updated>
+    <updated>2022-03-10T05:00:21.577Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;windows权限维持&quot;&gt;&lt;a href=&quot;#windows权限维持&quot; class=&quot;headerlink&quot; title=&quot;windows权限维持&quot;&gt;&lt;/a&gt;windows权限维持&lt;/h1&gt;</summary>
@@ -36,11 +51,11 @@
   </entry>
   
   <entry>
-    <title>day38</title>
+    <title>linux提权</title>
     <link href="http://0x00xiaoshak.github.io/2022/03/04/day38/"/>
     <id>http://0x00xiaoshak.github.io/2022/03/04/day38/</id>
     <published>2022-03-04T03:31:41.000Z</published>
-    <updated>2022-03-08T06:53:53.729Z</updated>
+    <updated>2022-03-10T05:00:16.807Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;linux提权&quot;&gt;&lt;a href=&quot;#linux提权&quot; class=&quot;headerlink&quot; title=&quot;linux提权&quot;&gt;&lt;/a&gt;linux提权&lt;/h1&gt;&lt;p&gt;kali命令参考60之day13&lt;/p&gt;</summary>
@@ -386,29 +401,6 @@
     
     
     <category term="穷举" scheme="http://0x00xiaoshak.github.io/tags/%E7%A9%B7%E4%B8%BE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>goby&amp;docker&amp;灯塔</title>
-    <link href="http://0x00xiaoshak.github.io/2021/07/27/60-zhi-day19/"/>
-    <id>http://0x00xiaoshak.github.io/2021/07/27/60-zhi-day19/</id>
-    <published>2021-07-27T02:20:46.000Z</published>
-    <updated>2022-01-02T02:22:04.539Z</updated>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;信息搜集&quot;&gt;&lt;a href=&quot;#信息搜集&quot; class=&quot;headerlink&quot; title=&quot;信息搜集&quot;&gt;&lt;/a&gt;信息搜集&lt;/h1&gt;</summary>
-    
-    
-    
-    <category term="信息搜集" scheme="http://0x00xiaoshak.github.io/categories/%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/"/>
-    
-    
-    <category term="goby" scheme="http://0x00xiaoshak.github.io/tags/goby/"/>
-    
-    <category term="docker" scheme="http://0x00xiaoshak.github.io/tags/docker/"/>
-    
-    <category term="灯塔" scheme="http://0x00xiaoshak.github.io/tags/%E7%81%AF%E5%A1%94/"/>
     
   </entry>
   
