@@ -1099,7 +1099,7 @@ kerberos:: ptt 票据地址 #将票据注入内存<span aria-hidden="true" class
 <p><strong>mimikatz伪造票据</strong></p>
 <p>进入普通域用户</p>
 <blockquote>
-<p>kerberos::golden /domain:&lt;域名&gt; /sid:&lt;域 SID&gt; /target:&lt;目标服务器主机名&gt;/service:&lt;服务类型&gt; /rc4:<ntlm hash> /user:&lt;用户名&gt; /ptt</ntlm></p>
+<p>kerberos::golden /domain:&lt;域名&gt; /sid:&lt;域 SID&gt; /target:&lt;目标服务器主机名&gt;/service:&lt;服务类型&gt; /rc4:<ntlm hash=""> /user:&lt;用户名&gt; /ptt</ntlm></p>
 <p>用户名任意，使用的服务可以从下面选择</p>
 </blockquote>
 <p><img src="/2022/03/09/day40/image-20220322160632683.png" alt="image-20220322160632683"></p>
@@ -1514,62 +1514,36 @@ tgt::ask /user:administrator /domain:moonsec.fbi /ntlm:42e2656ec24331269f82160ff
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/03/09/day40/">
+                <a href="/2022/03/22/day41/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="内网渗透">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="委派攻击">
                         
-                        <span class="card-title">内网渗透</span>
+                        <span class="card-title">委派攻击</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            内网渗透
+                            域渗透
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-09
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-22
+                        </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E5%86%85%E7%BD%91/" class="post-category">
-                                    内网
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            晓莎K
                             
                         </span>
                     </div>
-                </div>
-
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E5%86%85%E7%BD%91%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%8F%8A%E5%91%BD%E4%BB%A4/">
-                        <span class="chip bg-color">内网基础知识及命令</span>
-                    </a>
-                    
-                    <a href="/tags/%E4%B8%BB%E6%9C%BA%E5%8F%91%E7%8E%B0/">
-                        <span class="chip bg-color">主机发现</span>
-                    </a>
-                    
-                    <a href="/tags/token/">
-                        <span class="chip bg-color">token</span>
-                    </a>
-                    
-                    <a href="/tags/%E6%A8%AA%E5%90%91%E6%B8%97%E9%80%8F/">
-                        <span class="chip bg-color">横向渗透</span>
-                    </a>
-                    
                 </div>
                 
             </div>
@@ -1820,7 +1794,7 @@ tgt::ask /user:administrator /domain:moonsec.fbi /ntlm:42e2656ec24331269f82160ff
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">199.4k</span>
+                        class="white-color">202.5k</span>
             
             
             

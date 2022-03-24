@@ -6,7 +6,7 @@
   <link href="http://0x00xiaoshak.github.io/atom.xml" rel="self"/>
   
   <link href="http://0x00xiaoshak.github.io/"/>
-  <updated>2022-03-22T08:44:44.554Z</updated>
+  <updated>2022-03-24T08:45:23.178Z</updated>
   <id>http://0x00xiaoshak.github.io/</id>
   
   <author>
@@ -15,6 +15,21 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>委派攻击</title>
+    <link href="http://0x00xiaoshak.github.io/2022/03/22/day41/"/>
+    <id>http://0x00xiaoshak.github.io/2022/03/22/day41/</id>
+    <published>2022-03-22T08:55:15.000Z</published>
+    <updated>2022-03-24T08:45:23.178Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;域渗透&quot;&gt;&lt;a href=&quot;#域渗透&quot; class=&quot;headerlink&quot; title=&quot;域渗透&quot;&gt;&lt;/a&gt;域渗透&lt;/h1&gt;</summary>
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>内网渗透</title>
@@ -392,25 +407,6 @@
     <category term="cheetah" scheme="http://0x00xiaoshak.github.io/tags/cheetah/"/>
     
     <category term="hydra" scheme="http://0x00xiaoshak.github.io/tags/hydra/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>穷举</title>
-    <link href="http://0x00xiaoshak.github.io/2021/07/27/60-zhi-day20/"/>
-    <id>http://0x00xiaoshak.github.io/2021/07/27/60-zhi-day20/</id>
-    <published>2021-07-27T10:49:38.000Z</published>
-    <updated>2022-01-02T02:22:17.082Z</updated>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;穷举篇&quot;&gt;&lt;a href=&quot;#穷举篇&quot; class=&quot;headerlink&quot; title=&quot;穷举篇&quot;&gt;&lt;/a&gt;穷举篇&lt;/h1&gt;</summary>
-    
-    
-    
-    <category term="穷举篇" scheme="http://0x00xiaoshak.github.io/categories/%E7%A9%B7%E4%B8%BE%E7%AF%87/"/>
-    
-    
-    <category term="穷举" scheme="http://0x00xiaoshak.github.io/tags/%E7%A9%B7%E4%B8%BE/"/>
     
   </entry>
   
