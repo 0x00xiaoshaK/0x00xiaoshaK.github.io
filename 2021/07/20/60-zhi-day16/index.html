@@ -1,0 +1,1684 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="信息搜集, 晓莎K&#39;s blog">
+    <meta name="description" content="信息搜集篇
+
+简述
+渗透的本质是信息收集
+信息收集也叫做资产收集
+信息收集是渗透测试的前期主要工作，是非常重要的环节，收集足够多的信息才能方便接下来的测试。
+信息收集主要是收集网站的域名信息、子域名信息、目标网站信息、目标网站真实IP、敏感">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>信息搜集 | 晓莎K&#39;s blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="晓莎K's blog" type="application/atom+xml">
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">晓莎K&#39;s blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">晓莎K&#39;s blog</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/0x00xiaoshaK" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/0x00xiaoshaK" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">信息搜集</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+        background-color: rgb(255, 255, 255,0.7);
+        border-radius: 10px;
+        box-shadow: 0 10px 35px 2px rgba(0, 0, 0, .15), 0 5px 15px rgba(0, 0, 0, .07), 0 2px 5px -5px rgba(0, 0, 0, .1) !important;
+    }
+
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+    height: calc(100vh - 250px);
+    overflow: scroll;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/">
+                                <span class="chip bg-color">信息搜集</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/" class="post-category">
+                                信息搜集
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-07-20
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    3.8k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    14 分
+                </div>
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="信息搜集篇"><a href="#信息搜集篇" class="headerlink" title="信息搜集篇"></a>信息搜集篇</h1><span id="more"></span>
+
+<h2 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h2><blockquote>
+<p><strong>渗透的本质是信息收集</strong></p>
+<p>信息收集也叫做资产收集</p>
+<p>信息收集是渗透测试的前期主要工作，是非常重要的环节，收集足够多的信息才能方便接下来的测试。</p>
+<p>信息收集主要是收集网站的域名信息、子域名信息、目标网站信息、目标网站真实IP、敏感/目录文件、开放端口和中间件信息等等。通过各种渠道和手段尽可能收集到多的关于这个站点的信息，有助于我们更多的去找到渗透点，突破口。</p>
+</blockquote>
+<h2 id="信息搜集分类"><a href="#信息搜集分类" class="headerlink" title="信息搜集分类"></a>信息搜集分类</h2><ul>
+<li>服务器的相关信息（真实ip，系统类型，版本，开放端口，WAF等）</li>
+<li>网站指纹识别（包括，cms，cdn，证书等） dns记录</li>
+<li> whois信息，姓名，备案，邮箱，电话反查（邮箱丢社工库，社工准备等）</li>
+<li>子域名收集，旁站，C段等</li>
+<li>google hacking针对化搜索，word/电子表格/pdf文件，中间件版本，弱口令扫描等</li>
+<li>扫描网站目录结构，爆后台，网站banner，测试文件，备份等敏感文件泄漏等</li>
+<li>传输协议，通用漏洞，exp，github源码等</li>
+</ul>
+<h2 id="常见方法"><a href="#常见方法" class="headerlink" title="常见方法"></a>常见方法</h2><ol>
+<li><p>whois查询</p>
+<p>域名在注册的时候 需要填入个人或者企业信息 如果没有设置隐藏属性可以查询出来 </p>
+<p>通过备案号 查询个人或者企业信息 也可以whois反查注册人 邮箱 电话 机构 反查更多得域名和需要得信息。</p>
+</li>
+<li><p>收集子域名</p>
+<p>域名分为根域名和子域名</p>
+<p>moonsec.com 根域名 顶级域名</p>
+<p><a target="_blank" rel="noopener" href="http://www.moonsec.com子域名/">www.moonsec.com子域名</a> 也叫二级域名</p>
+<p><a target="_blank" rel="noopener" href="http://www.wiki.moonsec.com/">www.wiki.moonsec.com</a>  子域名 也叫三级域名 四级如此类推</p>
+</li>
+<li><p>端口扫描</p>
+<p>服务器需要开放服务，就必须开启端口，常见的端口是tcp 和udp两种类型 </p>
+<p>范围 0-65535 通过扫得到的端口，访问服务 规划下一步渗透。</p>
+</li>
+<li><p>查找真实ip</p>
+<p>企业的网站，为了提高访问速度，或者避免黑客攻击，用了cdn服务，用了cdn之后真实服务器ip会被隐藏。</p>
+</li>
+<li><p>探测旁站及C段</p>
+<p>旁站:一个服务器上有多个网站 通过ip查询服务器上的网站</p>
+<p>c段:查找同一个段 服务器上的网站。可以找到同样网站的类型和服务器，也可以获取同段服务器进行下一步渗透。</p>
+</li>
+<li><p>网络空间搜索引擎</p>
+<p>通过这些引擎查找网站或者服务器的信息，进行下一步渗透。</p>
+</li>
+<li><p>扫描敏感目录/文件</p>
+<p>通过扫描目录和文件，大致了解网站的结构，获取突破点，比如后台，文件备份，上传点。</p>
+</li>
+<li><p>指纹识别</p>
+<p>获取网站的版本，属于那些cms管理系统，查找漏洞exp，下载cms进行代码审计。</p>
+</li>
+</ol>
+<h2 id="在线whois查询"><a href="#在线whois查询" class="headerlink" title="在线whois查询"></a>在线whois查询</h2><p>通过whois来对域名信息进行查询，可以查到注册商、注册人、邮箱、DNS解析服务器、注册人联系电话等。</p>
+<p>因为有些网站信息查得到，有些网站信息查不到，所以推荐以下信息比较全的查询网站，直接输入目标站点即可查询到相关信息。</p>
+<blockquote>
+<p>站长之家域名WHOIS信息查询地址 <a target="_blank" rel="noopener" href="http://whois.chinaz.com/">http://whois.chinaz.com</a> </p>
+<p>爱站网域名WHOIS信息查询地址 <a target="_blank" rel="noopener" href="https://whois.aizhan.com/">https://whois.aizhan.com/</a></p>
+<p>腾讯云域名WHOIS信息查询地址 <a target="_blank" rel="noopener" href="https://whois.cloud.tencent.com/">https://whois.cloud.tencent.com/</a></p>
+<p>美橙互联域名WHOIS信息查询地址 <a target="_blank" rel="noopener" href="https://whois.cndns.com/">https://whois.cndns.com/</a></p>
+<p>爱名网域名WHOIS信息查询地址 <a target="_blank" rel="noopener" href="https://www.22.cn/domain/">https://www.22.cn/domain/</a></p>
+<p>易名网域名WHOIS信息查询地址 <a target="_blank" rel="noopener" href="https://whois.ename.net/">https://whois.ename.net/</a></p>
+<p>中国万网域名WHOIS信息查询地址 <a target="_blank" rel="noopener" href="https://whois.aliyun.com/">https://whois.aliyun.com/</a></p>
+<p>西部数码域名WHOIS信息查询地址 <a target="_blank" rel="noopener" href="https://whois.west.cn/">https://whois.west.cn/</a></p>
+<p>新网域名WHOIS信息查询地址 <a target="_blank" rel="noopener" href="http://whois.xinnet.com/domain/whois/index.jsp">http://whois.xinnet.com/domain/whois/index.jsp</a></p>
+<p>纳网域名WHOIS信息查询地址 <a target="_blank" rel="noopener" href="http://whois.nawang.cn/">http://whois.nawang.cn/</a></p>
+<p>中资源域名WHOIS信息查询地址 <a target="_blank" rel="noopener" href="https://www.zzy.cn/domain/whois.html">https://www.zzy.cn/domain/whois.html</a></p>
+<p>三五互联域名WHOIS信息查询地址 <a target="_blank" rel="noopener" href="https://cp.35.com/chinese/whois.php">https://cp.35.com/chinese/whois.php</a></p>
+<p>新网互联域名WHOIS信息查询地址 <a target="_blank" rel="noopener" href="http://www.dns.com.cn/show/domain/whois/index.do">http://www.dns.com.cn/show/domain/whois/index.do</a></p>
+<p>国外WHOIS信息查询地址 <a target="_blank" rel="noopener" href="https://who.is/">https://who.is/</a></p>
+</blockquote>
+<h2 id="在线查询网站备案"><a href="#在线查询网站备案" class="headerlink" title="在线查询网站备案"></a>在线查询网站备案</h2><p>网站备案信息是根据国家法律法规规定，由网站所有者向国家有关部门申请的备案。</p>
+<p>如果需要查询企业备案信息（单位名称、备案编号、网站负责人、电子邮箱、联系电话、法人等），推荐以下网站查询</p>
+<ul>
+<li>天眼查 <a target="_blank" rel="noopener" href="https://www.tianyancha.com/">https://www.tianyancha.com/</a></li>
+<li>ICP备案查询网<a target="_blank" rel="noopener" href="http://www.beianbeian.com/">http://www.beianbeian.com/</a></li>
+<li>爱站备案查询<a target="_blank" rel="noopener" href="https://icp.aizhan.com/">https://icp.aizhan.com/</a></li>
+<li>域名助手备案信息查询 <a target="_blank" rel="noopener" href="http://cha.fute.com/index">http://cha.fute.com/index</a></li>
+</ul>
+<h2 id="搜集子域名"><a href="#搜集子域名" class="headerlink" title="搜集子域名"></a>搜集子域名</h2><h3 id="子域名的作用"><a href="#子域名的作用" class="headerlink" title="子域名的作用"></a>子域名的作用</h3><p>搜集子域名可以扩大测试范围，同一域名下的二级域名都属于目标范围。</p>
+<h3 id="常用方式"><a href="#常用方式" class="headerlink" title="常用方式"></a>常用方式</h3><p>子域名中的常见资产类型一般包括办公系统，邮箱系统，论坛，商城，其他管理系统，网站管理后台也有可能出现子域名中。</p>
+<p>首先找到目标站点，在<strong>官网</strong>中可能会找到相关资产（多为办公系统，邮箱系统等），关注一下<strong>页面底部</strong>，也许有管理后台等收获。</p>
+<p>查找目标域名信息方法：</p>
+<ul>
+<li><p> FOFA title=”公司名称”</p>
+</li>
+<li><p>百度 intitle=公司名称</p>
+</li>
+<li><p>Google intitle=公司名称 </p>
+</li>
+<li><p>站长之家，直接搜索名称或者网站域名即可查看相关信息：</p>
+<p><a target="_blank" rel="noopener" href="http://tool.chinaz.com/">http://tool.chinaz.com/</a></p>
+</li>
+<li><p>钟馗之眼 site=域名即可</p>
+<p><a target="_blank" rel="noopener" href="https://www.zoomeye.org/">https://www.zoomeye.org/</a></p>
+</li>
+</ul>
+<p>找到官网后，再收集子域名</p>
+<h2 id="域名的类型"><a href="#域名的类型" class="headerlink" title="域名的类型"></a>域名的类型</h2><p>A记录、别名记录(CNAME)、MX记录、TXT记录、NS记录</p>
+<h3 id="A-Address-记录"><a href="#A-Address-记录" class="headerlink" title="A(Address)记录"></a>A(Address)记录</h3><p>是用来指定主机名（或域名）对应的IP地址记录。</p>
+<p>用户可以将该域名下的网站服务器指向到自己的web server上。同时也可以设置您域名的二级域名。</p>
+<h3 id="别名-CNAME-记录"><a href="#别名-CNAME-记录" class="headerlink" title="别名(CNAME)记录"></a>别名(CNAME)记录</h3><p>也被称为规范名字。</p>
+<p>这种记录允许您将多个名字映射到同一台计算机。通常用于同时提供WWW和MAIL服务的计算机。</p>
+<p>例如，有一台计算机名为“host.mydomain.com”（A记录）。它同时提供WWW和MAIL服务，为了便于用户访问服务。可以为该计算机设置两个别名（CNAME）：WWW和MAIL。这两个别名的全称就是“<a target="_blank" rel="noopener" href="http://www.mydomain.com”和“mail.mydomain.com”.实际上他们都指向“host.mydomain.com”./">www.mydomain.com”和“mail.mydomain.com”。实际上他们都指向“host.mydomain.com”。</a></p>
+<h4 id="如何检测CNAME记录"><a href="#如何检测CNAME记录" class="headerlink" title="如何检测CNAME记录"></a>如何检测CNAME记录</h4><ol>
+<li>进入命令状态；（开始菜单 - 运行 - CMD[回车]）；</li>
+<li>输入命令” nslookup -q=cname 这里填写对应的域名或二级域名”，查看返回的结果与设置的是否一致即可。 </li>
+</ol>
+<h3 id="MX-Mail-Exchanger-记录"><a href="#MX-Mail-Exchanger-记录" class="headerlink" title="MX(Mail Exchanger)记录"></a>MX(Mail Exchanger)记录</h3><p>是邮件交换记录，它指向一个邮件服务器。</p>
+<p>用于电子邮件系统发邮件时根据 收信人的地址后缀来定位邮件服务器。</p>
+<p>例如，当Internet上的某用户要发一封信给 <a href="mailto:user@mydomain.com">user@mydomain.com</a> 时，该用户的邮件系统通过DNS查找mydomain.com这个域名的MX记录，如果MX记录存在， 用户计算机就将邮件发送到MX记录所指定的邮件服务器上。</p>
+<h3 id="TXT记录"><a href="#TXT记录" class="headerlink" title="TXT记录"></a>TXT记录</h3><p>TXT记录一般指为某个主机名或域名设置的说明，如：</p>
+<ul>
+<li>admin IN TXT “jack, mobile:13800138000”；</li>
+<li>mail IN TXT “邮件主机, 存放在xxx ,管理人：AAA”，Jim IN TXT “contact: <a href="mailto:abc@mailserver.com">abc@mailserver.com</a>“</li>
+</ul>
+<p>也就是您可以设置 TXT ，以便使别人联系到您。</p>
+<h4 id="如何检测TXT记录"><a href="#如何检测TXT记录" class="headerlink" title="如何检测TXT记录"></a>如何检测TXT记录</h4><ol>
+<li>进入命令状态；（开始菜单 - 运行 - CMD[回车]）；</li>
+<li>输入命令” nslookup -q=txt 这里填写对应的域名或二级域名”，查看返回的结果与设置的是否一致即可。 </li>
+</ol>
+<h3 id="NS-Name-Server-记录"><a href="#NS-Name-Server-记录" class="headerlink" title="NS(Name Server)记录"></a>NS(Name Server)记录</h3><p>是一种域名服务器记录。</p>
+<p>用来明确当前你的域名是由哪个DNS服务器来进行解析的。</p>
+<h2 id="子域名在线查询"><a href="#子域名在线查询" class="headerlink" title="子域名在线查询"></a>子域名在线查询</h2><p><a target="_blank" rel="noopener" href="https://phpinfo.me/domain/">https://phpinfo.me/domain/</a></p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210720205320307.png" alt="image-20210720205320307"></p>
+<p><a target="_blank" rel="noopener" href="https://www.t1h2ua.cn/tools/">https://www.t1h2ua.cn/tools/</a></p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210720205421324.png" alt="image-20210720205421324"></p>
+<p><a target="_blank" rel="noopener" href="https://site.ip138.com/moonsec.com/domain.htm">https://site.ip138.com/moonsec.com/domain.htm</a></p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210720205627604.png" alt="image-20210720205627604"></p>
+<p><a target="_blank" rel="noopener" href="https://dnsdumpster.com/">https://dnsdumpster.com/</a></p>
+<p>挂梯子</p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210720205835428.png" alt="image-20210720205835428"></p>
+<p><a target="_blank" rel="noopener" href="https://fofa.so/">https://fofa.so/</a></p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210720205947152.png" alt="image-20210720205947152"></p>
+<p><a target="_blank" rel="noopener" href="https://hackertarget.com/find-dns-host-records/">https://hackertarget.com/find-dns-host-records/</a></p>
+<p>通过该方法查询子域名可以得到一个目标大概的ip段，接下来可以通过ip来收集信息。</p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210720210059558.png" alt="image-20210720210059558"></p>
+<h2 id="子域名挖掘工具"><a href="#子域名挖掘工具" class="headerlink" title="子域名挖掘工具"></a>子域名挖掘工具</h2><h3 id="layer子域名挖掘"><a href="#layer子域名挖掘" class="headerlink" title="layer子域名挖掘"></a>layer子域名挖掘</h3><p><img src="/2021/07/20/60-zhi-day16/image-20210721093529601.png" alt="image-20210721093529601"></p>
+<h3 id="SubDomainBute"><a href="#SubDomainBute" class="headerlink" title="SubDomainBute"></a>SubDomainBute</h3><p>12server中安装python环境</p>
+<pre class="line-numbers language-none"><code class="language-none">pip install aiodns<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721104820853.png" alt="image-20210721104820853"></p>
+<p>运行命令</p>
+<p>进入工具文件夹 cd</p>
+<p>subDomainsBrute.py freebuf.com  </p>
+<p>subDomainsBrute.py  freebuf.com –full -o freebuf2.txt</p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721104929931.png" alt="image-20210721104929931"></p>
+<h2 id="隐藏域名hosts碰撞"><a href="#隐藏域名hosts碰撞" class="headerlink" title="隐藏域名hosts碰撞"></a>隐藏域名hosts碰撞</h2><blockquote>
+<p>很多时候访问目标资产IP响应多为：401、403、404、500，但是用域名请求却能返回正常的业务系统（禁止IP直接访问），因为这大多数都是需要绑定host才能正常请求访问的 （目前互联网公司基本的做法）（域名删除了A记录，但是反代的配置未更新），那么我们就可以通过收集到的目标的 域名 和 目标资产 的IP段组合起来，以 IP段+域名 的形式进行捆绑碰撞，就能发现很多有意思的东西。</p>
+</blockquote>
+<p>在发送http请求的时候，对域名和IP列表进行配对，然后遍历发送请求 （就相当于修改了本地的hosts文件一样），并把相应的title和响应包大小拿回 来做对比，即可快速发现一些隐蔽的资产。</p>
+<p>进行hosts碰撞需要目标的域名和目标的相关IP作为字典</p>
+<p>目标域名历史解析IP：</p>
+<p><a target="_blank" rel="noopener" href="https://site.ip138.com/">https://site.ip138.com/</a></p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721110314191.png" alt="image-20210721110314191"></p>
+<p><a target="_blank" rel="noopener" href="https://ipchaxun.com/">https://ipchaxun.com/</a></p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721110306959.png" alt="image-20210721110306959"></p>
+<p>ip正则：</p>
+<p><a target="_blank" rel="noopener" href="https://www.aicesu.cn/reg/">https://www.aicesu.cn/reg/</a></p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721110322145.png" alt="image-20210721110322145"></p>
+<h3 id="工具host-scan-master"><a href="#工具host-scan-master" class="headerlink" title="工具host-scan-master"></a>工具host-scan-master</h3><p><img src="/2021/07/20/60-zhi-day16/image-20210727125808505.png" alt="image-20210727125808505"></p>
+<p>host填写域名</p>
+<p>ip填写ip</p>
+<p>host_ok返回正确匹配的值</p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210727125917590.png" alt="image-20210727125917590"></p>
+<p>我们之后再host_ok查看即可</p>
+<h2 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h2><p>当确定了目标大概的ip段后，可以先对ip的开放端口进行探测，一些特定服务可能开起在默认端口上，探测开放端口有利于快速收集目标资产，找到目标网站的其他功能站点。</p>
+<h3 id="渗透端口"><a href="#渗透端口" class="headerlink" title="渗透端口"></a>渗透端口</h3><blockquote>
+<p>21,22,23,1433,152,3306,3389,5432,5900,50070,50030,50000,27017,27018,11211,9200,9300,7001,7002,6379,5984,873,443,8000-9090,80-89,80,10000,8888,8649,8083,8080,8089,9090,7778,7001,7002,6082,5984,4440,3312,3311,3128,2601,2604,2222,2082,2083,389,88,512,513,514,1025,111,1521,445,135,139,53</p>
+</blockquote>
+<h3 id="masscan端口扫描"><a href="#masscan端口扫描" class="headerlink" title="masscan端口扫描"></a>masscan端口扫描</h3><p>masscan -p 1-65535 ip –rate=1000</p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721110721941.png" alt="image-20210721110721941"></p>
+<h3 id="御剑端口扫描工具"><a href="#御剑端口扫描工具" class="headerlink" title="御剑端口扫描工具"></a>御剑端口扫描工具</h3><p><img src="/2021/07/20/60-zhi-day16/image-20210721110918876.png" alt="image-20210721110918876"></p>
+<h3 id="nmap端口扫描和探测端口信息"><a href="#nmap端口扫描和探测端口信息" class="headerlink" title="nmap端口扫描和探测端口信息"></a>nmap端口扫描和探测端口信息</h3><p>常用参数，如：</p>
+<ul>
+<li>nmap -sV 192.168.0.2</li>
+<li>nmap -sT 92.168.0.2</li>
+<li>nmap -Pn -A -sC 192.168.0.2</li>
+<li>nmap -sU -sT -p0-65535 192.168.122.1</li>
+</ul>
+<p>用于扫描目标主机服务版本号与开放的端口</p>
+<p>如果需要扫描多个ip或ip段，可以将他们保存到一个txt文件中</p>
+<p>nmap -iL ip.txt</p>
+<p>来扫描列表中所有的ip。</p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721111153716.png" alt="image-20210721111153716"></p>
+<h3 id="在线端口检测"><a href="#在线端口检测" class="headerlink" title="在线端口检测"></a>在线端口检测</h3><p><a target="_blank" rel="noopener" href="http://coolaf.com/tool/port">http://coolaf.com/tool/port</a></p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721111250384.png" alt="image-20210721111250384"></p>
+<h2 id="旁站和c段"><a href="#旁站和c段" class="headerlink" title="旁站和c段"></a>旁站和c段</h2><p>旁站往往存在业务功能站点，建议先收集已有IP的旁站，再探测C段，确认C段目标后，再在C段的基础上再收集一次旁站。</p>
+<p>旁站是和已知目标站点在同一服务器但不同端口的站点，通过以下方法搜索到旁站后，先访问一下确定是不是自己需要的站点信息。</p>
+<h3 id="站长之家"><a href="#站长之家" class="headerlink" title="站长之家"></a>站长之家</h3><p>同ip网站查询<a target="_blank" rel="noopener" href="http://stool.chinaz.com/same">http://stool.chinaz.com/same</a></p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721111718764.png" alt="image-20210721111718764"></p>
+<p><a target="_blank" rel="noopener" href="https://chapangzhan.com/">https://chapangzhan.com/</a></p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721111725776.png" alt="image-20210721111725776"></p>
+<h3 id="google-hacking"><a href="#google-hacking" class="headerlink" title="google hacking"></a>google hacking</h3><p>Google Hacking 是利用谷歌搜索的强大，来在浩瀚的互联网中搜索到我们需要的信息。</p>
+<p><strong>轻量级</strong>的搜索可以搜素出一些遗留后门，不想被发现的后台入口，<strong>中量级</strong>的搜索出一些用户信息泄露，源代码泄露，未授权访问等等，<strong>重量级</strong>的则可能是mdb文件下载，CMS 未被锁定install页面，网站配置密码，php远程文件包含漏洞等重要信息。</p>
+<h4 id="基本搜索"><a href="#基本搜索" class="headerlink" title="基本搜索"></a>基本搜索</h4><ul>
+<li>逻辑与：and</li>
+<li>逻辑或： or </li>
+<li>逻辑非： -</li>
+<li>完整匹配：”关键词” </li>
+<li>通配符：* ?</li>
+</ul>
+<h4 id="高级搜索"><a href="#高级搜索" class="headerlink" title="高级搜索"></a>高级搜索</h4><p><strong>intext:</strong></p>
+<p>寻找正文中含有关键字的网页</p>
+<p>例如： intext:后台登录  将只返回正文中包含 后台登录 的网页</p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721112102543.png" alt="image-20210721112102543"></p>
+<p><strong>intitle:</strong></p>
+<p>寻找标题中含有关键字的网页</p>
+<p>例如： <strong>intitle:后台登录</strong>  将只返回标题中包含 后台登录 的网页，<strong>intitle:后台登录 密码</strong> 将返回标题中包含后台登陆而正文中包含密码的网页</p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721112718565.png" alt="image-20210721112718565"></p>
+<p><strong>allintitle:</strong></p>
+<p>用法和intitle类似，只不过可以指定多个词</p>
+<p>例如： <strong>alltitle:后台登录 管理员</strong>  将返回标题中包含后台登录 和管理员的网页</p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721112748777.png" alt="image-20210721112748777"></p>
+<p><strong>inurl：</strong></p>
+<p>将返回url中含有关键词的网页</p>
+<p>例如：<strong>inurl:Login</strong>  将返回url中含有 Login 的网页</p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721112706339.png" alt="image-20210721112706339"></p>
+<p><strong>allinurl:</strong></p>
+<p>用法和inurl类似，只不过可以指定多个词</p>
+<p>例如：<strong>allinurl:Login admin</strong> 将返回url中含有 Login 和 admin 的网页</p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721112952968.png" alt="image-20210721112952968"></p>
+<p><strong>site:</strong></p>
+<p>指定访问的站点</p>
+<p>例如： <strong>site:baidu.com inurl:Login</strong>  将只在baidu.com 中查找url中含有 Login的网页</p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721113025162.png" alt="image-20210721113025162"></p>
+<p><strong>filetype:</strong></p>
+<p>指定访问的文件类型</p>
+<p>例如：<strong>site:baidu.com filetype:pdf</strong>   将只返回baidu.com站点上文件类型为pdf的网页</p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721113109611.png" alt="image-20210721113109611"></p>
+<p><strong>link:</strong></p>
+<p>指定链接的网页，例如：<strong>link:<a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a></strong>  将返回所有包含指向 <a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a> 的网页</p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721113151312.png" alt="image-20210721113151312"></p>
+<p><strong>related:</strong></p>
+<p>相似类型的网页</p>
+<p>例如：<strong>related:<a target="_blank" rel="noopener" href="http://www.xjtu.edu.cn/">www.xjtu.edu.cn</a></strong> 将返回与 <a target="_blank" rel="noopener" href="http://www.xjtu.edu.cn/">www.xjtu.edu.cn</a> 相似的页面，相似指的是网页的布局相似</p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721113230486.png" alt="image-20210721113230486"></p>
+<p>cache:</p>
+<p>网页快照，谷歌将返回给你他存储下来的历史页面，如果你同时制定了其他查询词，将在搜索结果里以高亮显示，例如：cache:<a target="_blank" rel="noopener" href="http://www.hackingspirits.com/">www.hackingspirits.com</a>  guest  ，将返回指定网站的缓存，并且正文中含有guest</p>
+<p>info:</p>
+<p>返回站点的指定信息，例如：info:<a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a>   将返回百度的一些信息</p>
+<p>define:</p>
+<p>返回某个词语的定义，例如：define:Hacker　　将返回关于Hacker的定义</p>
+<p>phonebook:</p>
+<p>电话簿查询美国街道地址和电话号码信息。例如：phonebook:Lisa+CA  将返回名字里面包含Lisa并住在加州的人的所有名字</p>
+<p>Index of<br>利用  Index of  语法去发现允许目录浏览的web网站，就像在本地的普通目录一样。下面是一些有趣的查询：</p>
+<ul>
+<li>index of /admin</li>
+<li>index of /passwd</li>
+<li>index of /password</li>
+<li>index of /mail</li>
+<li>“index of /“ +passwd</li>
+<li>“index of /“ +password.txt</li>
+<li>“index of /“ +.htaccess</li>
+<li>“index of /root”</li>
+<li>“index of /cgi-bin”</li>
+<li>“index of /logs”</li>
+<li>“index of /config”</li>
+</ul>
+<h3 id="网络空间搜索引擎"><a href="#网络空间搜索引擎" class="headerlink" title="网络空间搜索引擎"></a>网络空间搜索引擎</h3><p>如FOFA搜索旁站和C段</p>
+<p>FOFA的常用语法</p>
+<ul>
+<li><p>同IP旁站：ip=”192.168.0.1”</p>
+</li>
+<li><p>C段：ip=”192.168.0.0/24”</p>
+</li>
+<li><p>子域名：domain=”baidu.com”</p>
+</li>
+<li><p>标题/关键字：title=”百度”</p>
+</li>
+<li><p>如果需要将结果缩小到某个城市的范围，那么可以拼接语句</p>
+<p>title=”百度”&amp;&amp; region=”Beijing”</p>
+</li>
+<li><p>特征：body=”百度”或header=”baidu”</p>
+</li>
+</ul>
+<p>该方法效率较高，并能够直观地看到站点标题，但也有不常见端口未收录的情况，虽然这种情况很少，但之后补充资产的时候可以用下面的方法nmap扫描再收集一遍。</p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721113829476.png" alt="image-20210721113829476"></p>
+<p><a target="_blank" rel="noopener" href="https://www.shodan.io/dashboard?language=en">https://www.shodan.io/dashboard?language=en</a></p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721113917500.png" alt="image-20210721113917500"></p>
+<h3 id="在线c段查询"><a href="#在线c段查询" class="headerlink" title="在线c段查询"></a>在线c段查询</h3><p>webscan.cc</p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721114446949.png" alt="image-20210721114446949"></p>
+<p><a target="_blank" rel="noopener" href="https://c.webscan.cc/">https://c.webscan.cc/</a></p>
+<p><img src="/2021/07/20/60-zhi-day16/image-20210721114508555.png" alt="image-20210721114508555"></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">晓莎K</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://0x00xiaoshaK.github.io/2021/07/20/60-zhi-day16/">http://0x00xiaoshaK.github.io/2021/07/20/60-zhi-day16/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">晓莎K</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/">
+                                    <span class="chip bg-color">信息搜集</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg.png") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'DJnY4XDNchYmzLpD8IASjSjf-gzGzoHsz',
+        appKey: '3tkas9StBY5fsrGt1BVtPNOt',
+        notify: 'false' === 'true',
+        verify: 'false' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: 'just go go'
+    });
+</script>
+
+<!--酷Q推送-->
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/07/21/60-zhi-day17/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="信息搜集">
+                        
+                        <span class="card-title">信息搜集</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            信息搜集
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-07-21
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/" class="post-category">
+                                    信息搜集
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/">
+                        <span class="chip bg-color">信息搜集</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/07/20/60-zhi-day15-1/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="搭建域环境&amp;windows指令">
+                        
+                        <span class="card-title">搭建域环境&amp;windows指令</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            渗透测试基础知识
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%9F%BA%E7%A1%80/" class="post-category">
+                                    渗透测试基础
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%90%AD%E5%BB%BA%E5%9F%9F%E7%8E%AF%E5%A2%83/">
+                        <span class="chip bg-color">搭建域环境</span>
+                    </a>
+                    
+                    <a href="/tags/Windows%E6%8C%87%E4%BB%A4/">
+                        <span class="chip bg-color">Windows指令</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021-2023</span>
+            
+            <a href="/about" target="_blank">晓莎K</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/0x00xiaoshaK" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">219.7k</span>
+            
+            
+            
+            
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link ">
+    <a href="https://github.com/0x00xiaoshaK" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1003682630@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1003682630" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1003682630" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

