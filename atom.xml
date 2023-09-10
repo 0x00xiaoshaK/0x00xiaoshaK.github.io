@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>晓莎K&#39;s blog</title>
+  
+  <subtitle>学无止境，不进则退</subtitle>
+  <link href="http://0x00xiaoshak.github.io/atom.xml" rel="self"/>
+  
+  <link href="http://0x00xiaoshak.github.io/"/>
+  <updated>2023-09-10T08:29:18.830Z</updated>
+  <id>http://0x00xiaoshak.github.io/</id>
+  
+  <author>
+    <name>晓莎K</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>myNewTestBlog</title>
+    <link href="http://0x00xiaoshak.github.io/2023/09/10/mynewtestblog/"/>
+    <id>http://0x00xiaoshak.github.io/2023/09/10/mynewtestblog/</id>
+    <published>2023-09-10T08:29:18.000Z</published>
+    <updated>2023-09-10T08:29:18.830Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+</feed>
